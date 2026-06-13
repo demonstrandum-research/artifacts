@@ -1,0 +1,8 @@
+{
+ "L3": "OK n<=8 (class equality, count 2^(n-1), sign bijection roundtrip)",
+ "L2_L4_setequality": "OK for n<=7",
+ "L5_L6_pershape": "OK n<=8 vs refined_stats (Rust ground truth)",
+ "L6_irreducible": "OK all irreducible components with <=8 arcs",
+ "TM": "OK transfer matrix == 3^n-3*2^(n-1)+1 for n<=40",
+ "recurrence": "OK a_n = 6a_(n-1)-11a_(n-2)+6a_(n-3) for 4<=n<=40"
+}

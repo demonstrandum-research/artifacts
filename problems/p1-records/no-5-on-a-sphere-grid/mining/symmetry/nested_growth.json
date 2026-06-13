@@ -1,0 +1,23 @@
+{
+ "stage13to15": {
+  "singly_addable_pairs": 0,
+  "pairs_added": 0,
+  "final_size": 36,
+  "added_dirs": [],
+  "singles_after": []
+ },
+ "stage_nested15_to17": {
+  "core_size": 36,
+  "singly_addable_pairs": 0,
+  "pairs_added": 0,
+  "final_size": 36,
+  "singles_after": []
+ },
+ "stage_algebraic15_to17": {
+  "core_size": 38,
+  "singly_addable_pairs": 0,
+  "pairs_added": 0,
+  "final_size": 38,
+  "singles_after": []
+ }
+}

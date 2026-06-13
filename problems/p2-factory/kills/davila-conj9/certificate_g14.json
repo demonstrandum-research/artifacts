@@ -1,0 +1,121 @@
+{
+ "slug": "davila-conj9",
+ "refutes": "Conjecture 9 (TxGraffiti - Open). If G is a connected, cubic, and diamond-free graph, then Z(G) <= gamma(G) + 2, and this bound is sharp.",
+ "source": "arXiv:2406.19231v2 (R. Davila, 'Another conjecture of TxGraffiti concerning zero forcing and domination in graphs', v2 18 Nov 2024), Section 4 'Conclusion'. Verified verbatim from https://arxiv.org/html/2406.19231v2 on 2026-06-11.",
+ "construction": "Two disjoint copies of K_{3,3}; in each copy subdivide one edge (one new degree-2 vertex per copy); join the two subdivision vertices by a bridge. n = 14.",
+ "labeling": "Block A: parts {0,1,2}|{3,4,5}, edge (0,3) subdivided by 6. Block B: parts {7,8,9}|{10,11,12}, edge (7,10) subdivided by 13. Bridge (6,13).",
+ "n": 14,
+ "edges": [
+  [
+   0,
+   4
+  ],
+  [
+   0,
+   5
+  ],
+  [
+   1,
+   3
+  ],
+  [
+   1,
+   4
+  ],
+  [
+   1,
+   5
+  ],
+  [
+   2,
+   3
+  ],
+  [
+   2,
+   4
+  ],
+  [
+   2,
+   5
+  ],
+  [
+   0,
+   6
+  ],
+  [
+   3,
+   6
+  ],
+  [
+   7,
+   11
+  ],
+  [
+   7,
+   12
+  ],
+  [
+   8,
+   10
+  ],
+  [
+   8,
+   11
+  ],
+  [
+   8,
+   12
+  ],
+  [
+   9,
+   10
+  ],
+  [
+   9,
+   11
+  ],
+  [
+   9,
+   12
+  ],
+  [
+   7,
+   13
+  ],
+  [
+   10,
+   13
+  ],
+  [
+   6,
+   13
+  ]
+ ],
+ "graph6": "MBzc_????@_M?[?q?",
+ "hypotheses_verified": [
+  "connected",
+  "3-regular",
+  "triangle-free (hence diamond-free under both the subgraph and induced-subgraph readings)"
+ ],
+ "gamma": 4,
+ "gamma_witness": [
+  0,
+  3,
+  7,
+  10
+ ],
+ "gamma_lower_bound_proof": "exhaustive: none of the C(14,3)=364 3-subsets dominates",
+ "Z": 7,
+ "Z_witness": [
+  0,
+  1,
+  3,
+  4,
+  7,
+  8,
+  11
+ ],
+ "Z_lower_bound_proof": "exhaustive: none of the C(14,6)=3003 6-subsets is a zero forcing set",
+ "conclusion": "Z(G) = 7 = gamma(G) + 3 > gamma(G) + 2: Conjecture 9 is FALSE. (Sharpness claim moot.)",
+ "checker": "checker_conj9.py (pure Python stdlib, exact bitmask arithmetic); independent Rust verifier rust_check/ agrees."
+}

@@ -1,0 +1,4 @@
+{"n": 12, "p": 7, "forms": "ver", "order": "desc_norm", "points": 20}
+{"n": 12, "p": 7, "forms": "union_ver_hyp", "order": "desc_norm", "points": 22}
+{"n": 12, "p": 7, "forms": "union_ver_hyp", "order": "corner_first", "points": 24}
+{"n": 12, "p": 7, "forms": "union_ver_hyp", "order": "corner_first", "points": 24, "valid": true}

@@ -1,0 +1,128 @@
+Graffiti Conjecture 154 -- clean-room Gate-4 verification
+Statement (WoW July 2004, decoded, verbatim): '154. deviation of eigenvalues <= n / average distance.'
+
+=== lollipop(t=72, p=72) ===
+  [PASS] n = 144
+  [PASS] m = 2628 = t(t-1)/2 + p
+  [PASS] degree sequence sane (path end deg 1, clique deg >= t-1)
+  [PASS] W (BFS) = 259080 == closed form 259080
+    8mW^2          = 1411182313113600
+    n^5(n-1)^2 (DP)= 1266148181016576   margin = 145034132097024
+    n^7        (N2)= 1283918464548864   margin = 127263848564736
+  [PASS] std-dev violates DP convention is True
+  [PASS] std-dev violates N2 convention is True
+    stddev = sqrt(2m/n) = 6.04152298679729; n/l_DP = 5.72264937471051; n/l_N2 = 5.76266790180639
+  [PASS] float64: tr(A)=0 and tr(A^2)=2m reproduced by actual eigenvalues
+  [PASS] mpmath dps=60: same identities at high precision
+  [PASS] energy float64 233.576286 vs mpmath agree to 1e-6
+    MAD = energy/n = 1.6220575450927725178 (energy = 233.57628649335924256)
+    sign-separation: n/l_DP - MAD = 4.10059183; n/l_N2 - MAD = 4.140610357
+  [PASS] MAD reading NOT violated (DP), high precision
+  [PASS] MAD reading NOT violated (N2), high precision
+  [PASS] EXACT (Koolen-Moulton, rational): MAD non-violation proven, DP
+  [PASS] EXACT (Koolen-Moulton, rational): MAD non-violation proven, N2
+  [PASS] partition {v0}|{other clique}|path singletons is equitable
+  [PASS] quotient matrix matches analytic construction
+  [PASS] explicit verification: -1 eigenvalue with 70 independent difference eigenvectors
+  [PASS] trace identity: tr(B) + (t-2)(-1) = 0 = tr(A)
+  [PASS] trace identity: tr(B^2) + (t-2) = 2m = tr(A^2)
+  [PASS] charpoly(B) has integer coefficients, degree 74 (all-74-roots-real is asserted inside sturm_energy_enclosure)
+    EXACT energy enclosure: [233.576286493359, 233.576286493359] (width 2.41e-17)
+  [PASS] exact enclosure consistent with mpmath energy
+  [PASS] EXACT (Sturm enclosure): energy_hi < n^2/l_DP  => MAD not violated (DP)
+  [PASS] EXACT (Sturm enclosure): energy_hi < n^2/l_N2  => MAD not violated (N2)
+  [PASS] numpy spectrum == certified multiset roots(B) u {-1}^(t-2) (1e-8)
+
+=== lollipop(t=50, p=70) ===
+  [PASS] n = 120
+  [PASS] m = 1295 = t(t-1)/2 + p
+  [PASS] degree sequence sane (path end deg 1, clique deg >= t-1)
+  [PASS] W (BFS) = 186060 == closed form 186060
+    8mW^2          = 358645832496000
+    n^5(n-1)^2 (DP)= 352370995200000   margin = 6274837296000
+    n^7        (N2)= 358318080000000   margin = 327752496000
+  [PASS] std-dev violates DP convention is True
+  [PASS] std-dev violates N2 convention is True
+    stddev = sqrt(2m/n) = 4.64578662158878; n/l_DP = 4.60496613995485; n/l_N2 = 4.64366333440826
+  [PASS] float64: tr(A)=0 and tr(A^2)=2m reproduced by actual eigenvalues
+  [PASS] mpmath dps=60: same identities at high precision
+  [PASS] energy float64 187.026169 vs mpmath agree to 1e-6
+    MAD = energy/n = 1.5585514055575092723 (energy = 187.02616866690111268)
+    sign-separation: n/l_DP - MAD = 3.046414734; n/l_N2 - MAD = 3.085111929
+  [PASS] MAD reading NOT violated (DP), high precision
+  [PASS] MAD reading NOT violated (N2), high precision
+  [PASS] EXACT (Koolen-Moulton, rational): MAD non-violation proven, DP
+  [PASS] EXACT (Koolen-Moulton, rational): MAD non-violation proven, N2
+  [PASS] partition {v0}|{other clique}|path singletons is equitable
+  [PASS] quotient matrix matches analytic construction
+  [PASS] explicit verification: -1 eigenvalue with 48 independent difference eigenvectors
+  [PASS] trace identity: tr(B) + (t-2)(-1) = 0 = tr(A)
+  [PASS] trace identity: tr(B^2) + (t-2) = 2m = tr(A^2)
+  [PASS] charpoly(B) has integer coefficients, degree 72 (all-72-roots-real is asserted inside sturm_energy_enclosure)
+    EXACT energy enclosure: [187.026168666901, 187.026168666901] (width 2.76e-17)
+  [PASS] exact enclosure consistent with mpmath energy
+  [PASS] EXACT (Sturm enclosure): energy_hi < n^2/l_DP  => MAD not violated (DP)
+  [PASS] EXACT (Sturm enclosure): energy_hi < n^2/l_N2  => MAD not violated (N2)
+  [PASS] numpy spectrum == certified multiset roots(B) u {-1}^(t-2) (1e-8)
+
+=== lollipop(t=48, p=70) ===
+  [PASS] n = 118
+  [PASS] m = 1198 = t(t-1)/2 + p
+  [PASS] degree sequence sane (path end deg 1, clique deg >= t-1)
+  [PASS] W (BFS) = 180853 == closed form 180853
+    8mW^2          = 313471628124656
+    n^5(n-1)^2 (DP)= 313171159328352   margin = 300468796304
+    n^7        (N2)= 318547390056832   margin = -5075761932176
+  [PASS] std-dev violates DP convention is True
+  [PASS] std-dev violates N2 convention is False
+    stddev = sqrt(2m/n) = 4.50611637064143; n/l_DP = 4.50395625176248; n/l_N2 = 4.54245160434165
+  [PASS] float64: tr(A)=0 and tr(A^2)=2m reproduced by actual eigenvalues
+  [PASS] mpmath dps=60: same identities at high precision
+  [PASS] energy float64 183.025670 vs mpmath agree to 1e-6
+    MAD = energy/n = 1.5510649969051528837 (energy = 183.02566963480804028)
+    sign-separation: n/l_DP - MAD = 2.952891255; n/l_N2 - MAD = 2.991386607
+  [PASS] MAD reading NOT violated (DP), high precision
+  [PASS] MAD reading NOT violated (N2), high precision
+  [PASS] EXACT (Koolen-Moulton, rational): MAD non-violation proven, DP
+  [PASS] EXACT (Koolen-Moulton, rational): MAD non-violation proven, N2
+  [PASS] partition {v0}|{other clique}|path singletons is equitable
+  [PASS] quotient matrix matches analytic construction
+  [PASS] explicit verification: -1 eigenvalue with 46 independent difference eigenvectors
+  [PASS] trace identity: tr(B) + (t-2)(-1) = 0 = tr(A)
+  [PASS] trace identity: tr(B^2) + (t-2) = 2m = tr(A^2)
+  [PASS] charpoly(B) has integer coefficients, degree 72 (all-72-roots-real is asserted inside sturm_energy_enclosure)
+    EXACT energy enclosure: [183.025669634808, 183.025669634808] (width 2.68e-17)
+  [PASS] exact enclosure consistent with mpmath energy
+  [PASS] EXACT (Sturm enclosure): energy_hi < n^2/l_DP  => MAD not violated (DP)
+  [PASS] EXACT (Sturm enclosure): energy_hi < n^2/l_N2  => MAD not violated (N2)
+  [PASS] numpy spectrum == certified multiset roots(B) u {-1}^(t-2) (1e-8)
+
+=== claim-record exact numbers ===
+  [PASS] (72,72): m=2628
+  [PASS] (72,72): W=259080
+  [PASS] (72,72): 8mW^2 = 1411182313113600
+  [PASS] (72,72): n^5(n-1)^2 = 1266148181016576
+  [PASS] (72,72): n^7 = 1283918464548864
+    (48,70): n^7 - 8mW^2 = 5075761932176  (~5.1e12 claimed)
+  [PASS] (48,70): N2 shortfall about 5.1e12
+
+=== exhaustive lollipop scan n <= 130 ===
+    violators found (any convention): 199
+    first few: [(118, 48, 70, True, False), (118, 49, 69, True, False), (118, 50, 68, True, False), (118, 51, 67, True, False), (119, 47, 72, True, False), (119, 48, 71, True, False), (119, 49, 70, True, False), (119, 50, 69, True, False)]
+    all DP violators at n=118: [(118, 48, 70), (118, 49, 69), (118, 50, 68), (118, 51, 67)]
+    all both-convention violators at n=120: [(120, 50, 70), (120, 51, 69)]
+  [PASS] minimal n for a DP-violating lollipop is 118, and (48,70) is one of them (claim said 'smallest found'; NOT unique: see list above)
+  [PASS] minimal n for a both-conventions lollipop is 120, and (50,70) is one of them (NOT unique: see list above)
+  [PASS] no lollipop with n <= 117 violates either convention
+  [PASS] every N2 violator also violates DP (n^7 > n^5(n-1)^2)
+
+=== mutation self-tests (all must be rejected) ===
+  [PASS] mutation rejected: lollipop(47,70) n=117 claimed to violate DP
+  [PASS] mutation rejected: lollipop(48,70) claimed to violate N2 (it must not)
+  [PASS] mutation rejected: lollipop(72,72) with W corrupted by -1 still gives same margin
+  [PASS] mutation rejected: path-only graph P_144 (t=2 degenerate) violates DP
+  [PASS] mutation rejected: clique-only K_144 violates DP
+  [PASS] mutation rejected: wrong closed form W+1 matches BFS at (72,72)
+
+======================================================================
+OVERALL: ALL CHECKS PASS -- Conjecture 154 (std-dev reading) is REFUTED by lollipop(48,70)/(50,70)/(72,72); MAD reading NOT violated by these instances (proven exactly).

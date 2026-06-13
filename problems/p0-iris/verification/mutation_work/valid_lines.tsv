@@ -1,0 +1,11 @@
+e1_tetrahedron	4 bcd,adc,abd,acb
+e2_octahedron	6 bcde,aefc,abfd,acfe,adfb,bedc
+e3_icosahedron	12 hjgei,fkgjc,bjhlf,fliek,iagkd,dkbcl,ajbke,lcjai,edlha,gahcb,degbf,hidfc
+e4_bipyramid5	7 bcdef,afgc,abgd,acge,adgf,aegb,fedcb
+e5_bipyramid6	8 bcdefg,aghc,abhd,ache,adhf,aehg,afhb,gfedcb
+e6_bipyramid7	9 bcdefgh,ahic,abid,acie,adif,aeig,afih,agib,hgfedcb
+e7_bipyramid8	10 bcdefghi,aijc,abjd,acje,adjf,aejg,afjh,agji,ahjb,ihgfedcb
+g1_n14	14 cijhm,hlem,amgkdei,ckfe,cdfmbli,medkg,fkcm,lbmajn,elnjac,hain,gfdc,hnieb,fgcahbe,hjil
+g2_n16	16 cjfbn,gnaf,angkoej,opfje,codj,jdpmikgba,fkcnb,oklm,lkfm,edfac,filhocg,imhk,fpohli,bgca,hmpdeck,mfdo
+g3_n18	18 bgpckdoefh,ahlnfcjig,apjbfrk,akro,aorf,bnmhaerc,iqpab,fmlba,qgbj,cpqib,crda,hmnb,lhfn,lmfb,eadr,gqjca,ijpg,feodkc
+g4_small_margin	14 hfcmlidgeb,efha,mafni,aikfeg,agdfb,bedkijncah,dea,fab,njfkdalmc,inf,dif,iam,cila,jicf

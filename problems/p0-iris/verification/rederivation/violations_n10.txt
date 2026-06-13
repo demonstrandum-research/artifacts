@@ -1,0 +1,5 @@
+10 bcdefghi,aigc,abgjfed,ace,adcf,aecjg,afjcbih,agi,ahgb,cgf
+10 bcdefghi,aigdc,abd,acbgjfe,adf,aedjg,afjdbih,agi,ahgb,dgf
+10 bcdefghi,aijc,abjifed,ace,adcf,aecig,afih,agi,ahgfcjb,bic
+10 bcdefghi,aihfjdc,abd,acbjfe,adf,aedjbhg,afh,agfbi,ahb,bfd
+10 bcdef,afghc,abhgied,ace,adcigjf,aejgb,bfjeich,bgc,cge,egf

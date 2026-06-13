@@ -1,0 +1,70 @@
+{
+ "set_equality_n1": {
+  "mismatched_shapes": 0,
+  "bf_total": 1,
+  "t1_total": 1,
+  "ok": true
+ },
+ "set_equality_n2": {
+  "mismatched_shapes": 0,
+  "bf_total": 4,
+  "t1_total": 4,
+  "ok": true
+ },
+ "set_equality_n3": {
+  "mismatched_shapes": 0,
+  "bf_total": 16,
+  "t1_total": 16,
+  "ok": true
+ },
+ "set_equality_n4": {
+  "mismatched_shapes": 0,
+  "bf_total": 58,
+  "t1_total": 58,
+  "ok": true
+ },
+ "set_equality_n5": {
+  "mismatched_shapes": 0,
+  "bf_total": 196,
+  "t1_total": 196,
+  "ok": true
+ },
+ "set_equality_n6": {
+  "mismatched_shapes": 0,
+  "bf_total": 634,
+  "t1_total": 634,
+  "ok": true
+ },
+ "set_equality_n7": {
+  "mismatched_shapes": 0,
+  "bf_total": 1996,
+  "t1_total": 1996,
+  "ok": true
+ },
+ "n8_per_shape": {
+  "mismatches": 0,
+  "t1_total": 6178,
+  "bf_total": 6178,
+  "ok": true
+ },
+ "t1_total_n9": {
+  "t1_total": 18916,
+  "formula": 18916,
+  "ok": true
+ },
+ "t1_total_n10": {
+  "t1_total": 57514,
+  "formula": 57514,
+  "ok": true
+ },
+ "t1_total_n11": {
+  "t1_total": 174076,
+  "formula": 174076,
+  "ok": true
+ },
+ "t1_total_n12": {
+  "t1_total": 525298,
+  "formula": 525298,
+  "ok": true
+ }
+}

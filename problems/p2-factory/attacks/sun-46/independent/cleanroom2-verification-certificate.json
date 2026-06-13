@@ -1,0 +1,48 @@
+{
+  "job": "Clean-room re-verification (second independent verifier session) of the claimed kill of Sun Conjecture 4.6 (arXiv:2108.07723v7)",
+  "verifier": "independent verifier agent (Claude Fable 5), session 2026-06-12; all cleanroom2_* artifacts in this directory written from scratch this session -- no code reused from the attack pipeline (driver.py/ryser_mod.c/checker.py/mycheck_2026-06-12.py) nor from the first clean-room layer (independent_checker.py/crt_verify.py/perm_modq.c)",
+  "statement_pinned": {
+    "source": "paper.tex (arXiv source): definitions at lines 285-296 (Theorem Th-sin = Thm 1.6, s_n and s'_p PROVEN integers, published values in Remark Rem-sin lines 297-307); conjecture at lines 1109-1114, the 6th conjecture environment of Section 4; numbering '4.6' cross-confirmed in the compiled PDF text (sun-permanents.txt line ~2495)",
+    "definitions": "s_n = (2^((n-1)/2)/sqrt(n)) * per[sin(2pi jk/n)]_{1<=j,k<=(n-1)/2}; s'_p = (sqrt(p)/2^((p-1)/2)) * per[csc(2pi jk/p)]_{1<=j,k<=(p-1)/2}",
+    "conjecture_4_6": "(i) odd composite n>1 => s_n == 0 (mod n); (ii) odd prime p: s_p < 0 <=> p == 5 (mod 12), AND s'_p < 0 <=> p == 7 (mod 8)"
+  },
+  "counterexample_verified": {
+    "prime": 29,
+    "residues": "29 == 5 (mod 12); 29 == 5 (mod 8)",
+    "s_29": 1053859,
+    "sprime_29": -4806838304,
+    "violations": "clause 1 demands s_29 < 0 but s_29 > 0; clause 2 demands s'_29 >= 0 (29 != 7 mod 8) but s'_29 < 0 -- both iff clauses of 4.6(ii) fail at p = 29, so Conjecture 4.6 (conjunction of (i) and (ii)) is false as stated",
+    "supplementary_also_verified_this_session": {
+      "s_41": 5574476521,
+      "s_53": 1540679755916971,
+      "sprime_61": "-2904784276786469053142518062479",
+      "note": "s_53 and s'_61 had previously rested on the two prior CRT layers only; this session re-derived them from scratch as well, removing that provenance caveat"
+    },
+    "proven_congruence_consistency": "s_p == (-1)^((p+1)/2) (mod p) and s'_p == 1 (mod p) (Thm 1.6(iii), PROVEN) hold on all five verified values"
+  },
+  "methods_this_session": {
+    "method_A_exact_crt": {
+      "files": "cleanroom2_checker.py (log: cleanroom2_checker.log, results: cleanroom2_results.json)",
+      "description": "Ring homomorphism Z[zeta_4n] -> F_q for fresh random 60-bit primes q == 1 (mod 4n) (own deterministic Miller-Rabin, seed 0x20260612); entries 2sin(2pi jk/n) = -i(z^jk - z^-jk), i = zeta_4n^n; sqrt(n) via quadratic Gauss sum with Gauss's sign theorem (per-prime asserts: i^2 == -1, G_image^2 == n); own Gray-code Ryser permanent mod q (self-tested vs permutation-expansion permanent on 36 random signed matrices); rigorous magnitude bounds (|s_n| <= 2^m m!; |s'_p| <= p^(m+1) m!/4^m via |2sin(2pi t/p)| >= 4/p); symmetric CRT with 2B < prod(q) uniqueness; one HELD-OUT prime per value must agree with the reconstruction. Anchors: all 19 published values of Remark 1.6 reproduced exactly (incl. negatives s_5, s_17, s'_7, s'_23) BEFORE testing any claim.",
+      "results": "s_29 = 1053859, s'_29 = -4806838304, s_41 = 5574476521, all exact, all matching the attack's claims"
+    },
+    "method_B_interval": {
+      "files": "cleanroom2_checker.py (Method B section of same log)",
+      "description": "192-bit mpmath interval arithmetic, direct real sin/csc entries, NO Gauss sums and NO finite fields (closes any global-sign-convention hole in Method A); same Gray-code Ryser over intervals; final enclosure must have width << 1 and contain exactly one integer.",
+      "results": "s_5 = -1, s_17 = -239, s'_7 = -6, s'_23 = -7094142 (paper anchors); s_29 = 1053859 (width 5e-44), s'_29 = -4806838304 (width 1e-39), s_41 = 5574476521 (width 5e-37) -- each enclosure contains exactly the claimed integer"
+    },
+    "method_C_supplement": {
+      "files": "cleanroom2_perm.c + cleanroom2_supplement.py (log: cleanroom2_supplement.log)",
+      "description": "Own OpenMP C Gray-code Ryser mod q (WSL gcc, __uint128 mulmod, modular critical-section fold) driven by the same homomorphism construction with a fresh prime seed (0xC1EA62); C path validated against paper anchors s_23, s'_23 before testing claims; same CRT-uniqueness + held-out-prime discipline.",
+      "results": "s_53 = 1540679755916971 (2 CRT + 1 held-out primes) and s'_61 = -2904784276786469053142518062479 (4 CRT + 1 held-out primes), both matching the attack's claims; re-run after the audit fixes reproduced identical values"
+    }
+  },
+  "codex_adversarial_audit": {
+    "thread": "019eba63-0683-7cc3-a3e5-b151d1f3be1d (GPT-5.5 xhigh, danger-full-access)",
+    "verdict": "KILL STANDS; no normalization or sign escape in the paper; no core false-pass flaw in the verification",
+    "details": "Confirmed statement/numbering from paper.tex + compiled PDF; audited Ryser sign, homomorphism/Gauss-sum equivariance, csc derivation, magnitude bounds, CRT uniqueness, interval layer; recomputed independently with its own direct high-precision real Ryser (no files of mine): s_29 -> 1053859 (err ~2e-132 at 140 dps), s'_29 -> -4806838304 (err ~1.4e-128), s_41 -> 5574476521 (err ~3e-66 at 80 dps); verified all congruences and residue classes.",
+    "findings_and_remediation": "Two non-computational caveats found, both fixed and re-run this session: (1) importing cleanroom2_checker from the supplement truncated cleanroom2_checker.log (log now opened lazily; checker re-run end-to-end with the same seed, identical values); (2) latent uint64 overflow in the C helper's OpenMP '+' reduction of per-thread totals (replaced with a modular critical-section fold; rebuilt; supplement re-run with identical results -- Codex had already checked output invariance across 24/32 threads on the saved heavy csc61 job before the fix)"
+  },
+  "verdict": "KILL CONFIRMED. Conjecture 4.6(ii) of arXiv:2108.07723v7 is false at p = 29 (both iff clauses), with additional failures at p = 41 and 53 (mod-12 clause) and p = 61 (mod-8 clause), all re-derived exactly from scratch this session. Part (i) is NOT refuted and survives as a standalone conjecture.",
+  "date": "2026-06-12"
+}

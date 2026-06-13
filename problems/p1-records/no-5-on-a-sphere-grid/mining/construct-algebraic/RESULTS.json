@@ -1,0 +1,168 @@
+{
+ "7": {
+  "deterministic_CC": {
+   "m": 10,
+   "file": "CC_best_n7_m10.json"
+  }
+ },
+ "9": {
+  "deterministic_CC": {
+   "m": 14,
+   "file": "CC_best_n9_m14.json"
+  }
+ },
+ "11": {
+  "cone_ILS": {
+   "m": 26,
+   "file": "set_union_ver_vera_verb11_n11_m26.json"
+  },
+  "deterministic_CC": {
+   "m": 26,
+   "file": "det_full_lex_n11_m26.json"
+  },
+  "formula": {
+   "m": 10,
+   "file": "formula_p11k1c1_n11_m10.json"
+  },
+  "full_ILS": {
+   "m": 28,
+   "file": "set_full_n11_m28.json"
+  },
+  "hybrid": {
+   "m": 26,
+   "file": "hybrid_ver5_n11_m26.json"
+  }
+ },
+ "12": {
+  "cone_ILS": {
+   "m": 28,
+   "file": "set_union_ver_hyp11_n12_m28.json"
+  },
+  "deterministic_CC": {
+   "m": 26,
+   "file": "det_full_desc_norm_n12_m26.json"
+  },
+  "full_ILS": {
+   "m": 32,
+   "file": "set_full_n12_m32.json"
+  }
+ },
+ "13": {
+  "cone_ILS": {
+   "m": 30,
+   "file": "set_mix_ver11_hyp13_n13_m30.json"
+  },
+  "deterministic_CC": {
+   "m": 28,
+   "file": "det_full_desc_norm_n13_m28.json"
+  },
+  "formula": {
+   "m": 10,
+   "file": "formula_p11k1c1_n13_m10.json"
+  },
+  "full_ILS": {
+   "m": 32,
+   "file": "set_full_n13_m32.json"
+  },
+  "hybrid": {
+   "m": 30,
+   "file": "hybrid_union_ver_hyp11_n13_m30.json"
+  }
+ },
+ "14": {
+  "cone_ILS": {
+   "m": 32,
+   "file": "set_union_ver_hyp11_n14_m32.json"
+  },
+  "deterministic_CC": {
+   "m": 30,
+   "file": "det_full_desc_norm_n14_m30.json"
+  },
+  "full_ILS": {
+   "m": 36,
+   "file": "set_full_n14_m36.json"
+  }
+ },
+ "15": {
+  "cone_ILS": {
+   "m": 36,
+   "file": "set_union_ver_vera_verb11_n15_m36.json"
+  },
+  "deterministic_CC": {
+   "m": 34,
+   "file": "det_full_corner_first_n15_m34.json"
+  },
+  "formula": {
+   "m": 10,
+   "file": "formula_p11k1c1_n15_m10.json"
+  },
+  "full_ILS": {
+   "m": 38,
+   "file": "set_full_n15_m38.json"
+  },
+  "hybrid": {
+   "m": 34,
+   "file": "hybrid_union_ver_hyp11_n15_m34.json"
+  }
+ },
+ "16": {
+  "cone_ILS": {
+   "m": 36,
+   "file": "set_union_ver_hyp11_n16_m36.json"
+  },
+  "deterministic_CC": {
+   "m": 34,
+   "file": "det_full_desc_norm_n16_m34.json"
+  },
+  "full_ILS": {
+   "m": 40,
+   "file": "set_full_n16_m40.json"
+  }
+ },
+ "17": {
+  "cone_ILS": {
+   "m": 40,
+   "file": "set_union_ver_vera_verb11_n17_m40.json"
+  },
+  "deterministic_CC": {
+   "m": 36,
+   "file": "CC_best_n17_m36.json"
+  },
+  "formula": {
+   "m": 16,
+   "file": "formula_p17k2c1_n17_m16.json"
+  },
+  "full_ILS": {
+   "m": 40,
+   "file": "set_full_n17_m40.json"
+  },
+  "hybrid": {
+   "m": 40,
+   "file": "hybrid_union_ver_hyp11_n17_m40.json"
+  }
+ },
+ "18": {
+  "deterministic_CC": {
+   "m": 36,
+   "file": "CC_best_n18_m36.json"
+  }
+ },
+ "19": {
+  "deterministic_CC": {
+   "m": 40,
+   "file": "CC_best_n19_m40.json"
+  }
+ },
+ "20": {
+  "deterministic_CC": {
+   "m": 42,
+   "file": "CC_best_n20_m42.json"
+  }
+ },
+ "21": {
+  "deterministic_CC": {
+   "m": 44,
+   "file": "CC_best_n21_m44.json"
+  }
+ }
+}

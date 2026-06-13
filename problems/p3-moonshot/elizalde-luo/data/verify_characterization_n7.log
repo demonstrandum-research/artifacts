@@ -1,0 +1,21 @@
+OK n<=8 (class equality, count 2^(n-1), sign bijection roundtrip)
+L2/L4/set-equality OK n=1: 1 (shape,p) pairs checked, 1 L4 pairs, 1 avoiders == 1
+L2/L4/set-equality OK n=2: 4 (shape,p) pairs checked, 4 L4 pairs, 4 avoiders == 4
+L2/L4/set-equality OK n=3: 30 (shape,p) pairs checked, 20 L4 pairs, 16 avoiders == 16
+L2/L4/set-equality OK n=4: 336 (shape,p) pairs checked, 112 L4 pairs, 58 avoiders == 58
+L2/L4/set-equality OK n=5: 5040 (shape,p) pairs checked, 672 L4 pairs, 196 avoiders == 196
+L2/L4/set-equality OK n=6: 95040 (shape,p) pairs checked, 4224 L4 pairs, 634 avoiders == 634
+L2/L4/set-equality OK n=7: 2162160 (shape,p) pairs checked, 27456 L4 pairs, 1996 avoiders == 1996
+L5/L6/per-shape-vs-rust OK n=1: total 1 == 1
+L5/L6/per-shape-vs-rust OK n=2: total 4 == 4
+L5/L6/per-shape-vs-rust OK n=3: total 16 == 16
+L5/L6/per-shape-vs-rust OK n=4: total 58 == 58
+L5/L6/per-shape-vs-rust OK n=5: total 196 == 196
+L5/L6/per-shape-vs-rust OK n=6: total 634 == 634
+L5/L6/per-shape-vs-rust OK n=7: total 1996 == 1996
+L5/L6/per-shape-vs-rust OK n=8: total 6178 == 6178
+OK all irreducible components with <=8 arcs
+OK transfer matrix == 3^n-3*2^(n-1)+1 for n<=40
+OK a_n = 6a_(n-1)-11a_(n-2)+6a_(n-3) for 4<=n<=40
+
+ALL CHECKS PASSED

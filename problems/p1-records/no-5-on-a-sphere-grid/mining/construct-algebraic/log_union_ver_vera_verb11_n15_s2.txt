@@ -1,0 +1,1 @@
+{"n": 15, "template": "union_ver_vera_verb11", "pool_size": 397, "pairs": 18, "points": 36, "verified": true, "distinct_proj_dirs_mod_p": 16, "iters": 1054}

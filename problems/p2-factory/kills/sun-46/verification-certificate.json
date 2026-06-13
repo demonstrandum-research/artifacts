@@ -1,0 +1,40 @@
+{
+  "job": "Clean-room verification of the claimed kill of Sun Conjecture 4.6 (arXiv:2108.07723v7)",
+  "verifier": "independent agent (Claude Fable 5), 2026-06-11; artifacts in this directory written from scratch, no attacker code reused",
+  "statement_pinned": {
+    "source": "sun-permanents.pdf, re-extracted independently with PyMuPDF (pdf_extract_independent.txt); arXiv listing re-checked live (v7, 2022-06-06, Zhi-Wei Sun)",
+    "definitions": "Thm 1.6: s_n = (2^((n-1)/2)/sqrt(n)) per[sin(2pi jk/n)]_{1<=j,k<=(n-1)/2} in Z for odd n>1; s'_p = (sqrt(p)/2^((p-1)/2)) per[csc(2pi jk/p)]_{1<=j,k<=(p-1)/2} in Z for odd prime p; proven s_p == (-1)^((p+1)/2), s'_p == 1 (mod p)",
+    "conjecture_4_6": "(i) odd composite n => s_n == 0 (mod n); (ii) odd prime p: s_p < 0 <=> p == 5 (mod 12), AND s'_p < 0 <=> p == 7 (mod 8)",
+    "confirmed_not_confused_with": "Conjecture 4.7 (tan/cot) of the same paper; and conjectures 4.6/4.7 of any other Sun paper"
+  },
+  "kill_counterexample_verified": {
+    "prime": 29,
+    "residues": "29 == 5 (mod 12) and 29 == 5 (mod 8)",
+    "s_29": 1053859,
+    "s_29_violation": "conjecture demands s_29 < 0 since 29 == 5 (mod 12); s_29 > 0",
+    "sprime_29": -4806838304,
+    "sprime_29_violation": "conjecture demands s'_29 >= 0 since 29 == 5 (mod 8) != 7; s'_29 < 0",
+    "congruence_consistency": "s_29 == 28 == (-1)^15 (mod 29); s'_29 == 1 (mod 29) -- both match Sun's PROVEN Thm 1.6(iii)"
+  },
+  "independent_methods": {
+    "layer_1_exact_cyclotomic": {
+      "file": "independent_checker.py (logs: independent_checker.log, full_run_stdout.log, sprime_kill_stdout.log)",
+      "description": "Exact integer arithmetic in Z[x]/(x^(4n)-1) ~ Z[zeta_4n]: Ryser permanent with Kronecker-substitution big-int pairs (rigorous a-priori L1 digit bounds, decode/re-encode integrity asserts), sqrt(n) realized by the quadratic Gauss sum (sign pinned by Gauss's theorem, float-sanity-checked), csc entries p*(x^a - x^-a)^(-1) by Fraction extended Euclid mod Phi_4n verified by exact back-multiplication; the integer s_n / s'_p is SOLVED from per(M) == t * i^m * sqrt(n) (resp. per(U) == t * p^(m-1) sqrt(p) i^(-m)) mod Phi_4n(x). No floats, no finite fields, no CRT in this layer.",
+      "self_tests": "engine vs brute-force permutation-expansion permanent (sin n=5..17, csc p=5..13); float64 Ryser sanity on every value; decode/re-encode asserts; Gauss-sum element evaluates to +sqrt(n) numerically",
+      "pipeline_validation": "all 19 published values of Sun's Remark 1.6 reproduced exactly (s_3..s_23 incl. negatives s_5, s_17; s'_3..s'_23 incl. negatives s'_7, s'_23)",
+      "kill_results": "s_29 = 1053859 (268s) and s'_29 = -4806838304 (402s), both EXACT, matching the attack's claim; composites s_25=63125, s_27=59049 also exact (part (i) holds there)"
+    },
+    "layer_2_crt_finite_field": {
+      "file": "crt_verify.py + perm_modq.c (logs: crt_verify.log, crt_full_stdout.log, crt_verify_results.json)",
+      "description": "My own C (plain __uint128 mulmod, OpenMP, no Montgomery -- not derived from attacker's ryser_mod.c) evaluating the cyclotomic identity at roots w of Phi_4n in F_q for fresh random 61-bit primes q == 1 (mod 4n) (own Miller-Rabin, seed 20260611, disjoint from attacker's 59-bit primes); Gauss-sum image with g^2 == n assert; RIGOROUS magnitude bounds computed with exact rational arithmetic (chord bound |sin(pi x)| >= 2 dist(x,Z) for csc rows); enough primes that prod(q) > 4*bound, giving full CRT-uniqueness PROOF of each claimed integer, not a probabilistic check.",
+      "validation": "ground truth s_17, s_23, s'_17, s'_23 (Sun) reproduced before any claim was tested",
+      "results": "COMPLETED 'ALL PROVED EXACT' (exit 0, 1336s): kill pair s_29, s'_29; EVERY claimed s_n for odd n in 31..65 including supplementary counterexamples s_41 = 5574476521 and s_53 = 1540679755916971 (both > 0 with p == 5 mod 12); EVERY claimed s'_p for p in 31..61 including s'_61 = -2904784276786469053142518062479 < 0 with 61 == 5 (mod 8). All 38 verifications matched; zero mismatches. See crt_full_stdout.log / crt_verify_results.json.",
+      "note": "exact-layer background runs for s_31..35 and s'_31 were stopped after the CRT layer proved those values (redundant); their transcript up to s_29/s'_29 is preserved in full_run_stdout.log and sprime_kill_stdout.log"
+    },
+    "layer_3_codex_adversarial_audit": "GPT-5.5 xhigh audited the paper reading, both my layers' mathematics (identities, Gauss signs, Kronecker overflow bounds, Phi_4n root argument, CRT uniqueness), recomputed s_29 and s'_29 itself at 120-digit precision by both Glynn and Ryser (errors ~1e-112, 1e-109), searched for prior refutations (none), and returned: kill VALID, verification SOUND. Only findings: two NITs (a comment saying '61-bit' for primes drawn from [2^60, 2^61); search false-positives on other Sun papers' 4.6 labels)."
+  },
+  "literature_status_check": "OEIS rejects both sequences (no match for 1,-1,1,1,51,-239,913,12145 nor 111,261,6784,245101,-7094142); web search finds no refutation/extension of this conjecture; arXiv v7 (June 2022) is still the latest version; the similarly-numbered conjectures of other Sun papers are unrelated (tan/cot or different objects).",
+  "part_i_status": "NOT refuted, consistent with the attack's claim: n | s_n verified for composites 9,15,21,25,27 (exact layer) and 33,35,39,45,49,51,55,57,63,65 (CRT layer, values divisible by n checked from the proven integers).",
+  "verdict": "KILL CONFIRMED. Conjecture 4.6(ii) is false at p = 29 (both iff clauses), with further failures at p = 41, 53 (mod-12 clause) and p = 61 (mod-8 clause); hence Conjecture 4.6 as stated (conjunction of (i) and (ii)) is false. The attack certificate's numbers are reproduced exactly by two structurally different independent methods plus an adversarial third-party recomputation.",
+  "date": "2026-06-11"
+}

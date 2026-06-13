@@ -1,0 +1,121 @@
+GATE-4 CLEAN-ROOM VERIFICATION LOG — slug: solubilizer-a13
+Date: 2026-06-11
+Agent: independent Gate-4 verifier (did not build the original artifact; did not read
+.scratch or verify_kills.py; checker written from scratch from the construction
+description in refuted-claims.json only).
+
+== CLAIM UNDER VERIFICATION ==
+Refutation of Conjecture A.13 of arXiv:2412.16177v1, by counterexample
+G = A5 x S3 (order 360), x = ((0 1 2 3 4), id).
+
+== STATEMENT PROVENANCE ==
+Source: "Mining Math Conjectures from LLMs: A Pruning Approach",
+Jake Chuharski, Elias Rojas Collins, Mark Meringolo. arXiv:2412.16177 (only one
+version, v1, Mon 9 Dec 2024). PDF fetched 2026-06-11 from
+https://arxiv.org/pdf/2412.16177v1 (saved as paper-2412.16177v1.pdf, 1,030,052 bytes);
+HTML cross-checked at https://arxiv.org/html/2412.16177v1 (the {conj} environments fail
+to render in HTML, so the A.13 numbering is only visible in the PDF).
+
+Verbatim from PDF (appendix p.60, section A.5.6 "Additional Conjectures", whose
+preamble reads "The following conjectures are just a couple of the conjectures that had
+code that was unable to be run but are still potentially interesting from Claude:"):
+
+  Conjecture A.13. Let G be a non-solvable group. For any element x in G, if SolG(x)
+  is a proper subgroup of G, then the intersection of SolG(x) with all of its
+  conjugates in G is always contained in the hypercenter of G.
+
+Definition 3.1 (verbatim): "Let G be a finite group. For any element x in G, the
+solubilizer of x in G is defined as: SolG(x) := {y in G | <x, y> is soluble}".
+The word "hypercenter" occurs nowhere else in the paper and is never defined, so the
+standard meaning applies: Z_inf(G), the stable term of the upper central series.
+
+Statement fidelity vs refuted-claims.json: EXACT MATCH (character-for-character),
+including the "code was unable to be run" provenance note.
+
+== INDEPENDENT RECOMPUTATION (checker_a13.py, exact arithmetic only) ==
+Group model: permutations of {0..7}; A5 = even perms of {0..4}, S3 = perms of {5,6,7};
+360 elements, full 360x360 multiplication table, all products verified to stay in G.
+
+(1) G non-solvable: derived series orders 360 -> 180 -> 60, stabilizing at a perfect
+    subgroup of order 60 (A5 x 1). G is finite, satisfying Definition 3.1's scope.
+(2) Sol_G(x) for x = ((0 1 2 3 4), id): order 60; verified CLOSED under multiplication
+    (a genuine subgroup, so A.13's hypothesis applies); proper (60 < 360); product
+    shape (order-10 subgroup of A5, i.e. D10 = N_A5(<x>)) x S3 confirmed via
+    projections (|proj_A5| = 10, |proj_S3| = 6, 10*6 = 60).
+(3) Normal core = intersection over ALL 360 g of g^-1 Sol_G(x) g: order 6, equal to
+    1 x S3 (every element fixes points 0..4), verified normal in G and solvable.
+(4) Upper central series: Z_0 = 1 is already stable (Z(G) = 1), so the hypercenter
+    Z_inf(G) = 1 (order 1).
+(5) Core (order 6) is NOT contained in the hypercenter (order 1); witness element
+    (id, (6 7)) = [0,1,2,3,4,5,7,6].  ==> CONJECTURE A.13 IS FALSE.
+
+== EXTENSION FINDINGS (full brute-force sweep over all 360 x in G) ==
+- |Sol_G(x)| distribution over all x: {60: 144 elements, 144: 120, 216: 90, 360: 6}.
+- Sol_G(x) is a subgroup for exactly 150 of 360 x: the 6 x in 1 x S3 (where
+  Sol = G, not proper) and the 144 x = (5-cycle, anything) (where Sol is proper,
+  order 60). The size-144 and size-216 solubilizers are not subgroups (consistent
+  with Lagrange: neither 144 nor 216 divides 360).
+- For ALL 144 x with Sol_G(x) a proper subgroup, the normal core contains 1 x S3 and
+  hence is NOT contained in the (trivial) hypercenter: A.13 fails at every applicable
+  x of this G, not just the certificate element.
+- Structural reason confirmed computationally: the solvable normal subgroup 1 x S3
+  lies inside Sol_G(x) for EVERY x in G, hence inside every conjugate of every
+  solubilizer, hence inside every core.
+- Reading-equivalence confirmed: Sol_G(x^g) = g^-1 Sol_G(x) g for the certificate x
+  and ALL 360 g, so the two grammatical readings of "its conjugates" (conjugates of
+  the set Sol_G(x) vs solubilizers of conjugates of x) define the same intersection.
+
+== CHECKER VALIDATION (mutation testing) ==
+7 targeted corruptions of certificate_a13.json, all REJECTED by --verify mode:
+drop-sol-element, extra-core-element, inflate-hypercenter, wrong-x, bad-witness,
+tampered-statement, sweep-zeroed. See mutation_test.log. Clean runs: run_emit.log
+(--emit, exit 0, ACCEPT) and run_verify.log (--verify, exit 0, ACCEPT).
+
+== CODEX HOSTILE REVIEW (GPT-5.5, full access, 2026-06-11) ==
+threadId 019eb9a0-155d-7f70-bb16-6f839b10ef78. Verbatim verdict:
+
+  "Verdict: DEAD — The refutation stands. I could not break it.
+  I independently fetched arXiv v1/source/PDF. The arXiv page identifies
+  2412.16177v1; the HTML/PDF place A.13 in A.5.6 Additional Conjectures, immediately
+  under the "code ... unable to be run" lead-in. The source text matches the
+  claimants' statement modulo TeX rendering of Sol_G(x). Definition 3.1 is
+  finite-group solubilizer, and the paper does not define "hypercenter"; the arXiv
+  source contains hypercenter only in A.13.
+  My independent direct-product computation, not using the checker's 8-point
+  permutation implementation, gives: |A5 x S3| = 360; non-solvable. For
+  x = ((0 1 2 3 4), id), Sol_G(x) = N_A5(<x>) x S3 = D10 x S3. |Sol_G(x)| = 10*6 =
+  60, so it is a proper subgroup. The core is core_A5(D10) x S3 = 1 x S3, order 6.
+  Z(A5 x S3) = 1, hence the upper central series is already stable at 1; the
+  hypercenter is trivial. Therefore 1 x S3 is not contained in the hypercenter.
+  No semantic escape worked. If "its conjugates" means conjugates of Sol_G(x), this
+  is exactly the normal core. If it means solubilizers of conjugates of x, then
+  Sol_G(x^g) = Sol_G(x)^g, which I also checked. If someone imposes "finite" from
+  Definition 3.1, the example is finite. If someone imposes "simple," that is not in
+  A.13.
+  Checker audit: the suspicious pieces are fine. Positive-word BFS closure is valid
+  in a finite group; commutator-derived subgroup closure is standard; g^-1 S g versus
+  g S g^-1 gives the same intersection over all g; the upper-central-series test is
+  the usual [z,g] in Z_i criterion. The only weakness I found is cosmetic: --verify
+  does not compare every narrative JSON field, but it recomputes and checks the
+  decisive mathematical data. Running verification ended in ACCEPT.
+  Prior-art search: I found the paper/OpenReview copies and unrelated
+  solubilizer/hypercenter literature, but no already-published refutation of this
+  specific A.13 counterexample. That is only a quick web check, not a proof of
+  novelty."
+
+== FILES ==
+paper-2412.16177v1.pdf   provenance copy of the source paper (arXiv v1)
+checker_a13.py           clean-room checker (pure Python 3, stdlib only, exact)
+certificate_a13.json     certificate: x, Sol_G(x) (60 perms), core (6 perms),
+                         upper central series, witness, sweep summary
+run_emit.log             checker --emit run, exit 0, ACCEPT
+run_verify.log           checker --verify run, exit 0, ACCEPT
+mutation_test.py/.log    7/7 mutants rejected
+VERIFICATION.log         this file
+
+== VERDICT ==
+Statement verified verbatim against the authoritative source; counterexample rebuilt
+from the description and confirmed by exhaustive exact computation; checker validated
+by mutation testing; hostile Codex review failed to break it.  REFUTATION CONFIRMED.
+Conjecture A.13 of arXiv:2412.16177v1 is FALSE, witnessed by G = A5 x S3,
+x = ((0 1 2 3 4), id).

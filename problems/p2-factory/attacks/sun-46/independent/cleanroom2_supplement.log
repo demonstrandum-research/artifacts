@@ -1,0 +1,17 @@
+== C-path validation against published anchors ==
+  s_23 = 12145   [1 CRT primes + 1 held-out, B=8.175e+10, 1.6s]
+  PASS  s_23 == 12145 (paper)
+  s'_23 = -7094142   [1 CRT primes + 1 held-out, B=2.086e+17, 0.5s]
+  PASS  s'_23 == -7094142 (paper)
+
+== Supplementary claimed values ==
+  s_53 = 1540679755916971   [2 CRT primes + 1 held-out, B=2.706e+34, 4.3s]
+  PASS  s_53 == 1540679755916971 (claimed)
+  PASS  s_53 == -1 (mod 53)  [proven congruence]
+  PASS  53 == 5 (mod 12) but s_53 > 0  -> extra clause-1 failure
+  s'_61 = -2904784276786469053142518062479   [4 CRT primes + 1 held-out, B=5.094e+69, 70.9s]
+  PASS  s'_61 == -2904784276786469053142518062479 (claimed)
+  PASS  s'_61 == 1 (mod 61)  [proven congruence]
+  PASS  61 == 5 (mod 8) (not 7) but s'_61 < 0  -> extra clause-2 failure
+
+SUPPLEMENT VERDICT: ALL CHECKS PASSED

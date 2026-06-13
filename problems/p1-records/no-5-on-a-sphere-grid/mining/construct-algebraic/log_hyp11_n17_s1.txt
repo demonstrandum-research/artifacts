@@ -1,0 +1,1 @@
+{"n": 17, "template": "hyp11", "pool_size": 220, "pairs": 17, "points": 34, "verified": true, "distinct_proj_dirs_mod_p": 9, "iters": 79}

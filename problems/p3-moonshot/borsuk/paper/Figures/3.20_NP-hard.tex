@@ -1,0 +1,114 @@
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[x=0.75pt, y=0.75pt, scale=1]
+
+% ================
+% COLORS
+% ================
+
+% ========================
+% 1. GRID OF LATTICE POINTS
+% ========================
+% LATTICE POINTS
+\foreach \i in {-2,...,13} {           % x-coordinates
+  \foreach \j in {-2,...,9} {         % y-coordinates
+    \node[circle, fill=gray!70, inner sep=0pt, minimum size=1.5pt] at (20*\i, 20*\j) {};
+    % Optionally label:
+    % \node[below right, font=\tiny] at (20*\i, 20*\j) {(\i,\j)};
+  }
+}
+
+% ========================
+% 2. COLORED AXES
+% ========================
+\coordinate (O) at (0,0); % origin now truly at (0,0)
+
+% y
+\draw[line width=0.8pt] 
+  (O) -- ++(75,50);   
+\draw[-{Latex[round]},line width=0.8pt] 
+  (O) -- ++(-30,-20);
+
+% x
+\draw[-{Latex[round]}, line width=0.8pt] 
+  (-35,0) -- ++ (300,0);     
+
+% z
+\draw[-{Latex[round]}, line width=0.8pt] 
+  (0,-25) -- ++(0,170);    
+
+% ========================
+% 3. SHADED POLYGONS & SURFACES
+\begin{scope}[yshift=255, xshift=-163]
+% Dashed curve
+\draw[line width=0.75, dashed] 
+  (326.86,-194.09) .. controls (328.18,-203.74) and (329.37,-250.91) ..
+  (327.53,-264.4) .. controls (325.68,-277.89) and (323.33,-285.66) ..
+  (320.16,-287.83);
+
+%front curve
+\draw (308.11,-214.53) .. controls (306.44,-229.86) and (311.56,-275.26) .. (319.56,-287.83) ;
+
+%main body
+\draw[draw=black, fill=lightgray, opacity=0.5] 
+  (293.44,-207.33) .. controls (294.17,-208.35) and (302.3,-217.08) ..
+  (317.82,-213.33) .. controls (333.33,-209.58) and (342.93,-206.33) ..
+  (350.93,-205.4) .. controls (358.93,-204.46) and (363.6,-203.13) ..
+  (370.4,-206.33) .. controls (377.2,-209.53) and (379.73,-198.86) ..
+  (379.6,-199.26) .. controls (379.47,-199.66) and (378.82,-240.46) ..
+  (377.02,-256.26) .. controls (375.22,-272.06) and (368.17,-306.66) ..
+  (357.83,-308.32) .. controls (347.5,-309.99) and (347.33,-282.13) ..
+  (338,-281.63) .. controls (328.67,-281.13) and (322.5,-291.29) ..
+  (317.17,-287.29) .. controls (311.83,-283.29) and (310.83,-274.29) ..
+  (308.33,-268.29) .. controls (305.83,-262.29) and (292.71,-206.32) ..
+  (293.44,-207.33) -- cycle;
+
+  \end{scope}
+  
+\begin{scope}[yshift=-40, xshift=2]
+
+% Lower lavender panel (wider)
+\fill[darklav, opacity=0.25]
+   (30,30) -- (150,30) -- (210,70) -- (90,70) -- cycle;
+
+% Upper lavender panel (identical, just shifted up)
+\fill[darklav, opacity=0.25]
+   (30,30+140) -- (150,30+140) -- 
+   (210,70+140) -- (90,70+140) -- cycle;
+
+\end{scope}
+
+
+
+% ========================
+% 4. ORANGE LATTICE DIAMETER
+% ========================
+\draw[color=orange, thick] (140,40) -- (140,140);
+
+\foreach \yy in {40,60,80,100,120, 140} {
+  \node[circle, fill=orange, inner sep=0pt, minimum size=3pt] at (140,\yy) {};
+}
+
+\begin{scope}[yshift=255, xshift=-163]
+%top
+\draw[black, fill=darklav, fill opacity=0.5] 
+  (305.4,-196.07) .. controls (325,-189.72) and (352.23,-198.26) ..
+  (368.23,-188.76) .. controls (384.23,-179.26) and (382.82,-212.64) ..
+  (369.42,-205.84) .. controls (356.02,-199.04) and (319.71,-217.32) ..
+  (306,-213.6) .. controls (292.29,-209.89) and (285.8,-202.41) ..
+  (305.4,-196.07) -- cycle ;
+\end{scope}
+
+% ========================
+% 5. LABELS
+% ========================
+\node[darklav] at (236,143) {$R \times \{Z\}$};
+\node[darklav] at (220,10) {$R$};
+\node at (180,90) {$K$};
+
+
+
+\end{tikzpicture}
+\caption{The construction given in the proof of \Cref{thm:NP-hard}.}
+\label{fig:NP-hard-graph}
+\end{figure}

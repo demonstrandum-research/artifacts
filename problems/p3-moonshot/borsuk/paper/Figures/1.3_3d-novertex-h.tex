@@ -1,0 +1,109 @@
+\begin{figure}[ht!]
+    \centering
+    \tdplotsetmaincoords{80}{15} % {elevation}{rotation around vertcal axis}
+\begin{tikzpicture}[tdplot_main_coords, scale=0.9]
+
+% ====== VERTICES ======
+\coordinate (A) at (-3,0,-1);  %left-triangle front bottom
+\coordinate (B) at (-3,-1,0);  %left-triangle front top
+\coordinate (C) at (-2,1,1);   %left-triangle back
+\coordinate (D) at (3,0,1);    %-A: right-triangle back top
+\coordinate (E) at (3,1,0);    %-B: right-triangle back bottom
+\coordinate (F) at (2,-1,-1);  %-C: right-triangle front
+
+%====== BLUE BOXES FOR ORIENTATION ======
+% \draw[line width=1mm,blue] (-3,-1,-1)--(-3,-1,1)--(-3,1,1)--(-3,1,-1)--cycle {};
+% \draw[line width=1mm,blue] (-2,-1,-1)--(-2,-1,1)--(-2,1,1)--(-2,1,-1)--cycle {};
+
+%outside left x-axis
+\draw[line width=0.3mm, black] (-2.67,0,0)--(-3.5,0,0) {}; %x
+\fill[black!60] (-3,0,0) circle (2pt);
+%z-axis bottom
+\draw[line width=0.3mm, black] (0,0,-10/13)--(0,0,-1.5) {};
+%\fill[black] (0,0,-1) circle (1.5pt);
+%\fill[black] (0,0,-2) circle (1.5pt);
+
+%y-axis back
+\draw[line width=0.3mm, black] (0,10/13,0)--(0,6.5,0) {};
+% \foreach \yy in {1,...,6} {
+%   \fill[black] (0,\yy,0) circle (1.5pt);
+% }
+
+% very back face
+\fill[lightgray, opacity=0.8] (C)--(D)--(E)--cycle;
+% BIGGEST back left face
+\fill[lightgray!70, opacity=0.8] (A)--(C)--(E)--cycle;
+
+% bottom right/front face 
+\fill[lightgray!30, opacity=0.8] (A)--(E)--(F)--cycle;
+% left triangle
+\fill[darklav, opacity=0.7] (A)--(B)--(C)--cycle;
+
+%darklav!85!black
+\draw[gray!80!black, thick, dashed] (A)--(C)--(E) -- cycle;
+\draw[gray!80!black, thick] (A)--(B)--(C);
+
+%z-axis inside
+\draw[line width=0.3mm, black] (0,0,-10/13)--(0,0,8/11) {}; 
+%y-axis inside
+\draw[line width=0.3mm, black] (0,-10/13,0)--(0,8/11,0) {};
+
+
+% ====== LATTICE DIAMETER ======
+%inside part of line
+\draw[line width=0.3mm, black] (-2.66,0,0) -- (-2,0,0);
+\draw[line width=0.3mm, black] (2,0,0) -- (2.66,0,0);
+
+%convex hull of lattice point 
+\draw[very thick, orange, minimum width=4pt] (-2,0,0) -- (2,0,0);
+\foreach \xx in {-2,...,2} {
+  \fill[orange] (\xx,0,0) circle (2.5pt);
+}
+
+% right triangle
+\fill[darklav, opacity=0.7] (D)--(E)--(F)--cycle;
+\draw[darklav!85!black, thick] (D)--(E)--(F)--cycle;
+
+
+% ------------ OUTSIDE TOP ------------
+% top (left) face
+\fill[lightgray!50, opacity=0.2] (B)--(C)--(D)--cycle;
+\draw[gray!80!black, thick](B)--(C)--(D)--cycle;
+
+%z-axis top
+\draw[line width=0.3mm, black] (0,0,8/11)--(0,0,1.5) {};
+%\fill[black] (0,0,1) circle (1.5pt);
+%\fill[black] (0,0,2) circle (1.5pt);
+
+% outside right x-axis
+\draw[line width=0.3mm, black] (2.67,0,0)--(3.5,0,0) {}; %x
+\fill[black] (3,0,0) circle (2pt);
+
+% ------------ OUTSIDE FRONT ------------
+% right front face
+\fill[lightgray!50, opacity=0.2] (B)--(D)--(F)--cycle;
+\draw[gray!90!black, thick](B)--(D)--(F)--cycle;
+
+% very front face
+\fill[lightgray!50, opacity=0.2] (A)--(B)--(F)--cycle;
+\draw[gray!90!black, thick](A)--(B)--(F)--cycle;
+
+%y-axis front
+\draw[line width=0.3mm, black] (0,-10/13,0)--(0,-6.5,0) {};
+% \foreach \yy in {-1,...,-6} {
+%   \fill[black] (0, \yy,0) circle (1.5pt);
+% }
+
+
+% ====== VERTEX DOTS ======
+\foreach \p in {(A),(B),(C),(D), (E), (F)} {
+  \node at \p [circle, draw=darklav!85!black, fill=darklav!85!black, minimum width=3pt] {};
+}
+
+%====== BLUE BOXES FOR ORIENTATION ======
+%\draw[line width=1mm,blue] (4,-1,-1)--(4,-1,1)--(4,1,1)--(4,1,-1)--cycle {};
+%\draw[line width=1mm,blue] (3,-1,-1)--(3,-1,1)--(3,1,1)--(3,1,-1)--cycle {};
+\end{tikzpicture}
+\caption{A \textit{unique} lattice diameter segment contained in the interior of a lattice polytope.}
+\label{fig:3d-novertex}
+\end{figure}

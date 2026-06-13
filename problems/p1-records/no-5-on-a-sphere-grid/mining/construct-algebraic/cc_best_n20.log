@@ -1,0 +1,5 @@
+{"n": 20, "p": 7, "forms": "ver", "order": "desc_norm", "points": 36}
+{"n": 20, "p": 7, "forms": "union_ver_hyp", "order": "desc_norm", "points": 38}
+{"n": 20, "p": 11, "forms": "union_ver_hyp", "order": "desc_norm", "points": 40}
+{"n": 20, "p": 11, "forms": "union_ver_vera_verb", "order": "desc_norm", "points": 42}
+{"n": 20, "p": 11, "forms": "union_ver_vera_verb", "order": "desc_norm", "points": 42, "valid": true}

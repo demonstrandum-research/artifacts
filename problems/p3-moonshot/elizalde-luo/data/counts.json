@@ -1,0 +1,64 @@
+{
+ "conjecture": "c_n({1132,3312} | nonnesting) = 3^n - 3*2^(n-1) + 1",
+ "source": "Elizalde-Luo arXiv:2412.00336 (DMTCS 27:1 #13), Table 4 (tab:conjecture)",
+ "oeis": "A168583 with offset 3: c_n = A168583(n+2)",
+ "table": [
+  {
+   "n": 1,
+   "nonnesting_total": 1,
+   "avoider_count": 1,
+   "formula_value": 1,
+   "formula_matches": true
+  },
+  {
+   "n": 2,
+   "nonnesting_total": 4,
+   "avoider_count": 4,
+   "formula_value": 4,
+   "formula_matches": true
+  },
+  {
+   "n": 3,
+   "nonnesting_total": 30,
+   "avoider_count": 16,
+   "formula_value": 16,
+   "formula_matches": true
+  },
+  {
+   "n": 4,
+   "nonnesting_total": 336,
+   "avoider_count": 58,
+   "formula_value": 58,
+   "formula_matches": true
+  },
+  {
+   "n": 5,
+   "nonnesting_total": 5040,
+   "avoider_count": 196,
+   "formula_value": 196,
+   "formula_matches": true
+  },
+  {
+   "n": 6,
+   "nonnesting_total": 95040,
+   "avoider_count": 634,
+   "formula_value": 634,
+   "formula_matches": true
+  },
+  {
+   "n": 7,
+   "nonnesting_total": 2162160,
+   "avoider_count": 1996,
+   "formula_value": 1996,
+   "formula_matches": true
+  },
+  {
+   "n": 8,
+   "nonnesting_total": 57657600,
+   "avoider_count": 6178,
+   "formula_value": 6178,
+   "formula_matches": true
+  }
+ ],
+ "all_match": true
+}

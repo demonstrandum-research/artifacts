@@ -1,0 +1,1316 @@
+% !TeX program = pdflatex
+% A proof of the Elizalde--Luo conjecture for nonnesting permutations avoiding 1132 and 3312
+% Build: pdflatex note.tex (run twice). See BUILD.md.
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\nn}{[n]_2}
+\DeclareMathOperator{\fst}{fst}
+\DeclareMathOperator{\snd}{snd}
+\newcommand{\Av}{\operatorname{Av}}
+\newcommand{\sU}{\mathsf{U}}
+\newcommand{\sD}{\mathsf{D}}
+\newcommand{\sL}{\mathsf{L}}
+\newcommand{\sH}{\mathsf{H}}
+\newcommand{\sA}{\mathsf{A}}
+\newcommand{\sB}{\mathsf{B}}
+\newcommand{\sC}{\mathsf{C}}
+\newcommand{\Cat}{C}
+\newcommand{\Wn}{W_n}
+\newcommand{\open}{\operatorname{open}}
+
+\title{A proof of the Elizalde--Luo conjecture for nonnesting\\ permutations avoiding $1132$ and $3312$}
+\author{John Erlbacher\thanks{Independent Researcher. Email: \texttt{erlbacher.research@gmail.com}. ORCID: 0009-0003-6851-4139.}}
+\date{June 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Nonnesting permutations are permutations of the multiset
+$\{1,1,2,2,\dots,n,n\}$ that avoid the patterns $1221$ and $2112$; there are
+$n!\,\Cat_n$ of them, where $\Cat_n$ is the $n$th Catalan number. In the
+concluding section of their systematic study of pattern avoidance in
+nonnesting permutations [DMTCS 27:1 (2025), \#13], Elizalde and Luo
+conjectured, on the basis of data for $n\le 8$, that the number of nonnesting
+permutations of $\{1,1,\dots,n,n\}$ avoiding both $1132$ and $3312$ equals
+$3^n-3\cdot 2^{n-1}+1$ (OEIS A168583, shifted). We prove this conjecture. The
+proof is elementary and self-contained: nonnesting words factor as a Dyck
+shape carrying a label permutation; avoidance of $\{1132,3312\}$ forces the
+labels to form a prefix-interval permutation, encoded by a sign word in
+$\{\sL,\sH\}^{n-1}$, and reduces to a two-coloring condition on the crossing
+arcs of the shape. The shapes admitting a valid coloring fall into three
+explicit families, and summing the number of colorings gives the formula. We
+also give a second, bijective proof of the final count: an explicit
+letter-by-letter bijection between the avoiders and a ternary language
+$\Wn\subseteq\{\sA,\sB,\sC\}^n$ whose cardinality is
+$3^n-3\cdot2^{n-1}+1$ by inspection. Every lemma has been verified
+mechanically far beyond the conjecture's original range, including an
+exhaustive word-level check of the structural characterization over all
+$57{,}657{,}600$ nonnesting words for $n=8$.
+\end{abstract}
+
+\section{Introduction}\label{sec:intro}
+
+A \emph{Stirling permutation} \cite{GesselStanley1978} is a permutation of
+the multiset $\nn=\{1,1,2,2,\dots,n,n\}$ in which the letters between the two
+copies of any value are larger than that value. Two natural relaxations have
+attracted attention in recent years: \emph{noncrossing} (or
+\emph{quasi-Stirling}) permutations, the permutations of $\nn$ with no
+subsequence $abab$ with $a\ne b$, introduced by Archer, Gregory, Pennington
+and Slayden \cite{Archer2019} and studied further in
+\cite{Elizalde2021}; and \emph{nonnesting} permutations, those with no
+subsequence $abba$ with $a\ne b$, introduced by Elizalde \cite{Elizalde2024}.
+There are exactly $n!\,\Cat_n$ nonnesting permutations of $\nn$, where
+$\Cat_n=\frac{1}{n+1}\binom{2n}{n}$ \cite{Elizalde2024,ElizaldeLuo}; we
+rederive this in Lemma~\ref{lem:fifo} below.
+
+Elizalde and Luo \cite{ElizaldeLuo}, extending Luo's thesis \cite{Luo2024},
+carried out a systematic study of pattern avoidance in nonnesting
+permutations: they enumerated the nonnesting permutations avoiding each set
+of two or more patterns of length $3$, as well as those avoiding several sets
+of patterns of length $4$. (For single patterns of length $3$ the noncrossing
+and nonnesting problems were subsequently advanced by Archer and Laudone
+\cite{ArcherLaudone}.) In their concluding section, Elizalde and Luo list a
+table of conjectured enumeration formulas for five further sets of length-$4$
+patterns \cite[Table~4]{ElizaldeLuo}, each checked by computer for
+$n\le 8$. The present paper proves the conjecture for the set
+$\{1132,3312\}$.
+
+Throughout, a \emph{word} (or \emph{permutation of $\nn$}) is a sequence
+$w=w_1w_2\cdots w_{2n}$ over $\{1,\dots,n\}$ using each letter exactly twice,
+and containment of a pattern is understood in the sense of
+\cite{ElizaldeLuo}, recalled in Section~\ref{sec:prelim}: equalities
+among pattern letters must be matched by equalities among word letters, and
+strict inequalities by strict inequalities. A word is \emph{nonnesting} if it
+avoids $1221$ and $2112$. Following \cite{ElizaldeLuo}, $\mathcal C_n$
+denotes the set of nonnesting permutations of $\nn$, and $c_n(\Lambda)$ the
+number of elements of $\mathcal C_n$ avoiding every pattern in a set
+$\Lambda$.
+
+\begin{theorem}[Elizalde--Luo conjecture for $\{1132,3312\}$]\label{thm:main-intro}
+For every $n\ge 1$,
+\[
+  c_n(\{1132,3312\}) \;=\; 3^n-3\cdot 2^{n-1}+1 .
+\]
+\end{theorem}
+
+The conjecture appears as the row
+``$\{1132,3312\}$ \;---\; $3^n-3\cdot2^{n-1}+1$ \;---\; A168583''
+of \cite[Table~4]{ElizaldeLuo}, whose caption reads \emph{``Some conjectures
+on the enumeration of nonnesting permutations avoiding other patterns''} and
+whose preamble states that \emph{``All the conjectures have been checked for
+$n$ up to $8$.''} The sequence
+$1,4,16,58,196,634,1996,6178,\dots$ given by the formula is the shift
+$a(n{+}2)$ of OEIS entry A168583 \cite{OEIS}, whose $m$th term ($m\ge3$, the
+entry's own indexing) counts the partitions of the multiset
+$\{1,1,2,3,\dots,m-1\}$ into exactly three nonempty parts; as a byproduct,
+Theorem~\ref{thm:main-intro} shows that the avoiders of $\nn$ are
+equinumerous with the partitions of $\{1,1,2,3,\dots,n+1\}$ into exactly
+three nonempty parts (an equality of cardinalities via the closed form; we
+exhibit no direct bijection). To our
+knowledge the conjecture was open before this work: it is stated as a
+conjecture in the published version of \cite{ElizaldeLuo} (October 2025)
+and is unchanged in the latest arXiv revision (v6, January 2026, retrieved
+June 12, 2026), and we are aware of no announcement of a proof (literature
+and web searches last performed June 12, 2026).
+
+\subsection*{Outline of the proof}
+
+All of the work happens in an explicit, finite combinatorial setting; no
+generating-function or analytic machinery is needed.
+
+\begin{enumerate}
+\item \textbf{FIFO normal form (Section~\ref{sec:prelim}).} A word is
+nonnesting if and only if, for every $i$, its $i$th closer (second occurrence
+of a value, in position order) carries the same letter as its $i$th opener.
+Consequently nonnesting words correspond bijectively to pairs $(s,p)$ where
+$s$ is a Dyck word of semilength $n$ (the \emph{shape}) and $p\in S_n$ is the
+sequence of labels read along the openers. We also unwind the patterns
+$1132$ and $3312$ into a positional criterion: $w$ contains one of them iff
+some letter lies strictly between an earlier-closed value $v$ and a letter
+positioned in between (Corollary~\ref{cor:combined}).
+\item \textbf{Sign words (Section~\ref{sec:sign}).} If $(s,p)$ avoids
+$\{1132,3312\}$, the label permutation $p$ must be \emph{prefix-interval}:
+every prefix of $p$ is an interval of integers. Such $p$ are classically the
+$\{132,312\}$-avoiding permutations; they are encoded by a \emph{sign word}
+$\varepsilon\in\{\sL,\sH\}^{n-1}$ recording whether each new label is the
+current minimum or maximum.
+\item \textbf{The characterization (Section~\ref{sec:thmA}).}
+Theorem~\ref{thm:A}: $(s,p)$ is an avoider iff $p$ is prefix-interval and its
+sign word satisfies
+\[
+ (C)\colon\qquad \varepsilon_K\neq\varepsilon_J\quad
+ \text{for every pair of arcs } K<J \text{ with } q_1<o_J<q_K,
+\]
+where $o_i,q_i$ are the positions of the $i$th opener and closer. The
+pairs in $(C)$ are crossing pairs of arcs whose later arc opens after the
+first closer.
+\item \textbf{Shape classification (Section~\ref{sec:shapes}).} The Dyck
+words $s$ for which $(C)$ is satisfiable form three explicit families
+(Lemma~\ref{lem:classification}), parametrized by the length $a$ of the first
+ascent, an optional ``bridge'' position $i$, and a vector of tail heights
+$\delta\in\{0,1\}^{n-a-1}$; on these shapes the valid sign words are exactly
+the free choices of $|F(s)|$ coordinates, so their number is $2^{|F(s)|}$
+(Corollary~\ref{cor:free}).
+\item \textbf{Two endgames.} Summing $2^{|F(s)|}$ over the three families
+gives $3^n-3\cdot2^{n-1}+1$ (Section~\ref{sec:count}). Independently,
+Section~\ref{sec:bijection} packages the classification data into a single
+ternary string and exhibits an explicit bijection, with an explicit inverse,
+between the avoiders and the language
+\[
+ \Wn \;=\; \{\sA,\sB,\sC\}^n\setminus
+ \bigl(\sB\{\sA,\sB\}^{n-1}\,\cup\,
+ \sC\{\sA,\sB\}^*\sC^*\bigr),
+\]
+whose cardinality is $3^n-2^{n-1}-(2^n-1)$ by a two-line count. The two
+endgames are logically independent; either one completes the proof.
+\end{enumerate}
+
+Beyond the proofs, every lemma in this paper has been verified mechanically
+on ranges far exceeding the $n\le 8$ data that motivated the conjecture,
+including: an exhaustive word-level verification of
+Theorem~\ref{thm:A} for every one of the $2{,}162{,}160$ nonnesting words at
+$n=7$ and every one of the $57{,}657{,}600$ at $n=8$; shape-level
+verification of the classification for all $742{,}900$ Dyck shapes of
+semilength $13$; and an end-to-end check of the bijection on all
+ground-truth avoiders up to $n=10$. Appendix~\ref{app:verification} gives the
+full table of checks and how to reproduce the small-$n$ layer from the
+literal definitions. Appendix~\ref{app:methods} discloses how this paper was
+produced (AI-generated mathematics with adversarial machine refereeing) and
+what was and was not verified by machine.
+
+\section{Preliminaries: conventions and the FIFO normal form}\label{sec:prelim}
+
+\subsection{Conventions}\label{sec:conventions}
+
+We work with the definitions of \cite{ElizaldeLuo}, which we now recall. Let $[n]=\{1,\dots,n\}$ and let $\nn=\{1,1,2,2,\dots,n,n\}$ be the
+multiset with two copies of each element of $[n]$. A \emph{permutation of
+$\nn$}, here called a \emph{word}, is a sequence $w=w_1\cdots w_{2n}$ over
+$[n]$ in which every value occurs exactly twice. Positions are $1$-based.
+
+Given a word $w$ and a pattern $\sigma=\sigma_1\cdots\sigma_k$ over the
+positive integers, $w$ \emph{contains} $\sigma$ if there exist indices
+$1\le i_1<\cdots<i_k\le 2n$ such that for all $r,s\in[k]$,
+\[
+  w_{i_r}<w_{i_s} \iff \sigma_r<\sigma_s
+  \qquad\text{and}\qquad
+  w_{i_r}=w_{i_s} \iff \sigma_r=\sigma_s .
+\]
+Otherwise $w$ \emph{avoids} $\sigma$. Note both conditions are
+biconditional: equal pattern letters must map to equal word letters and
+conversely.\footnote{Before any proof attempt, these conventions were pinned
+in the project's definitions file as verbatim quotations of the published
+LaTeX source of \cite{ElizaldeLuo} (the statement above adapts only the
+notation), and our computational implementations were validated against the
+literal definition (Appendix~\ref{app:verification}).}
+
+A word is \emph{nonnesting} if it avoids $1221$ and $2112$. For a value $v$
+write $\fst(v)<\snd(v)$ for the positions of its two occurrences; the
+\emph{arc} of $v$ is the pair $(\fst(v),\snd(v))$. A position is an
+\emph{opener} if it is the first occurrence of its value, and a
+\emph{closer} otherwise. Unwinding the containment convention (equal pattern
+letters force equal values, and each value has exactly two copies), $w$ is
+nonnesting if and only if there are no two values $u\neq v$ with
+\[
+  \fst(u)<\fst(v)<\snd(v)<\snd(u),
+\]
+i.e.\ no arc nests inside another.
+
+A nonnesting word avoiding both $1132$ and $3312$ is called an
+\emph{avoider}, and the number of avoiders of $\nn$ is denoted by
+$c_n=c_n(\{1132,3312\})$.
+Avoidance of $\{1132,3312\}$ is \emph{not} invariant under relabeling of the
+values, and the count is over all labeled words, with no quotient
+taken.\footnote{For instance, at $n=3$ there are $16$ avoiders but $3$
+avoiders whose first occurrences of $1,2,3$ appear in increasing order;
+$3\cdot 3!=18\neq 16$, so the familiar ``canonical labeling'' shortcut is
+invalid for this problem.}
+
+We say $x$ is \emph{strictly between} $y$ and $z$ if $y<x<z$ or $z<x<y$.
+Integer intervals $\{u..v\}=\{j\in\mathbb Z: u\le j\le v\}$ are understood to
+be empty when $u>v$.
+
+\subsection{Nonnesting words as labeled Dyck shapes}
+
+Mark each opener of a word $w$ with $\sU$ and each closer with $\sD$; the
+resulting word $s=s(w)\in\{\sU,\sD\}^{2n}$ is the \emph{shape} of $w$. Since
+distinct closers in a prefix are preceded by their own distinct openers in
+the same prefix, every prefix of $s$ has at least as many $\sU$'s as
+$\sD$'s; thus $s$ is a \emph{Dyck word} of semilength $n$. Write
+$o_1<\cdots<o_n$ for the positions of the $\sU$'s (\emph{openers}) and
+$q_1<\cdots<q_n$ for those of the $\sD$'s (\emph{closers}). In any Dyck word,
+\begin{equation}\label{eq:oq}
+  o_i<q_i \qquad\text{for all } i\in[n],
+\end{equation}
+because the prefix ending at $q_i$ contains $i$ letters $\sD$, hence at
+least $i$ letters $\sU$.
+
+For a Dyck word $s$ and a permutation $p=(p_1,\dots,p_n)$ of $[n]$, let
+$\mathrm{wd}(s,p)$ be the word with the letter $p_i$ at positions $o_i$ and
+$q_i$ for each $i$.
+
+\begin{lemma}[FIFO normal form]\label{lem:fifo}
+A word $w$ over $\nn$ is nonnesting if and only if for every $i\in[n]$ the
+letter at the $i$th opener of $w$ equals the letter at the $i$th closer.
+Consequently, the map $w\mapsto (s(w),p(w))$, where $p_i$ is the letter at
+the $i$th opener, is a bijection from the nonnesting words of $\nn$ onto the
+pairs (Dyck word $s$ of semilength $n$, permutation $p\in S_n$), with
+inverse $(s,p)\mapsto\mathrm{wd}(s,p)$. In particular
+$|\mathcal C_n| = n!\,\Cat_n$.
+\end{lemma}
+
+\begin{proof}
+The arcs of $w$ form a perfect matching of $[2n]$ pairing each opener with a
+closer; let $\sigma\in S_n$ be the permutation such that the value opened at
+$o_i$ has its second occurrence at $q_{\sigma(i)}$.
+
+First, $\sigma=\mathrm{id}$ if and only if the letter condition holds.
+Indeed, if $\sigma=\mathrm{id}$ then the value at $q_i$ is the one opened at
+$o_i$. Conversely, suppose $w_{o_i}=w_{q_i}=:v$ for every $i$. Since $v$
+occurs exactly twice, and $o_i\neq q_i$ are an opener and a closer carrying
+$v$, the positions $o_i,q_i$ are precisely the two occurrences of $v$; hence
+$\sigma(i)=i$.
+
+($\Leftarrow$) Assume $\sigma=\mathrm{id}$ and suppose two values nest:
+$\fst(u)<\fst(v)$ and $\snd(v)<\snd(u)$. The first inequality says $u$ is
+opened at an earlier opener, $u=p_i$ and $v=p_j$ with $i<j$; but then
+$\snd(u)=q_i<q_j=\snd(v)$, a contradiction. So $w$ is nonnesting.
+
+($\Rightarrow$) Assume $\sigma\neq\mathrm{id}$ and pick $i<j$ with
+$\sigma(i)>\sigma(j)$. The value opened at $o_j$ closes at $q_{\sigma(j)}$,
+and since the two positions of any one value satisfy $\fst<\snd$, we have
+$o_j<q_{\sigma(j)}$; hence
+\[
+  o_i \,<\, o_j \,<\, q_{\sigma(j)} \,<\, q_{\sigma(i)},
+\]
+so the value opened at $o_j$ nests inside the value opened at $o_i$: $w$ is
+not nonnesting.
+
+For the bijection: given nonnesting $w$, the above gives
+$w=\mathrm{wd}(s(w),p(w))$. Conversely, let $s$ be a Dyck word and
+$p\in S_n$, and consider $\mathrm{wd}(s,p)$. The position $o_i$ is the first
+occurrence of $p_i$: any earlier position carries some $p_j$ with $j<i$ (an
+earlier $\sU$ is the $j$th with $j<i$; an earlier $\sD$ is the $j$th $\sD$,
+which by the Dyck property is preceded by at least $j$ $\sU$'s, so $j\le
+i-1$). Hence the arc of $p_i$ is $(o_i,q_i)$ by \eqref{eq:oq}; arcs sorted
+simultaneously by opener and closer never nest, so $\mathrm{wd}(s,p)$ is
+nonnesting, and its shape and label data are $(s,p)$. The two constructions
+are mutually inverse, and the count $|\mathcal C_n|=\Cat_n\cdot n!$ follows.
+\end{proof}
+
+From now on we identify a nonnesting word with its pair $(s,p)$ and call
+$i\in[n]$ the \emph{arc} with endpoints $(o_i,q_i)$ and label $p_i$. For
+$i<j$, arcs $i,j$ are \emph{crossing} if $o_j<q_i$ and \emph{disjoint} if
+$q_i<o_j$; by Lemma~\ref{lem:fifo} nesting cannot occur.
+
+\begin{remark}[arc support]\label{rem:support}
+Arc $i$ has no letters at positions $>q_i$, and every position $z>q_i$
+carries a letter of an arc $J>i$: if $z=o_J$ then $q_J>o_J>q_i$, and if
+$z=q_J$ then $q_J>q_i$; in either case $q_J>q_i$, which since closers are
+sorted forces $J>i$.
+\end{remark}
+
+\subsection{Unwinding the patterns \texorpdfstring{$1132$ and $3312$}{1132 and 3312}}
+
+\begin{lemma}\label{lem:positional}
+Let $w$ be any word over $\nn$. Then:
+\begin{enumerate}
+\item $w$ contains $1132$ $\iff$ there are a value $a$ and positions
+  $\snd(a)<k<l$ with $a<w_l<w_k$;
+\item $w$ contains $3312$ $\iff$ there are a value $c$ and positions
+  $\snd(c)<k<l$ with $w_k<w_l<c$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(1, $\Rightarrow$) Let $i_1<i_2<i_3<i_4$ be an occurrence of $1132$. The
+pattern letters at $i_1,i_2$ are equal ($1,1$), so $w_{i_1}=w_{i_2}=:a$;
+since $a$ has exactly two copies, $\{i_1,i_2\}=\{\fst(a),\snd(a)\}$ and
+$i_2=\snd(a)$. Take $k=i_3$, $l=i_4$. The biconditional convention forces
+$w_{i_3}>w_{i_4}$ (pattern $3>2$) and $w_{i_4}>w_{i_1}=a$ (pattern $2>1$),
+i.e.\ $a<w_l<w_k$.
+
+(1, $\Leftarrow$) The quadruple of positions
+$(\fst(a),\snd(a),k,l)$ is increasing, and its letters $(a,a,w_k,w_l)$
+realize exactly the order and equality relations of $(1,1,3,2)$: the first
+two letters are equal and smaller than both others, and $w_k>w_l$, with all
+stated inequalities strict. So it is an occurrence of $1132$.
+
+(2) is the same argument with all inequalities above reversed.
+\end{proof}
+
+\begin{corollary}[combined criterion]\label{cor:combined}
+A word $w$ over $\nn$ avoids $\{1132,3312\}$ if and only if there is
+\emph{no} triple $(v,x,y)$ with $v$ a value and $\snd(v)<x<y\le 2n$ such
+that $w_y$ is strictly between $v$ and $w_x$.
+\end{corollary}
+
+\begin{proof}
+``$w_y$ strictly between $v$ and $w_x$'' means $v<w_y<w_x$ (an occurrence of
+$1132$ with $a=v$, by Lemma~\ref{lem:positional}(1)) or $w_x<w_y<v$ (an
+occurrence of $3312$ with $c=v$, by Lemma~\ref{lem:positional}(2)).
+\end{proof}
+
+\section{The sign word}\label{sec:sign}
+
+For a permutation $p\in S_n$, an occurrence of the (classical) pattern $132$
+is a triple of indices $i<j<k$ with $p_i<p_k<p_j$, and an occurrence of
+$312$ is $i<j<k$ with $p_j<p_k<p_i$. Having either one means: $p_k$ is
+strictly between $p_i$ and $p_j$ for some pair $i,j<k$.
+
+\begin{lemma}\label{lem:labels}
+Let $w=(s,p)$ be nonnesting. If $p$ contains $132$ or $312$, then $w$
+contains $1132$ or $3312$. Hence the label permutation of an avoider avoids
+$\{132,312\}$.
+\end{lemma}
+
+\begin{proof}
+Suppose $i<j<k$ with $p_k$ strictly between $p_i$ and $p_j$. The positions
+$q_i<q_j<q_k$ carry the letters $p_i,p_j,p_k$, and $q_i=\snd(p_i)$ by
+Lemma~\ref{lem:fifo}. Apply Corollary~\ref{cor:combined} with
+$(v,x,y)=(p_i,q_j,q_k)$: $w_y=p_k$ is strictly between $v=p_i$ and
+$w_x=p_j$, so $w$ contains a forbidden pattern.
+\end{proof}
+
+Write $\Av_n(132,312)$ for the set of $p\in S_n$ avoiding both patterns.
+
+\begin{lemma}[structure of $\Av(132,312)$]\label{lem:signword}
+For $p\in S_n$ the following are equivalent:
+\begin{enumerate}
+\item $p$ avoids $\{132,312\}$;
+\item every $p_k$ is the minimum or the maximum of $\{p_1,\dots,p_k\}$;
+\item every prefix set $\{p_1,\dots,p_k\}$ is an interval of integers
+  (``$p$ is prefix-interval'').
+\end{enumerate}
+Moreover, the map
+$p\mapsto\varepsilon(p)=(\varepsilon_2,\dots,\varepsilon_n)\in\{\sL,\sH\}^{n-1}$,
+where $\varepsilon_k=\sH$ if $p_k=\max\{p_1,\dots,p_k\}$ and
+$\varepsilon_k=\sL$ if $p_k=\min\{p_1,\dots,p_k\}$, is a bijection from
+$\Av_n(132,312)$ onto $\{\sL,\sH\}^{n-1}$, and for all $i<j$,
+\begin{equation}\label{eq:star}
+  p_i<p_j \iff \varepsilon_j=\sH
+  \qquad\text{and}\qquad
+  p_i>p_j \iff \varepsilon_j=\sL.
+\end{equation}
+We call $\varepsilon(p)$ the \emph{sign word} of $p$, and write
+$\bar{x}$ for the letter of $\{\sL,\sH\}$ other than $x$.
+\end{lemma}
+
+\begin{proof}
+(1)$\Rightarrow$(2): if $p_k$ is not extreme in its prefix, there are
+$u,v<k$ with $p_u<p_k<p_v$; if $u<v$ then $(u,v,k)$ is an occurrence of
+$132$, and if $v<u$ then $(v,u,k)$ is an occurrence of $312$.
+
+(2)$\Rightarrow$(3): if some prefix $\{p_1,\dots,p_k\}$ is not an interval,
+it omits a value $g$ strictly between its minimum and maximum. Since $p$ is
+a permutation of $[n]$, $g=p_l$ for some $l>k$; then $p_l$ is neither the
+minimum nor the maximum of $\{p_1,\dots,p_l\}$, because the prefix of index
+$k$ already contains values on both sides of $g$. This contradicts (2).
+
+(3)$\Rightarrow$(1): under (3), each $p_k$ extends the interval
+$\{p_1,\dots,p_{k-1}\}$ by one value at the bottom or the top, hence is
+never strictly between two earlier values; so no occurrence of $132$ or
+$312$ exists.
+
+Bijection: given (3), $\varepsilon(p)$ is well defined (for $k\ge2$ the
+prefix has $\min<\max$, and $p_k$ is exactly one of
+$\min-1$, $\max+1$). Conversely, given
+$\varepsilon\in\{\sL,\sH\}^{n-1}$, set
+$p_1=1+\#\{j:\varepsilon_j=\sL\}$ and iteratively
+$p_k=(\text{current min})-1$ or $(\text{current max})+1$ according to
+$\varepsilon_k$. This is the unique preimage and lands in $S_n$: the final
+prefix is an interval of length $n$ equal to
+$[\,p_1-\#\sL,\;p_1+\#\sH\,]=[1,n]$. The two maps are mutually inverse by
+induction on $k$.
+
+\eqref{eq:star}: if $\varepsilon_j=\sH$ then
+$p_j=\max\{p_1,\dots,p_j\}>p_i$ for every $i<j$; if $\varepsilon_j=\sL$ then
+$p_j<p_i$. The two cases are exhaustive and exclusive.
+\end{proof}
+
+\begin{remark}
+The equivalence of (1)--(3) and the count $|\Av_n(132,312)|=2^{n-1}$ are
+classical \cite{SimionSchmidt}; we have included the short proof to keep
+the paper self-contained and because the reconstruction map and
+rule~\eqref{eq:star} are used constantly below.
+\end{remark}
+
+\section{The characterization}\label{sec:thmA}
+
+\begin{theorem}\label{thm:A}
+Let $w=(s,p)$ be a nonnesting word with $p\in\Av_n(132,312)$ and sign word
+$\varepsilon$. Then $w$ avoids $\{1132,3312\}$ if and only if
+\[
+ (C)\colon\qquad \varepsilon_K\neq\varepsilon_J
+ \quad\text{for every pair } K<J \text{ with } q_1<o_J<q_K.
+\]
+\end{theorem}
+
+Note that the pairs constrained by $(C)$ are crossing pairs of arcs
+($K<J$ and $o_J<q_K$) whose later arc opens after the \emph{first} closer of
+the word; automatically $K\ge2$, since $K=1$ would require $o_J<q_1$.
+
+\begin{proof}
+By Corollary~\ref{cor:combined}, $w$ contains a forbidden pattern iff there
+is a triple $(v,x,y)$ with $v=p_i$ for some arc $i$ (every value is an arc
+label, and $\snd(p_i)=q_i$ by Lemma~\ref{lem:fifo}), positions
+$q_i<x<y$, and $w_y$ strictly between $p_i$ and $w_x$. By
+Remark~\ref{rem:support}, $x$ and $y$ are letters of arcs $J,K>i$
+respectively; and $J\neq K$, since strict betweenness forces
+$w_x\neq w_y$.
+
+\emph{Case $K>J$.} Then $i,J<K$, so $p_i,p_J\in\{p_1,\dots,p_K\}$, and by
+Lemma~\ref{lem:signword}(2) the letter $w_y=p_K$ is the minimum or maximum
+of that set --- never strictly between $p_i$ and $p_J$. So no violating
+triple has $K>J$.
+
+\emph{Case $K<J$ (hence $i<K<J$).} Arc $K$'s positions satisfy $o_K<o_J$ and
+$q_K<q_J$. Since $x$ is a letter of $J$ and $y>x$ is a letter of $K$: if
+$x=q_J$, then $y>q_J$, but both letters of arc $K$ sit at positions
+$<q_J$ --- impossible; so $x=o_J$. If $y=o_K$, then $y=o_K<o_J=x$ ---
+impossible; so $y=q_K$. The requirement $x<y$ reads $o_J<q_K$, and $x>q_i$
+reads $q_i<o_J$. As for betweenness, rule~\eqref{eq:star} gives: if
+$\varepsilon_J=\sH$ then $p_J>p_i$ and $p_J>p_K$, so $p_K$ is strictly
+between $p_i$ and $p_J$ iff $p_i<p_K$ iff $\varepsilon_K=\sH$; if
+$\varepsilon_J=\sL$ then $p_J$ lies below both, and betweenness holds iff
+$p_K<p_i$ iff $\varepsilon_K=\sL$. In both cases:
+\[
+  p_K \text{ strictly between } p_i \text{ and } p_J
+  \iff \varepsilon_K=\varepsilon_J .
+\]
+Crucially, this criterion does not depend on the witness arc $i$:
+rule~\eqref{eq:star} gives $p_i<p_K\iff\varepsilon_K=\sH$ \emph{for every}
+$i<K$.
+
+Summarizing, a violating triple exists iff there are arcs $i<K<J$ with
+$q_i<o_J<q_K$ and $\varepsilon_K=\varepsilon_J$. Finally, fix $K<J$ with
+$o_J<q_K$; we claim an arc $i<K$ with $q_i<o_J$ exists iff $q_1<o_J$.
+Indeed, if $q_1<o_J$ then $i=1$ works ($1<K$ holds because
+$q_1<o_J<q_K$ forces $K\neq1$); conversely any such $i$ has
+$q_1\le q_i<o_J$. Hence $w$ contains a forbidden pattern iff some pair
+$K<J$ with $q_1<o_J<q_K$ has $\varepsilon_K=\varepsilon_J$, i.e.\ iff $(C)$
+fails.
+\end{proof}
+
+\begin{corollary}\label{cor:pairs}
+The map $w\mapsto(s(w),\varepsilon(p(w)))$ is a bijection from the set of
+avoiders of $\nn$ onto the set of pairs $(s,\varepsilon)$ where $s$ is a
+Dyck word of semilength $n$ and $\varepsilon\in\{\sL,\sH\}^{n-1}$ satisfies
+$(C)$ for $s$. We call such $\varepsilon$ \emph{valid for $s$}.
+\end{corollary}
+
+\begin{proof}
+Combine Lemma~\ref{lem:fifo} ($w\leftrightarrow(s,p)$, a bijection),
+Lemma~\ref{lem:labels} (avoiders have $p\in\Av(132,312)$, so none are lost
+in passing to sign words), Lemma~\ref{lem:signword}
+($p\leftrightarrow\varepsilon$, a bijection), and Theorem~\ref{thm:A}
+(avoidance $\iff(C)$). For $n=1$, $\varepsilon$ is the empty word, $(C)$ is
+vacuous, and the unique word $11$ is an avoider.
+\end{proof}
+
+\begin{example}\label{ex:n3}
+Let $n=3$ and $s=\sU\sU\sD\sU\sD\sD$, so $(o_1,o_2,o_3)=(1,2,4)$ and
+$(q_1,q_2,q_3)=(3,5,6)$. The only pair $(K,J)$ with $q_1<o_J<q_K$ is
+$(2,3)$: $q_1=3<o_3=4<q_2=5$. So $(C)$ reads
+$\varepsilon_2\neq\varepsilon_3$, with the two solutions
+$\varepsilon\in\{\sL\sH,\sH\sL\}$, i.e.\ $p\in\{(2,1,3),(2,3,1)\}$. The word
+pattern of this shape is $p_1p_2p_1p_3p_2p_3$, so the two avoiders are
+$212313$ and $232131$. Indeed the other four label permutations all fail;
+e.g.\ $p=(1,2,3)$ gives $121323$, which contains $1132$ as the subsequence
+$1\,1\,3\,2$ at positions $1,3,4,5$. This matches Theorem~\ref{thm:A}, and
+the count $2$ will reappear in Example~\ref{ex:table} as the two codes
+$\sC\sC\sA,\sC\sC\sB$.
+\end{example}
+
+\section{The admissible shapes}\label{sec:shapes}
+
+Fix a Dyck word $s$ of semilength $n$. Let $a=a(s)\ge1$ be the length of its
+first ascent run, so that $o_j=j$ for $j\le a$ and $q_1=a+1$. Call an arc
+$J$ \emph{late} if $o_J>q_1$. For a late arc $J$ let
+\[
+  S_J \;=\; \{K<J : o_J<q_K\},
+\]
+so that the pairs constrained by $(C)$ are exactly the pairs $(K,J)$ with
+$J$ late and $K\in S_J$. (For $K<J$ we have $o_K<o_J$ automatically, so
+$S_J$ is the set of arcs \emph{open} at the moment $o_J$, i.e.\ with
+$o_K<o_J<q_K$.)
+
+\begin{lemma}\label{lem:interval}
+Let $J\in[n]$ and let $c$ be the number of closers at positions $<o_J$.
+Then $S_J=\{c+1,\dots,J-1\}$, and $|S_J|=J-1-c$ equals the height of $s$
+(number of $\sU$'s minus number of $\sD$'s) just before position $o_J$.
+Moreover, $J$ is late if and only if $J\ge a+1$.
+\end{lemma}
+
+\begin{proof}
+The arcs opened before $o_J$ are exactly $1,\dots,J-1$ (openers are
+sorted). The closers before $o_J$ are an initial segment of
+$q_1<q_2<\cdots$, hence are exactly $q_1,\dots,q_c$: arcs $1,\dots,c$ are
+closed before $o_J$ and arcs $c+1,\dots,J-1$ remain open ($c\le J-1$ since
+each closed arc was opened). The height before a position equals the number
+of earlier openers minus earlier closers, i.e.\ $(J-1)-c$. Finally, openers
+$1,\dots,a$ sit at positions $1,\dots,a<q_1=a+1$, and every opener $o_J$ with
+$J\ge a+1$ satisfies $o_J>a+1=q_1$ because position $a+1$ is a closer.
+\end{proof}
+
+Define, with respect to the decomposition above:
+\begin{itemize}
+\item a \emph{gap opener}: an opener at a position strictly between $q_1$
+  and $q_a$ (for $a=1$ there is none, as the interval is empty);
+\item a \emph{tail opener}: an opener at a position $>q_a$; the
+  corresponding arcs are \emph{tail arcs}. For a tail arc $j$, let
+  $\delta_j\in\{0,1,2,\dots\}$ be the height of $s$ just before position
+  $o_j$ (its \emph{start height}).
+\end{itemize}
+
+\begin{lemma}[obstructions]\label{lem:obstructions}
+If $s$ has at least two gap openers, or a tail opener with start height
+$\ge2$, then no $\varepsilon\in\{\sL,\sH\}^{n-1}$ is valid for $s$.
+\end{lemma}
+
+\begin{proof}
+\emph{Two gap openers.} Then $a\ge2$. The openers in the interval
+$(q_1,q_a)$ belong to arcs $a+1,a+2,\dots$ in order (openers are sorted and
+arcs $\le a$ open before $q_1$); let $\beta=a+1$ and $\beta'=a+2$ be the
+arcs of the first two. Both are late. Let $c\le c'$ be the numbers of
+closers before $o_\beta$ and $o_{\beta'}$; since
+$q_1<o_\beta<o_{\beta'}<q_a$ we get $1\le c\le c'\le a-1$. By
+Lemma~\ref{lem:interval}, $S_\beta=\{c+1,\dots,a\}\ni a$ and
+$S_{\beta'}=\{c'+1,\dots,a+1\}\supseteq\{a,\beta\}$. So the pairs
+$(a,\beta)$, $(a,\beta')$, $(\beta,\beta')$ are all constrained by $(C)$,
+and a valid $\varepsilon$ would need
+$\varepsilon_a,\varepsilon_\beta,\varepsilon_{\beta'}$ pairwise distinct in
+the two-element set $\{\sL,\sH\}$ --- impossible.
+
+\emph{Tail opener at height $\ge2$.} Let $J$ be its arc, so $o_J>q_a$ and,
+by Lemma~\ref{lem:interval}, $S_J=\{c+1,\dots,J-1\}$ with $J-1-c\ge2$;
+hence $K:=J-2$ and $K':=J-1$ both lie in $S_J$. Note $K\ge c+1\ge a+1\ge2$,
+since at least the $a$ closers $q_1,\dots,q_a$ precede $o_J$. The arc $K'$
+is late: $q_{K'}>o_J>q_a$ forces $K'>a$ (closers are sorted), so
+$K'\ge a+1$. Also $K\in S_{K'}$: $K<K'$ and $q_K>o_J>o_{K'}$. So the pairs
+$(K,K')$, $(K,J)$, $(K',J)$ are all constrained by $(C)$, again requiring
+three pairwise distinct values in $\{\sL,\sH\}$ --- impossible.
+\end{proof}
+
+It remains to describe the shapes with at most one gap opener and all tail
+start heights $\le1$; we call these \emph{admissible}. For $m\ge0$,
+$h_0\in\{0,1\}$ and $d_1,\dots,d_m\in\{0,1\}$ with $d_1\le h_0$ when
+$m\ge1$, let $\mathrm{Tail}(h_0;\,d_1,\dots,d_m)$ be the $\{\sU,\sD\}$-word
+produced by the following scan: start with $h:=h_0$; for $r=1,\dots,m$ emit
+$\sD^{\,h-d_r}$ then $\sU$, and set $h:=d_r+1$; finally emit $\sD^{\,h}$.
+(All $\sD$-run lengths are $\ge0$: $d_1\le h_0$, and for $r\ge2$,
+$d_r\le1\le d_{r-1}+1=h$. For $m=0$ the word is $\sD^{\,h_0}$.) By
+construction, $\mathrm{Tail}$ describes a lattice path from height $h_0$ to
+height $0$, never negative, whose $r$th $\sU$-step starts at height $d_r$.
+
+\begin{lemma}[classification]\label{lem:classification}
+Let $s$ be admissible. Then exactly one of the following holds, in each case
+with the stated parameters determined by $s$; and conversely, every choice
+of parameters yields an admissible Dyck word of semilength $n$ with those
+data.
+\begin{itemize}
+\item[(S)] \emph{Staircase}: $a=n$ and $s=\sU^n\sD^n$. (No parameters.)
+\item[(I)] $1\le a\le n-1$ and $s$ has no gap opener. The tail arcs are
+  $a+1,\dots,n$; $\delta_{a+1}=0$; and
+  \[
+    s=\sU^a\sD^a\cdot\mathrm{Tail}\bigl(0;\,\delta_{a+1},\dots,\delta_n\bigr),
+  \]
+  with parameters $\bigl(a,\ \delta=(\delta_{a+2},\dots,\delta_n)\in\{0,1\}^{n-a-1}\bigr)$
+  and $\delta_{a+1}:=0$.
+\item[(II)] $2\le a\le n-1$ and $s$ has exactly one gap opener, which
+  belongs to the arc $B:=a+1$ and has exactly $i$ closers before it, where
+  $1\le i\le a-1$; moreover $S_B=\{i+1,\dots,a\}$. The tail arcs are
+  $a+2,\dots,n$, and
+  \[
+    s=\sU^a\sD^{\,i}\,\sU\,\sD^{\,a-i}\cdot
+      \mathrm{Tail}\bigl(1;\,\delta_{a+2},\dots,\delta_n\bigr),
+  \]
+  with parameters $\bigl(a,\,i,\ \delta=(\delta_{a+2},\dots,\delta_n)\in\{0,1\}^{n-a-1}\bigr)$.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+If $a=n$ then all $n$ arcs open in the first run and $s=\sU^n\sD^n$: case
+(S). Assume $a<n$.
+
+\emph{No gap opener.} Every position strictly between $q_1$ and $q_a$ is a
+closer, so $q_m=a+m$ for $m\le a$ and the word begins $\sU^a\sD^a$. All
+arcs $\ge a+1$ open after $q_a=2a$: the tail arcs are exactly
+$a+1,\dots,n$, a nonempty set since $a<n$. The height after position $2a$
+is $0$ and the next position must be an opener (a closer would make the
+height negative), so $\delta_{a+1}=0$; by admissibility $\delta_j\le1$ for
+the rest. The remainder of the word is forced by the start heights:
+between consecutive tail openers all positions are closers, and the height
+must drop from $\delta_j+1$ (just after the $\sU$ of tail arc $j$) to
+$\delta_{j+1}$ (just before the $\sU$ of tail arc $j+1$), giving exactly
+$\delta_j+1-\delta_{j+1}$ letters $\sD$; after the last opener the height
+$\delta_n+1$ returns to $0$. This is precisely
+$\mathrm{Tail}(0;\delta_{a+1},\dots,\delta_n)$, so $s$ has the displayed
+form and $(a,\delta)$ is determined by $s$. Conversely, for any
+$(a,\delta)$ the displayed word is a Dyck word of semilength $n$
+($\sU$-count $a+(n-a)=n$; the scan keeps $h\ge0$ and ends at height $0$),
+its first ascent is exactly $a$ (position $a+1$ is a $\sD$ since $a\ge1$),
+it has no gap opener (positions $a+1,\dots,2a$ are $\sD$'s, and $q_a=2a$),
+and its tail start heights are $\delta_{a+1},\dots,\delta_n$ by the
+construction of the scan: case (I) with the same parameters.
+
+\emph{One gap opener.} The gap opener is the first opener after $q_1$,
+hence belongs to arc $a+1=:B$; the interval $(q_1,q_a)$ must be nonempty,
+so $a\ge2$. Let $i$ be the number of closers before $o_B$: $o_B>q_1$ gives
+$i\ge1$ and $o_B<q_a$ gives $i\le a-1$. Positions in $(q_1,q_a)$ other than
+$o_B$ are closers, so the prefix of $s$ up to $q_a$ reads
+$\sU^a\sD^{\,i}\sU\sD^{\,a-i}$ (closers $q_1,\dots,q_i$, then $o_B$, then
+$q_{i+1},\dots,q_a$); in particular $q_a=2a+1$ and, by
+Lemma~\ref{lem:interval} with $c=i$, $S_B=\{i+1,\dots,a\}$. The height
+after $q_a$ is $(a+1)-a=1$. The tail arcs are $a+2,\dots,n$ (possibly
+none), and the same forced-run argument as in case (I) identifies the
+remainder with $\mathrm{Tail}(1;\delta_{a+2},\dots,\delta_n)$; for $a=n-1$
+this is $\mathrm{Tail}(1;\,)=\sD$. So $(a,i,\delta)$ is determined by $s$,
+and conversely each $(a,i,\delta)$ yields a Dyck word of case (II) by the
+same checks ($\sU$-count $a+1+(n-a-1)=n$; first ascent $a$ since $i\ge1$
+puts a $\sD$ at position $a+1$; exactly one gap opener, at position
+$a+1+i<2a+1=q_a$, with $i$ closers before it; tail start heights
+$\delta_j$).
+
+The three cases are pairwise exclusive ($a=n$ versus $a<n$; gap opener
+absent versus present), and every admissible shape falls in one of them.
+\end{proof}
+
+\begin{lemma}[local form of validity]\label{lem:inventory}
+Let $s$ be admissible and $\varepsilon\in\{\sL,\sH\}^{n-1}$ (indexed
+$2,\dots,n$). Then $\varepsilon$ is valid for $s$ if and only if:
+\begin{itemize}
+\item[(S)] always (there are no late arcs, hence no constrained pairs);
+\item[(I)] for every tail arc $j\ge a+2$ with $\delta_j=1$:
+  $\varepsilon_j=\overline{\varepsilon_{j-1}}$;
+\item[(II)] $\varepsilon_{i+1}=\cdots=\varepsilon_a
+  =\overline{\varepsilon_{a+1}}$, and for every tail arc $j\ge a+2$ with
+  $\delta_j=1$: $\varepsilon_j=\overline{\varepsilon_{j-1}}$.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+Validity is the conjunction, over late arcs $J$ (i.e.\ $J\ge a+1$, by
+Lemma~\ref{lem:interval}) and $K\in S_J$, of
+$\varepsilon_K\neq\varepsilon_J$. We list the sets $S_J$ case by case
+using Lemma~\ref{lem:interval}.
+
+(S): $a=n$ and there are no late arcs; the conjunction is empty.
+
+(I): the late arcs are $a+1,\dots,n$, all tail arcs. For $J=a+1$: the
+closers before $o_{a+1}=2a+1$ are $q_1,\dots,q_a$, so
+$S_{a+1}=\{a+1,\dots,a\}=\varnothing$ --- no constraint. For a tail arc
+$J\ge a+2$: $|S_J|=\delta_J\in\{0,1\}$ by Lemma~\ref{lem:interval}. If
+$\delta_J=0$ there is no constraint; if $\delta_J=1$ then $S_J$, being the
+interval $\{c+1,\dots,J-1\}$ of size one, equals $\{J-1\}$, and the
+constraint $\varepsilon_J\neq\varepsilon_{J-1}$ over a two-letter alphabet
+reads $\varepsilon_J=\overline{\varepsilon_{J-1}}$.
+
+(II): the late arcs are $a+1,\dots,n$. For $J=B=a+1$:
+$S_B=\{i+1,\dots,a\}$ by Lemma~\ref{lem:classification}, and the
+constraints $\{\varepsilon_K\neq\varepsilon_B: K=i+1,\dots,a\}$ hold iff
+$\varepsilon_{i+1}=\cdots=\varepsilon_a=\overline{\varepsilon_{a+1}}$ (the
+block is nonempty as $i\le a-1$). For tail arcs $J\ge a+2$ the analysis is
+exactly as in (I); note that for $J=a+2$ with $\delta_J=1$ the constraint
+set is $S_J=\{a+1\}=\{B\}$, also covered by the rule
+$\varepsilon_J=\overline{\varepsilon_{J-1}}$.
+\end{proof}
+
+\begin{corollary}[free coordinates]\label{cor:free}
+For each admissible $s$ define the \emph{free set} $F(s)\subseteq\{2,\dots,n\}$:
+\[
+  F(s)=
+  \begin{cases}
+   \{2..n\} & \text{(S)},\\
+   \{2..a+1\}\cup\{j\ge a+2:\delta_j=0\} & \text{(I)},\\
+   \{2..i\}\cup\{a+1\}\cup\{j\ge a+2:\delta_j=0\} & \text{(II)}.
+  \end{cases}
+\]
+Then the restriction map $\varepsilon\mapsto\varepsilon|_{F(s)}$ is a
+bijection from the valid sign words for $s$ onto $\{\sL,\sH\}^{F(s)}$. In
+particular the number of valid sign words is $N(s)=2^{|F(s)|}$, with
+\[
+  |F(s)| =
+  \begin{cases}
+   n-1 & \text{(S)},\\
+   a+z & \text{(I)},\\
+   i+z & \text{(II)},
+  \end{cases}
+  \qquad\text{where } z:=\#\{a+2\le j\le n:\delta_j=0\}.
+\]
+\end{corollary}
+
+\begin{proof}
+Define an extension map $E$ on $f\in\{\sL,\sH\}^{F(s)}$: set
+$\varepsilon_j:=f_j$ for $j\in F(s)$; in case (II) set
+$\varepsilon_{i+1}=\cdots=\varepsilon_a:=\overline{f_{a+1}}$; then process
+the tail arcs $j=a+2,\dots,n$ in increasing order, setting
+$\varepsilon_j:=\overline{\varepsilon_{j-1}}$ whenever $\delta_j=1$. Each
+reference $\varepsilon_{j-1}$ is already defined at the time it is used:
+$j-1$ is in $F(s)$, or in the block $\{i+1..a\}$, or equals $a+1$, or is an
+earlier-processed tail arc. By construction $E(f)$ satisfies the conditions
+of Lemma~\ref{lem:inventory}, hence is valid, and $E(f)|_{F(s)}=f$.
+Conversely, if $\varepsilon$ is valid, then by Lemma~\ref{lem:inventory}
+its non-free coordinates are determined from $\varepsilon|_{F(s)}$ by
+exactly the assignments that $E$ makes --- the block coordinates equal
+$\overline{\varepsilon_{a+1}}$, and each $\delta_j=1$ tail coordinate
+equals $\overline{\varepsilon_{j-1}}$, by induction on $j$ --- so
+$E(\varepsilon|_{F(s)})=\varepsilon$. Thus restriction and extension are
+mutually inverse. The values of $|F(s)|$ are immediate counts: in case (S),
+$|\{2..n\}|=n-1$; in case (I), $|\{2..a+1\}|=a$, giving $a+z$; in case
+(II), $|\{2..i\}|=i-1$ plus the singleton $\{a+1\}$, giving $i+z$.
+\end{proof}
+
+\section{First proof of the main theorem: summation}\label{sec:count}
+
+\begin{theorem}\label{thm:main}
+For every $n\ge1$, the number of nonnesting permutations of $\nn$ avoiding
+$1132$ and $3312$ is
+\[
+  c_n \;=\; 3^n-3\cdot2^{n-1}+1 .
+\]
+\end{theorem}
+
+\begin{proof}
+By Corollary~\ref{cor:pairs}, $c_n=\sum_s N(s)$, the sum over all Dyck
+words $s$ of semilength $n$ of the number of valid sign words. By
+Lemma~\ref{lem:obstructions}, $N(s)=0$ unless $s$ is admissible, and by
+Lemma~\ref{lem:classification} the admissible shapes are parametrized
+bijectively by the data (S), $(a,\delta)$ in case (I) with $1\le a\le n-1$,
+and $(a,i,\delta)$ in case (II) with $2\le a\le n-1$, $1\le i\le a-1$,
+where $\delta\in\{0,1\}^{n-a-1}$ in both cases. By
+Corollary~\ref{cor:free}, $N(s)=2^{|F(s)|}$ with the listed exponents. We
+sum case by case. Since each coordinate $\delta_j$ ranges freely over
+$\{0,1\}$ and contributes a factor $2$ to $2^{|F(s)|}$ when $\delta_j=0$
+and $1$ when $\delta_j=1$,
+\[
+ \sum_{\delta\in\{0,1\}^{n-a-1}} 2^{\,z(\delta)} \;=\; (2+1)^{\,n-a-1} \;=\;
+ 3^{\,n-a-1}.
+\]
+Hence
+\[
+  c_n \;=\; \underbrace{2^{n-1}}_{\text{(S)}}
+  \;+\; \underbrace{\sum_{a=1}^{n-1} 2^{a}\,3^{\,n-1-a}}_{\text{(I)}}
+  \;+\; \underbrace{\sum_{a=2}^{n-1}\Bigl(\sum_{i=1}^{a-1}2^{i}\Bigr)3^{\,n-1-a}}_{\text{(II)}}
+  \;=\; 2^{n-1} \;+\; \Sigma_1 \;+\; \Sigma_2,
+\]
+with $\sum_{i=1}^{a-1}2^i=2^a-2$. We use the identity
+\begin{equation}\label{eq:geom}
+  \sum_{a=1}^{m} 2^{a-1}3^{\,m-a} \;=\; 3^m-2^m \qquad (m\ge0),
+\end{equation}
+proved by induction on $m$: both sides vanish at $m=0$ and satisfy
+$g(m)=3g(m-1)+2^{m-1}$. Applying \eqref{eq:geom} with $m=n-1$,
+\[
+  \Sigma_1=2\sum_{a=1}^{n-1}2^{a-1}3^{(n-1)-a}=2\bigl(3^{n-1}-2^{n-1}\bigr).
+\]
+For $\Sigma_2$, assume first that $n\ge3$. Removing the $a=1$ term
+$2\cdot3^{n-2}$ from $\Sigma_1$ and using
+$\sum_{a=2}^{n-1}3^{n-1-a}=\sum_{k=0}^{n-3}3^k=\tfrac{3^{n-2}-1}{2}$,
+\[
+  \Sigma_2=\Bigl(2\bigl(3^{n-1}-2^{n-1}\bigr)-2\cdot3^{n-2}\Bigr)
+  -2\cdot\frac{3^{n-2}-1}{2}
+  =2\cdot3^{n-1}-3\cdot 3^{n-2}-2^{n}+1
+  =3^{n-1}-2^{n}+1 .
+\]
+For $n\in\{1,2\}$ the sum $\Sigma_2$ is empty and the expression
+$3^{n-1}-2^n+1$ equals $0$, so this closed form holds for all $n\ge1$.
+Adding up,
+\[
+  c_n=2^{n-1}+2\cdot3^{n-1}-2^{n}+3^{n-1}-2^{n}+1
+     =3^{n}+2^{n-1}-2^{n+1}+1
+     =3^{n}-3\cdot2^{n-1}+1 . \qedhere
+\]
+\end{proof}
+
+\begin{remark}\label{rem:structure}
+The three exponential scales of the answer are transparent in the
+decomposition: each free tail coordinate contributes a factor $3$ (the
+choices ``$\delta_j=0$ with $\varepsilon_j=\sL$'', ``$\delta_j=0$ with
+$\varepsilon_j=\sH$'', ``$\delta_j=1$, sign forced''), the first-run
+coordinates contribute factors of $2$, and the bookkeeping of the three
+families produces exactly $3^n-3\cdot2^{n-1}+1$. This matches the ordinary
+generating function
+$x(1-2x+3x^2)/\bigl((1-x)(1-2x)(1-3x)\bigr)$
+of the (shifted) OEIS entry A168583 \cite{OEIS}, with poles at
+$1,\tfrac12,\tfrac13$.
+\end{remark}
+
+\section{Second proof of the endgame: an explicit bijection}\label{sec:bijection}
+
+The summation in Section~\ref{sec:count} can be replaced by an explicit
+bijection: the classification data $(a,i,\delta,\varepsilon|_{F(s)})$ of an
+avoider can be packaged into a single ternary string, in such a way that
+the image language has a transparent description and count. Throughout this
+section, fix the alphabet $\{\sA,\sB,\sC\}$ and identify signs with letters
+via
+\[
+ \ell(\sL)=\sA,\qquad \ell(\sH)=\sB .
+\]
+
+\begin{definition}\label{def:Wn}
+$\Wn\subseteq\{\sA,\sB,\sC\}^n$ is the set of strings $\sigma$ such that:
+\begin{itemize}
+\item if $\sigma$ contains no $\sC$, then $\sigma_1=\sA$;
+\item if $\sigma_1=\sC$, then there are positions $2\le r<t\le n$ with
+  $\sigma_r=\sC$ and $\sigma_t\neq\sC$;
+\item (if $\sigma_1\neq\sC$ and $\sigma$ contains a $\sC$: no condition).
+\end{itemize}
+\end{definition}
+
+\begin{lemma}\label{lem:Wcount}
+The complement of $\Wn$ in $\{\sA,\sB,\sC\}^n$ is the disjoint union of
+\[
+ X_1=\sB\,\{\sA,\sB\}^{n-1}
+ \quad\text{and}\quad
+ X_2=\{\,\sC\,v\,\sC^{\,k}\;:\; v\in\{\sA,\sB\}^{m},\ m,k\ge0,\
+ 1+m+k=n \,\},
+\]
+with $|X_1|=2^{n-1}$ and $|X_2|=\sum_{m=0}^{n-1}2^m=2^n-1$. Hence
+\[
+  |\Wn| \;=\; 3^n-2^{n-1}-(2^n-1) \;=\; 3^n-3\cdot2^{n-1}+1
+  \qquad(n\ge1).
+\]
+\end{lemma}
+
+\begin{proof}
+A string violates Definition~\ref{def:Wn} iff either it is $\sC$-free with
+$\sigma_1=\sB$ (a $\sC$-free string cannot have $\sigma_1=\sC$), or
+$\sigma_1=\sC$ and no $\sC$ at a position $r\ge2$ is followed later by a
+non-$\sC$. The first family is $X_1$. For the second, write
+$\sigma=\sC\rho$: the condition says that every letter after the first
+$\sC$ of $\rho$ (if any) is again $\sC$, i.e.\
+$\rho\in\{\sA,\sB\}^*\sC^*$, which is exactly the family $X_2$ (the case
+$k=0$ covering $\sC$-free $\rho$). $X_1$ and $X_2$ are disjoint (first
+letter $\sB$ versus $\sC$), and within $X_2$ the pair $(m,k)$ is determined
+by $\sigma$ ($v$ is the maximal $\{\sA,\sB\}$-prefix of $\rho$), so
+$|X_2|=\sum_{m+k=n-1}2^m=2^n-1$.
+\end{proof}
+
+\begin{definition}[the encoding $\Phi$]\label{def:phi}
+Let $s$ be admissible and $\varepsilon$ valid for $s$. Define
+$\sigma=\Phi(s,\varepsilon)\in\{\sA,\sB,\sC\}^n$ by cases on
+Lemma~\ref{lem:classification}:
+\begin{itemize}
+\item[(S)] $\sigma_1=\sA$; and $\sigma_j=\ell(\varepsilon_j)$ for
+ $2\le j\le n$.
+\item[(I)] $\sigma_j=\ell(\varepsilon_{j+1})$ for $1\le j\le a$;\quad
+ $\sigma_{a+1}=\sC$;\quad and for $a+2\le j\le n$:
+ $\sigma_j=\sC$ if $\delta_j=1$, else $\sigma_j=\ell(\varepsilon_j)$.
+\item[(II)] $\sigma_1=\sC$;\quad $\sigma_j=\ell(\varepsilon_j)$ for
+ $2\le j\le i$;\quad $\sigma_j=\sC$ for $i+1\le j\le a$;\quad
+ $\sigma_{a+1}=\ell(\varepsilon_{a+1})$;\quad and for $a+2\le j\le n$:
+ $\sigma_j=\sC$ if $\delta_j=1$, else $\sigma_j=\ell(\varepsilon_j)$.
+\end{itemize}
+\end{definition}
+
+In words: every free coordinate of $\varepsilon$ is written as its sign
+letter, every \emph{forced} arc (the block $\{i+1..a\}$ of case (II), and
+the $\delta_j=1$ tail arcs) is written $\sC$; in case (I) the initial free
+block $\varepsilon_2,\dots,\varepsilon_{a+1}$ is shifted one slot to the
+left so that position $a+1$ can carry a $\sC$ marking the end of the first
+descent; in case (II), position $1$ carries a $\sC$ marking the presence of
+the gap opener; in case (S), position $1$ carries the padding letter
+$\sA$.
+
+\begin{theorem}\label{thm:B}
+$\Phi$ is a bijection from
+$\{(s,\varepsilon): s \text{ admissible},\ \varepsilon \text{ valid for } s\}$
+onto $\Wn$.
+\end{theorem}
+
+\begin{proof}
+\textbf{Step 1: $\Phi$ lands in $\Wn$, with disjoint images for the three
+cases.} (S): $\sigma$ is $\sC$-free with $\sigma_1=\sA$, so $\sigma\in\Wn$.
+(I): $\sigma_1=\ell(\varepsilon_2)\in\{\sA,\sB\}$ and $\sigma$ contains a
+$\sC$ (at position $a+1\le n$), so $\sigma\in\Wn$ by the third clause.
+(II): $\sigma_1=\sC$; take $r=i+1$ and $t=a+1$: then $2\le r<t\le n$,
+$\sigma_r=\sC$ (the block is nonempty since $i\le a-1$) and
+$\sigma_t\in\{\sA,\sB\}$, so $\sigma\in\Wn$ by the second clause.
+Disjointness: (S)-images are $\sC$-free; (I)-images contain a $\sC$ and
+have $\sigma_1\neq\sC$; (II)-images have $\sigma_1=\sC$.
+
+\textbf{Step 2: a parse map $\Psi$ defined on all of $\Wn$.} Let
+$\sigma\in\Wn$.
+
+\emph{Case $\sC\notin\sigma$.} Then $\sigma_1=\sA$ by
+Definition~\ref{def:Wn}. Output case (S) with
+$\varepsilon_j:=\ell^{-1}(\sigma_j)$ for $2\le j\le n$.
+
+\emph{Case $\sigma_1\neq\sC$, $\sC\in\sigma$.} Let $a+1$ be the position of
+the first $\sC$, so $1\le a\le n-1$ and
+$\sigma_1,\dots,\sigma_a\in\{\sA,\sB\}$. Set
+$\varepsilon_{j+1}:=\ell^{-1}(\sigma_j)$ for $1\le j\le a$; then for
+$j=a+2,\dots,n$ in increasing order: if $\sigma_j=\sC$ set $\delta_j:=1$
+and $\varepsilon_j:=\overline{\varepsilon_{j-1}}$, else set $\delta_j:=0$
+and $\varepsilon_j:=\ell^{-1}(\sigma_j)$. Output case (I) with parameters
+$(a,\delta)$ --- an admissible shape by the converse direction of
+Lemma~\ref{lem:classification}(I) --- and the sign word $\varepsilon$,
+which is valid by Lemma~\ref{lem:inventory}(I), since its $\delta_j=1$
+coordinates satisfy the forced equalities by construction.
+
+\emph{Case $\sigma_1=\sC$.} Let $i-1\ge0$ be the length of the maximal
+$\{\sA,\sB\}$-run starting at position $2$, so positions $2,\dots,i$ carry
+letters in $\{\sA,\sB\}$ and position $i+1$, if it exists, carries $\sC$.
+The second clause of Definition~\ref{def:Wn} provides $2\le r<t\le n$ with
+$\sigma_r=\sC$ and $\sigma_t\neq\sC$; in particular there is a $\sC$ at a
+position $\ge2$, so $i+1\le n$ and $\sigma_{i+1}=\sC$. Let the maximal
+$\sC$-run starting at position $i+1$ occupy positions $i+1,\dots,a$. We
+claim $a\le n-1$ and $\sigma_{a+1}\in\{\sA,\sB\}$. Consider the witness
+pair $(r,t)$, and note $r\ge i+1$ (positions $2,\dots,i$ are not $\sC$). If
+$r\le a$: then $t>r$ and $\sigma_t\neq\sC$ force $t\ge a+1$ (positions
+$r+1,\dots,a$ are $\sC$), so position $a+1$ exists, and
+$\sigma_{a+1}\neq\sC$ by maximality of the run. If $r>a$: then
+$a+1\le r\le n$, so position $a+1$ exists; $r=a+1$ is impossible (a $\sC$
+at $a+1$ would extend the maximal run), so again $\sigma_{a+1}\neq\sC$ by
+maximality. This proves the claim. Now set
+$\varepsilon_j:=\ell^{-1}(\sigma_j)$ for $2\le j\le i$;
+$\varepsilon_{a+1}:=\ell^{-1}(\sigma_{a+1})$;
+$\varepsilon_{i+1}=\cdots=\varepsilon_a:=\overline{\varepsilon_{a+1}}$; and
+process $j=a+2,\dots,n$ exactly as in the previous case (defining
+$\delta_j$ and $\varepsilon_j$). Output case (II) with parameters
+$(a,i,\delta)$ --- well defined, since $1\le i\le a-1\le n-2$, and an
+admissible shape by Lemma~\ref{lem:classification}(II) --- and the sign
+word $\varepsilon$, valid by Lemma~\ref{lem:inventory}(II).
+
+\textbf{Step 3: $\Psi\circ\Phi=\mathrm{id}$.} Let $(s,\varepsilon)$ be a
+valid pair and $\sigma=\Phi(s,\varepsilon)$.
+\begin{itemize}
+\item (S): $\sigma$ is $\sC$-free, so $\Psi$ takes the (S)-branch and
+ recovers each $\varepsilon_j$ from $\sigma_j$.
+\item (I): $\sigma_1\neq\sC$, and the first $\sC$ of $\sigma$ is at
+ position $a+1$, since positions $1,\dots,a$ carry sign letters. So $\Psi$
+ takes the (I)-branch and recovers $a$; it recovers
+ $\varepsilon_2,\dots,\varepsilon_{a+1}$ from positions $1,\dots,a$; and
+ for $j\ge a+2$ it recovers $\delta_j$ ($\sC\leftrightarrow\delta_j=1$) and
+ $\varepsilon_j$ --- directly if $\delta_j=0$, and as
+ $\overline{\varepsilon_{j-1}}$ if $\delta_j=1$, which equals the original
+ $\varepsilon_j$ because the original is valid
+ (Lemma~\ref{lem:inventory}(I)); the argument is an induction on $j$ using
+ that $\varepsilon_{j-1}$ was recovered correctly. By
+ Lemma~\ref{lem:classification}(I), the parameters $(a,\delta)$ determine
+ $s$.
+\item (II): $\sigma_1=\sC$, so $\Psi$ takes the (II)-branch. In $\sigma$,
+ positions $2,\dots,i$ carry sign letters, positions $i+1,\dots,a$ carry
+ $\sC$ (a nonempty block), and position $a+1$ carries a sign letter; hence
+ the maximal $\{\sA,\sB\}$-run from position $2$ ends exactly at $i$ and
+ the maximal $\sC$-run from $i+1$ ends exactly at $a$: $\Psi$ recovers
+ $(i,a)$. It then recovers $\varepsilon_2,\dots,\varepsilon_i$ and
+ $\varepsilon_{a+1}$ directly; the block coordinates as
+ $\overline{\varepsilon_{a+1}}$ --- correct by
+ Lemma~\ref{lem:inventory}(II) --- and the tail as in case (I). By
+ Lemma~\ref{lem:classification}(II), $(a,i,\delta)$ determine $s$.
+\end{itemize}
+
+\textbf{Step 4: $\Phi\circ\Psi=\mathrm{id}$.} Let $\sigma\in\Wn$ and
+$(s,\varepsilon)=\Psi(\sigma)$. In each branch, the output of $\Psi$
+classifies into the same case it was parsed in (this is the converse
+direction of Lemma~\ref{lem:classification}, which asserts that the
+constructed shape lies in case (I), resp.\ (II), with the same parameters),
+and $\Phi$ applied to it writes back exactly the letters read: in (S), the
+letter $\sA$ followed by the sign letters; in (I), the $a$ sign letters
+read from positions $1,\dots,a$, the $\sC$ at position $a+1$, and for
+$j\ge a+2$ a $\sC$ iff $\delta_j=1$ iff $\sigma_j=\sC$, else
+$\ell(\varepsilon_j)=\sigma_j$; in (II), the leading $\sC$, the run
+structure (positions $2,\dots,i$; the block $i+1,\dots,a$; position
+$a+1$), and the tail, likewise. So $\Phi(\Psi(\sigma))=\sigma$.
+
+By Steps 1--4, $\Phi$ is a bijection with inverse $\Psi$.
+\end{proof}
+
+\begin{corollary}[second proof of Theorem~\ref{thm:main}]\label{cor:secondproof}
+Composing the bijections
+\[
+ \{\text{avoiders of }\nn\}
+ \xrightarrow{\ \text{Cor.~\ref{cor:pairs}}\ }
+ \{(s,\varepsilon):\varepsilon\text{ valid for }s\}
+ \xrightarrow{\ \Phi\ } \Wn
+\]
+(the middle set ranges over all Dyck words, but by
+Lemmas~\ref{lem:obstructions} and~\ref{lem:classification} only admissible
+shapes carry valid sign words, so the middle set is exactly the domain of
+$\Phi$) and applying Lemma~\ref{lem:Wcount} gives
+$c_n=|\Wn|=3^n-3\cdot2^{n-1}+1$. \qed
+\end{corollary}
+
+The end-to-end map is explicit and runs in linear time in both directions:
+given an avoider $w$, read off $(s,p)$ (Lemma~\ref{lem:fifo}), convert $p$
+to $\varepsilon$ (Lemma~\ref{lem:signword}), and write $\sigma$
+(Definition~\ref{def:phi}); given $\sigma\in\Wn$, parse it
+(Theorem~\ref{thm:B}, Step 2), rebuild $s$ from the parameters
+(Lemma~\ref{lem:classification}), rebuild $p$ from $\varepsilon$
+(Lemma~\ref{lem:signword}), and interleave (Lemma~\ref{lem:fifo}).
+
+\begin{example}\label{ex:table}
+For $n=3$, the $16$ avoiders and their codes
+$\sigma=\Phi(\,\cdot\,)$ are:
+\begin{center}
+\begin{tabular}{cll@{\qquad}cll}
+\toprule
+$\sigma$ & word & case & $\sigma$ & word & case\\
+\midrule
+$\sA\sA\sA$ & $321321$ & S & $\sA\sC\sB$ & $221133$ & I, $a=1$\\
+$\sA\sA\sB$ & $213213$ & S & $\sA\sC\sC$ & $221313$ & I, $a=1$\\
+$\sA\sA\sC$ & $323211$ & I, $a=2$ & $\sB\sA\sC$ & $232311$ & I, $a=2$\\
+$\sA\sB\sA$ & $231231$ & S & $\sB\sB\sC$ & $121233$ & I, $a=2$\\
+$\sA\sB\sB$ & $123123$ & S & $\sB\sC\sA$ & $223311$ & I, $a=1$\\
+$\sA\sB\sC$ & $212133$ & I, $a=2$ & $\sB\sC\sB$ & $112233$ & I, $a=1$\\
+$\sA\sC\sA$ & $332211$ & I, $a=1$ & $\sB\sC\sC$ & $223131$ & I, $a=1$\\
+ & & & $\sC\sC\sA$ & $232131$ & II\\
+ & & & $\sC\sC\sB$ & $212313$ & II\\
+\bottomrule
+\end{tabular}
+\end{center}
+The $3\cdot2^{2}-1=11$ excluded strings are
+$X_1=\{\sB\sA\sA,\sB\sA\sB,\sB\sB\sA,\sB\sB\sB\}$ and
+$X_2=\{\sC\sA\sA$, $\sC\sA\sB$, $\sC\sB\sA$, $\sC\sB\sB$, $\sC\sA\sC$,
+$\sC\sB\sC$, $\sC\sC\sC\}$.
+\end{example}
+
+\begin{example}\label{ex:cbccac}
+A case (II) example with $n=6$: $\sigma=\sC\sB\sC\sC\sA\sC$. Parsing:
+$\sigma_1=\sC$; the $\{\sA,\sB\}$-run from position $2$ is ``$\sB$'', so
+$i=2$ and $\varepsilon_2=\sH$; the $\sC$-run occupies positions $3,4$, so
+$a=4$; $\varepsilon_5=\ell^{-1}(\sA)=\sL$; the block gives
+$\varepsilon_3=\varepsilon_4=\overline{\sL}=\sH$; the tail arc $6$ has
+$\sigma_6=\sC$, so $\delta_6=1$ and
+$\varepsilon_6=\overline{\varepsilon_5}=\sH$. The shape is
+$s=\sU^4\sD^2\sU\sD^2\cdot\mathrm{Tail}(1;\,1)
+ =\sU\sU\sU\sU\sD\sD\sU\sD\sD\sU\sD\sD$, the sign word
+$(\sH,\sH,\sH,\sL,\sH)$ gives $p=(2,3,4,5,1,6)$, and interleaving yields
+\[
+  w \;=\; 2\,3\,4\,5\,2\,3\,1\,4\,5\,6\,1\,6 .
+\]
+One checks directly from the definitions that $w$ is a nonnesting avoider
+of $\{1132,3312\}$ and that $\Phi$ maps it back to $\sC\sB\sC\sC\sA\sC$.
+\end{example}
+
+\begin{remark}
+The encoding explains the shape of the formula bijectively: each position
+of $\sigma$ records a three-way choice --- ``new low''
+($\sA$), ``new high'' ($\sB$), or ``sign forced by the geometry'' ($\sC$)
+--- for an associated arc, with the position-to-arc correspondence of
+Definition~\ref{def:phi} (position $j$ describes arc $j$, except that in
+case (I) the first-run letters are shifted one slot left), and with
+position $1$ absorbing the case distinction in cases (S) and (II). The two excluded
+families are exactly the codes that would describe nothing: a $\sC$-free
+code must describe the staircase, whose first letter carries no information
+(making the choice $\sB$ redundant: $X_1$), and a leading $\sC$ promises a
+gap opener, which forces a nonempty constant block \emph{and} a later free
+arc; the codes $\sC v\sC^k$ lack one or the other ($X_2$).
+\end{remark}
+
+\appendix
+
+\section{Machine verification}\label{app:verification}
+
+The conjecture was checked by its authors for $n\le8$
+\cite[Table~4]{ElizaldeLuo}. Independently of the proofs in this paper,
+every lemma above has been verified mechanically, in most cases far beyond
+that range, by multiple independently written programs (Python and Rust,
+plus clean-room re-implementations written by a different model family
+during adversarial review; see Appendix~\ref{app:methods}). Ground truth
+for $n\le8$ was established by three independent enumerators working from
+the literal containment definition of Section~\ref{sec:conventions} and
+cross-validated against each other, giving
+\[
+ (c_n)_{n=1}^{8} = 1,\,4,\,16,\,58,\,196,\,634,\,1996,\,6178,
+\]
+in exact agreement with $3^n-3\cdot2^{n-1}+1$, and nonnesting totals
+$n!\,\Cat_n=1$, $4$, $30$, $336$, $5040$, $95040$, $2162160$, $57657600$.
+Ground-truth avoider
+\emph{lists} for $n=9,10$ ($18{,}916$ and $57{,}514$ words --- two levels
+beyond the conjecture's original range) were generated by a pruned
+depth-first search that is independent of the shape classification of
+Section~\ref{sec:shapes}. The table below summarizes the principal checks.
+
+\begin{center}
+\small
+\begin{tabular}{p{0.42\textwidth}p{0.33\textwidth}p{0.16\textwidth}}
+\toprule
+\textbf{Claim checked} & \textbf{Scope} & \textbf{Result}\\
+\midrule
+Fast nonnesting/avoidance tests $\equiv$ literal biconditional containment
+ & all $113{,}400$ words of $[5]_2$ and all words for $n\le4$
+ & $0$ mismatches\\[2pt]
+Theorem~\ref{thm:A}, word level: predicted $\iff$ actual avoider, every
+(shape, permutation) pair
+ & all $n\le7$; $2{,}162{,}160$ pairs at $n=7$
+ & $0$ mismatches\\[2pt]
+Theorem~\ref{thm:A} at $n=8$, word level, full exhaustive
+ & all $57{,}657{,}600$ pairs (clean-room Rust harness written by the
+   adversarial referee)
+ & $0$ mismatches; $6{,}178$ avoiders both ways\\[2pt]
+Randomized hunts beyond the exhaustive range
+ & $n=9,10,11$: $2{,}000{,}000$ uniform (shape, permutation) samples each,
+   plus $2{,}000{,}000$ (shape, prefix-interval permutation) samples each
+ & $0$ mismatches\\[2pt]
+Classification (Lemmas~\ref{lem:obstructions}--\ref{lem:classification}):
+$(C)$ satisfiable $\iff$ admissible; per-shape count $=2^{|F(s)|}$
+ & brute force over all $2^{n-1}$ sign words per shape, $n\le9$; structural
+   checks for every Dyck shape $n\le13$ ($742{,}900$ shapes at $n=13$)
+ & exact equality\\[2pt]
+Per-shape counts vs.\ independent Rust per-shape ground truth
+ & all $1{,}430$ shapes at $n=8$
+ & exact match\\[2pt]
+$\sum_s N(s)$ over all Dyck shapes, with $N(s)=0$ for inadmissible $s$,
+$=3^n-3\cdot2^{n-1}+1$
+ & $n\le12$ ($525{,}298$ at $n=12$, matching A168583)
+ & pass\\[2pt]
+Summation identity of Theorem~\ref{thm:main} as exact integer identity
+ & $n\le60$
+ & pass\\[2pt]
+$|\Wn|$ and Definition~\ref{def:Wn} $\equiv$ complement description
+(Lemma~\ref{lem:Wcount})
+ & full $3^n$ cube, $n\le10$
+ & pass\\[2pt]
+Bijection $\Phi$: well-defined, injective, image $=\Wn$,
+$\Psi\circ\Phi=\mathrm{id}$, $\Phi\circ\Psi=\mathrm{id}$
+ & every valid pair $n\le8$; end-to-end on all $85{,}513$ ground-truth
+   avoiders for $n\le10$ (incl.\ the independent DFS lists at $n=9,10$)
+ & pass\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+In addition, the proofs went through six independent adversarial audits
+(three for the route of Sections~\ref{sec:shapes}--\ref{sec:count}, three
+for the bijection of Section~\ref{sec:bijection}), each combining
+line-by-line hand verification of every inference with a fresh clean-room
+verification suite, and each including a hostile-referee round by a model
+from a different family with full code-execution access; all six returned
+the verdict \emph{sound}, with no mathematical gap found. The worked
+examples (Examples~\ref{ex:n3}, \ref{ex:table} and~\ref{ex:cbccac}) were
+re-derived directly from the literal containment definition.
+
+The small-$n$ layer of this table can be reproduced from scratch with the
+self-contained script \texttt{\_recompute.py} that accompanies this paper:
+it implements only the literal definitions and the statements of the lemmas
+(no code is shared with the provers or the earlier verification suites) and
+re-checks, among other things: the avoider counts for $n\le5$ over all
+words of $\nn$; Theorem~\ref{thm:A} for all pairs with $n\le6$ in the
+default run, and with $n\le7$ under the optional flag \texttt{-{}-n7}; the
+per-shape counts $N(s)=2^{|F(s)|}$ by brute force over all sign words for
+$n\le9$, and the classification totals for $n\le12$; the language $\Wn$ for
+$n\le10$; the bijection for $n\le8$; and all three worked examples
+(\texttt{ALL CHECKS PASS}; on the preparation machine, under CPython~3.11,
+about fifteen seconds for the default suite and a few seconds for the $n=7$
+sweep). The heavier artifacts quoted in the table above --- the clean-room
+Rust harness used for the exhaustive $n=8$ sweep (recompiled from source
+and re-run during the final referee pass: $57{,}657{,}600$ pairs, $0$
+mismatches), the shape-level scripts run to $n=13$, the DFS-generated
+avoider lists for $n=9,10$, and the audit logs --- are preserved in the
+verification bundle that accompanies the source of this paper.
+
+\section{Methods disclosure}\label{app:methods}
+
+This paper, including all mathematical content, was produced by an
+artificial-intelligence workflow, and we believe readers and referees
+should be able to take this fact into account. The conjecture was selected,
+attacked, and solved by language-model agents (Anthropic's Claude family)
+running in Demonstrandum, an orchestrated, verification-first multi-agent
+pipeline: the conventions of
+Section~\ref{sec:conventions} were pinned, as verbatim quotations of the
+published LaTeX source of \cite{ElizaldeLuo}, in a frozen definitions file
+before any proof attempt; six proof drafts
+were generated by parallel agents, of which two survived
+triage and were merged into the present exposition (the summation endgame
+of Section~\ref{sec:count} and the bijection of
+Section~\ref{sec:bijection} were found by different agents and are
+logically independent); and the drafts were then subjected to the six
+adversarial audits described in Appendix~\ref{app:verification}. A model
+from a different family (OpenAI's GPT-5.5, accessed through the Codex CLI
+with code-execution access) acted throughout as a hostile referee: it was
+prompted to find counterexamples and gaps rather than to confirm, it wrote
+its own clean-room verification code (including the exhaustive $n=8$ Rust
+check of Appendix~\ref{app:verification}), and its objections --- all
+presentational --- were incorporated. No human mathematician contributed
+mathematical content; the human role was limited to operating the pipeline.
+
+We emphasize the epistemic status of the result: correctness rests on the
+proofs printed in this paper, which are elementary, finite, and intended to
+be checkable line by line by a human referee in the ordinary way. The
+machine verification of Appendix~\ref{app:verification} is corroboration,
+not a substitute for the proofs; conversely, no step of the proofs depends
+on unpublished computation. Every number quoted in this paper was either
+recomputed for this manuscript by the accompanying script, recomputed
+during the final hostile-referee passes on the finished manuscript, or
+copied from the verification logs of the audits described above. The proofs were
+written with eventual formalization in a proof assistant in mind (all
+objects are finite words and tuples; all maps are given explicitly in both
+directions), but no formalization is claimed here.
+
+\begin{thebibliography}{9}
+
+\bibitem{Archer2019}
+K.~Archer, A.~Gregory, B.~Pennington, and S.~Slayden,
+Pattern restricted quasi-Stirling permutations,
+\emph{Australas. J. Combin.} \textbf{74} (2019), 389--407.
+
+\bibitem{ArcherLaudone}
+K.~Archer and R.~P.~Laudone,
+Pattern avoidance in non-crossing and non-nesting permutations,
+\emph{Enumer. Comb. Appl.} \textbf{6}:1 (2026), Article \#S2R1,
+\texttt{doi:10.54550/ECA2026V6S1R1}; arXiv:2502.13309.
+
+\bibitem{Elizalde2021}
+S.~Elizalde,
+Descents on quasi-Stirling permutations,
+\emph{J. Combin. Theory Ser. A} \textbf{180} (2021), Paper No. 105429.
+
+\bibitem{Elizalde2024}
+S.~Elizalde,
+Descents on nonnesting multipermutations,
+\emph{European J. Combin.} \textbf{121} (2024), Paper No. 103846;
+arXiv:2204.00165.
+
+\bibitem{ElizaldeLuo}
+S.~Elizalde and A.~Luo,
+Pattern avoidance in nonnesting permutations,
+\emph{Discrete Math. Theor. Comput. Sci.} \textbf{27}:1, Permutation
+Patterns 2024, Paper No. 13 (2025), \texttt{doi:10.46298/dmtcs.14885};
+arXiv:2412.00336.
+
+\bibitem{GesselStanley1978}
+I.~Gessel and R.~P.~Stanley,
+Stirling polynomials,
+\emph{J. Combin. Theory Ser. A} \textbf{24} (1978), 24--33.
+
+\bibitem{Luo2024}
+A.~Luo,
+\emph{Pattern Avoidance in Nonnesting Permutations},
+undergraduate thesis, Dartmouth College, May 2024.
+\url{https://math.dartmouth.edu/theses/undergrad/2024/Luo-thesis.pdf}
+
+\bibitem{OEIS}
+OEIS Foundation Inc.,
+\emph{The On-Line Encyclopedia of Integer Sequences},
+entry A168583, \url{https://oeis.org/A168583} (accessed June 2026).
+
+\bibitem{SimionSchmidt}
+R.~Simion and F.~W.~Schmidt,
+Restricted permutations,
+\emph{European J. Combin.} \textbf{6} (1985), 383--406.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,87 @@
+{
+ "n": 13,
+ "template": "union_ver_hyp7",
+ "seed": 1,
+ "budget": 110.0,
+ "pool_size": 234,
+ "pairs": 14,
+ "points": 28,
+ "iters": 721,
+ "elapsed": 113.5,
+ "verified": true,
+ "file_or_reason": "C:\\Users\\jacks\\source\\repos\\maths\\problems\\p1-records\\no-5-on-a-sphere-grid\\mining\\construct-algebraic\\set_union_ver_hyp7_n13_m28.json",
+ "evecs": [
+  [
+   2,
+   -2,
+   -12
+  ],
+  [
+   2,
+   0,
+   0
+  ],
+  [
+   2,
+   10,
+   8
+  ],
+  [
+   4,
+   -10,
+   -10
+  ],
+  [
+   4,
+   -10,
+   4
+  ],
+  [
+   4,
+   -8,
+   2
+  ],
+  [
+   6,
+   -2,
+   4
+  ],
+  [
+   6,
+   12,
+   4
+  ],
+  [
+   8,
+   -6,
+   -8
+  ],
+  [
+   10,
+   -12,
+   6
+  ],
+  [
+   10,
+   12,
+   -8
+  ],
+  [
+   12,
+   -4,
+   -8
+  ],
+  [
+   12,
+   -2,
+   12
+  ],
+  [
+   12,
+   12,
+   -12
+  ]
+ ],
+ "p": 7,
+ "distinct_proj_dirs_mod_p": 9
+}

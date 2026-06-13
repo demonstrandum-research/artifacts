@@ -1,0 +1,39 @@
+{
+  "slug": "solubilizer-a16",
+  "conjecture_id": "Conjecture A.16",
+  "paper": "arXiv:2412.16177 (Chuharski, Rojas Collins, Meringolo, 'Mining Math Conjectures from LLMs: A Pruning Approach', v1, 9 Dec 2024)",
+  "statement_verbatim": "Let G be a non-solvable group. For any element x in G, if SolG(x) is a proper subgroup of G, then the intersection of SolG(x) with its normalizer in G is always metabelian.",
+  "definition_verbatim": "SolG(x) := {y ∈ G | ⟨x, y⟩ is soluble}.",
+  "statement_context": "Appendix A.5.6 'Additional Conjectures': 'The following conjectures are just a couple of the conjectures that had code that was unable to be run but are still potentially interesting from Claude' — i.e. the conjecture was never machine-validated by the authors.",
+  "source_urls": [
+    "https://arxiv.org/abs/2412.16177",
+    "https://arxiv.org/pdf/2412.16177",
+    "https://arxiv.org/html/2412.16177v1"
+  ],
+  "accessed": "2026-06-11",
+  "counterexample": {
+    "group": "G = A5 x S4, realized as a permutation group on 9 points: A5 acts on {0,1,2,3,4}, S4 acts on {5,6,7,8}. |G| = 1440.",
+    "x": "the 5-cycle (0 1 2 3 4) with identity S4-part"
+  },
+  "n_points": 9,
+  "generators_G": [
+    [1, 2, 3, 4, 0, 5, 6, 7, 8],
+    [1, 2, 0, 3, 4, 5, 6, 7, 8],
+    [0, 1, 2, 3, 4, 6, 5, 7, 8],
+    [0, 1, 2, 3, 4, 6, 7, 8, 5]
+  ],
+  "x": [1, 2, 3, 4, 0, 5, 6, 7, 8],
+  "claimed_sol_order": 240,
+  "claimed_sol_generators": [
+    [1, 2, 3, 4, 0, 5, 6, 7, 8],
+    [0, 4, 3, 2, 1, 5, 6, 7, 8],
+    [0, 1, 2, 3, 4, 6, 5, 7, 8],
+    [0, 1, 2, 3, 4, 6, 7, 8, 5]
+  ],
+  "claimed_sol_description": "Sol_G(x) = D10 x S4 where D10 = <(01234),(14)(23)> is dihedral of order 10",
+  "claimed_normalizer_equals_sol": true,
+  "claimed_derived_orders_of_intersection": [240, 60, 4, 1],
+  "claimed_not_metabelian": true,
+  "claimed_derived_length": 3,
+  "conclusion": "Hypothesis of A.16 holds (Sol_G(x) is a proper subgroup of the non-solvable G) but the conclusion fails: Sol ∩ N_G(Sol) = D10 x S4 has second derived subgroup 1 x V4 != 1, hence is not metabelian. Conjecture A.16 is REFUTED."
+}

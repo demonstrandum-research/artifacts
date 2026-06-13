@@ -1,0 +1,35 @@
+== validation: all 19 values published by Sun (Remark 1.6) ==
+  csc n=3: computed 1, Sun says 1  OK
+  sin n=3: computed 1, Sun says 1  OK
+  csc n=5: computed 1, Sun says 1  OK
+  sin n=5: computed -1, Sun says -1  OK
+  csc n=7: computed -6, Sun says -6  OK
+  sin n=7: computed 1, Sun says 1  OK
+  sin n=9: computed 9, Sun says 9  OK
+  csc n=11: computed 111, Sun says 111  OK
+  sin n=11: computed 1, Sun says 1  OK
+  csc n=13: computed 261, Sun says 261  OK
+  sin n=13: computed 51, Sun says 51  OK
+  sin n=15: computed 45, Sun says 45  OK
+  csc n=17: computed 6784, Sun says 6784  OK
+  sin n=17: computed -239, Sun says -239  OK
+  csc n=19: computed 245101, Sun says 245101  OK
+  sin n=19: computed 913, Sun says 913  OK
+  sin n=21: computed 2835, Sun says 2835  OK
+  csc n=23: computed -7094142, Sun says -7094142  OK
+  sin n=23: computed 12145, Sun says 12145  OK
+all 19 reproduced exactly.
+
+== primary kill: p = 29 (29 == 5 mod 12, 29 == 5 mod 8) ==
+  s_29  = 1053859
+  s'_29 = -4806838304
+  proven congruences hold: s_29 == 28 == -1, s'_29 == 1 == 1 (mod 29)
+  clause s_p<0 <=> p==5(12):  conjecture demands s_29 < 0; actual sign + -> VIOLATED
+  clause s'_p<0 <=> p==7(8):  conjecture demands s'_29 >= 0; actual sign - -> VIOLATED
+  matches prior sessions' claimed values exactly.
+
+== secondary counterexample: p = 41 (41 == 5 mod 12) ==
+  s_41 = 5574476521  (conjecture demands < 0) -> VIOLATED
+
+VERDICT: Conjecture 4.6(ii) fails at p=29 on BOTH iff clauses (and again at p=41
+on the mod-12 clause); Conjecture 4.6 as stated (conjunction of (i) and (ii)) is FALSE.

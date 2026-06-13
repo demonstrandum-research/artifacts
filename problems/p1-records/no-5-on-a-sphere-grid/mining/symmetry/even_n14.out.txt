@@ -1,0 +1,3 @@
+{"t": 11.3, "iter": 1, "pairs": 15, "points": 30}
+{"t": 220.3, "iter": 19, "pairs": 16, "points": 32}
+{"final_pairs": 16, "final_points": 32, "n": 14, "iters": 26}

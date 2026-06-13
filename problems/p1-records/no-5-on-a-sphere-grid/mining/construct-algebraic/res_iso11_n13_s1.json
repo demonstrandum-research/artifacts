@@ -1,0 +1,52 @@
+{
+ "n": 13,
+ "template": "iso11",
+ "seed": 1,
+ "budget": 110.0,
+ "pool_size": 108,
+ "pairs": 7,
+ "points": 14,
+ "iters": 4195,
+ "elapsed": 110.1,
+ "verified": true,
+ "file_or_reason": "C:\\Users\\jacks\\source\\repos\\maths\\problems\\p1-records\\no-5-on-a-sphere-grid\\mining\\construct-algebraic\\set_iso11_n13_m14.json",
+ "evecs": [
+  [
+   4,
+   4,
+   -10
+  ],
+  [
+   6,
+   -6,
+   4
+  ],
+  [
+   6,
+   2,
+   2
+  ],
+  [
+   10,
+   -8,
+   -10
+  ],
+  [
+   10,
+   12,
+   8
+  ],
+  [
+   12,
+   -4,
+   -4
+  ],
+  [
+   12,
+   8,
+   12
+  ]
+ ],
+ "p": 11,
+ "distinct_proj_dirs_mod_p": 7
+}

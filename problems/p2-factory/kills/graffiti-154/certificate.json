@@ -1,0 +1,74 @@
+{
+  "slug": "graffiti-154",
+  "claim": "Graffiti Conjecture 154 is FALSE under the standard-deviation reading of 'deviation' (the reading used by every known machine formalization), under BOTH standard conventions for 'average distance'.",
+  "statement_verbatim": "154. deviation of eigenvalues <= n / average distance.",
+  "statement_provenance": {
+    "source": "S. Fajtlowicz, 'Written on the Wall' (conjectures of Graffiti), July 2004 compilation",
+    "url": "https://raw.githubusercontent.com/RoucairolMilo/refutation-COCOON2022/master/wow-july2004.pdf",
+    "accessed": "2026-06-11",
+    "extraction": "PDF uses obfuscated Type-3 glyph names /XY (base-36: value=(digit(X)-10)*36+digit(Y)); decoded programmatically; '<=' rendered as glyph /AK. Decoded text in wow-decoded.txt.",
+    "eigenvalue_convention": "WoW preamble (decoded, verbatim): 'G always denotes a graph, n the number of its vertices and eigenvalues (unless it is explicitly stated) denote eigenvalues of the adjacency matrix of G.'",
+    "average_distance_convention_evidence": "WoW comment on conjecture 536 (decoded): 'The average distance of this graph is 3/2' for Paley graphs, which holds only under the distinct-pairs convention l = 2W/(n(n-1)). The Roucairol-Cazenave machine formalization instead averages all n^2 entries of the distance matrix (l = 2W/n^2). Both conventions are violated by the certificate instances lollipop(50,70) and lollipop(72,72).",
+    "deviation_convention_evidence": "WoW uses 'variance' (conj. 38, 143) and 'deviation' (conj. 39, 40, 140, 154, 244, 253) as distinct invariants, and says 'standard deviation' explicitly for degree sequences (conj. 27, 812, 813); deviation = sqrt(variance) = population standard deviation. Favaron-Maheo-Sacle 1993 (Discrete Math 111, the historical treatment of WoW 'deviation of eigenvalues' conjectures; Academia.edu mirror accessed 2026-06-11) defines mean distance over ordered distinct vertex pairs and defines the deviation of eigenvalues by a quadratic/square-root (RMS) formula, not mean absolute deviation. The only public machine formalization (Roucairol-Cazenave, refutationGBR/models/conjectures/GenerateGraph.rs, CONJECTURE==154 block) computes the population standard deviation of all adjacency eigenvalues (tools/calc.rs 'std' divides by len and takes sqrt). CAVEAT documented honestly: no surviving source defines 'deviation' next to conjecture 154 itself; if Graffiti's 'deviation' meant MEAN ABSOLUTE deviation, this family does NOT refute the conjecture; MAD non-violation at all three instances is PROVEN exactly in this bundle. The kill is claimed ONLY under the standard-deviation reading."
+  },
+  "openness_evidence": {
+    "wow_internal": "WoW itself lists 154 among conjectures that PASSED the Brewster-Dinneen-Faber Los Alamos/U.Victoria computational tests (~200 conjectures tested, 40+ refuted, Aug 1990 - Aug 1991).",
+    "modern": "Roucairol-Cazenave, 'Refutation of Spectral Graph Theory Conjectures with Search Algorithms', arXiv:2409.18626 (Sep 2024), Table 1 row '154 O 50 any & tree - - - - - - - -': status Open, searched to size 50 with 8 search algorithms, all failed.",
+    "fresh_search": "Web search 2026-06-11 found no published refutation of Graffiti 154."
+  },
+  "operational_inequality": {
+    "lhs": "population std dev of adjacency spectrum = sqrt(2m/n) EXACTLY (trace A = 0, trace A^2 = 2m); no floating point needed",
+    "rhs_distinct_pairs": "n/l = n^2(n-1)/(2W), W = Wiener index",
+    "rhs_n2_entries": "n/l = n^3/(2W)",
+    "violation_integer_form_DP": "8*m*W^2 > n^5*(n-1)^2",
+    "violation_integer_form_N2": "8*m*W^2 > n^7"
+  },
+  "counterexample_family": "lollipop(t,p): complete graph K_t on vertices 0..t-1; path on vertices t..t+p-1; bridge edge (0,t). n=t+p, m=t(t-1)/2+p. Connected. W = C(t,2) + sum_{k=1..p}[k+(t-1)(k+1)] + C(p+1,3), independently re-verified by all-pairs BFS on the explicit edge list.",
+  "instances": [
+    {
+      "t": 72, "p": 72, "n": 144, "m": 2628, "W": 259080,
+      "8mW^2": 1411182313113600,
+      "n^5(n-1)^2": 1266148181016576,
+      "n^7": 1283918464548864,
+      "violates_DP": true, "margin_DP": 145034132097024,
+      "violates_N2": true, "margin_N2": 127263848564736,
+      "stddev": "sqrt(36.5) = 6.04152298679729...",
+      "n_over_l_DP": "5.72264937471051...",
+      "n_over_l_N2": "5.76266790180639...",
+      "MAD_reading": {
+        "energy_exact_enclosure": "[233.576286493359, 233.576286493359] width 2.41e-17 (Sturm-certified rational enclosure)",
+        "MAD = energy/n": "1.62205754509277...",
+        "violated": false,
+        "exact_proofs": ["Koolen-Moulton rational comparison", "Sturm enclosure < n^2/l (both conventions)"]
+      }
+    },
+    {
+      "t": 50, "p": 70, "n": 120, "m": 1295, "W": 186060,
+      "8mW^2": 358645832496000,
+      "n^5(n-1)^2": 352370995200000,
+      "n^7": 358318080000000,
+      "violates_DP": true, "margin_DP": 6274837296000,
+      "violates_N2": true, "margin_N2": 327752496000,
+      "MAD_reading": {"violated": false, "energy": "187.026168666901..."}
+    },
+    {
+      "t": 48, "p": 70, "n": 118, "m": 1198, "W": 180853,
+      "8mW^2": 313471628124656,
+      "n^5(n-1)^2": 313171159328352,
+      "n^7": 318547390056832,
+      "violates_DP": true, "margin_DP": 300468796304,
+      "violates_N2": false, "margin_N2": -5075761932176,
+      "MAD_reading": {"violated": false, "energy": "183.025669634808..."}
+    }
+  ],
+  "minimality_within_family": {
+    "scan": "exhaustive integer scan of all lollipop(t,p), 3<=t, 1<=p, n=t+p<=130",
+    "no_violation_below": 118,
+    "DP_violators_at_n118": [[48,70],[49,69],[50,68],[51,67]],
+    "both_convention_violators_at_n120": [[50,70],[51,69]],
+    "note": "claim record said 'smallest found' - correct, though not unique at that order; (48,70) is one of four DP violators at n=118 and (50,70) one of two both-convention violators at n=120. Every N2 violator is a DP violator since n^7 > n^5(n-1)^2."
+  },
+  "asymptotics": "For t = p -> infinity: stddev = sqrt(2m/n) ~ sqrt(t/2) -> infinity while n/l stays bounded (~6); the violation ratio is unbounded, so the std-dev reading fails catastrophically, not marginally.",
+  "checker": "check_graffiti154.py (this directory), clean-room, stdlib integers for the kill; numpy/mpmath/sympy only for spectral cross-checks and the exact MAD side-claim. Run log: checker_run.log.",
+  "verified_by": "Gate-4 clean-room subagent, 2026-06-11"
+}

@@ -1,0 +1,207 @@
+GATE-4 CLEAN-ROOM VERIFICATION LOG — kill slug: solubilizer-a1
+Date: 2026-06-11
+Verifier: independent Gate-4 agent (Claude, Fable 5); clean room — the
+discovery-phase scripts (.scratch, verify_kills.py) were NOT read or reused.
+Hostile referee: Codex (GPT-5.5) via MCP, full shell + network access.
+
+================================================================================
+1. CLAIM UNDER VERIFICATION (from problems/p2-factory/refuted-claims.json,
+   entry "LLM-solubilizer Conjecture A.1 ...")
+================================================================================
+Conjecture A.1 of "Mining Math Conjectures from LLMs: A Pruning Approach"
+(Chuharski, Rojas Collins, Meringolo) is FALSE, witnessed by G = A5 with
+x = y = (0 1 2 3 4): Sol_A5(x) is the order-10 dihedral normalizer of <x>,
+the intersection Sol(x) cap Sol(y) is non-empty but contains no non-trivial
+normal subgroup of G (A5 is simple).
+
+================================================================================
+2. STATEMENT PROVENANCE (verified against the authoritative source)
+================================================================================
+Source: arXiv:2412.16177, "Mining Math Conjectures from LLMs: A Pruning
+  Approach", Jake Chuharski* (MIT), Elias Rojas Collins* (MIT), Mark
+  Meringolo (unaffiliated). NeurIPS MathAI Workshop 2024.
+Version history: v1 only, submitted 2024-12-09 19:00:38 UTC. No v2 exists
+  (checked https://arxiv.org/abs/2412.16177 on 2026-06-11; Codex
+  independently confirmed the same day).
+E-print source downloaded 2026-06-11 from https://arxiv.org/e-print/2412.16177
+  -> src/2412.16177.tar.gz,
+  sha256 = 9ee18ee8ca5822f3fe285a0caeb2ceda6b7f8a2cf1625c3e6011bda1458f0509
+  (Codex's independent fresh download produced the SAME hash).
+
+Verbatim statement (src/main.tex, lines 445-447):
+  \begin{conj}
+      Let $G$ be a non-solvable group. For any two elements $x, y \in G$,
+      if $\operatorname{Sol}_G(x) \cap Sol_G(y)$ is non-empty, then
+      $\operatorname{Sol}_G(x) \cap Sol_G(y)$ contains a non-trivial normal
+      subgroup of $G$.
+  \end{conj}
+Context: appendix subsection "Additional Examples" -> "Claude", introduced
+  by "Example with no counterexamples from Claude:" (main.tex line 444).
+
+Numbering check: neurips_2024.sty defines \newtheorem{thm}{Theorem}[section]
+  and \newtheorem{conj}[thm]{Conjecture}; the appendix is a single
+  \section ("A"), and the line-445 conj is the FIRST theorem-counter
+  environment after \appendix\section (line 290) -> compiles as
+  "Conjecture A.1" in the PDF (Codex confirmed by PDF extraction). The
+  arXiv HTML (LaTeXML) renders the same statement as "Conjecture A.4.1";
+  same object, different rendering counter.
+
+Solubilizer definition (main.tex, lines 98-103, Definition in Section 2.2):
+  Let $G$ be a finite group. For any element $x \in G$, the solubilizer of
+  $x$ in $G$ is defined as:
+  $\operatorname{Sol}_G(x) := \{ y \in G \mid \langle x, y \rangle
+  \text{ is soluble} \}.$
+
+Validation methodology quoted by the paper (main.tex line 440): "checking
+  all non-solvable (or in some cases just simple) groups of order up to
+  1,000,000" (GAP; the prompt suggests SimpleGroupsIterator(1, 10^6)).
+  Table 1 lists this as one of Claude's 4 "No Counter-Examples" outputs.
+
+STATEMENT-FIDELITY VERDICT: the claim record quotes the statement verbatim
+  (typography aside) and attributes it correctly. statementVerified = TRUE.
+
+Reading ambiguities considered (none rescues the conjecture):
+  - "two elements": both x = y and x != y (y = x^2) pairs are certified;
+    the checker REQUIRES both readings to be covered.
+  - "non-empty": trivially satisfied (1 and x lie in every Sol_G(x));
+    certified explicitly.
+  - "normal subgroup of G" vs "of the intersection": the printed statement
+    says "of $G$" — unambiguous. (The charitable "of the intersection"
+    variant would hold here, but that is not what the paper printed.)
+
+================================================================================
+3. THE COUNTEREXAMPLE (recomputed from scratch, exact arithmetic)
+================================================================================
+Construction rebuilt from the DESCRIPTION only. All computation in pure
+Python over integer tuples and frozensets — no floats, no libraries.
+
+  G = A5 = the 60 even permutations of {0,1,2,3,4}.   |G| = 60.  Group
+      axioms verified exhaustively (closure under product and inverse).
+  G is non-solvable: derived-series fixpoint = G != {e} (A5 is perfect).
+  G is simple (certificate): for every of the 59 non-identity g in G, the
+      normal closure of g equals G.
+  x = (0 1 2 3 4) = tuple (1,2,3,4,0);  y1 = x;  y2 = x^2 = (2,3,4,0,1).
+  Sol_G(x) recomputed from the definition (subgroup closure of {x,y} +
+      derived-series solvability test for each of the 60 candidates):
+      EXACTLY 10 elements = <x> (5 elements of order 1,5) plus 5
+      involutions; it is a non-abelian subgroup of order 10, i.e. D10
+      (= N_A5(<x>); Codex independently confirmed the normalizer identity).
+  Sol_G(x) = Sol_G(x^2); both certified intersections equal that 10-element
+      set; both contain the identity (hypothesis "non-empty" HOLDS).
+  KILL: for every non-identity g in the intersection, the normal closure of
+      g in G is all of G (60 elements), which is not contained in the
+      10-element intersection. Hence NO non-trivial normal subgroup of G
+      lies in Sol_G(x) cap Sol_G(y): the conclusion FAILS.  Conjecture A.1
+      is REFUTED.
+
+Checker run (2026-06-11):
+  $ python check_a1_refutation.py certificate_a1_a5.json
+  ACCEPT: Conjecture A.1 of arXiv:2412.16177v1 is REFUTED by the certified
+  pair(s) in certificate_a1_a5.json
+    G = A5 (|G| = 60, non-solvable, simple: all 59 non-identity normal
+    closures equal G).
+    pair[0]: |Sol(x)| = 10, |Sol(x) cap Sol(y)| = 10, non-empty, contains
+    no non-trivial normal subgroup of G.
+    pair[1]: |Sol(x)| = 10, |Sol(x) cap Sol(y)| = 10, non-empty, contains
+    no non-trivial normal subgroup of G.
+  exit code 0.
+
+================================================================================
+4. MUTATION TESTING (checker validation)
+================================================================================
+  $ python mutation_test.py
+  pristine certificate -> exit 0 (ACCEPT)
+  13/13 mutants REJECTED:
+   m1  statement typo                      -> frozen-statement mismatch
+   m2  x replaced by odd permutation       -> not an element of A5
+   m3  extra element smuggled into Sol(x)  -> recomputation mismatch
+   m4  element dropped from Sol(x)         -> recomputation mismatch
+   m5  intersection inflated to all of G   -> recomputation mismatch
+   m6  x = y = identity (conjecture TRUE there; bookkeeping consistent)
+                                           -> rejected on the MATHEMATICAL
+                                              core: normal closure contained
+                                              in intersection
+   m7  non-permutation entry               -> parse rejection
+   m8  y swapped, stale Sol(y)             -> recomputation mismatch
+   m9  wrong |Sol(x)| claim                -> order mismatch
+   m10 empty pairs list                    -> rejected
+   m11 distinct (x != y) pair dropped      -> reading coverage rejection
+   m12 solubilizer definition tampered     -> frozen-definition mismatch
+   m13 duplicate intersection entry (mutant designed by Codex) -> rejected
+  MUTATION SUITE: all 13 mutants rejected, pristine accepted.
+
+================================================================================
+5. CODEX HOSTILE REVIEW (GPT-5.5, full access; thread
+   019eb9a0-27f7-7b90-8e4a-fe1919261cbb, 2026-06-11)
+================================================================================
+Round 1 verdict (verbatim, abridged only by omitting file-link markup):
+  "Verdict: VALID KILL. I tried to break it on all three fronts and failed.
+  The A5 counterexample is valid. ... Source fidelity checks passed. The
+  live arXiv page is the claimed paper, and its submission history shows
+  only [v1] from December 9, 2024, with no v2 rescue available. ... A fresh
+  download of https://arxiv.org/e-print/2412.16177v1 has SHA-256
+  9ee18ee8... matching the bundle. The PDF extraction shows this compiles
+  as Conjecture A.1; the HTML's A.4.1 is just LaTeXML section numbering
+  noise ... Independent A5 computation passed [Codex's own code]: |A5|=60;
+  |N_A5(<x>)|=10; Sol_A5(x)=N_A5(<x>); Sol_A5(x)=Sol_A5(x^2); both
+  intersections have size 10. For all y outside that 10-element set, <x,y>
+  is all of A5 ... 5 choices give C5, 5 choices give the order-10 dihedral
+  subgroup, and 50 choices give A5. A5 was also verified non-solvable by
+  derived chain [60,60], and simple by normal closure size 60 for every
+  nonidentity element. Checker audit mostly passed ... My extra
+  duplicate-intersection mutant was rejected. Small weaknesses found:
+  [metadata fields not validated; no checker assertion requiring an x != y
+  pair; cosmetic TeX notation inconsistency]. Literature check: I found no
+  explicit published refutation of this specific Conjecture A.1. However,
+  the A5 solubilizer data is not novel in substance: ... 'Characterization
+  of Solubilizers of Elements in Minimal Simple Groups' ... PSL(2,2^p)
+  table gives ... q=4 gives A5 and |Sol|=10. So I found no prior explicit
+  kill of the LLM-paper conjecture, but the counterexample is immediate
+  from pre-existing solubilizer classification."
+
+Hardening applied in response (frozen metadata strings; x==y AND x!=y
+reading-coverage requirement; mutants m11-m13). Round 2 re-audit verdict
+(verbatim):
+  "Verdict remains VALID KILL. I re-read the current checker and mutation
+  suite, ran check_a1_refutation.py certificate_a1_a5.json,
+  mutation_test.py, and py_compile; pristine accepts, all 13 mutants
+  reject, and m6 still fails on the normal-closure core check before the
+  new coverage check, so the additions do not mask the mathematical test.
+  I also separately tampered source_url and source_version; both now
+  reject. The new frozen metadata checks and post-loop x == y / x != y
+  coverage requirement harden the two weaknesses I previously found
+  without weakening the recomputation, intersection, non-solvability, or
+  normal-subgroup failure checks."
+
+================================================================================
+6. BUNDLE MANIFEST (sha256)
+================================================================================
+  c5345138ab6944a7fade95da90675b31cf3fae92db9c3fd7507b47fb8560f96f  certificate_a1_a5.json
+  282f1538a00d497ca2f53d11955b462e4e7812ab867abcc88f9b5141d08a94a4  check_a1_refutation.py
+  98fd2d0c76acc572581ec708492e877f8fec8d4adee83aeed9f0b007c1305af5  mutation_test.py
+  2d40976d84aec0a712a68ad7feb2e041420d8d7dab34abf9a0dffe2cb672ebe1  gen_certificate.py
+  9ee18ee8ca5822f3fe285a0caeb2ceda6b7f8a2cf1625c3e6011bda1458f0509  src/2412.16177.tar.gz
+  229608521516e9f72a6f923e68dc934dfdee22d9c469553f0c4af4d23f4e3f4a  src/main.tex
+
+Reproduce: python gen_certificate.py   (regenerates the certificate)
+           python check_a1_refutation.py certificate_a1_a5.json
+           python mutation_test.py
+Runtime: a few seconds each, pure Python 3, no dependencies.
+
+================================================================================
+7. VERDICT AND SCOPE
+================================================================================
+VERIFIED. Conjecture A.1 of arXiv:2412.16177v1 (as printed) is FALSE;
+G = A5 with x = y = (0 1 2 3 4) — and likewise the distinct pair
+(x, x^2) — is a counterexample. The paper's "no counterexamples" status
+for this conjecture is therefore an artifact of its validation pipeline
+(A5, order 60, is the first group its advertised GAP iterator should
+have visited).
+
+What this does NOT show: the charitable variant "contains a non-trivial
+normal subgroup of the INTERSECTION" is not refuted by this object
+(Sol here is a subgroup, so the variant holds trivially in this
+instance); novelty caveat per Codex: no prior published refutation of
+the printed conjecture was found, but the refuting facts (Sol_A5(5-cycle)
+= D10) follow immediately from the pre-existing minimal-simple-group
+solubilizer classification literature.

@@ -1,0 +1,127 @@
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{DLHKW06}
+
+\bibitem[AD25]{HollowP}
+S.~Arun and T.~Dillon, \emph{{H}ollow polytopes with many vertices}, 2025, arXiv:2504.17530.
+
+\bibitem[AI87]{Alarcon_PhD}
+E.~G. Alarcon~II, \emph{{C}onvex {L}attice {P}olygons}, Ph.D. thesis, University of Illinois at Urbana-Champaign, 1987.
+
+\bibitem[Arn80]{arno80}
+V.~I. Arnold, \emph{Statistics of integral convex polytopes}, Funkts. Anal. Pril. \textbf{14} (1980), 1--3, (in Russian), English translation: {Funct. Anal. Appl.} {14} (1980), 79--84.
+
+\bibitem[AWW11]{averkov2011maximal}
+G.~Averkov, C.~Wagner, and R.~Weismantel, \emph{Maximal lattice-free polyhedra: finiteness and an explicit description in dimension three}, Math. Oper. Res. \textbf{36} (2011), no.~4, 721--742.
+
+\bibitem[Bat99]{batyrev1999classification}
+V.~V. Batyrev, \emph{On the classification of toric {F}ano 4-folds}, J. Math. Sci. \textbf{94} (1999), no.~1, 1021--1050.
+
+\bibitem[BDLM25]{BDLM}
+M.-C. Brandenburg, J.~A. De~Loera, and C.~Meroni, \emph{The {B}est {W}ays to {S}lice a {P}olytope}, Math. Comp. \textbf{94} (2025), 1003--1042.
+
+\bibitem[BF01]{Barany_Furedi}
+I.~B{\'a}r{\'a}ny and Z.~F{\"u}redi, \emph{{O}n the lattice diameter of a convex polygon}, Discrete Math. \textbf{241} (2001), no.~1--3, 41--50.
+
+\bibitem[BG85]{boltjansky1985results}
+V.~G. Boltyansky and I.~Gohberg, \emph{{R}esults and problems in combinatorial geometry}, CUP Archive, 1985.
+
+\bibitem[BM08]{bondy2008graph}
+J.~A. Bondy and U.~S.~R. Murty, \emph{Graph {T}heory}, Graduate Texts in Mathematics, vol. 244, Springer, New York, 2008.
+
+\bibitem[Bor33]{borsuk1933drei}
+K.~Borsuk, \emph{{D}rei {S}{\"a}tze {\"u}ber die n-dimensionale {E}uklidische {S}ph{\"a}re}, Fund. Math. \textbf{20} (1933), 177--190.
+
+\bibitem[BP92]{bara92}
+I.~B{\'a}r{\'a}ny and J.~Pach, \emph{{O}n the number of convex lattice polygons}, Comb. Probab. Comput. \textbf{1} (1992), 295--302.
+
+\bibitem[BR15]{beckrobins}
+M.~Beck and S.~Robins, \emph{{C}omputing the {C}ontinuous {D}iscretely: {I}nteger-point {E}numeration in {P}olyhedra}, 2nd ed., Undergraduate Texts in Mathematics, Springer, 2015.
+
+\bibitem[Bro]{aebThesis}
+A.~E. Brose, Ph.D. thesis, UC Davis, (in progress).
+
+\bibitem[BV92]{bara92a}
+I.~B{\'a}r{\'a}ny and A.~M. Vershik, \emph{{O}n the number of convex lattice polytopes}, Geom. Funct. Anal. \textbf{2} (1992), 381--393.
+
+\bibitem[Cor74]{Corzatt_PhD}
+C.~E. Corzatt, \emph{{S}ome {E}xtremal {P}roblems of {N}umber {T}heory and {G}eometry}, Ph.D. thesis, University of Illinois at Urbana-Champaign, 1974.
+
+\bibitem[DLHKW06]{Lemma2.1}
+J.~A. De~Loera, R.~Hemmecke, M.~K{\"o}ppe, and R.~Weismantel, \emph{{I}nteger {P}olynomial {O}ptimization in {F}ixed {D}imension}, Math. Oper. Res. \textbf{31} (2006), no.~1, 147--153.
+
+\bibitem[Egg55]{eggleston1955covering}
+H.~G. Eggleston, \emph{Covering a three-dimensional set with sets of smaller diameter}, J. Lond. Math. Soc. \textbf{s1-30} (1955), no.~1, 11--24.
+
+\bibitem[EL03]{ILP-2d-poly}
+F.~Eisenbrand and S.~Laue, \emph{{A} {F}aster {A}lgorithm for {T}wo-{V}ariable {I}nteger {P}rogramming}, Algorithms and {C}omputation (T.~Ibaraki, N.~Katoh, and H.~Ono, eds.), Lect. Notes Comput. Sci., vol. 2906, Springer, 2003, pp.~290--299.
+
+\bibitem[FH22]{freyerhenk22}
+A.~Freyer and M.~Henk, \emph{{B}ounds on the lattice point enumerator via slices and projections}, Discrete Comput. Geom. \textbf{67} (2022), 895--918.
+
+\bibitem[FH24]{freyerhenk24}
+\bysame, \emph{{P}olynomial bounds in {K}oldobsky's discrete slicing problem}, Proc. Amer. Math. Soc. \textbf{152} (2024), no.~7, 3063--3074.
+
+\bibitem[GG97]{gardnergritzmann97}
+R.~J. Gardner and P.~Gritzmann, \emph{{D}iscrete tomography: {D}etermination of finite sets by {X}-rays}, Trans. Amer. Math. Soc. \textbf{349} (1997), no.~6, 2271--2295.
+
+\bibitem[GGZ05]{gard05}
+R.~J. Gardner, P.~Gronchi, and C.~Zong, \emph{{S}ums, projections, and sections of lattice sets, and the discrete covariogram}, Discrete Comput. Geom. \textbf{34} (2005), 391--409.
+
+\bibitem[GJ79]{GJ}
+M.~R. Garey and D.~S. Johnson, \emph{{C}omputers and {I}ntractability: {A} {G}uide to the {T}heory of {NP}-{C}ompleteness}, Freeman, 1979.
+
+\bibitem[GK92]{GritzmannKlee1992}
+P.~Gritzmann and V.~Klee, \emph{Inner and outer \( j \)-radii of convex bodies in finite-dimensional normed spaces}, Discrete Comput. Geom. \textbf{7} (1992), no.~3, 255--280.
+
+\bibitem[GKZ23]{giannopoulos2023inequalities}
+A.~Giannopoulos, A.~Koldobsky, and A.~Zvavitch, \emph{Inequalities for sections and projections of convex bodies}, vol.~9, pp.~223--256, De Gruyter, 2023.
+
+\bibitem[Gr{\"u}57]{grunbaum1957simple}
+B.~Gr{\"u}nbaum, \emph{{A} simple proof of {B}orsuk's conjecture in three dimensions}, Math. Proc. Cambridge Philos. Soc. \textbf{53} (1957), 776--778.
+
+\bibitem[Gru07]{grub07}
+P.~M. Gruber, \emph{Convex and {D}iscrete {G}eometry}, Springer, Berlin, 2007.
+
+\bibitem[JB14]{jenrich201464}
+T.~Jenrich and A.~E. Brouwer, \emph{{A} 64-dimensional counterexample to {B}orsuk's conjecture}, Electron. J. Combin. (2014), no.~1, 4--29.
+
+\bibitem[Kas06]{kasprzyk2006toric}
+A.~Kasprzyk, \emph{Toric {F}ano varieties and convex polytopes}, Ph.D. thesis, University of Bath, 2006.
+
+\bibitem[KK93]{kahn1993counterexample}
+J.~Kahn and G.~Kalai, \emph{{A} counterexample to {B}orsuk’s conjecture}, Bull. Amer. Math. Soc. \textbf{29} (1993), 60--62.
+
+\bibitem[Len83]{ILP_poly}
+H.~W. Lenstra, \emph{{I}nteger {P}rogramming with a {F}ixed {N}umber of {V}ariables}, Math. Oper. Res. \textbf{8} (1983), no.~4, 538--548.
+
+\bibitem[LZ91]{lagariasZiegler1991bounds}
+J.~C. Lagarias and G.~M. Ziegler, \emph{{B}ounds for lattice polytopes containing a fixed number of interior points in a sublattice}, Canad. J. Math. \textbf{43} (1991), no.~5, 1022--1035.
+
+\bibitem[NT23]{nayar2023extremal}
+P.~Nayar and T.~Tkocz, \emph{Extremal sections and projections of certain convex bodies: a survey}, vol.~9, pp.~343--390, De Gruyter, 2023.
+
+\bibitem[NZ11]{nillziegler2011projecting}
+B.~Nill and G.~M. Ziegler, \emph{Projecting lattice polytopes without interior lattice points}, Math. Oper. Res. \textbf{36} (2011), no.~3, 462--467.
+
+\bibitem[Per47]{perkal1947subdivision}
+J.~Perkal, \emph{Sur la subdivision des ensembles en parties de diam{\`e}tre inf{\'e}rieur}, Colloq. Math. \textbf{1} (1947), 45.
+
+\bibitem[Pic99]{pick99}
+G.~Pick, \emph{{G}eometrisches zur {Z}ahlenlehre}, Naturwiss. Z. Lotus (Prag) (1899), 311--319.
+
+\bibitem[Rab89]{rabi89}
+S.~Rabinowitz, \emph{{A} {T}heorem about collinear lattice points}, Util. Math. \textbf{36} (1989), 93--95.
+
+\bibitem[Sch86]{LP_Poly}
+A.~Schrijver, \emph{{T}heory of {L}inear and {I}nteger {P}rogramming}, Wiley-Interscience, 1986.
+
+\bibitem[Zie12]{zieglerbook}
+G.~M. Ziegler, \emph{Lectures on {P}olytopes}, vol. 152, Springer, 2012.
+
+\end{thebibliography}

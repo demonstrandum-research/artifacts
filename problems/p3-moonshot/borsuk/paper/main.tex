@@ -1,0 +1,68 @@
+\documentclass[11pt]{article}
+\usepackage{style}
+
+\input{preamble/commands}
+\input{preamble/colors}
+
+\title{\scshape On Lattice Diameter Segments and \mbox{A Discrete Borsuk Partition Problem}}
+\date{}
+
+% \author{Anouk E.~Brose\thanks{Corresponding author}, Jes\'us A.~De Loera, Gyivan Lopez-Campos, and Antonio J.~Torres}
+        
+\author[1]{Anouk E.~Brose \thanks{Corresponding author}} 
+\author[1]{Jes\'us A.~De Loera}
+\author[1]{Gyivan Lopez-Campos}
+\author[1]{Antonio J.~Torres}
+
+\affil[1]{\small \scshape Department of Mathematics, University of California, Davis}
+
+% \address{
+%  Department of Mathematics, University of California, Davis
+% }
+% \email{\{aebrose,XXX\}@ucdavis.edu}
+
+\begin{document}
+
+\maketitle
+
+\mscclasses{\emph{Mathematics Subject Classification.}
+52A38, %Length, area, volume and convex sets (aspects of convex geometry)
+52B20, %Lattice polytopes (primary)
+52B55, %Computational aspects related to convexity
+52C07, %Lattice and convex bodes in R^n
+52C17, %Packing and covering in n dimensions (for Borsuk)
+68W35. %Computational complexity of algorithms
+}
+
+% 52C05, %Lattice and convex bodes in R^2
+% 68R05, %Combinatorics in computer science
+% 68W35 %Computational complexity of algorithms
+% 52B55 %Computational aspects related to convexity
+
+\keywords{\emph{Key words and phrases.} lattice diameter; lattice lines; lattice segments; lattice polygons; Ehrhart theory; computational complexity; Borsuk's partition problem.}
+
+\input{sections/0_abstract}
+\input{sections/1_introduction}
+\input{sections/LD-alg}
+\input{sections/NP-hard}
+\input{sections/QP}
+\input{sections/diam-dir}
+\input{sections/Borsuk}
+
+\textbf{Acknowledgements}
+We are grateful to János Pach, Imre Bárány, Matthias Beck, Ansgar Freyer, Chiara Meroni, and Marie-Charlotte Brandenburg for fruitful discussions, and to Bruce Reznick for providing important references.
+This research was partially supported by NSF grants 2348578 and 2434665.
+
+% DO THIS TO COMPILE BIBLIOGRAPHY, for arxiv download the output.bbl file and input it as below (I renamed to refs.bbl)
+
+% \bibliographystyle{amsalpha} { \linespread{1.0} \small \bibliography{references} }
+
+{ \linespread{1.0} \small \input{refs.bbl}}
+
+\vspace{2ex}
+% \textsc{Department of Mathematics, University of California, Davis, CA 95616, USA}
+
+\emph{Email addresses:} \texttt{\{aebrose,jadeloera,glopezcampos,antor\}@ucdavis.edu} 
+
+
+\end{document}

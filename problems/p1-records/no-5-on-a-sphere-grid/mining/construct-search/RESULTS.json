@@ -1,0 +1,287 @@
+{
+ "results": [
+  {
+   "n": 14,
+   "file": ".\\mining\\construct-search\\runs\\main_n14\\best_sym.json",
+   "tag": "ILS-sym",
+   "m": 38,
+   "valid": true,
+   "centrally_symmetric": true,
+   "v4_closed": false,
+   "n_shells": 19,
+   "max_per_shell": 2,
+   "shell_occupancies": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ]
+  },
+  {
+   "n": 14,
+   "file": ".\\mining\\construct-search\\runs\\main_n14\\best_total.json",
+   "tag": "ILS-total",
+   "m": 37,
+   "valid": true,
+   "centrally_symmetric": false,
+   "v4_closed": false,
+   "n_shells": 19,
+   "max_per_shell": 2,
+   "shell_occupancies": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ]
+  },
+  {
+   "n": 15,
+   "file": ".\\mining\\construct-search\\runs\\main_n15\\best_sym.json",
+   "tag": "ILS-sym",
+   "m": 40,
+   "valid": true,
+   "centrally_symmetric": true,
+   "v4_closed": false,
+   "n_shells": 20,
+   "max_per_shell": 2,
+   "shell_occupancies": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ]
+  },
+  {
+   "n": 15,
+   "file": ".\\mining\\construct-search\\runs\\main_n15\\best_total.json",
+   "tag": "ILS-total",
+   "m": 40,
+   "valid": true,
+   "centrally_symmetric": false,
+   "v4_closed": false,
+   "n_shells": 20,
+   "max_per_shell": 3,
+   "shell_occupancies": [
+    3,
+    2,
+    2,
+    2,
+    2,
+    2
+   ]
+  },
+  {
+   "n": 16,
+   "file": ".\\mining\\construct-search\\runs\\main_n16\\best_sym.json",
+   "tag": "ILS-sym",
+   "m": 42,
+   "valid": true,
+   "centrally_symmetric": true,
+   "v4_closed": false,
+   "n_shells": 21,
+   "max_per_shell": 2,
+   "shell_occupancies": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ]
+  },
+  {
+   "n": 16,
+   "file": ".\\mining\\construct-search\\runs\\main_n16\\best_total.json",
+   "tag": "ILS-total",
+   "m": 42,
+   "valid": true,
+   "centrally_symmetric": false,
+   "v4_closed": false,
+   "n_shells": 21,
+   "max_per_shell": 3,
+   "shell_occupancies": [
+    3,
+    2,
+    2,
+    2,
+    2,
+    2
+   ]
+  },
+  {
+   "n": 17,
+   "file": ".\\mining\\construct-search\\runs\\main_n17\\best_sym.json",
+   "tag": "ILS-sym",
+   "m": 44,
+   "valid": true,
+   "centrally_symmetric": true,
+   "v4_closed": false,
+   "n_shells": 22,
+   "max_per_shell": 2,
+   "shell_occupancies": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ]
+  },
+  {
+   "n": 17,
+   "file": ".\\mining\\construct-search\\runs\\main_n17\\best_total.json",
+   "tag": "ILS-total",
+   "m": 44,
+   "valid": true,
+   "centrally_symmetric": false,
+   "v4_closed": false,
+   "n_shells": 23,
+   "max_per_shell": 2,
+   "shell_occupancies": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ]
+  },
+  {
+   "n": 15,
+   "file": ".\\mining\\algebraic\\sym_best_n15_s1.json",
+   "tag": "prior-python",
+   "m": 38,
+   "valid": true,
+   "centrally_symmetric": true,
+   "v4_closed": false,
+   "n_shells": 19,
+   "max_per_shell": 2,
+   "shell_occupancies": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ]
+  },
+  {
+   "n": 17,
+   "file": ".\\mining\\algebraic\\sym_best_n17_s1.json",
+   "tag": "prior-python",
+   "m": 40,
+   "valid": true,
+   "centrally_symmetric": true,
+   "v4_closed": false,
+   "n_shells": 20,
+   "max_per_shell": 2,
+   "shell_occupancies": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ]
+  },
+  {
+   "n": 14,
+   "file": ".\\mining\\symmetry\\even_sym_best_n14.json",
+   "tag": "prior-python",
+   "m": 32,
+   "valid": true,
+   "centrally_symmetric": true,
+   "v4_closed": false,
+   "n_shells": 16,
+   "max_per_shell": 2,
+   "shell_occupancies": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ]
+  }
+ ],
+ "best": {
+  "14": {
+   "m": 38,
+   "cert": "cert_n14_m38.json",
+   "source": ".\\mining\\construct-search\\runs\\main_n14\\best_sym.json",
+   "tag": "ILS-sym",
+   "centrally_symmetric": true,
+   "v4_closed": false,
+   "n_shells": 19,
+   "max_per_shell": 2,
+   "shell_occupancies": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ]
+  },
+  "15": {
+   "m": 40,
+   "cert": "cert_n15_m40.json",
+   "source": ".\\mining\\construct-search\\runs\\main_n15\\best_sym.json",
+   "tag": "ILS-sym",
+   "centrally_symmetric": true,
+   "v4_closed": false,
+   "n_shells": 20,
+   "max_per_shell": 2,
+   "shell_occupancies": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ]
+  },
+  "16": {
+   "m": 42,
+   "cert": "cert_n16_m42.json",
+   "source": ".\\mining\\construct-search\\runs\\main_n16\\best_sym.json",
+   "tag": "ILS-sym",
+   "centrally_symmetric": true,
+   "v4_closed": false,
+   "n_shells": 21,
+   "max_per_shell": 2,
+   "shell_occupancies": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ]
+  },
+  "17": {
+   "m": 44,
+   "cert": "cert_n17_m44.json",
+   "source": ".\\mining\\construct-search\\runs\\main_n17\\best_sym.json",
+   "tag": "ILS-sym",
+   "centrally_symmetric": true,
+   "v4_closed": false,
+   "n_shells": 22,
+   "max_per_shell": 2,
+   "shell_occupancies": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ]
+  }
+ }
+}

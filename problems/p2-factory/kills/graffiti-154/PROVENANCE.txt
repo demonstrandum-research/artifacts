@@ -1,0 +1,109 @@
+PROVENANCE LOG -- Graffiti Conjecture 154 (Gate-4 clean-room verification)
+Date of access for all URLs: 2026-06-11
+
+1. AUTHORITATIVE STATEMENT
+   Source: S. Fajtlowicz, "Written on the Wall" (Graffiti conjectures), July 2004
+   URL:    https://raw.githubusercontent.com/RoucairolMilo/refutation-COCOON2022/master/wow-july2004.pdf
+   (local copy: wow-july2004.pdf, 907,641 bytes; decoded text: wow-decoded.txt)
+   The PDF's fonts carry no ToUnicode maps; glyphs are named /XY with X,Y in
+   0-9A-Z, decoded as chr((digit36(X)-10)*36 + digit36(Y)); "<=" appears as
+   glyph /AK. Decoding validated by full readability of the document.
+
+   Verbatim (decoded, context, conjectures 150-156):
+     "150. The minimum of derivative of eigenvalues of the gravity matrix is
+      <= n/average distance.
+      151. The number of positive eigenvalues of gravity <= than the matching
+      number.
+      152. max( range of Even Parity, range of Odd Parity) <= n/average distance.
+      153. The range of Odd Parity <= the matching number. S. F. August 88.
+      154. deviation of eigenvalues <= n / average distance.
+      155. mean of autocoordinates of Maxine of D2 <= the matching number."
+
+   Preamble convention (verbatim, decoded):
+     "G always denotes a graph, n the number of its vertices and eigenvalues
+      (unless it is explicitly stated) denote eigenvalues of the adjacency
+      matrix of G."
+
+   No exclusions or extra quantifiers attach to 154; connectivity is implicit
+   in "average distance" being defined.
+
+2. CONVENTION: "deviation"
+   - WoW treats "variance" (conj. 38: "The variance of the distance matrix...",
+     conj. 143: "variance of positive eigenvalues <= size / average distance")
+     and "deviation" (conj. 39, 40, 140, 154, 244, 253) as distinct invariants;
+     "standard deviation" is spelled out for degree sequences (conj. 27, 812,
+     813). Reading: deviation = sqrt(variance) = population standard deviation.
+   - The only public machine formalization of conjecture 154 is
+     Roucairol-Cazenave: repo RoucairolMilo/refutationGBR, file
+     models/conjectures/GenerateGraph.rs, block `if CONJECTURE == 154` --
+     comment "//dev eigen <= nb sommet/distance moyenne"; computes
+     invariants::std_dev over ALL adjacency eigenvalues and divides n by the
+     mean of ALL n^2 entries of the distance matrix (diagonal zeros included).
+     tools/calc.rs `std` = population standard deviation (divide by len, sqrt).
+     (local copies: GenerateGraph.rs, calc.rs)
+   - HISTORICAL CONVENTION (Favaron-Maheo-Sacle, "Some eigenvalue properties
+     in graphs (conjectures of Graffiti - II)", Discrete Math. 111 (1993)
+     197-220; WoW credits conj. 140 "deviation of eigenvalues <= harmonic" to
+     FMS): ScienceDirect copy is paywalled (403), but the Academia.edu mirror
+     https://www.academia.edu/25437446/Some_eigenvalue_properties_in_graphs_conjectures_of_Graffiti_II_
+     (accessed 2026-06-11, both by Codex and independently by this agent)
+     yields, OCR warts and all:
+       * p.198 Definitions: "The mean distance mu of G is the average value
+         1/n(n-1) sum_{x,y in V} d(x,y) taken over all ordered pairs of
+         vertices."  => distinct-pairs convention l = 2W/(n(n-1)).
+       * p.211 (Thm 2.36 context): "deviation of eigenvalues of the Laplacian
+         = sigma(n) = ((sum d_i^2 + d-bar^2)/2)^1/2" [OCR-garbled] -- visibly
+         a quadratic/square-root (root-mean-square) deviation formula, i.e.
+         standard deviation, NOT mean absolute deviation.
+     FMS does not mention conjecture 154 itself.
+   - HONEST RESIDUAL CAVEAT: no surviving source spells out Graffiti's
+     "deviation" definition next to conjecture 154 itself. If "deviation"
+     were instead MEAN ABSOLUTE deviation (= energy/n, since the eigenvalue
+     mean is 0), the lollipop family does NOT violate the conjecture: MAD
+     non-violation at all three certificate instances is PROVEN in exact
+     arithmetic in this bundle (Sturm-certified energy enclosures + exact
+     Koolen-Moulton route + mpmath dps=60 sign separation ~ +3 to +4.1).
+     The kill is therefore claimed ONLY under the standard-deviation reading
+     -- which is the reading of every known formalization (FMS 1993, R-C
+     2024/2025 code).
+
+3. CONVENTION: "average distance"
+   - WoW comment on conjecture 536 (decoded): "The average distance of this
+     graph is 3/2" (Paley graphs) -- true only under the distinct-pairs
+     convention l = 2W/(n(n-1)). This is the document's own usage.
+   - Roucairol-Cazenave code uses l = 2W/n^2 (mean over the full matrix).
+   - Certificate instances lollipop(50,70) (n=120) and lollipop(72,72) (n=144)
+     violate BOTH conventions; lollipop(48,70) (n=118) violates only the
+     distinct-pairs convention. The conclusion is convention-independent.
+
+4. OPENNESS EVIDENCE
+   - WoW itself (decoded): conjecture 154 appears in the list of "numbers of
+     some of the conjectures which passed their test" -- the ~200-conjecture
+     computational attack by Brewster, Dinneen, Faber (Los Alamos / U. of
+     Victoria, Aug '90 - Aug '91); published subset: T.L. Brewster, M.J.
+     Dinneen, V. Faber, "A computational attack on the conjectures of
+     Graffiti: New counterexamples and proofs", Discrete Math. 147 (1995)
+     35-55 (local copy bdf1995.pdf, from
+     https://www.cs.auckland.ac.nz/~mjd/graffiti/graffiti1.pdf); the published
+     paper does not mention 154 (it covers refuted/special conjectures).
+   - Roucairol-Cazenave, "Refutation of Spectral Graph Theory Conjectures with
+     Search Algorithms", arXiv:2409.18626 (27 Sep 2024; LAMSADE, Univ.
+     Paris-Dauphine). Published version: IASE 2025 workshop (at ECAI 2025),
+     PDF at
+     https://www.lamsade.dauphine.fr/~cazenave/papers/ConjectureRefutationECAI2025.pdf
+     (local copies: rc-ecai2025.pdf/.txt; carries "IASE 2025" workshop mark).
+     Both versions, Table 1 (extracted verbatim row):
+     "154 O 50 any & tree - - - - - - - -"
+     = status Open, searched up to size 50 on general graphs and trees, with
+     8 search algorithms (NMCS, NRPA, etc.), no counterexample found.
+     (local copies: rc2024-search-algorithms.pdf/.txt)
+   - Fresh web searches 2026-06-11 ("Graffiti conjecture 154 refuted",
+     "deviation of eigenvalues average distance counterexample") returned no
+     published refutation. Codex (hostile referee with live web) also found
+     none -- see CODEX_VERDICT.txt.
+
+5. WHAT THE PDF DECODING TOUCHED
+   wow-july2004.txt  = raw pypdf extraction (glyph-name soup)
+   wow-decoded.txt   = decoded full text used for all quotes above
+   Decoder: 15 lines of Python (regex substitution), in checker_run.log
+   provenance section and reproducible from this file's description.

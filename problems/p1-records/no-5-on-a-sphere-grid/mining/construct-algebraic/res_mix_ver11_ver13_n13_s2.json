@@ -1,0 +1,92 @@
+{
+ "n": 13,
+ "template": "mix_ver11_ver13",
+ "seed": 2,
+ "budget": 300.0,
+ "pool_size": 156,
+ "pairs": 15,
+ "points": 30,
+ "iters": 547,
+ "elapsed": 305.6,
+ "verified": true,
+ "file_or_reason": "C:\\Users\\jacks\\source\\repos\\maths\\problems\\p1-records\\no-5-on-a-sphere-grid\\mining\\construct-algebraic\\set_mix_ver11_ver13_n13_m30.json",
+ "evecs": [
+  [
+   2,
+   -2,
+   2
+  ],
+  [
+   4,
+   -12,
+   -8
+  ],
+  [
+   4,
+   -10,
+   12
+  ],
+  [
+   6,
+   -12,
+   2
+  ],
+  [
+   6,
+   -8,
+   -4
+  ],
+  [
+   6,
+   2,
+   -8
+  ],
+  [
+   6,
+   4,
+   -12
+  ],
+  [
+   8,
+   0,
+   0
+  ],
+  [
+   8,
+   6,
+   10
+  ],
+  [
+   10,
+   -10,
+   -12
+  ],
+  [
+   10,
+   -2,
+   -10
+  ],
+  [
+   10,
+   8,
+   2
+  ],
+  [
+   12,
+   2,
+   -4
+  ],
+  [
+   12,
+   12,
+   -10
+  ],
+  [
+   12,
+   12,
+   12
+  ]
+ ],
+ "p": 1113,
+ "distinct_proj_dirs_mod_p": 15
+}

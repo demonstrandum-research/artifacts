@@ -1,0 +1,91 @@
+CODEX HOSTILE REVIEW -- Graffiti Conjecture 154 kill (Gate-4)
+Model: GPT-5.5 via codex MCP, sandbox=danger-full-access, 2026-06-11
+Thread: 019eb9b1-0fa3-7870-bf5f-e42d2cb3ac68
+Artifacts left by Codex in this directory: codex_referee_audit.py,
+codex_wow_page67.png, codex_wow_page98.png (its own renders of the WoW PDF
+pages used for independent statement-fidelity verification).
+
+VERDICT (verbatim):
+
+"**Verdict: KILL CONFIRMED**
+
+Under the standard-deviation reading, the refutation survives hostile review.
+I independently decoded/rendered the WoW PDF: conjecture 154 is exactly
+'deviation of eigenvalues <= n / average distance,' the preamble says
+eigenvalues mean adjacency eigenvalues, and 154 is not under the following
+'triangle-free graphs' section.
+
+My separate script codex_referee_audit.py independently rebuilds the
+lollipop, computes Wiener index by BFS, checks the closed form, and uses pure
+integer inequalities. It reproduces:
+
+- (72,72): n=144, m=2628, W=259080, 8mW^2=1411182313113600, larger than both
+  1266148181016576 and 1283918464548864.
+- (50,70): violates both conventions.
+- (48,70): DP margin 300468796304; N2 shortfall 5075761932176.
+- No lollipop with n <= 117 violates either convention, even allowing t=1,2
+  degeneracies.
+
+MAD does not rescue a stronger claim: my dense eigensolver check gives MAD
+gaps from the relevant RHS of about 2.95 to 4.14, so these examples
+definitely do not violate under mean absolute deviation.
+
+Statement-convention audit: FMS defines mean distance over ordered distinct
+vertex pairs, equivalent to the distinct-pairs convention, and defines graph
+eigenvalues as adjacency eigenvalues. The FMS 'deviation' passage is
+OCR-dirty, but it is plainly a square-root/quadratic deviation formula for
+Laplacian eigenvalues, not energy/MAD. Roucairol-Cazenave list 154 as open to
+size 50 on any graphs and trees.
+
+Checker audit: I found no fatal acceptance bug in check_graffiti154.py. The
+construction, Wiener formula, BFS cross-check, and cleared integer
+inequalities are sound. Minor nits: the local fms1993.pdf is actually a
+ScienceDirect HTML block page, one charpoly check label is stronger than the
+condition it directly tests, and the 'smallest found' examples are not
+unique.
+
+Openness: live search found no prior refutation of 154. The arXiv page has
+the 2024 preprint and says it refutes 197, not 154. The 'ECAI 2025' label is
+real but should be stated precisely: IASE Workshop at ECAI 2025, not
+necessarily main-track ECAI.
+
+So: the kill is valid, but only as a standard-deviation kill. The bundle
+should not imply the MAD reading is refuted, and it should document FMS/live
+provenance more cleanly."
+
+FOLLOW-UP (sources, verbatim):
+
+"1. **FMS 1993 text source:** Academia.edu mirror:
+https://www.academia.edu/25437446/Some_eigenvalue_properties_in_graphs_conjectures_of_Graffiti_II_
+I did **not** save a clean local copy. The local fms1993.pdf is not usable;
+it is a ScienceDirect HTML block page.
+Literal OCR passage I used, from the Academia text around p. 216:
+> 'Recall that the deviation o(n) of eigenvalues of the Laplacian is equal
+to ((l/n) CisV &+d-8)?'
+This is OCR-garbled, but it is visibly a square-root/quadratic formula, not
+mean absolute deviation.
+
+2. **IASE Workshop at ECAI 2025 evidence:** Tristan Cazenave's publication
+page lists:
+> 'Refutation of Spectral Graph Theory Conjectures with Search Algorithms',
+Milo Roucairol, Tristan Cazenave. IASE Workshop at ECAI 2025.
+URL: https://www.lamsade.dauphine.fr/~cazenave/index.php/papers/multi.ps
+The linked PDF is:
+https://www.lamsade.dauphine.fr/~cazenave/papers/ConjectureRefutationECAI2025.pdf"
+
+DISPOSITION OF CODEX'S NITS (by the verifying agent, same day):
+- bogus fms1993.pdf deleted from the bundle; FMS evidence re-fetched
+  independently from the Academia.edu mirror and quoted in PROVENANCE.txt
+  (mean distance = ordered distinct pairs; deviation = sqrt/quadratic).
+- mislabeled charpoly check in check_graffiti154.py relabeled to exactly what
+  it tests; the all-roots-real assertion lives inside
+  sturm_energy_enclosure() and is exercised on every run.
+- non-uniqueness of the smallest instances was already printed and asserted
+  by the checker ((48,70) is one of FOUR DP violators at n=118; (50,70) one
+  of TWO both-convention violators at n=120); certificate.json states this.
+- venue corrected to "IASE 2025 workshop (at ECAI 2025)" in PROVENANCE.txt,
+  with the published PDF fetched and archived (rc-ecai2025.pdf) -- its
+  Table 1 row for 154 is identical: Open, size 50.
+- MAD scope: certificate and provenance explicitly claim the kill ONLY under
+  the standard-deviation reading and PROVE MAD non-violation at the
+  certificate instances.

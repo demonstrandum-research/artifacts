@@ -1,0 +1,6 @@
+{"t": 3.2, "iter": 1, "pairs": 18, "points": 36}
+{"t": 10.7, "iter": 3, "pairs": 19, "points": 38}
+{"t": 57.3, "iter": 9, "pairs": 20, "points": 40}
+{"t": 336.2, "iter": 50, "cur_pairs": 20, "best_pairs": 20}
+{"t": 760.5, "iter": 100, "cur_pairs": 20, "best_pairs": 20}
+{"final_pairs": 20, "final_points": 40, "n": 17, "file": "C:\\Users\\jacks\\source\\repos\\maths\\problems\\p1-records\\no-5-on-a-sphere-grid\\mining\\algebraic\\sym_best_n17_s1.json"}

@@ -1,0 +1,13 @@
+u parity census (36-set): {(0, 0, 0): 3, (0, 1, 0): 2, (0, 1, 1): 2, (1, 0, 0): 3, (1, 1, 1): 2, (1, 0, 1): 2, (1, 1, 0): 2, (0, 0, 1): 2}
+u parity census (pool, frac): {(1, 0, 1): 0.13, (1, 1, 1): 0.093, (0, 0, 0): 0.143, (0, 1, 0): 0.108, (1, 0, 0): 0.162, (1, 1, 0): 0.116, (0, 1, 1): 0.126, (0, 0, 1): 0.121}
+r2 mod 3 census: {0: 4, 1: 6, 2: 8}
+r2 mod 4 census: {0: 3, 1: 7, 2: 6, 3: 2}
+r2 mod 5 census: {3: 3, 2: 3, 1: 5, 4: 3, 0: 4}
+r2 mod 8 census: {4: 2, 1: 4, 5: 3, 6: 4, 3: 2, 2: 2, 0: 1}
+r2 mod 13 census: {4: 2, 6: 2, 9: 2, 1: 2, 8: 2, 2: 1, 11: 2, 3: 1, 0: 2, 7: 2}
+
+central planes spanned by pair-pairs: 153; grid cells on plane: min 5, median 11.0, max 169
+random-direction baseline: min 5, median 15.0, max 169
+max collinear in 36-set: 2
+min|det|=2, #5-subsets with |det|<=4: 72
+central-plane multiplicity (should be all 1 => 153 distinct): {1: 153}

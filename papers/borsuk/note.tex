@@ -1,0 +1,623 @@
+% !TeX program = pdflatex
+% Counterexamples to a conjectured characterization of cubes by the lattice
+% Borsuk number, formally verified in Lean 4.
+% Build: pdflatex note.tex (run twice). See BUILD.md.
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage{listings}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\conv}{\operatorname{conv}}
+\newcommand{\vol}{\operatorname{vol}}
+\newcommand{\diamZ}{\operatorname{diam}_{\Z}}
+\newcommand{\betaZ}{\beta_{\Z}}
+\newcommand{\GL}{\operatorname{GL}}
+
+\lstdefinelanguage{lean4}{
+  keywords={theorem,def,abbrev,structure,namespace,end,import,Prop},
+  sensitive=true,
+  comment=[l]{--},
+}
+\lstset{
+  language=lean4,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  literate={∧}{{$\wedge$}}1 {∀}{{$\forall$}}1 {ℕ}{{$\mathbb{N}$}}1
+           {¬}{{$\neg$}}1 {ℝ}{{$\mathbb{R}$}}1 {∃}{{$\exists$}}1
+           {↔}{{$\leftrightarrow$}}1 {ℤ}{{$\mathbb{Z}$}}1
+           {×}{{$\times$}}1 {β}{{$\beta$}}1,
+}
+
+\title{Counterexamples to a conjectured characterization of cubes\\
+by the lattice Borsuk number, formally verified in Lean~4}
+\author{John Erlbacher\thanks{Independent Researcher. Email: \texttt{erlbacher.research@gmail.com}. ORCID: 0009-0003-6851-4139.}}
+\date{June 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For a bounded set $S \subset \Z^d$, the lattice Borsuk number $\betaZ(S)$ is
+the least number of parts in a partition of $S$ into parts of strictly
+smaller lattice diameter. Brose, De Loera, Lopez-Campos, and Torres proved
+$\betaZ(S) \le 2^d$ and conjectured (arXiv:2508.20009, Conjecture~3) that
+$\betaZ(S) = 2^d$ if and only if $\conv(S)$ is unimodularly equivalent to a
+cube $[0,m]^d$. We show that the conjecture is false as stated: the
+four-point set $S_A = \{(0,0),(1,0),(0,1),(3,5)\} \subset \Z^2$ has all six
+pairwise differences primitive, hence $\betaZ(S_A) = 4 = 2^2$, while
+$\conv(S_A)$ contains exactly $7$ lattice points and so is unimodularly
+equivalent to no square: the count is a unimodular invariant and $7$ is not a
+perfect square. This disproof is formally verified: a Lean~4 development of
+about $1100$ lines over mathlib proves \texttt{betaZ SA = 4},
+\texttt{latticeCount hullSA = 7}, and \texttt{conjecture3\_false}, with the
+formal definitions documented against the verbatim text of the paper; the
+axiom audit reports only the three standard axioms. Two further
+counterexamples, verified in exact arithmetic but not formalized, close the
+natural repair: a four-point set $T = \conv(T) \cap \Z^2$ whose hull is a
+triangle of area $3/2$, and an eight-point set $C = \conv(C) \cap \Z^3$ with
+$\betaZ(C) = 8 = 2^3$ whose hull has volume $5/2$. The conjecture therefore
+fails even when restricted to full sets of lattice points of lattice
+polytopes, in dimensions $2$ and~$3$.
+\end{abstract}
+
+\section{Introduction}\label{sec:intro}
+
+In a recent study of lattice diameters, Brose, De Loera, Lopez-Campos, and
+Torres \cite{BDLT2025} introduced a discrete analogue of Borsuk's classical
+partition problem \cite{Borsuk1933,KahnKalai1993}. Throughout, $d \ge 1$ and
+all notions are those of \cite{BDLT2025}. For $x, y \in \Z^d$ write
+$[x,y] := \conv(\{x,y\})$ and
+\[
+f(x,y) \;=\; \bigl|[x,y] \cap \Z^d\bigr| - 1 ,
+\]
+the number of lattice points on the segment, minus one. For a bounded
+(equivalently, finite) set $S \subset \Z^d$ the \emph{lattice diameter} is
+$\diamZ(S) = \max_{x,y \in S} f(x,y)$, and the \emph{lattice Borsuk number}
+$\betaZ(S)$ is the minimal size of a partition of $S$ in which every part has
+lattice diameter strictly smaller than $\diamZ(S)$ \cite[Definition~1.3 and
+\S 4.2]{BDLT2025}. A vector $u \in \Z^d$ is \emph{primitive} if the gcd of
+its coordinates is $1$; two sets $P, Q \subseteq \R^d$ are \emph{unimodularly
+equivalent} if $P = AQ + t$ for some $A \in \GL(d,\Z)$ and $t \in \Z^d$ (the
+paper states this notion for lattice polytopes; every set to which we apply
+it below is one --- see Section~\ref{sec:lean}).
+
+Theorem~4.8 of \cite{BDLT2025} solves the discrete Borsuk partition problem:
+$\betaZ(S) \le 2^d$ for every bounded $S \subset \Z^d$, with equality for
+$S = \{0,1\}^d$; the proof bounds the maximum degree of the \emph{lattice
+Borsuk graph} (vertex set $S$, edges the pairs realizing $\diamZ(S)$) by
+$2^d - 1$ via a collinearity lemma of Rabinowitz \cite{Rabinowitz1989} and
+applies Brooks' theorem, using that $\betaZ(S)$ is the chromatic number of
+this graph. The paper closes with a conjectured characterization of the
+equality case, which we quote verbatim (Conjecture~3 of \cite{BDLT2025},
+\S 4.2):
+
+\begin{quote}
+\emph{``Let $S \subset \Z^d$ be a bounded set. Then $\betaZ(S) = 2^d$ if and
+only if $\conv(S)$ is unimodularly equivalent to a $d$-cube $[0,m]^d$ for any
+$m \in \N$.''}
+\end{quote}
+
+\noindent
+(The phrase ``for any $m \in \N$'' is read as ``for some $m \in \N$''; our
+counterexamples refute the equivalence under either reading, and for $\N$
+with or without $0$ --- see Section~\ref{sec:lean}.) This note proves:
+
+\begin{theorem}[formally verified; see Theorem~\ref{thm:witnessA} and
+Section~\ref{sec:lean}]\label{thm:main}
+Conjecture~3 of \cite{BDLT2025} is false as stated: its $d=2$ instance fails.
+The set $S_A = \{(0,0),\,(1,0),\,(0,1),\,(3,5)\} \subset \Z^2$ satisfies
+$\betaZ(S_A) = 4 = 2^2$, yet $\conv(S_A)$ is unimodularly equivalent to no
+square $[0,m]^2$, $m \in \N$.
+\end{theorem}
+
+\begin{theorem}[exact arithmetic, not formalized; see
+Theorems~\ref{thm:witnessB} and \ref{thm:witnessC}]\label{thm:repair}
+The conjecture fails even under the additional hypothesis
+$S = \conv(S) \cap \Z^d$, in dimensions $2$ and $3$: the sets
+\begin{align*}
+T &= \{(0,1),\,(1,0),\,(1,1),\,(2,2)\} \subset \Z^2 \quad\text{and}\\
+C &= \{(0,2,2),\,(1,0,1),\,(1,1,2),\,(1,2,2),\,(2,1,1),\,(2,1,2),\,(2,2,1),
+\,(3,1,3)\} \subset \Z^3
+\end{align*}
+are the full lattice-point sets of their hulls, attain
+$\betaZ = 2^d$, and their hulls are unimodularly equivalent to no cube.
+\end{theorem}
+
+In all three witnesses it is the ``only if'' direction of the conjecture that
+fails; the upper bound $\betaZ(S) \leq 2^d$ of \cite[Theorem~4.8]{BDLT2025}
+is of course untouched. The mechanism is the degenerate regime
+$\diamZ(S) = 1$: there every part of an admissible partition must be a
+singleton, so $\betaZ(S) = |S|$, and $\betaZ(S) = 2^d$ merely says that $S$
+consists of $2^d$ points with all pairwise differences primitive --- a
+condition that places almost no constraint on the shape of $\conv(S)$. The
+sharpness example $\{0,1\}^d$ of \cite[Theorem~4.8]{BDLT2025} itself lives in
+this regime, and the lattice Borsuk graph of each of our witnesses is the
+complete graph $K_{2^d}$, exactly the situation the conjecture was designed
+to characterize; the failure is therefore not an artifact of a perverse
+reading. Theorem~\ref{thm:repair} matters because the authors remark
+\cite[\S 4.2]{BDLT2025} that in dimension two the conjecture ``is true and
+can be proven using a characterization of lattice polygons which have four
+diameter directions'' of B\'ar\'any and F\"uredi \cite[Theorem~2(iii)]
+{BaranyFuredi2001} --- a statement about lattice polygons, i.e.\ about sets
+of the form $\conv(S) \cap \Z^2$. Witness $T$ shows that no reading of
+``bounded set'' as ``full lattice-point set of a polygon'' can save the
+$d = 2$ claim: any correct repair must also exclude the diameter-one regime.
+
+What is and is not machine-checked deserves precision.
+Theorem~\ref{thm:main} is proved in Lean~4 \cite{Lean4} over mathlib
+\cite{mathlib}: the statement of the conjecture is formalized in
+\texttt{Borsuk/Defs.lean} with every definition documented against the
+verbatim text of \cite{BDLT2025}, and the refuting theorem
+\texttt{conjecture3\_false} is checked by the Lean kernel, with an axiom
+audit reporting only \texttt{propext}, \texttt{Classical.choice}, and
+\texttt{Quot.sound} (Section~\ref{sec:lean}). Theorem~\ref{thm:repair} is \emph{not} formalized;
+it is verified by exact integer and rational arithmetic (no floating point)
+in a short self-contained script distributed with the artifact and re-run
+while preparing this note. A literature check (June 2026, most recently on
+2026-06-12) found no prior or concurrent resolution of the conjecture;
+arXiv:2508.20009 remains at version~1.
+
+\paragraph{Methods and AI-use disclosure.}
+The counterexamples and the formal proof were produced by Demonstrandum, a
+verification-first multi-agent AI workflow built on Claude language models
+(Anthropic). Agents froze the
+conjecture statement from the arXiv v1 \LaTeX{} source, constructed witness
+$A$ and three independent $d=3$ full-set witnesses (of which $C$ is one) by
+direct search with exact verification, and wrote the Lean development in four
+work packages against frozen formal definitions. An agent from a different
+model family (Codex, GPT-5.5, OpenAI) independently re-verified all witness
+computations, contributed witness $T$, searched independently for prior
+resolutions, and adversarially reviewed the faithfulness of the formal
+definitions against the paper text. The Lean kernel --- not any language
+model --- is the guarantor of every formalized claim; faithfulness of the
+formal \emph{definitions} to the paper's statement is the one link the kernel
+cannot check, and Section~\ref{sec:lean} documents how it was controlled.
+The text of this note was likewise drafted with the Claude-based pipeline;
+the author directed the work and takes responsibility for its content. Every
+number appearing in this note was recomputed during its preparation (June
+2026): the Lean project was rebuilt and its axiom audit re-run, and the
+witness data were re-verified by the exact-arithmetic scripts
+\texttt{\_recompute.py} and \texttt{\_referee\_recheck.py} included with the
+artifact (Section~\ref{sec:verification}).
+
+\section{Witness A and the disproof}\label{sec:witnessA}
+
+The two lemmas below are stated for general $d$; the Lean formalization
+instantiates them at $d = 2$ (Section~\ref{sec:lean}), which suffices, since
+Conjecture~3 asserts all dimensions at once and witness $C$ is handled
+separately. For $v \in \Z^d$ let $\gcd(v)$ denote the gcd of the coordinates
+of $v$, with $\gcd(0) = 0$.
+
+\begin{lemma}[segment count; \texttt{Borsuk.ncard\_segLatticePts}]
+\label{lem:gcd}
+For $x, y \in \Z^d$ with $x \neq y$, let $g = \gcd(y - x) \ge 1$ and
+$u = (y-x)/g$. Then
+\[
+[x,y] \cap \Z^d \;=\; \{\, x + k u : k = 0, 1, \dots, g \,\},
+\]
+so $\bigl|[x,y] \cap \Z^d\bigr| = g + 1$; for $x = y$ the segment is the
+single lattice point $x$ and $\gcd(0) = 0$, so in all cases
+$f(x,y) = \gcd(y - x)$. In particular $f(x,y) = 1$ exactly when $y - x$ is
+primitive.
+\end{lemma}
+
+\begin{proof}
+The vector $u$ is primitive and
+$x + ku = \bigl(1 - \tfrac{k}{g}\bigr) x + \tfrac{k}{g}\, y \in [x,y]$ for
+$0 \le k \le g$, giving $\supseteq$. Conversely, a point $p \in [x,y]$ has
+the form $p = x + t(y - x) = x + (tg)u$ with $t \in [0,1]$. By B\'ezout there
+are integers $\alpha_1, \dots, \alpha_d$ with $\sum_i \alpha_i u_i = 1$;
+applying them to the integer vector $p - x = (tg)u$ gives
+$tg = \sum_i \alpha_i (tg) u_i \in \Z$, and $0 \le tg \le g$, so
+$p = x + ku$ with $k = tg \in \{0, \dots, g\}$. The map $k \mapsto x + ku$ is
+injective ($u \ne 0$), so the count is $g + 1$.
+\end{proof}
+
+\begin{lemma}[diameter-one sets;
+\texttt{Borsuk.betaZ\_eq\_card\_of\_latticeDiam\_eq\_one}]\label{lem:beta}
+Let $S \subset \Z^d$ be finite with $|S| \ge 2$ and all pairwise differences
+of distinct points primitive. Then $\diamZ(S) = 1$ and $\betaZ(S) = |S|$.
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{lem:gcd}, $f(x,y) = 1$ for all distinct $x, y \in S$, so
+$\diamZ(S) = 1$. In a partition admissible for $\betaZ$, every part has
+lattice diameter $< 1$, i.e.\ $0$; but a part containing distinct points
+$x \ne y$ has diameter at least $f(x,y) \ge 1$, since distinct lattice points
+always have $\gcd(y - x) \geq 1$. Hence all parts are singletons and there
+are at least $|S|$ of them; the partition into singletons is admissible
+($0 < 1$), so $\betaZ(S) = |S|$.
+\end{proof}
+
+\begin{theorem}[formalized: \texttt{witnessA\_kills\_conjecture3},
+\texttt{conjecture3\_false}]\label{thm:witnessA}
+Let $S_A = \{(0,0),\,(1,0),\,(0,1),\,(3,5)\} \subset \Z^2$. Then:
+\begin{enumerate}\itemsep2pt
+\item[(i)] $\betaZ(S_A) = 4 = 2^2$;
+\item[(ii)] $\conv(S_A) \cap \Z^2$ consists of exactly the $7$ points
+$(0,0)$, $(1,0)$, $(0,1)$, $(1,1)$, $(1,2)$, $(2,3)$, $(3,5)$;
+\item[(iii)] for every $m \in \N$, $\conv(S_A)$ is not unimodularly
+equivalent to $[0,m]^2$.
+\end{enumerate}
+In particular the $d = 2$ instance of Conjecture~3 of \cite{BDLT2025} ---
+hence the conjecture, which asserts all dimensions --- is false.
+\end{theorem}
+
+\begin{proof}
+(i) The six pairwise differences are $(1,0)$, $(0,1)$, $(3,5)$, $(-1,1)$,
+$(2,5)$, $(3,4)$, each with coprime coordinates; apply
+Lemma~\ref{lem:beta}.
+
+(ii) Let
+$Q = \{(x,y) \in \R^2 : x \ge 0,\ y \ge 0,\ 5x - 2y \le 5,\ 3y - 4x \le 3\}$.
+Each of the four halfplanes is convex and contains the four points of $S_A$
+(sixteen evaluations; each bounding line passes through exactly two points of
+$S_A$, namely the edge pairs $\{(0,1),(0,0)\}$, $\{(0,0),(1,0)\}$,
+$\{(1,0),(3,5)\}$, $\{(0,1),(3,5)\}$), so $\conv(S_A) \subseteq Q$. For
+integer points of $Q$: the third and fourth inequalities give
+$15x - 15 \le 6y \le 8x + 6$, so $x \le 3$, and then $y$ is pinned down case
+by case --- $x = 0$ forces $y \in \{0,1\}$; $x = 1$ forces $y \in \{0,1,2\}$;
+$x = 2$ forces $y = 3$; $x = 3$ forces $y = 5$. These are the seven listed
+points. Conversely all seven lie in $\conv(S_A)$: four are points of $S_A$,
+and
+\begin{gather*}
+(1,1) = \tfrac{2}{5}(0,0) + \tfrac{2}{5}(1,0) + \tfrac{1}{5}(3,5), \qquad
+(1,2) = \tfrac{1}{3}\bigl[(0,0) + (0,1) + (3,5)\bigr],\\
+(2,3) = \tfrac{1}{5}(0,0) + \tfrac{1}{5}(1,0) + \tfrac{3}{5}(3,5).
+\end{gather*}
+
+(iii) If $\Phi(x) = Ax + t$ with $A \in \GL(2,\Z)$, $t \in \Z^2$, then $\Phi$
+and $\Phi^{-1}$ map $\Z^2$ into $\Z^2$, so $\Phi$ restricts to a bijection
+$P \cap \Z^2 \to \Phi(P) \cap \Z^2$ for every $P \subseteq \R^2$: the
+lattice-point count is invariant under unimodular equivalence. But
+$\bigl|[0,m]^2 \cap \Z^2\bigr| = (m+1)^2$ is a perfect square, and
+$2^2 = 4 < 7 < 9 = 3^2$, so no $m$ gives $7$. With (ii), $\conv(S_A)$ is
+equivalent to no $[0,m]^2$.
+
+Finally, (i) and (iii) contradict the ``only if'' direction of the quoted
+conjecture for $S = S_A$ --- under either reading of ``for any $m$'', since
+(iii) denies the equivalence for every $m$ individually.
+\end{proof}
+
+\begin{remark}
+$S_A$ is not the lattice-point set of its hull: it omits $(1,1)$, $(1,2)$,
+$(2,3)$. Conjecture~3 of \cite{BDLT2025} is stated for arbitrary bounded
+$S \subset \Z^d$, so this is no defect of the counterexample --- but it does
+suggest the repair of restricting the conjecture to sets with
+$S = \conv(S) \cap \Z^d$. Section~\ref{sec:repair} shows that this repair
+also fails.
+\end{remark}
+
+\section{The full-lattice-set repair also fails}\label{sec:repair}
+
+The results of this section are verified in exact integer and rational
+arithmetic (Section~\ref{sec:verification}) but are \emph{not} part of the
+Lean development.
+
+\begin{theorem}[witness $T$, $d = 2$]\label{thm:witnessB}
+Let $T = \{(0,1),\,(1,0),\,(1,1),\,(2,2)\} \subset \Z^2$. Then
+$T = \conv(T) \cap \Z^2$, $\betaZ(T) = 4 = 2^2$, and $\conv(T)$ --- the
+triangle with vertices $(0,1)$, $(1,0)$, $(2,2)$, of area $3/2$ --- is
+unimodularly equivalent to no square $[0,m]^2$.
+\end{theorem}
+
+\begin{proof}
+The six pairwise differences $(1,-1)$, $(1,0)$, $(2,1)$, $(0,1)$, $(1,2)$,
+$(1,1)$ are primitive, so $\betaZ(T) = 4$ by Lemma~\ref{lem:beta}. Since
+$(1,1) = \tfrac13\bigl[(0,1) + (1,0) + (2,2)\bigr]$ is the centroid of the
+other three points, $\conv(T)$ is the triangle with the stated vertices; its
+area is $3/2$ by the shoelace formula. The triangle is cut out by
+$x + y \ge 1$, $2x - y \le 2$, $2y - x \le 2$ (each line through two
+vertices, each inequality satisfied by all of $T$ and strictly by the
+centroid $(1,1)$), and a four-line case check gives the integer solutions:
+the second and third inequalities force $4x - 4 \le 2 + x$, i.e.\ $x \le 2$,
+and $x \ge 0$ (for $x \le -1$ they give $2y \le 1$ and $y \ge 1 - x \ge 2$,
+impossible); then $x = 0 \Rightarrow y = 1$, $x = 1 \Rightarrow y \in
+\{0,1\}$, $x = 2 \Rightarrow y = 2$. So $\conv(T) \cap \Z^2 = T$, with $4$
+points. If $\conv(T) = A\,[0,m]^2 + t$ were a unimodular image of a square,
+the count invariant of Theorem~\ref{thm:witnessA}(iii) forces
+$(m+1)^2 = 4$, i.e.\ $m = 1$; but $|{\det A}| = 1$, so unimodular maps
+preserve area, and $\operatorname{area}\bigl(\conv(T)\bigr) = 3/2 \neq 1 =
+\operatorname{area}\bigl([0,1]^2\bigr)$. (Alternatively: an affine bijection
+preserves the number of vertices, and a triangle has $3 \neq 4$.)
+\end{proof}
+
+\begin{theorem}[witness $C$, $d = 3$]\label{thm:witnessC}
+Let
+\[
+C = \{(0,2,2),\,(1,0,1),\,(1,1,2),\,(1,2,2),\,(2,1,1),\,(2,1,2),\,(2,2,1),
+\,(3,1,3)\} \subset \Z^3 .
+\]
+Then $C = \conv(C) \cap \Z^3$, $\betaZ(C) = 8 = 2^3$, and $\conv(C)$, of
+volume $5/2$, is unimodularly equivalent to no cube $[0,m]^3$.
+\end{theorem}
+
+\begin{proof}
+All $28$ pairwise differences are primitive ($28$ exact gcd computations),
+so $\betaZ(C) = 8$ by Lemma~\ref{lem:beta}. For $C = \conv(C) \cap \Z^3$ we
+use an exact supporting-halfspace certificate: collect every plane spanned by
+an affinely independent triple of points of $C$ having all eight points on
+one (closed) side. Since $\conv(C)$ is full-dimensional (verified: four of
+the points are affinely independent), every facet plane of $\conv(C)$ is
+spanned by points of $C$ and hence occurs in this collection, so the
+intersection of the collected halfspaces is exactly $\conv(C)$; enumerating
+the integer points of the coordinate bounding box
+$[0,3] \times [0,2] \times [1,3]$ (which contains $\conv(C)$) against these
+inequalities returns precisely the eight points of $C$. The volume,
+$5/2$, is computed exactly from the same facet description by fan
+triangulation.
+
+Now suppose $\conv(C) = A\,[0,m]^3 + t$ with $A \in \GL(3,\Z)$,
+$t \in \Z^3$. The count invariant (as in Theorem~\ref{thm:witnessA}(iii),
+verbatim in $d = 3$) gives $(m+1)^3 = |C| = 8$, so $m = 1$: indeed $m = 0$
+gives $1$ point and $m \ge 2$ gives at least $27 > 8$. For $m = 1$ the map
+$\Phi(x) = Ax + t$ restricts to a bijection from
+$[0,1]^3 \cap \Z^3 = \{0,1\}^3$ onto $\conv(C) \cap \Z^3 = C$. For a finite
+$X \subset \Z^3$ let
+\[
+N(X) \;=\; \#\bigl\{\, \{\{p,q\},\{r,s\}\} :
+\{p,q\} \neq \{r,s\} \text{ pairs of distinct points of } X,\
+p + q = r + s \,\bigr\},
+\]
+the number of unordered coincidences among the pairwise sums.
+Since $A$ is invertible, $p + q = r + s$ iff
+$\Phi(p) + \Phi(q) = \Phi(r) + \Phi(s)$, so $N$ is preserved by $\Phi$. But
+$N(\{0,1\}^3) = 12$ --- the $\binom{4}{2} = 6$ coincidences among the four
+antipodal vertex pairs, which all sum to $(1,1,1)$, plus one coincidence of
+the two diagonals in each of the $6$ facets --- while $N(C) = 2$: the only
+coinciding pair-sums in $C$ are
+\begin{gather*}
+(0,2,2) + (2,1,2) \;=\; (2,3,4) \;=\; (1,1,2) + (1,2,2),\\
+(1,1,2) + (2,2,1) \;=\; (3,3,3) \;=\; (1,2,2) + (2,1,1).
+\end{gather*}
+This contradiction rules out $m = 1$. (Cross-check, independent of $N$:
+unimodular maps preserve volume, and
+$\vol\bigl(\conv(C)\bigr) = 5/2 \neq 1 = \vol\bigl([0,1]^3\bigr)$.)
+\end{proof}
+
+\begin{remark}[what survives]\label{rem:survives}
+All three witnesses exploit the regime $\diamZ(S) = 1$, where
+Lemma~\ref{lem:beta} collapses $\betaZ$ to the cardinality. We do not
+determine the status of the conjecture under the combined repair
+``$S = \conv(S) \cap \Z^d$ \emph{and} $\diamZ(S) \ge 2$'', which our
+witnesses do not reach; for $d = 2$ the B\'ar\'any--F\"uredi
+characterization \cite[Theorem~2(iii)]{BaranyFuredi2001} cited by the
+authors is a natural route to a positive result there. We note only that the
+needed diameter restriction is somewhat awkward for the conjecture's
+motivation, since the sharpness example $\{0,1\}^d$ of
+\cite[Theorem~4.8]{BDLT2025} itself has lattice diameter $1$. The ``if''
+direction of the conjecture is not addressed by this note.
+\end{remark}
+
+\section{The Lean 4 artifact}\label{sec:lean}
+
+Theorem~\ref{thm:witnessA} is formalized in Lean~4 \cite{Lean4} (toolchain
+\texttt{leanprover/lean4:v4.30.0}) over mathlib \cite{mathlib} (release tag
+\texttt{v4.30.0}), in a development of about $1100$ lines. The library
+consists of seven files:
+
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+File & Content & Lines\\
+\midrule
+\texttt{Borsuk/Defs.lean} & frozen definitions + faithfulness docstrings & 282\\
+\texttt{Borsuk/SegmentGcd.lean} & Lemma~\ref{lem:gcd}: segment count $= \gcd + 1$ & 252\\
+\texttt{Borsuk/WitnessA.lean} & Lemma~\ref{lem:beta}; $\diamZ(S_A) = 1$; $\betaZ(S_A) = 4$ & 148\\
+\texttt{Borsuk/HullSeven.lean} & H-representation; $|\conv(S_A) \cap \Z^2| = 7$ & 176\\
+\texttt{Borsuk/Unimodular.lean} & count invariance; $(m+1)^2$ cube count; $(m+1)^2 \neq 7$ & 167\\
+\texttt{Borsuk/Main.lean} & assembly of the three main theorems & 59\\
+\texttt{Borsuk/Smoke.lean} & toolchain smoke tests & 44\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent The three top-level results, verbatim from
+\texttt{Borsuk/Main.lean}:
+
+\begin{lstlisting}
+theorem witnessA_kills_conjecture3 :
+    betaZ SA = 4 ∧
+      ∀ m : ℕ, ¬ UnimodEquiv (convexHull ℝ (toR '' (SA : Set Z2))) (cube m)
+
+theorem conjecture3_counterexample :
+    ∃ S : Finset Z2, betaZ S = 2 ^ 2 ∧
+      ∀ m : ℕ, ¬ UnimodEquiv (convexHull ℝ (toR '' (S : Set Z2))) (cube m)
+
+theorem conjecture3_false : ¬ Conjecture3For2D
+\end{lstlisting}
+
+\noindent where the formal statement of (the $d = 2$ instance of) the
+conjecture, from \texttt{Borsuk/Defs.lean}, is
+
+\begin{lstlisting}
+def Conjecture3For2D : Prop :=
+  ∀ S : Finset Z2,
+    (betaZ S = 2 ^ 2 ↔
+      ∃ m : ℕ, UnimodEquiv (convexHull ℝ (toR '' (S : Set Z2))) (cube m))
+\end{lstlisting}
+
+\paragraph{Encoding choices (faithfulness).}
+The Lean kernel verifies the proofs; whether the formal \emph{definitions}
+say what the paper says is the one link a proof checker cannot certify, so
+\texttt{Defs.lean} documents every definition against the verbatim \LaTeX{}
+source of \cite{BDLT2025}, with the following choices. $\Z^2$ is
+\texttt{Z2 = $\mathbb{Z}$ $\times$ $\mathbb{Z}$}, embedded in
+$\R^2$ by the injection \texttt{toR}. A ``bounded set $S \subset \Z^d$'' is
+a \texttt{Finset Z2} (bounded subsets of $\Z^2$ are exactly the finite
+ones; the witness, a $4$-element set, is bounded under any reading).
+$f$ is \texttt{latticeLength}, the cardinality of
+$\{p \in \Z^2 : p \in [x,y]\}$ minus one, with mathlib's \texttt{segment}
+proved equal to the paper's $\conv(\{x,y\})$;
+$\diamZ$ is a double \texttt{Finset.sup}. Partitions are mathlib's
+\texttt{Finpartition} (pairwise-disjoint nonempty parts with union $S$), and
+\texttt{betaZ} is the infimum ($\mathtt{sInf}$) of the achievable part
+counts of partitions all of whose parts have strictly smaller
+\texttt{latticeDiam} --- the paper's ``minimal size of a partition \dots\
+[with] strictly smaller lattice diameter''. Unimodular equivalence is an
+explicit structure \texttt{UnimodMap}: four integer matrix entries with
+$ad - bc = \pm 1$ (the units of $\Z$) plus an integer translation, acting on
+$\R^2$, with $P = \varphi(Q)$ as the paper's $P = AQ + t$; the formal
+development proves that such maps biject $\Z^2$ (the paper's ``lattice
+preserving maps''). \texttt{cube m} is $[0,m]^2 \subseteq \R^2$, and
+\texttt{latticeCount} is the number of lattice points. Two deliberate
+robustness margins: ``for any $m \in \N$'' is rendered as
+$\exists\, m$, but the proof establishes $\forall m,\ \neg\,\mathrm{equiv}$,
+which negates the right-hand side under both the existential and the literal
+universal reading, for $\N$ with or without $0$; and \texttt{UnimodEquiv} is
+stated for arbitrary subsets of $\R^2$ rather than lattice polytopes only ---
+on the objects in the conjecture ($\conv(S_A)$ and $[0,m]^2$, both lattice
+polytopes) the readings coincide. One degenerate corner is flagged rather
+than hidden: for the empty set the empty partition is admissible and gives
+$\betaZ(\emptyset) = 0$, and for singleton $S$ no admissible partition
+exists, so the achievable-count set is empty and the convention
+$\mathtt{sInf}\,\emptyset = 0$ gives $\betaZ(S) = 0$ where the paper's
+minimum is simply undefined; if moreover $0 \in \N$, a one-point hull
+\emph{is} unimodularly equivalent to the degenerate cube $[0,0]^2$, so a
+singleton by itself already falsifies the formal biconditional. The
+development makes no use of this junk route: the proof of
+\texttt{conjecture3\_false} instantiates the conjecture only at $S = S_A$,
+with honest lattice diameter $1$ and an honestly attained minimum
+$\betaZ(S_A) = 4$, and Theorem~\ref{thm:witnessA} refutes the ``only if''
+direction in a form untouched by any convention for the degenerate cases.
+
+\paragraph{Verification status.}
+On 2026-06-11 and again on 2026-06-12 the project built cleanly:
+\texttt{lake build} reports \texttt{Build completed successfully (8483
+jobs)}, exit code $0$, no warnings. There are no \texttt{sorry} or
+\texttt{admit} terms, no \texttt{axiom} declarations, no
+\texttt{native\_decide} (all decidability checks are kernel-checked
+\texttt{decide}), no \texttt{unsafe} or \texttt{partial} definitions, and no
+custom elaboration. The axiom audit (\texttt{lake env lean
+scripts/CheckAxioms.lean}) prints, for all sixteen audited theorems ---
+including the three above and the supporting lemmas
+\texttt{ncard\_segLatticePts}, \texttt{latticeDiam\_SA},
+\texttt{betaZ\_eq\_card\_of\_latticeDiam\_eq\_one}, \texttt{betaZ\_SA},
+\texttt{mem\_hullSA\_iff}, \texttt{latticeCount\_hullSA},
+\texttt{UnimodEquiv.latticeCount\_eq}, \texttt{latticeCount\_cube},
+\texttt{succ\_sq\_ne\_seven} --- an axiom set contained in
+\[
+[\texttt{propext},\ \texttt{Classical.choice},\ \texttt{Quot.sound}],
+\]
+the three standard mathlib axioms; in particular no \texttt{sorryAx}. For
+example (one line per theorem, quoted exactly):
+{\scriptsize
+\begin{verbatim}
+'Borsuk.witnessA_kills_conjecture3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Borsuk.conjecture3_false' depends on axioms: [propext, Classical.choice, Quot.sound]
+\end{verbatim}
+}
+
+\paragraph{Building.}
+With elan installed, from the \texttt{lean/} directory of the artifact:
+\begin{quote}\small
+\begin{verbatim}
+elan toolchain install leanprover/lean4:v4.30.0
+lake exe cache get      # fetch mathlib v4.30.0 build cache (~1.6 GB)
+lake build              # expect: Build completed successfully, exit 0
+lake env lean scripts/CheckAxioms.lean   # axiom audit, output as above
+\end{verbatim}
+\end{quote}
+The toolchain and mathlib revisions are pinned by \texttt{lean-toolchain},
+\texttt{lakefile.toml}, and \texttt{lake-manifest.json}, so the build is
+reproducible; without the cache, mathlib builds from source in a few hours.
+
+\section{Verification of the numbers in this note}\label{sec:verification}
+
+Every quantity quoted above is mechanically checkable. For
+Theorem~\ref{thm:witnessA} the authority is the Lean development of
+Section~\ref{sec:lean}. For Theorems~\ref{thm:witnessB}
+and~\ref{thm:witnessC}, and as an independent cross-check of the witness-$A$
+data, the script \texttt{\_recompute.py} distributed with this note (Python
+standard library only; integer and \texttt{fractions.Fraction} arithmetic on
+every accept path, no floating point anywhere) re-verifies by direct
+recomputation: the $6 + 6 + 28$ primitivity checks; the
+H-representation of $\conv(S_A)$ (halfspace containment and the edge--vertex
+incidences), the enumeration of its $7$ lattice points, and exact
+convex-combination certificates for the three non-elements of $S_A$; the
+triangle $\conv(T)$, its area $3/2$, and $\conv(T) \cap \Z^2 = T$; the
+supporting-halfspace certificate for $\conv(C) \cap \Z^3 = C$ (these
+halfspaces the script does derive from scratch), the exact
+volume $5/2$, the pair-sum invariants $N(C) = 2$ and $N(\{0,1\}^3) = 12$,
+and the cube counts $(m+1)^3$. It was re-run on 2026-06-12 with verdict
+\texttt{ALL CHECKS PASS} ($27$ checks). A second script,
+\texttt{\_referee\_recheck.py}, written during the hostile-referee pass of
+2026-06-12 deliberately by different routes --- hull membership by exact
+Carath\'eodory solves over $\mathbb{Q}$ instead of H-representations,
+vertices by the ``not in the hull of the others'' criterion, the volume by a
+divergence-style signed surface sum, and a full census of coinciding
+pair-sums --- reaches the same conclusions ($37$ checks,
+\texttt{ALL CHECKS PASS}). The discovery pipeline had already verified
+witnesses $A$--$C$ in exact arithmetic (three independent recomputations,
+plus the second-model-family re-verification noted in
+Section~\ref{sec:intro}); both scripts above were written separately from
+it.
+
+\paragraph{Data availability.}
+The Lean project (source, pinned manifests, axiom-audit script), the two
+exact-arithmetic verification scripts, the discovery-time verification
+records, and the frozen copy of the arXiv v1 source of \cite{BDLT2025}
+against which the definitions were checked will be made available at
+\url{https://github.com/demonstrandum-research/[REPO]}.
+
+\begin{thebibliography}{9}
+
+\bibitem{BaranyFuredi2001}
+I.~B\'ar\'any and Z.~F\"uredi,
+\emph{On the lattice diameter of a convex polygon},
+Discrete Math.\ \textbf{241} (2001), 41--50.
+
+\bibitem{Borsuk1933}
+K.~Borsuk,
+\emph{Drei S\"atze \"uber die $n$-dimensionale euklidische Sph\"are},
+Fund.\ Math.\ \textbf{20} (1933), 177--190.
+
+\bibitem{BDLT2025}
+A.~E. Brose, J.~A. De Loera, G.~Lopez-Campos, and A.~J. Torres,
+\emph{On lattice diameter segments and a discrete Borsuk partition problem},
+arXiv:2508.20009 (v1, 27 August 2025).
+
+\bibitem{KahnKalai1993}
+J.~Kahn and G.~Kalai,
+\emph{A counterexample to Borsuk's conjecture},
+Bull.\ Amer.\ Math.\ Soc.\ \textbf{29} (1993), 60--62.
+
+\bibitem{mathlib}
+The mathlib Community,
+\emph{The Lean mathematical library},
+in: Proceedings of the 9th ACM SIGPLAN International Conference on Certified
+Programs and Proofs (CPP 2020), ACM, 2020, pp.~367--381.
+
+\bibitem{Lean4}
+L.~de Moura and S.~Ullrich,
+\emph{The Lean 4 theorem prover and programming language},
+in: Automated Deduction -- CADE 28, Lecture Notes in Comput.\ Sci.\
+\textbf{12699}, Springer, 2021, pp.~625--635.
+
+\bibitem{Rabinowitz1989}
+S.~Rabinowitz,
+\emph{A theorem about collinear lattice points},
+Utilitas Math.\ \textbf{36} (1989), 93--95.
+
+\end{thebibliography}
+
+\end{document}

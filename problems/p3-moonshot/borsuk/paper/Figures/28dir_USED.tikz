@@ -1,0 +1,83 @@
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.9pt, y=0.9pt, yscale=-.7, xscale=.8, transform shape=false]
+\begin{scope}
+    \clip (0,74) rectangle (350,210);
+%uncomment if require: \path (0,299); %set diagram left start at 0, and has height of 299
+
+% % x-axis (behind)
+% \draw[color=black] (12,161) -- (355,181);
+
+% % z-axis bottom, dashed inside and top
+% \draw[color=black] (190,181) -- (190,208);
+% \draw[color=black, dash pattern={on 2.25pt off 2.25pt}] (190,113) -- (190,181);
+% \draw[color=black] (190,75) -- (190,113);
+
+% % y-axis
+% \draw [color=black] (46,183) -- (331,159);
+
+% x-axis (slope = 1/17), choose x so x-190 is multiple of 17 ⇒ integer y
+\draw[color=black] (20,161) -- (360,181);
+
+% y-axis (slope = -1/12), choose x so x-190 is multiple of 12 ⇒ integer y
+\draw[color=black] (46,183) -- (346,158);
+
+% z-axis (vertical through the origin)
+\draw[color=pink, line width=5pt] (190,60) -- (190,70);
+\draw[color=black] (190,75) -- (190,113);
+\draw[color=black, dash pattern={on 2.25pt off 2.25pt}] (190,113) -- (190,181);
+\draw[color=black] (190,181) -- (190,208);
+
+%BLACK points
+\foreach \k in {-10,-8,-6,-4,-2,0,2,4,6,8,10} {
+  \fill[black] ({190+12*\k}, {171-\k}) circle (2pt);
+}
+
+\foreach \k in {-7,7} {
+  \fill[black] ({190+17*\k}, {171+\k}) circle (2pt);
+}
+
+% orange top polygon
+\draw [color=orange, draw opacity=1, fill=orange, fill opacity=0.34]
+  (235,93) -- (176,130) -- (158,115) -- cycle;
+
+% gray polygon rest
+\draw [draw opacity=0, fill=lightgray, fill opacity=0.17]
+  (235,93) -- (207,185) -- (166,173) -- (158,115) -- cycle;
+
+
+% Dashed gray lines
+\draw[color=gray, dash pattern={on 2.25pt off 2.25pt}] (176,130) -- (204,154);
+\draw[color=gray, dash pattern={on 2.25pt off 2.25pt}] (235,93) -- (204,154);
+
+% gray left edges
+\draw[color=gray] (158,115) -- (166,173);
+\draw[color=gray] (176,130) -- (166,173);
+\draw[color=gray] (176,130) -- (207,185);
+\draw[color=gray] (235,93) -- (207,185);
+
+% bottom darklav polygon
+\draw [draw opacity=0, fill=darklav, fill opacity=0.11]
+  (204,154) -- (207,185) -- (166,173) -- cycle;
+\draw [color=darklav] (166,173) -- (207,185); %front edge
+\draw [color=darklav, dash pattern={on 1.5pt off 1.5pt}] (204,154) -- (207,185); %dashed edges
+\draw [color=darklav, dash pattern={on 1.5pt off 1.5pt}] (166,173) -- (204,154);
+
+
+% DARKLAV VERTICES
+\draw[color=darklav, fill=darklav] (190,171) circle (1.6pt); % center
+\draw[color=darklav, fill=darklav] (207,185) circle (1.6pt); % front right
+\draw[color=darklav, fill=darklav] (204,154) circle (1.6pt); % back right
+\draw[color=darklav, fill=darklav] (166,173) circle (1.6pt); % front left
+
+
+
+%ORANGE VERTICES
+\draw[color=orange, fill=orange] (190,112) circle (1.6pt); % center 
+\draw[color=orange, fill=orange] (158,115) circle (1.6pt); % top left
+\draw[color=orange, fill=orange] (176,130) circle (1.6pt); % front
+\draw[color=orange, fill=orange] (235,93)  circle (1.6pt); % back right
+
+\end{scope}
+\end{tikzpicture}
+

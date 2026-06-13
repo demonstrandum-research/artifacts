@@ -1,0 +1,79 @@
+\subsection{The discrete Borsuk partition problem}\label{sec:2.4}
+
+In this section we prove the discrete version of Borsuk's partition problem for lattice diameters. More generally, we study lattice diameters of bounded sets $S \subset \Z^d$. 
+% Recall that here the lattice diameter is $\max_{\bx,\by \in S}|[\bx,\by ] \cap \Z^d|-1$. The lattice diameter of $S$ and $\conv S$ need not be the same, see \Cref{fig:Borsuk-sets} for an example:
+Notice that the function $f : \Z^d \times \Z^d \to \R$ defined by  
+\[
+f(\bx, \by) = \nvol([\bx, \by]) = |[\bx, \by] \cap \Z^d| - 1
+\]  
+    is a semi-metric, i.e., it is positive-definite and symmetric, so $(\Z^d, f)$ is a semi-metric space. Furthermore, $f$ satisfies $f(\lambda \bx, \lambda \by) = |\lambda| \cdot f(\bx,\by)$ for all $\bx,\by \in \Z^d$ and all $\lambda \in \Z$. From this viewpoint, \Cref{Thm:Borsuk} is closely related to the well-known Boltyansky-Gohberg conjecture \cite{boltjansky1985results} which states that any bounded set $S$ in a $d$-dimensional normed space can be partitioned into at most $2^d$ subsets, each having strictly smaller diameter.
+
+Recall that for a bounded set $S$ the \emph{lattice Borsuk number} of $S$, denoted $\beta_\Z(S)$, is the smallest number of subsets into which $S$ can be partitioned, such that each subset has strictly smaller lattice diameter than $\diam_{\Z} (S)$. In \mbox{\Cref{fig:Borsuk-sets}} we show a Borsuk partition of a set $S=P \cap \Z^d$, where $P$ is a lattice polygon, into parts $S_1$ and $S_2$. Necessarily $\ldiam(S_i)< \ldiam(P)$ for $i=1,2$, but 
+note that $\ldiam (\conv (S_1)) = \ldiam(P)$.
+
+\input{Figures/2.40_Borsuk}
+% \begin{figure}[ht!]
+%     \centering
+%     % \includegraphics[width=0.4\linewidth]{Figures/2.40_Borsuk.png}
+%     \input{Figures/2.40_Borsuk.tikz}
+%     \caption{A Borsuk partition $P \cap \Z^d = S_1 \sqcup S_2$ where $\ldiam(S_1) < \ldiam(\conv(S_1))=\ldiam(P)$.}
+%     \label{fig:Borsuk-sets}
+% \end{figure}
+
+Define the \emph{lattice Borsuk graph} of $S$, denoted $\BG_\Z(S)$, as the graph with vertex set $S$ and edges $\{\bx,\by\} \subseteq S$ if and only if $f(\bx,\by)=\diam_\Z(S)$.
+%Recall that $\Delta(\BG_\Z(S))$ is the maximum degree of a vertex in $\BG_\Z(S)$.
+
+\begin{remark}\label{Remark:equivalence}
+    For a bounded set $S \subset \Z^d$,  $\beta_\Z(S)=\chi(\BG_\Z(S))$, where $\chi$ is the \textit{chromatic number} of $\BG_\Z(S)$, i.e., the minimum number of colors needed to color $S$ so that no two adjacent vertices in $S$ have the same color.
+\end{remark}
+
+To find a good bound on the lattice Borsuk number it will be useful to bound $\Delta(\BG_\Z(S))$, the maximum degree of the lattice Borsuk graph. This is precisely what the next lemma does.
+
+\begin{lemma}\label{Lemma:MaxDegree}
+    Let $S \subset \Z^d$ be a bounded set and let $\bx \in S$. Then, the number of lattice diameter segments in $S$ that have $\bx$ as an endpoint is at most $2^d - 1$. Therefore, $\Delta(\BG_\Z(S)) \leq 2^d-1$.
+\end{lemma}
+
+\begin{proof}
+If $|S| <2$, then there is nothing to show, so suppose $|S|\geq 2$.  After an appropriate translation, we may assume that $\bx = \mathbf{0}$. Define
+\[
+S_{\mathbf{0}} := \{ \bs \in S : f(\mathbf{0}, \bs) = \operatorname{diam}_\Z(S) \}
+\]
+% as the set of points in $S$ that form a lattice diameter segment with $\mathbf{0}$.
+and consider the corresponding set of vectors
+\[
+S'_{\mathbf{0}} := \left\{ \frac{\bs}{\operatorname{diam}_\Z(S)} : \bs \in S_{\mathbf{0}} \right\}\cup \{\mathbf{0}\}.
+\]
+
+Suppose, for contradiction, that $|S_{\mathbf{0}}| > 2^d-1$, then $|S'_{\mathbf{0}}| > 2^d$, and by \ref{lemma:Rabinowitz}, we have $\operatorname{diam}_\Z(S'_{\mathbf{0}}) \geq 2$. Let $\by', \bz' \in S'_{\mathbf{0}}$ such that $f(\by', \bz') \geq 2$. Since all non-zero vectors in $S'_{\mathbf{0}}$ are primitive, neither $\by'$ nor $\bz'$ is $\mathbf{0}$. So for $\by=\ldiam(S)\cdot\by'$ and $\bz=\ldiam(S)\cdot \bz'$ we get
+\[
+f(\by, \bz) = \ldiam(S) \cdot f(\by', \bz') \geq \ldiam(S) \cdot 2,
+\]
+which is a contradiction. Thus $|S_\mathbf{0}| \leq 2^d-1$, and $\Delta(\BG_\Z(S)) \leq 2^d-1$ follows from \Cref{Remark:equivalence}.
+\end{proof}
+
+Now we state Brooks' Theorem, a graph theoretic result, which relates the maximum degree of a graph to its chromatic number. For the lattice Borsuk graph this translates to a bound on $\beta_\Z(S)$. Brooks' Theorem has many published proofs, see for example \cite[Theorem~8.4]{bondy2008graph}.
+
+\begin{theorem}[Brooks, 1941]\label{Thm:Brooks}
+    If $G$ is a connected simple graph, then $\chi(G) \leq \Delta(G)+1$, with equality if and only if $G$ is an odd cycle or a complete graph.
+\end{theorem}
+
+Finally, we present a solution to the discrete version of Borsuk's partition problem.
+
+\begin{theorem}\label{Thm:Borsuk}
+     Let $S \subset \Z^d$ be a bounded set. Then $\beta_\Z(S) \leq 2^d$ and this bound is best possible.
+\end{theorem}
+
+\begin{proof}
+    By \Cref{Remark:equivalence}, \Cref{Lemma:MaxDegree} and Brooks' Theorem applied to each component of $\BG_\Z(S)$ we get
+    \[
+    \beta_\Z(S) = \chi(\BG_\Z(S)) \leq \Delta (\BG_\Z(S)) +1 \leq 2^d.
+    \]
+    The set $S=\{0,1\}^d$ is an example where this bound is attained.
+\end{proof}
+
+Notice that $\beta_\Z(S)= 2^d$ if and only if there exists an $\bx \in S$ that is the endpoint of $2^d-1$ lattice diameter segments, and $\BG_\Z(S)$ is isomorphic to the complete graph on $2^d$ vertices. Thus we conjecture the following:
+\begin{conjecture}\label{conj:Borsuk}
+    Let $S \subset \Z^d$ be a bounded set. Then $\beta_\Z(S) =2^d$ if and only if $\conv(S)$ is unimodularly equivalent to a $d$-cube $[0,m]^d$ for any $m \in \N$.
+\end{conjecture}
+
+In dimension two this conjecture is true and can be proven using a characterization of lattice polygons which have four diameter directions, see \cite[Theorem~2(iii)]{Barany_Furedi}.

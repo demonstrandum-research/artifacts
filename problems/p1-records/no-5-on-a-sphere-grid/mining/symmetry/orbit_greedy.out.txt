@@ -1,0 +1,8 @@
+n=13        trivial: best 30  (orbits 2197, restarts 10, stab order of best 1)
+n=13        C2_negI: best 30  (orbits 1099, restarts 10, stab order of best 2)
+n=13     C2_rot180z: best 30  (orbits 1105, restarts 21, stab order of best 2)
+n=13  C2_rot180_110: best 29  (orbits 1105, restarts 19, stab order of best 2)
+n=13       V4_coord: best 30  (orbits 559, restarts 19, stab order of best 4)
+n=13       V4_mixed: best 30  (orbits 559, restarts 19, stab order of best 4)
+n=13         C4_S4z: best 29  (orbits 553, restarts 19, stab order of best 4)
+n=15        C2_negI: best 34  (orbits 1688, restarts 7)

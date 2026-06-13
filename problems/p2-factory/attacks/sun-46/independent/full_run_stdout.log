@@ -1,0 +1,55 @@
+INDEPENDENT CLEAN-ROOM CHECKER -- Sun Conjecture 4.6 (arXiv:2108.07723v7)
+Method: exact Z[x]/(x^4n - 1) arithmetic, Kronecker-substitution Ryser,
+        Gauss-sum sqrt, verification mod Phi_4n(x). No floats/finite fields.
+
+== SELF-TESTS: Kronecker-Ryser engine vs brute-force permanent ==
+      [ryser m=2 N=20: K=11 bits/digit, ints of 220 bits]
+   sin n=5: Ryser==brute-force OK
+      [ryser m=4 N=36: K=27 bits/digit, ints of 972 bits]
+   sin n=9: Ryser==brute-force OK
+      [ryser m=6 N=52: K=51 bits/digit, ints of 2652 bits]
+   sin n=13: Ryser==brute-force OK
+      [ryser m=7 N=60: K=66 bits/digit, ints of 3960 bits]
+   sin n=15: Ryser==brute-force OK
+      [ryser m=8 N=68: K=83 bits/digit, ints of 5644 bits]
+   sin n=17: Ryser==brute-force OK
+      [ryser m=2 N=20: K=15 bits/digit, ints of 300 bits]
+   csc p=5: Ryser==brute-force OK
+      [ryser m=3 N=28: K=28 bits/digit, ints of 784 bits]
+   csc p=7: Ryser==brute-force OK
+      [ryser m=5 N=44: K=61 bits/digit, ints of 2684 bits]
+   csc p=11: Ryser==brute-force OK
+      [ryser m=6 N=52: K=82 bits/digit, ints of 4264 bits]
+   csc p=13: Ryser==brute-force OK
+   self-tests PASSED
+
+== s_n (sin) : exact values ==
+      [ryser m=1 N=12: K=6 bits/digit, ints of 72 bits]
+   s_3 = 1   [Sun:1; float~1, relerr 2.2e-16] 0.0s  PASS
+      [ryser m=2 N=20: K=11 bits/digit, ints of 220 bits]
+   s_5 = -1   [Sun:-1; float~-1, relerr 2.2e-16] 0.0s  PASS
+      [ryser m=3 N=28: K=18 bits/digit, ints of 504 bits]
+   s_7 = 1   [Sun:1; float~1, relerr 3.3e-16] 0.0s  PASS
+      [ryser m=4 N=36: K=27 bits/digit, ints of 972 bits]
+   s_9 = 9   [Sun:9; float~9, relerr 7.9e-16] 0.0s  PASS
+      [ryser m=5 N=44: K=38 bits/digit, ints of 1672 bits]
+   s_11 = 1   [Sun:1; float~1, relerr 1.7e-14] 0.0s  PASS
+      [ryser m=6 N=52: K=51 bits/digit, ints of 2652 bits]
+   s_13 = 51   [Sun:51; float~51, relerr 0.0e+00] 0.0s  PASS
+      [ryser m=7 N=60: K=66 bits/digit, ints of 3960 bits]
+   s_15 = 45   [Sun:45; float~45, relerr 1.9e-15] 0.2s  PASS
+      [ryser m=8 N=68: K=83 bits/digit, ints of 5644 bits]
+   s_17 = -239   [Sun:-239; float~-239, relerr 8.2e-15] 0.6s  PASS
+      [ryser m=9 N=76: K=102 bits/digit, ints of 7752 bits]
+   s_19 = 913   [Sun:913; float~913, relerr 1.4e-15] 1.7s  PASS
+      [ryser m=10 N=84: K=123 bits/digit, ints of 10332 bits]
+   s_21 = 2835   [Sun:2835; float~2835, relerr 1.3e-14] 6.1s  PASS
+      [ryser m=11 N=92: K=146 bits/digit, ints of 13432 bits]
+   s_23 = 12145   [Sun:12145; float~12145, relerr 6.4e-14] 29.8s  PASS
+      [ryser m=12 N=100: K=171 bits/digit, ints of 17100 bits]
+   s_25 = 63125   [claim:63125; float~63125, relerr 1.1e-13] 50.5s  PASS
+      [ryser m=13 N=108: K=198 bits/digit, ints of 21384 bits]
+   s_27 = 59049   [claim:59049; float~59049, relerr 5.3e-13] 125.3s  PASS
+      [ryser m=14 N=116: K=227 bits/digit, ints of 26332 bits]
+   s_29 = 1053859   [claim:1053859; float~1.05386e+06, relerr 1.6e-13] 268.4s  PASS
+      [ryser m=15 N=124: K=258 bits/digit, ints of 31992 bits]

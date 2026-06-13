@@ -1,0 +1,15 @@
+Certificate: C:\Users\jacks\source\repos\demonstrandum-artifacts\problems\p2-factory\kills\solubilizer-a16\_mut_M6-S5xS4.json
+Conjecture:  Conjecture A.16 of arXiv:2412.16177 (Chuharski, Rojas Collins, Meringolo, 'Mining Math Conjectures from LLMs: A Pruning Approach', v1, 9 Dec 2024)
+
+Step 0: machinery self-tests on known groups
+  [PASS] check  1: |<(01234),(012)>| = 60 (= A5 on 5 points)
+  [PASS] check  2: all its elements are even
+  [PASS] check  3: A5 is NOT solvable (derived series stalls)
+  [PASS] check  4: |<(01),(0123)>| = 24 (= S4 on 4 points)
+  [PASS] check  5: derived series of S4 has orders [24,12,4,1] (derived length 3)
+  [PASS] check  6: S4 is not metabelian
+  [PASS] check  7: A4 is metabelian (control: test can say yes)
+
+Step 1: build G
+  [FAIL] check  8: |G| = 1440
+VERDICT: CHECK FAILED — certificate rejected.

@@ -1,0 +1,595 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/Y1d/ylZSW92CHhBRrrlS/Xl2RM8</id>
+  <title>arXiv Query: search_query=all:"no 5 on a sphere" OR all:"cospherical"&amp;id_list=&amp;start=0&amp;max_results=15</title>
+  <updated>2026-06-12T05:55:48Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=all:%22no+5+on+a+sphere%22+OR+all:%22cospherical%22&amp;start=0&amp;max_results=15&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>15</opensearch:itemsPerPage>
+  <opensearch:totalResults>57</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2606.10847v1</id>
+    <title>Quantum Limits of the Laplacian perturbed along a geodesic on $\mathbb{S}^{2}$</title>
+    <updated>2026-06-09T13:29:04Z</updated>
+    <link href="https://arxiv.org/abs/2606.10847v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2606.10847v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This article studies the high-frequency behavior of eigenstates of perturbations of the Laplace-Beltrami operator on the two-sphere $\mathbb{S}^{2}$ by a measure supported on an equator. We are interested in understanding to what extent this behavior can be described in terms of the geodesic flow of the sphere. This is done by analyzing quantum limits and semiclassical measures of sequences of high-frequency eigenfunctions, which describe how their $L^2$-masses concentrate in phase space. When the Laplacian on $\mathbb{S}^{2}$ is perturbed by a bounded potential, it is known that the family of all possible semiclassical measures is contained in the set of positive measures on the unit cosphere bundle $S^*\mathbb{S}^{2}$ that are invariant under geodesic flow (with equality in the unperturbed case). In this article, we show that the presence of a singular delta potential on a closed geodesic results in the existence of sequences of eigenfunctions whose semiclassical measure is not invariant under geodesic flow. In particular, one can find a sequence of eigenfunctions whose energy asymptotically concentrates on the hemisphere bounded by the equator on which the potential is concentrated.</summary>
+    <category term="math.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.AP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-06-09T13:29:04Z</published>
+    <arxiv:comment>33 pages</arxiv:comment>
+    <arxiv:primary_category term="math.SP"/>
+    <author>
+      <name>Santiago Verdasco</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2603.01181v1</id>
+    <title>Classification of closed minimal hypersurfaces with constant scalar curvature in $\mathbb{S}^5$</title>
+    <updated>2026-03-01T16:47:58Z</updated>
+    <link href="https://arxiv.org/abs/2603.01181v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2603.01181v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this paper, we prove that any closed minimal hypersurface $M^4$ in the $5$-dimensional unit sphere $\mathbb{S}^5$ with constant scalar curvature and constant $3$-th mean curvature must be isoparametric. To be precise, $M^4$ is either an equatorial 4-sphere, a product of spheres $\mathbb{S} ^{2}(\frac{\sqrt{2}}{2}) \times \mathbb{S} ^{2}(\frac{\sqrt{2}}{2})$ or $\mathbb{S} ^{1}(\frac{1}{2}) \times \mathbb{S} ^{3}(\frac{\sqrt{3}}{2})$, or a Cartan's minimal hypersurface. In particular, the value of the squared norm of the second fundamental form $S$ can only be 0, 4, or 12. This result strongly supports Chern's conjecture.</summary>
+    <category term="math.DG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-03-01T16:47:58Z</published>
+    <arxiv:comment>20 pages</arxiv:comment>
+    <arxiv:primary_category term="math.DG"/>
+    <author>
+      <name>Chengchao He</name>
+    </author>
+    <author>
+      <name>Hongwei Xu</name>
+    </author>
+    <author>
+      <name>Entao Zhao</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2601.08854v4</id>
+    <title>On Geometric Evolution and Microlocal Regularity of the Navier-Stokes Equations</title>
+    <updated>2026-05-04T02:06:53Z</updated>
+    <link href="https://arxiv.org/abs/2601.08854v4" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2601.08854v4" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We propose a microlocal-Riemannian framework for the three-dimensional incompressible Navier-Stokes equations on a smooth oriented Riemannian manifold (M,g). The dynamics is lifted to the unit cosphere bundle S*M via a normal-coordinate microlocal transform whose construction is justified by the positive homogeneity of the principal symbol of the linearised system in the cotangent fiber variable. Once the velocity field is fixed, the lifted dynamics is a linear non-autonomous transport-dissipation equation on a compact phase space; its coefficients encode intrinsic geometric quantities of the original flow. We introduce a microlocal energy, an angular volume functional and a directional entropy, and analyse their dissipation along the lifted dynamics. An effective affine connection encodes the back-reaction of the velocity gradient on the geometry of S*M and gives rise to a Ricci-type microlocal evolution. The framework yields a sharp geometric equivalence: a smooth solution fails to extend past time T if and only if at least one of three intrinsic microlocal controls -- deformation integrability, directional-entropy boundedness, or lifted-energy boundedness -- fails. A dimensional analysis exhibits a symmetry-lock phenomenon, in which the asymptotic vanishing of the volume of fibers enforces angular isotropy and topologically obstructs the formation of microlocal angular singularities. The framework is illustrated explicitly on the flat torus, where every assumption is verified, and is extended to the Euclidean setting under a uniform-coordinate hypothesis. The global regularity problem is not resolved here; rather, it is recast as a structural-stability question for a compact, symmetry-constrained, microlocally coercive evolution system, with the role of viscosity made explicit through spectral coercivity.</summary>
+    <category term="physics.gen-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-01-02T03:33:50Z</published>
+    <arxiv:comment>Revised version (43 pp) addressing all referee and editor comments. We thank both for their suggestions. Major revisions include: moving main results to Section 1, refining the structure, justifying cosphere-bundle reduction via principal-symbol homogeneity, correcting the vorticity-energy identity to include the symmetric stretching term, and adding the flat torus as an explicit example</arxiv:comment>
+    <arxiv:primary_category term="physics.gen-ph"/>
+    <author>
+      <name>Sebastián Alí Sacasa-Céspedes</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2510.01746v1</id>
+    <title>$C^0$-rigidity of Legendrians and coisotropics via sheaf quantization</title>
+    <updated>2025-10-02T07:32:38Z</updated>
+    <link href="https://arxiv.org/abs/2510.01746v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2510.01746v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We prove that in the standard cosphere bundle, for any contact homeomorphism in the closure of the compactly supported contactomorphism group, when the image of a coisotropic submanifold (not necessarily properly embedded) is smooth, it is still coisotropic. Moreover, when contactomorphisms in the sequence are in the identity component and the image of a Legendrian is smooth, the Maslov data is preserved, and the category of sheaves with singular support on the Legendrian and the microstalk corepresentative are also preserved (and thus so is the wrapped Floer cochains of the linking disks). The main ingredients are the result of Guillermou--Viterbo, a new sheaf quantization result for $C^0$-small contactomorphisms (not necessarily in the identity component) different from Guillermou--Kashiwara--Schapira, and continuity of the interleaving distance of sheaves with respect to the Hofer--Shelukhin distance and the $C^0$-distance. The appendix contains different arguments for local $C^0$-limits and certain Hausdorff limits of Legendrians without appealing to the interleaving distance.</summary>
+    <category term="math.SG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-10-02T07:32:38Z</published>
+    <arxiv:comment>45 pages, 1 figure. Comments welcome!</arxiv:comment>
+    <arxiv:primary_category term="math.SG"/>
+    <author>
+      <name>Tomohiro Asano</name>
+    </author>
+    <author>
+      <name>Yuichi Ike</name>
+    </author>
+    <author>
+      <name>Christopher Kuo</name>
+    </author>
+    <author>
+      <name>Wenyuan Li</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2507.06708v1</id>
+    <title>Stable proper biharmonic maps in Euclidean spheres</title>
+    <updated>2025-07-09T10:03:07Z</updated>
+    <link href="https://arxiv.org/abs/2507.06708v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2507.06708v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We construct an explicit family of stable proper weak biharmonic maps from the unit ball $B^m$, $m\geq 5$, to Euclidean spheres. To the best of the authors knowledge this is the first example of a stable proper weak biharmonic map from at compact domain. To achieve our result we first establish the second variation formula of the bienergy for maps from the unit ball into a Euclidean sphere. Employing this result, we examine the stability of the proper weak biharmonic maps $q:B^m\to\mathbb{S}^{m^{\ell}}$, $m,\ell\in\mathbb{N}$ with $\ell\leq m$, which we recently constructed in \cite{BS25} and thus deduce the existence of an explicit family of stable proper biharmonic maps to Euclidean spheres.</summary>
+    <category term="math.DG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.AP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-07-09T10:03:07Z</published>
+    <arxiv:primary_category term="math.DG"/>
+    <author>
+      <name>Volker Branding</name>
+    </author>
+    <author>
+      <name>Anna Siffert</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2506.18113v1</id>
+    <title>Large grid subsets without many cospherical points</title>
+    <updated>2025-06-22T17:52:05Z</updated>
+    <link href="https://arxiv.org/abs/2506.18113v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2506.18113v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Motivated by intuitions from projective algebraic geometry, we provide a novel construction of subsets of the $d$-dimensional grid $[n]^d$ of size $n - o(n)$ with no $d + 2$ points on a sphere or a hyperplane. For $d = 2$, this improves the previously best known lower bound of $n/4$ toward the Erdős--Purdy problem due to Thiele in 1995. For $d \ge 3$, this improves the recent $Ω\bigl( n^{\frac{3}{d+1}-o(1)} \bigr)$ bound due to Suk and White, confirming their conjectured $Ω\bigl( n^{\frac{d}{d+1}} \bigr)$ bound in a strong sense, and asymptotically resolves the generalized Erdős--Purdy problem posed by Brass, Moser, and Pach.</summary>
+    <category term="math.CO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.AG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-06-22T17:52:05Z</published>
+    <arxiv:comment>9 pages</arxiv:comment>
+    <arxiv:primary_category term="math.CO"/>
+    <author>
+      <name>Zichao Dong</name>
+    </author>
+    <author>
+      <name>Zijian Xu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2503.02541v2</id>
+    <title>The Stochastic Light Confinement of LiquidO</title>
+    <updated>2025-03-12T17:43:04Z</updated>
+    <link href="https://arxiv.org/abs/2503.02541v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2503.02541v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Light-based detectors have been widely used in fundamental research and industry since their inception in the 1930s. The energy particles deposit in these detectors is converted to optical signals via the Cherenkov and scintillation mechanisms that are then propagated through transparent media to photosensors placed typically on the detector's periphery, sometimes up to tens of metres away. LiquidO is a new technique pioneering the use of opaque media to stochastically confine light around each energy deposition while collecting it with an array of fibres that thread the medium. This approach preserves topological event information otherwise lost in the conventional approach, enabling real-time imaging down to the MeV scale. Our article demonstrates LiquidO's imaging principle with a ten-litre prototype, revealing successful light confinement of 90% of the detected light within a 5 cm radius sphere, using a custom opaque scintillator with a scattering length on the order of a few millimetres. These high-resolution imaging capabilities unlock opportunities in fundamental physics research and applications beyond. The absolute amount of light detected is also studied, including possible data-driven extrapolations to LiquidO-based detectors beyond prototyping limitations. Additionally, LiquidO's timing capabilities are explored through its ability to distinguish Cherenkov light from a slow scintillator.</summary>
+    <category term="physics.ins-det" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ex" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-03-04T12:07:14Z</published>
+    <arxiv:comment>22 pages, 9 figures, 2 tables</arxiv:comment>
+    <arxiv:primary_category term="physics.ins-det"/>
+    <author>
+      <name> LiquidO Collaboration</name>
+    </author>
+    <author>
+      <name>J. Apilluelo</name>
+    </author>
+    <author>
+      <name>L. Asquith</name>
+    </author>
+    <author>
+      <name>E. F. Bannister</name>
+    </author>
+    <author>
+      <name>N. P. Barradas</name>
+    </author>
+    <author>
+      <name>J. L. Beney</name>
+    </author>
+    <author>
+      <name>M. Berberan e Santos</name>
+    </author>
+    <author>
+      <name>X. de la Bernardie</name>
+    </author>
+    <author>
+      <name>T. J. C. Bezerra</name>
+    </author>
+    <author>
+      <name>M. Bongrand</name>
+    </author>
+    <author>
+      <name>C. Bourgeois</name>
+    </author>
+    <author>
+      <name>D. Breton</name>
+    </author>
+    <author>
+      <name>C. Buck</name>
+    </author>
+    <author>
+      <name>J. Busto</name>
+    </author>
+    <author>
+      <name>K. Burns</name>
+    </author>
+    <author>
+      <name>A. Cabrera</name>
+    </author>
+    <author>
+      <name>A. Cadiou</name>
+    </author>
+    <author>
+      <name>E. Calvo</name>
+    </author>
+    <author>
+      <name>E. Chauveau</name>
+    </author>
+    <author>
+      <name>B. J. Cattermole</name>
+    </author>
+    <author>
+      <name>M. Chen</name>
+    </author>
+    <author>
+      <name>P. Chimenti</name>
+    </author>
+    <author>
+      <name>D. F. Cowen</name>
+    </author>
+    <author>
+      <name>S. Dusini</name>
+    </author>
+    <author>
+      <name>A. Earle</name>
+    </author>
+    <author>
+      <name>M. Felizardo</name>
+    </author>
+    <author>
+      <name>C. Frigerio Martins</name>
+    </author>
+    <author>
+      <name>J. Galán</name>
+    </author>
+    <author>
+      <name>J. A. García</name>
+    </author>
+    <author>
+      <name>R. Gazzini</name>
+    </author>
+    <author>
+      <name>A. Gibson-Foster</name>
+    </author>
+    <author>
+      <name>C. Girard-Carillo</name>
+    </author>
+    <author>
+      <name>B. Gramlich</name>
+    </author>
+    <author>
+      <name>M. Grassi</name>
+    </author>
+    <author>
+      <name>W. C. Griffith</name>
+    </author>
+    <author>
+      <name>J. J. Gómez-Cadenas</name>
+    </author>
+    <author>
+      <name>M. Guitière</name>
+    </author>
+    <author>
+      <name>F. Haddad</name>
+    </author>
+    <author>
+      <name>J. Hartnell</name>
+    </author>
+    <author>
+      <name>A. Holin</name>
+    </author>
+    <author>
+      <name>I. G. Irastorza</name>
+    </author>
+    <author>
+      <name>I. Jovanovic</name>
+    </author>
+    <author>
+      <name>A. Kling</name>
+    </author>
+    <author>
+      <name>L. Koch</name>
+    </author>
+    <author>
+      <name>P. Lasorak</name>
+    </author>
+    <author>
+      <name>J. F. Le Du</name>
+    </author>
+    <author>
+      <name>C. Lefebvre</name>
+    </author>
+    <author>
+      <name>F. Lefevre</name>
+    </author>
+    <author>
+      <name>P. Loaiza</name>
+    </author>
+    <author>
+      <name>J. A. Lock</name>
+    </author>
+    <author>
+      <name>G. Luzón</name>
+    </author>
+    <author>
+      <name>J. Maalmi</name>
+    </author>
+    <author>
+      <name>J. P. Malhado</name>
+    </author>
+    <author>
+      <name>F. Mantovani</name>
+    </author>
+    <author>
+      <name>J. G. Marques</name>
+    </author>
+    <author>
+      <name>C. Marquet</name>
+    </author>
+    <author>
+      <name>M. Martínez</name>
+    </author>
+    <author>
+      <name>D. Navas-Nicolás</name>
+    </author>
+    <author>
+      <name>H. Nunokawa</name>
+    </author>
+    <author>
+      <name>M. Obolensky</name>
+    </author>
+    <author>
+      <name>J. P. Ochoa-Ricoux</name>
+    </author>
+    <author>
+      <name>T. Palmeira</name>
+    </author>
+    <author>
+      <name>C. Palomares</name>
+    </author>
+    <author>
+      <name>B. Pedras</name>
+    </author>
+    <author>
+      <name>D. Petyt</name>
+    </author>
+    <author>
+      <name>P. Pillot</name>
+    </author>
+    <author>
+      <name>A. Pin</name>
+    </author>
+    <author>
+      <name>J. C. C. Porter</name>
+    </author>
+    <author>
+      <name>M. S. Pravikoff</name>
+    </author>
+    <author>
+      <name>N. Rodrigues</name>
+    </author>
+    <author>
+      <name>M. Roche</name>
+    </author>
+    <author>
+      <name>R. Rosero</name>
+    </author>
+    <author>
+      <name>B. Roskovec</name>
+    </author>
+    <author>
+      <name>N. Roy</name>
+    </author>
+    <author>
+      <name>M. L. Sarsa</name>
+    </author>
+    <author>
+      <name>S. Schoppmann</name>
+    </author>
+    <author>
+      <name>A. Serafini</name>
+    </author>
+    <author>
+      <name>C. Shepherd-Themistocleous</name>
+    </author>
+    <author>
+      <name>W. Shorrock</name>
+    </author>
+    <author>
+      <name>M. Silva</name>
+    </author>
+    <author>
+      <name>L. Simard</name>
+    </author>
+    <author>
+      <name>S. R. Soleti</name>
+    </author>
+    <author>
+      <name>H. Th. J. Steiger</name>
+    </author>
+    <author>
+      <name>D. Stocco</name>
+    </author>
+    <author>
+      <name>V. Strati</name>
+    </author>
+    <author>
+      <name>J. S. Stutzmann</name>
+    </author>
+    <author>
+      <name>F. Suekane</name>
+    </author>
+    <author>
+      <name>A. Tunc</name>
+    </author>
+    <author>
+      <name>N. Tuccori</name>
+    </author>
+    <author>
+      <name>A. Verdugo</name>
+    </author>
+    <author>
+      <name>B. Viaud</name>
+    </author>
+    <author>
+      <name>S. M. Wakely</name>
+    </author>
+    <author>
+      <name>A. Weber</name>
+    </author>
+    <author>
+      <name>G. Wendel</name>
+    </author>
+    <author>
+      <name>A. S. Wilhelm</name>
+    </author>
+    <author>
+      <name>M. Yeh</name>
+    </author>
+    <author>
+      <name>F. Yermia</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2503.01528v2</id>
+    <title>Semiclassical Measures on Hyperbolic Manifolds</title>
+    <updated>2025-04-22T15:49:38Z</updated>
+    <link href="https://arxiv.org/abs/2503.01528v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2503.01528v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We examine semiclassical measures for Laplace eigenfunctions on compact hyperbolic $(n+1)$-manifolds. We prove their support must contain the cosphere bundle of a compact immersed totally geodesic submanifold. Our proof adapts the argument of Dyatlov and Jin to higher dimensions and classifies the closures of horocyclic orbits using Ratner theory. An important step in the proof is a generalization of the higher-dimensional fractal uncertainty principle of Cohen to Fourier integral operators, which may be of independent interest.</summary>
+    <category term="math.AP" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.DS" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.GT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-03-03T13:37:36Z</published>
+    <arxiv:comment>59 pages, 1 figure</arxiv:comment>
+    <arxiv:primary_category term="math.AP"/>
+    <author>
+      <name>Elena Kim</name>
+    </author>
+    <author>
+      <name>Nicholas Miller</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2410.04572v2</id>
+    <title>Poisson Bracket Invariants and Wrapped Floer Homology</title>
+    <updated>2025-04-30T19:43:40Z</updated>
+    <link href="https://arxiv.org/abs/2410.04572v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2410.04572v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The Poisson bracket invariants, introduced by Buhovsky, Entov, and Polterovich and further studied by Entov and Polterovich, serve as invariants for quadruples of closed sets in symplectic manifolds. Their nonvanishing has significant implications for the existence of Hamiltonian chords between pairs of sets within the quadruple, with bounds on the time-length of these chords. In this work, we establish lower bounds on the Poisson bracket invariants for certain configurations arising in the completion of Liouville domains. These bounds are expressed in terms of the barcode of wrapped Floer homology. Our primary examples come from cotangent bundles of closed Riemannian manifolds, where the quadruple consists of two fibers over distinct points and two cosphere bundles of different radii, or a single cosphere bundle and the zero section.</summary>
+    <category term="math.SG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-10-06T18:08:59Z</published>
+    <arxiv:comment>Added details on some moduli spaces, and on Viterbo's transfer map. Corrected minor typos. 47 pages, 3 figures, comments welcome!</arxiv:comment>
+    <arxiv:primary_category term="math.SG"/>
+    <author>
+      <name>Yaniv Ganor</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2407.19693v2</id>
+    <title>Transversal numbers of simplicial polytopes, spheres, and pure complexes</title>
+    <updated>2025-10-07T19:37:58Z</updated>
+    <link href="https://arxiv.org/abs/2407.19693v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2407.19693v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We prove new upper and lower bounds on transversal numbers of several classes of simplicial complexes. Specifically, we establish an upper bound on the transversal numbers of pure simplicial complexes in terms of the number of vertices and the number of facets, and then provide constructions of pure simplicial complexes whose transversal numbers come close to this bound. We introduce a new family of $d$-dimensional polytopes that could be considered as ``siblings'' of cyclic polytopes and show that the transversal ratios of such odd-dimensional polytopes are $2/5-o(1)$. The previous record for the transversal ratios of $(2k+1)$-polytopes was $1/(k+1)$. Finally, we construct infinite families of $3$-, $4$-, and $5$-dimensional simplicial spheres with transversal ratios converging to $4/7$, $1/2$, and $6/11$, respectively. The previous record was $11/21$, $2/5$, and $1/2$, respectively.</summary>
+    <category term="math.CO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-07-29T04:31:50Z</published>
+    <arxiv:comment>27 pages. SIAM J. Discrete Math, to appear. Mistakes in earlier versions of Theorem 5.5 and Lemma 5.10 are corrected</arxiv:comment>
+    <arxiv:primary_category term="math.CO"/>
+    <author>
+      <name>Isabella Novik</name>
+    </author>
+    <author>
+      <name>Hailun Zheng</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2406.08462v3</id>
+    <title>Periodic orbits of non-degenerate lacunary contact forms on prequantization bundles</title>
+    <updated>2026-02-24T19:53:08Z</updated>
+    <link href="https://arxiv.org/abs/2406.08462v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2406.08462v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>A non-degenerate contact form is lacunary if the indexes of every contractible periodic Reeb orbit have the same parity. To the best of our knowledge, every contact form with finitely many periodic orbits known so far is non-degenerate and lacunary. We show that every non-degenerate lacunary contact form on a suitable prequantization of a closed symplectic manifold $B$ has precisely $r_B$ contractible closed orbits, where $r_B=\dim \mathrm{H}_*(B;{\mathbb Q})$. Examples of such prequantizations include the standard contact sphere, the unit cosphere bundle of a compact rank one symmetric space (CROSS) and many others. We also consider some prequantizations of orbifolds, like lens spaces and the unit cosphere bundle of lens spaces, and obtain multiplicity results for these prequantizations.</summary>
+    <category term="math.SG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.DS" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-06-12T17:51:48Z</published>
+    <arxiv:comment>Version 1: 24 pages. Version 2: 25 pages. Minor changes. Version 3: 32 pages. Several changes including an appendix, joint with Baptiste Serraille, where we drop the assumption on the minimal Chern number. To appear in Selecta Mathematica</arxiv:comment>
+    <arxiv:primary_category term="math.SG"/>
+    <author>
+      <name>Miguel Abreu</name>
+    </author>
+    <author>
+      <name>Leonardo Macarini</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2402.10709v1</id>
+    <title>A Multi-Resolution Method for Modelling Galaxy and Massive Black Hole Mergers</title>
+    <updated>2024-02-16T14:12:23Z</updated>
+    <link href="https://arxiv.org/abs/2402.10709v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2402.10709v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The coalescence of the most massive black hole (MBH) binaries releases gravitational waves (GWs) within the detectable frequency range of Pulsar Timing Arrays (PTAs) $(10^{-9} - 10^{-6})$ Hz. The incoherent superposition of GWs from MBH mergers, the stochastic Gravitational Wave Background (GWB), can provide unique information on MBH parameters and the large-scale structure of the Universe. The recent evidence for a GWB reported by the PTAs opens an exciting new window onto MBHs and their host galaxies. However, the astrophysical interpretation of the GWB requires accurate estimations of MBH merger timescales for a statistically representative sample of galaxy mergers. This is numerically challenging; a high numerical resolution is required to avoid spurious relaxation and stochastic effects whilst a large number of simulations is needed to sample a cosmologically representative volume. Here, we present a new multi-mass modelling method to increase the central resolution of a galaxy model at a fixed particle number. We follow mergers of galaxies hosting central MBHs with the Fast Multiple Method code Griffin at two reference resolutions and with two refinement schemes. We show that both refinement schemes are effective at increasing central resolution, reducing spurious relaxation and stochastic effects. A particle number of $N\geq 10^{6}$ within a radius of 5 times the sphere of influence of the MBHs is required to reduce numerical scatter in the binary eccentricity and the coalescence timescale to &lt;30$\%$; a resolution that can only be reached at present with the mass refinement scheme.</summary>
+    <category term="astro-ph.GA" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-02-16T14:12:23Z</published>
+    <arxiv:comment>13 pages, 18 figures, accepted for publication in MNRAS</arxiv:comment>
+    <arxiv:primary_category term="astro-ph.GA"/>
+    <author>
+      <name>Kate Attard</name>
+    </author>
+    <author>
+      <name>Alessia Gualandris</name>
+    </author>
+    <author>
+      <name>Justin I. Read</name>
+    </author>
+    <author>
+      <name>Walter Dehnen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2402.06477v2</id>
+    <title>Semiclassical measures for complex hyperbolic quotients</title>
+    <updated>2025-07-25T21:04:44Z</updated>
+    <link href="https://arxiv.org/abs/2402.06477v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2402.06477v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We study semiclassical measures for Laplacian eigenfunctions on compact complex hyperbolic quotients. Geodesic flows on these quotients are a model case of hyperbolic dynamical systems with different expansion/contraction rates in different directions. We show that the support of any semiclassical measure is either equal to the entire cosphere bundle or contains the cosphere bundle of a compact immersed totally geodesic complex submanifold.
+  The proof uses the one-dimensional fractal uncertainty principle of Bourgain-Dyatlov [arXiv:1612.09040] along the fast expanding/contracting directions, in a way similar to the work of Dyatlov-Jézéquel [arXiv:2108.10463] in the toy model of quantum cat maps, together with a description of the closures of fast unstable/stable trajectories relying on Ratner theory.</summary>
+    <category term="math.AP" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.DS" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.GT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-02-09T15:37:30Z</published>
+    <arxiv:comment>72 pages, 3 figures; revised according to the referees' comments. To appear in GAFA</arxiv:comment>
+    <arxiv:primary_category term="math.AP"/>
+    <author>
+      <name>Jayadev Athreya</name>
+    </author>
+    <author>
+      <name>Semyon Dyatlov</name>
+    </author>
+    <author>
+      <name>Nicholas Miller</name>
+    </author>
+    <arxiv:doi>10.1007/s00039-025-00717-x</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1007/s00039-025-00717-x" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2401.08842v1</id>
+    <title>The chord conjecture for conormal bundles</title>
+    <updated>2024-01-16T21:37:06Z</updated>
+    <link href="https://arxiv.org/abs/2401.08842v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2401.08842v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We prove Arnol'd's chord conjecture for all Legendrian submanifolds of cosphere bundles of closed manifolds isotopic to conormal bundles of closed submanifolds. Our method of proof involves an isomorphism between wrapped Floer cohomology and the homology of a path space with coefficients in a local system and a twisted version of the Hurewicz theorem.</summary>
+    <category term="math.SG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.DG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-01-16T21:37:06Z</published>
+    <arxiv:comment>58 pages, 22 figures</arxiv:comment>
+    <arxiv:primary_category term="math.SG"/>
+    <author>
+      <name>Filip Broćić</name>
+    </author>
+    <author>
+      <name>Dylan Cant</name>
+    </author>
+    <author>
+      <name>Egor Shelukhin</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2302.02355v2</id>
+    <title>A structure theorem for homology 4-manifolds with $g_2\leq 5$</title>
+    <updated>2024-04-18T04:07:56Z</updated>
+    <link href="https://arxiv.org/abs/2302.02355v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2302.02355v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Numerous structural findings of homology manifolds have been derived in various ways in relation to $g_2$-values. The homology $4$-manifolds with $g_2\leq 5$ are characterized combinatorially in this article. It is well-known that all homology $4$-manifolds for $g_2\leq 2$ are polytopal spheres. We demonstrate that homology $4$-manifolds with $g_2\leq 5$ are triangulated spheres and are derived from triangulated 4-spheres with $g_2\leq 2$ by a series of connected sum, bistellar 1- and 2-moves, edge contraction, edge expansion, and edge flipping operations. We establish that the above inequality is optimally attainable, i.e., it cannot be extended to $g_2 = 6$.</summary>
+    <category term="math.GT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.CO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-02-05T10:27:16Z</published>
+    <arxiv:comment>22 pages and 3 figures. To appear in Advances in Applied Mathematics</arxiv:comment>
+    <arxiv:primary_category term="math.GT"/>
+    <arxiv:journal_ref>Adv. in Appl. Math. 157 (2024), Paper No. 102705, 26 pp</arxiv:journal_ref>
+    <author>
+      <name>Biplab Basak</name>
+    </author>
+    <author>
+      <name>Sourav Sarkar</name>
+    </author>
+    <arxiv:doi>10.1016/j.aam.2024.102705</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1016/j.aam.2024.102705" title="doi"/>
+  </entry>
+</feed>

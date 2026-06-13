@@ -1,0 +1,90 @@
+=== n=9 edges 11:20 ===
+processed 475 graphs, 285 exceeded m(n,gamma) pre-uniqueness
+=== n=10 edges 16:25 ===
+processed 848 graphs, 425 exceeded m(n,gamma) pre-uniqueness
+=== n=11 edges 21:30 ===
+processed 1388 graphs, 571 exceeded m(n,gamma) pre-uniqueness
+=== n=12 edges 17:36 ===
+processed 160157 graphs, 29334 exceeded m(n,gamma) pre-uniqueness
+=== n=13 edges 22:42 ===
+VIOLATION L??CA?oBDwN_~? n=13 gamma=4 edges=22 m=21
+processed 1096772 graphs, 150828 exceeded m(n,gamma) pre-uniqueness
+--- small sweep done ---
+=== n=14 edges 27:49 ===
+VIOLATION M???C@_E?K^_~_~_? n=14 gamma=4 edges=27 m=26
+VIOLATION M???C@_E?K^o~_~_? n=14 gamma=4 edges=28 m=26
+VIOLATION M??CA?oBDoN_~?~?? n=14 gamma=4 edges=27 m=26
+VIOLATION M??CA?oBFoV_^?~?? n=14 gamma=4 edges=27 m=26
+VIOLATION M??CA?oBDwN_n?~?? n=14 gamma=4 edges=27 m=26
+VIOLATION M??CA?oBDwN_~?~?? n=14 gamma=4 edges=28 m=26
+processed 9389695 graphs, 1021006 exceeded m(n,gamma) pre-uniqueness
+--- n=14 done ---
+=== n=15 edges 32:56 ===
+VIOLATION N??????{FW[Wygyg^O? n=15 gamma=4 edges=32 m=31
+VIOLATION N??????}Fo[otO|G]c? n=15 gamma=4 edges=32 m=31
+VIOLATION N??????}Fg^?wo{g]S? n=15 gamma=4 edges=32 m=31
+VIOLATION N??????}Fg]OwW}O]g? n=15 gamma=4 edges=32 m=31
+VIOLATION N??????}Fg\OxOzG\c? n=15 gamma=4 edges=32 m=31
+VIOLATION N??????}Fg\OrOzG\c? n=15 gamma=4 edges=32 m=31
+VIOLATION N??????}Fg[Wwg}_]W? n=15 gamma=4 edges=32 m=31
+VIOLATION N??????}Fg[W{g{g^O? n=15 gamma=4 edges=33 m=31
+VIOLATION N????A?W?o?w~o~o^w? n=15 gamma=4 edges=32 m=31
+VIOLATION N????A?]BkMoxO~?^_? n=15 gamma=4 edges=32 m=31
+VIOLATION N????A?]BkMoxO~?]o? n=15 gamma=4 edges=32 m=31
+VIOLATION N????A?^Bw]Oy_{O^_? n=15 gamma=4 edges=32 m=31
+VIOLATION N????A?^Bw]OyO}?^_? n=15 gamma=4 edges=32 m=31
+VIOLATION N????A?^BsN_]_}?^G? n=15 gamma=4 edges=32 m=31
+VIOLATION N????A?^BsN_]_{O^G? n=15 gamma=4 edges=32 m=31
+VIOLATION N????A?^BsN_]O]_^G? n=15 gamma=4 edges=32 m=31
+VIOLATION N????B?mFg\O]O]O^G? n=15 gamma=4 edges=32 m=31
+VIOLATION N????B?mFgVO]O]O^G? n=15 gamma=4 edges=32 m=31
+VIOLATION N????B?NDcVGmO~?^_? n=15 gamma=4 edges=32 m=31
+VIOLATION N????B?N@sVGmO~?^_? n=15 gamma=4 edges=32 m=31
+VIOLATION N????B_eFg\O]O]O^G? n=15 gamma=4 edges=32 m=31
+VIOLATION N????B_eFgZO]O]O^G? n=15 gamma=4 edges=32 m=31
+VIOLATION N????B_FEcZGuO~?^_? n=15 gamma=4 edges=32 m=31
+VIOLATION N???C@?K?[V_^_~_^o? n=15 gamma=4 edges=32 m=31
+VIOLATION N???C@?K?[To^_~_^o? n=15 gamma=4 edges=32 m=31
+VIOLATION N???C@?K?[Vo^_~?^o? n=15 gamma=4 edges=32 m=31
+VIOLATION N???C@?K?[Vo^_z_^o? n=15 gamma=4 edges=32 m=31
+VIOLATION N???C@?K?[Vo^_n_^o? n=15 gamma=4 edges=32 m=31
+VIOLATION N???C@?K?[Vo^_~_^o? n=15 gamma=4 edges=33 m=31
+VIOLATION N???C@_E?K]?~_~_^o? n=15 gamma=4 edges=32 m=31
+VIOLATION N???C@_E?K^?~?~_^o? n=15 gamma=4 edges=32 m=31
+VIOLATION N???C@_E?K^?|_~_^o? n=15 gamma=4 edges=32 m=31
+VIOLATION N???C@_E?K^?~_~_^o? n=15 gamma=4 edges=33 m=31
+VIOLATION N???C@_E?KY_~_~_^o? n=15 gamma=4 edges=32 m=31
+VIOLATION N???C@_E?K]_~?~_^o? n=15 gamma=4 edges=32 m=31
+VIOLATION N???C@_E?K]_}_~_^o? n=15 gamma=4 edges=32 m=31
+VIOLATION N???C@_E?K]_v_~_^o? n=15 gamma=4 edges=32 m=31
+VIOLATION N???C@_E?K]_~_~_^o? n=15 gamma=4 edges=33 m=31
+VIOLATION N???C@_E?K^_~?~?^o? n=15 gamma=4 edges=32 m=31
+VIOLATION N???C@_E?K^_~?}_^o? n=15 gamma=4 edges=32 m=31
+VIOLATION N???C@_E?K^_~?|_^o? n=15 gamma=4 edges=32 m=31
+VIOLATION N???C@_E?K^_~?~_^o? n=15 gamma=4 edges=33 m=31
+VIOLATION N???C@_E?K^_}_|_^o? n=15 gamma=4 edges=32 m=31
+VIOLATION N???C@_E?K^_}_~_^o? n=15 gamma=4 edges=33 m=31
+VIOLATION N???C@_E?K^_|_v_^o? n=15 gamma=4 edges=32 m=31
+VIOLATION N???C@_E?K^_|_~_^o? n=15 gamma=4 edges=33 m=31
+VIOLATION N???C@_E?K^_~_~_^o? n=15 gamma=4 edges=34 m=31
+VIOLATION N???C@_E?K^o~_~_^o? n=15 gamma=4 edges=35 m=31
+VIOLATION N???C@_FAsJO~?~?^_? n=15 gamma=4 edges=32 m=31
+VIOLATION N???E?oBFo^?}?|??Rw n=15 gamma=4 edges=32 m=31
+VIOLATION N???E?oBFo^?|?|??Rw n=15 gamma=4 edges=32 m=31
+VIOLATION N??CA?oBFOV_^?~?^_? n=15 gamma=4 edges=32 m=31
+VIOLATION N??CA?oBDo\_^?~?^_? n=15 gamma=4 edges=32 m=31
+VIOLATION N??CA?oBDoN_}?~?^_? n=15 gamma=4 edges=32 m=31
+VIOLATION N??CA?oBDoN_n?~?^_? n=15 gamma=4 edges=32 m=31
+VIOLATION N??CA?oBDoN_^?~?^_? n=15 gamma=4 edges=32 m=31
+VIOLATION N??CA?oBFo\_n?^?^_? n=15 gamma=4 edges=32 m=31
+VIOLATION N??CA?oBFoV_^?}?^_? n=15 gamma=4 edges=32 m=31
+VIOLATION N??CA?oBFoV_^?|?^_? n=15 gamma=4 edges=32 m=31
+VIOLATION N??CA?oBFoV_^?~?^_? n=15 gamma=4 edges=33 m=31
+VIOLATION N??CA?oBDwN_n?}?^_? n=15 gamma=4 edges=32 m=31
+VIOLATION N??CA?oBDwN_n?n?^_? n=15 gamma=4 edges=32 m=31
+VIOLATION N??CA?oBDwN_n?^?^_? n=15 gamma=4 edges=32 m=31
+VIOLATION N??CA?oBDwN_n?~?^_? n=15 gamma=4 edges=33 m=31
+VIOLATION N??CA?oBDwN_~?~?^_? n=15 gamma=4 edges=34 m=31
+processed 109693428 graphs, 11309134 exceeded m(n,gamma) pre-uniqueness
+--- n=15 done ---
+ALL DONE

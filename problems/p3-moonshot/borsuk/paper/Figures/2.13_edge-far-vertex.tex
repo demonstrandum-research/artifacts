@@ -1,0 +1,40 @@
+%EXAMPLE: Lemma 2.3 <v,a> = min <x,a> picture
+
+\begin{figure}[H]
+    \centering
+        \begin{tikzpicture}[thick, scale=0.8]\vspace{0.5cm}
+        \draw[line width=0.3mm, white](0,0.5) -- (7,0.5) ;
+    
+        \foreach \x in {-2,...,8} {
+            \foreach \y in {0,...,5} {
+                \node at (\x,\y) [circle, draw=lightgray, fill= lightgray, minimum width=1.5pt] {};   
+            }
+        }
+    
+         \draw[line width=0.3mm, darklav, opacity=0.8](3.5,0) --+ (2.5,5);
+         \draw[line width=0.3mm, darklav, opacity=0.8](-1,0) --+ (2.5,5);
+         \draw[line width=0.3mm, black] (1,1) -- (0,2)-- (3,4) -- (4,4)  -- (5,3)  -- (4,1) -- cycle;
+         \draw[line width=0.6mm, black] (5,3)  -- (4,1);
+         \draw[line width=0.3mm, orange](0,2) -- (4.5,2);
+         %\draw[line width=0.3mm, darklav,-{Latex[round]}](4.75,2.5) --+ (0.8,-0.4);
+
+         
+         \draw[line width=0.3mm, darklav,-{Latex[round]}](6,1) --+ (0.8,-0.4);
+         \node at (6,1) [circle, fill=black, minimum width=4pt] {};
+         \draw(7,0.5)node[darklav]{$\ba$};
+         \draw(5.8,0.5)node[black]{$(0,0)$};
+         
+         \foreach \p in {(0,2), (1,2),(2,2),(3,2), (4,2)} {
+                \node at \p [circle, fill=orange, minimum width=4pt] {};
+            }
+       
+       \draw(-0.5,2)node[orange]{$\bv$};
+       \draw(2.35,2.37)node[orange]{$L \cap P$};
+       \draw(5.5,2.4)node[black]{$\footnotesize \text{edge } e$};
+       \draw(-2.2,2)node[orange]{$\footnotesize \text{opposite vertex} $};
+       \draw(-0.7,3.5)node[darklav]{$H(\ba,\langle \ba, \bv \rangle)$};
+       \draw(6,3.5)node[darklav]{$\footnotesize\aff(e)$};
+ \end{tikzpicture} 
+    \caption{A lattice diameter line passing through an edge and its opposite vertex.}
+    \label{fig:edge-far-vertex}
+\end{figure}

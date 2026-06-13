@@ -1,0 +1,82 @@
+\subsection{Hardness of computing lattice diameters in dimensions three and higher}\label{sec:NP-hard}
+
+A key ingredient in our algorithm to compute lattice diameters of lattice polygons is the existence of lattice diameter lines that pass through vertices. This fails in higher dimensions, as the following example shows.
+
+\begin{example}\label{ex:LD-3d-interior}
+For $\bv_1 = (-1,0), \, \bv_2 = (0,-1), \, \bv_3 = (1,1)$, let
+\[
+P=\conv (\{ (-m,\bv_1), (-m,\bv_2), (-m+1,\bv_3),(m,-\bv_1),(m,-\bv_2),(m-1,-\bv_3)\}),
+\]
+where $m \geq 2$. The unique lattice diameter segment of $P$ is the segment on the first-coordinate axis, from values $-(m-1)$ to $m-1$. It does not pass through a vertex of $P$, not even through a lattice point on the boundary of $P$. \Cref{fig:3d-novertex} depicts this polytope for $m=3$ with its lattice diameter segment in orange.
+
+\input{Figures/1.3_3d-novertex-h}
+% \begin{figure}[ht!]
+%     \centering
+% \includegraphics[width=0.37\linewidth]{Figures/1.3_3d-novertex.png}
+%     \caption{A unique lattice diameter segment contained in the interior of $P$.}
+%     \label{fig:3d-novertex}
+% \end{figure}
+\end{example}
+
+We show that in a general setting computing lattice diameters becomes $\NP$-hard.
+
+\begin{theorem}\label{thm:NP-hard}
+     Let $d \geq 3$ and let $K \subseteq \R^d$ be a $d$-dimensional bounded semi-algebraic set. \mbox{Computing} the lattice diameter of $K$ is $\NP$-hard.
+\end{theorem}
+
+\begin{proof}
+For integers $a,b,c>0$ let $f(x,y):=(x^2-a-by)^2$ and $R(a,b,c):=\{ (x,y) \st 1 \leq x \leq c-1, \frac{1-a}{b} \leq y \leq \frac{(c-1)^2-a}{b}\}$.
+It was shown in~\cite[Lemma 2.1]{Lemma2.1} that deciding whether the minimum of $f$ over $R \cap \Z^2$ is zero, is $\NP$-hard. This is a polynomial-time reduction from the $\NP$-complete problem AN1 in \cite[p.~249]{GJ}. We may assume that $c>\max\{2,b\}$ (which can be checked in constant time), otherwise $R \cap \Z^2 = \emptyset$. Under these assumptions $R$ is also two-dimensional.
+
+% The problem AN1 is still $\NP$-complete when restricting to these integers since the case $c=1$ has no solutions, and the case $c=2$ asks whether for given $a,b>0$ and $x=1$, we have $x^2=1 \equiv a \pmod b$. 
+
+%If $R \cap \Z^2$ is empty (which can be determined in polynomial-time by linear programming \cite{LP_Poly}) \Anouksays{update to the better 2d reference!}, there is no minimum of $f$ over $R \cap \Z^2$, so .
+
+We construct a three-dimensional semi-algebraic set $K$ with description length polynomial in $a,b,c$, such that determining the lattice diameter of $K$ corresponds to determining the minimum value of $f$ on $R \cap\Z^2$.
+
+\textit{Construction of $K$:} Let $\bp=(1,\lceil \frac{1-a}{b} \rceil ) \in R \cap \Z^2$, $Z:=f(\bp) + \max\{  \lfloor \frac{c^2-2c}{b}\rfloor +1,c-1\}$, and define $ K:= \{ (x,y,z) \st (x,y) \in R, \ f(x,y) \leq z \leq Z \}.$ $K$ is bounded above by $R \times \{Z\}$ and below by the graph of $f$. \Cref{fig:NP-hard-graph} is a sketch of this. 
+
+    \input{Figures/3.20_NP-hard}
+% \begin{figure}[ht!]
+%     \centering
+% \includegraphics[width=0.7\linewidth]{Figures/3.20_NP-hard-graph.png}
+%     \caption{$K$ shaded in gray, lattice diameter segment in orange}
+%     \label{fig:NP-hard-graph}
+% \end{figure}
+     
+The choice of $Z$ ensures that a small region around the segment $S_\bp:=[(\bp,f(\bp)),(\bp,Z)]$ is contained in the interior of $K$, thus $\dim K =3$.
+Furthermore, $S_\bp$ contains at least $\max\{ \lfloor\frac{c^2-2c}{b}\rfloor +1,c-1\} +1$ lattice points. Any segment not in direction $(0,0,1)$ projects to a segment in the $x$-axis, or $y$-axis, but the number of lattice points in the projection of $K$ to these axes is bounded by $c-1$, and $\lfloor \frac{c^2-2c}{b}\rfloor +1$, respectively. Thus a lattice diameter line of $K$ must have direction $(0,0,1)$. Then, for a lattice diameter line $L$ of $K$
+\begin{align*}
+         |L \cap K \cap \Z^3| = Z-\min_{(x,y) \in R \cap \Z^2}f(x,y) +1.
+     \end{align*}
+So $|L \cap K \cap \Z^3|=Z-1$ if and only if $\min_{(x,y)\in R \cap \Z^2} f(x,y)=0$, which means that determining the lattice diameter of $K$ is $\NP$-hard.
+
+For $d \geq 3$ consider $K_d:=[0,1]^{d-3} \times K$, which, as a Cartesian product of semi-algebraic sets, is a semi-algebraic set. Analogously, a lattice diameter line of $K_d$ has direction $(0,\ldots,0,1)$, and determining whether the lattice diameter is $Z-1$ is $\NP$-hard, since it determines whether the minimum of $f$ over $R \cap \Z^2$ is zero.
+
+Lastly, note that $K_d$ for $d \geq 3$ is defined by a single quartic polynomial, a constant inequality, which are both polynomial in $a,b,c$, and $2^{d-3}$ linear inequalities in $0$ and $1$ (for $[0,1]^{d-3}$). Hence the description length of $K$ and $K_d$ are polynomial in the encoding length of $a,b$ and $c$.
+\end{proof}
+
+\begin{remark}
+    The construction of $K$ is such that the lattice diameter is guaranteed to have direction $(0, \ldots, 0,1)$. Thus we proved that computing a lattice diameter of a bounded semi-algebraic set, even in a fixed direction, is $\NP$-hard.
+\end{remark}
+
+Furthermore, we conjecture that this computation stays hard, even for lattice polytopes:
+
+\begin{conjecture}
+    Let $d \geq 3$ and let $P$ be a lattice $d$-polytope. Computing a lattice diameter of $P$ is an $\NP$-hard problem.
+\end{conjecture}
+
+
+%DETAILS
+     % \begin{enumerate} [label=$(\roman*)$]
+     %     \item $\dim K =3$, since $f(\bp)<Z$, so the segment between $(\bp,f(\bp))$ and $(\bp,Z)$ is in $K$ and also the graph of a neighborhood of $p$ lies below $R \times \{Z\}$, so their convex hull yields a $3$-dimensional region in $K$.
+     %     \item The segment between $(\bp,f(\bp))$ to $(\bp,Z)$ contains at least $\max\{ \lfloor\frac{c^2-2c}{b}\rfloor +1,c-1\} \rfloor +1$ lattice points (the additional $+1$ is because $(\bp,f(\bp))$ is a lattice point itself). Consider a lattice line whose direction is not purely the third coordinate direction. Its lattice points project to lattice points on a line in $R$, whose number is bounded by the side lengths of $R$ plus one, i.e.~bounded by $c-1$ and by $\lfloor \frac{c^2-2c}{b}\rfloor +1$. This means that the direction of any lattice diameter of $K$ must be in direction $\spn\{0,0,1\}$.
+     % \end{enumerate}
+    
+%DETAILS
+     % Again any lattice line that is not purely in the third coordinate direction projects to a lattice line in the other coordinate directions which are bounded by the side-lengths of $R$ for the first two coordinates, and by $1$ for the latter coordinates. In all cases the line from $(\bp,f(\bp),0, \ldots ,0)$ to $(\bp,Z,0, \ldots ,0)$ is longer than the projection of the other coordinate directions, which guarantees that a lattice diameter of $K'$ must be purely in the third coordinate direction, i.e.~if $L$ denotes the its length is again
+     % \begin{align*}
+     %      |L \cap K' \cap  \Z^d| = Z-\min_{(x,y) \in R \cap d\Z^2}f(x,y) +1.
+     % \end{align*}
+     % So $\min_{(x,y)\in R \cap \Z^2}f(x,y)=0$ if and only if $|L \cap K \cap \Z^d| = Z-1$.
+

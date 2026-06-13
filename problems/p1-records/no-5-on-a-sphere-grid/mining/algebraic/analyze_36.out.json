@@ -1,0 +1,1373 @@
+[
+ {
+  "name": "record36_centralsym",
+  "size": 36,
+  "antipodal_pairs_about_666": 18,
+  "fixed_center_points": 0,
+  "d_vectors": [
+   [
+    0,
+    6,
+    2
+   ],
+   [
+    1,
+    -5,
+    3
+   ],
+   [
+    1,
+    4,
+    4
+   ],
+   [
+    1,
+    6,
+    6
+   ],
+   [
+    2,
+    -2,
+    3
+   ],
+   [
+    2,
+    3,
+    1
+   ],
+   [
+    3,
+    -1,
+    -4
+   ],
+   [
+    3,
+    1,
+    -1
+   ],
+   [
+    3,
+    5,
+    -4
+   ],
+   [
+    4,
+    -2,
+    5
+   ],
+   [
+    4,
+    0,
+    -6
+   ],
+   [
+    5,
+    -6,
+    -5
+   ],
+   [
+    5,
+    0,
+    2
+   ],
+   [
+    5,
+    2,
+    5
+   ],
+   [
+    6,
+    -6,
+    6
+   ],
+   [
+    6,
+    -3,
+    -4
+   ],
+   [
+    6,
+    3,
+    -1
+   ],
+   [
+    6,
+    5,
+    -6
+   ]
+  ],
+  "d_norms": [
+   11,
+   14,
+   17,
+   26,
+   29,
+   33,
+   35,
+   40,
+   45,
+   46,
+   50,
+   52,
+   54,
+   61,
+   73,
+   86,
+   97,
+   108
+  ],
+  "d_norms_mod13": [
+   0,
+   0,
+   1,
+   1,
+   2,
+   3,
+   4,
+   4,
+   6,
+   6,
+   7,
+   7,
+   8,
+   8,
+   9,
+   9,
+   11,
+   11
+  ],
+  "d_norm_counter": {
+   "40": 1,
+   "35": 1,
+   "33": 1,
+   "73": 1,
+   "17": 1,
+   "14": 1,
+   "26": 1,
+   "11": 1,
+   "50": 1,
+   "45": 1,
+   "52": 1,
+   "86": 1,
+   "29": 1,
+   "54": 1,
+   "108": 1,
+   "61": 1,
+   "46": 1,
+   "97": 1
+  },
+  "vanishing": {
+   "deg1": {
+    "n_monomials": 4,
+    "rank_Q": 4,
+    "indep_forms_vanishing_Q": 0,
+    "rank_F13": 4,
+    "forms_vanishing_F13": 0
+   },
+   "deg2": {
+    "n_monomials": 10,
+    "rank_Q": 10,
+    "indep_forms_vanishing_Q": 0,
+    "rank_F13": 10,
+    "forms_vanishing_F13": 0
+   },
+   "deg3": {
+    "n_monomials": 20,
+    "rank_Q": 20,
+    "indep_forms_vanishing_Q": 0,
+    "rank_F13": 20,
+    "forms_vanishing_F13": 0
+   },
+   "deg4": {
+    "n_monomials": 35,
+    "rank_Q": 31,
+    "indep_forms_vanishing_Q": 4,
+    "rank_F13": 31,
+    "forms_vanishing_F13": 4
+   },
+   "lifted_deg2": {
+    "n_monomials": 15,
+    "rank_Q": 14,
+    "rank_F13": 14,
+    "note": "1 relation (w - x^2-y^2-z^2) guaranteed; deficiency beyond rank 14 is structure"
+   }
+  },
+  "layer_profiles": {
+   "x": [
+    4,
+    4,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "y": [
+    4,
+    4,
+    4,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    2,
+    1,
+    1
+   ],
+   "z": [
+    4,
+    4,
+    4,
+    4,
+    3,
+    3,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2
+   ]
+  },
+  "layers_used": {
+   "x": 13,
+   "y": 13,
+   "z": 12
+  },
+  "parity_classes": [
+   6,
+   6,
+   4,
+   4,
+   4,
+   4,
+   4,
+   4
+  ],
+  "surface_points": 16,
+  "norm_mod13_distribution": {
+   "0": 2,
+   "1": 4,
+   "2": 5,
+   "3": 2,
+   "4": 1,
+   "5": 5,
+   "6": 5,
+   "7": 2,
+   "10": 1,
+   "11": 3,
+   "12": 6
+  },
+  "sum_mod13_distribution": {
+   "0": 3,
+   "1": 2,
+   "2": 2,
+   "3": 2,
+   "4": 3,
+   "5": 2,
+   "6": 3,
+   "7": 2,
+   "8": 2,
+   "9": 2,
+   "10": 3,
+   "11": 5,
+   "12": 5
+  },
+  "cube_stabilizer_order": 2,
+  "cube_stabilizer": [
+   [
+    [
+     0,
+     1,
+     2
+    ],
+    [
+     1,
+     1,
+     1
+    ]
+   ],
+   [
+    [
+     0,
+     1,
+     2
+    ],
+    [
+     -1,
+     -1,
+     -1
+    ]
+   ]
+  ],
+  "collinear_triples": 0,
+  "coplanar_quadruples": 241,
+  "dets": {
+   "n_5subsets": 376992,
+   "min_abs_det": 2,
+   "zero_mod13": 30032,
+   "expected_mod13": 28999.4,
+   "zero_mod169": 2356,
+   "expected_mod169": 2230.7
+  }
+ },
+ {
+  "name": "record35_baseline.json",
+  "size": 35,
+  "antipodal_pairs_about_666": 0,
+  "fixed_center_points": 0,
+  "vanishing": {
+   "deg1": {
+    "n_monomials": 4,
+    "rank_Q": 4,
+    "indep_forms_vanishing_Q": 0,
+    "rank_F13": 4,
+    "forms_vanishing_F13": 0
+   },
+   "deg2": {
+    "n_monomials": 10,
+    "rank_Q": 10,
+    "indep_forms_vanishing_Q": 0,
+    "rank_F13": 10,
+    "forms_vanishing_F13": 0
+   },
+   "deg3": {
+    "n_monomials": 20,
+    "rank_Q": 20,
+    "indep_forms_vanishing_Q": 0,
+    "rank_F13": 20,
+    "forms_vanishing_F13": 0
+   },
+   "deg4": {
+    "n_monomials": 35,
+    "rank_Q": 35,
+    "indep_forms_vanishing_Q": 0,
+    "rank_F13": 35,
+    "forms_vanishing_F13": 0
+   },
+   "lifted_deg2": {
+    "n_monomials": 15,
+    "rank_Q": 14,
+    "rank_F13": 14,
+    "note": "1 relation (w - x^2-y^2-z^2) guaranteed; deficiency beyond rank 14 is structure"
+   }
+  },
+  "layer_profiles": {
+   "x": [
+    4,
+    4,
+    4,
+    4,
+    3,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1
+   ],
+   "y": [
+    4,
+    4,
+    4,
+    4,
+    3,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1
+   ],
+   "z": [
+    4,
+    4,
+    4,
+    3,
+    3,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1
+   ]
+  },
+  "layers_used": {
+   "x": 13,
+   "y": 13,
+   "z": 13
+  },
+  "parity_classes": [
+   6,
+   5,
+   5,
+   5,
+   4,
+   4,
+   3,
+   3
+  ],
+  "surface_points": 18,
+  "norm_mod13_distribution": {
+   "0": 5,
+   "1": 5,
+   "2": 2,
+   "3": 2,
+   "4": 3,
+   "5": 3,
+   "6": 2,
+   "7": 2,
+   "8": 3,
+   "9": 3,
+   "10": 3,
+   "11": 1,
+   "12": 1
+  },
+  "sum_mod13_distribution": {
+   "0": 2,
+   "1": 2,
+   "2": 5,
+   "3": 3,
+   "4": 2,
+   "5": 4,
+   "6": 3,
+   "7": 4,
+   "8": 1,
+   "9": 1,
+   "10": 5,
+   "11": 1,
+   "12": 2
+  },
+  "cube_stabilizer_order": 1,
+  "cube_stabilizer": [
+   [
+    [
+     0,
+     1,
+     2
+    ],
+    [
+     1,
+     1,
+     1
+    ]
+   ]
+  ],
+  "collinear_triples": 0,
+  "coplanar_quadruples": 115
+ },
+ {
+  "name": "record35_blockerrepair_1.json",
+  "size": 35,
+  "antipodal_pairs_about_666": 0,
+  "fixed_center_points": 0,
+  "vanishing": {
+   "deg1": {
+    "n_monomials": 4,
+    "rank_Q": 4,
+    "indep_forms_vanishing_Q": 0,
+    "rank_F13": 4,
+    "forms_vanishing_F13": 0
+   },
+   "deg2": {
+    "n_monomials": 10,
+    "rank_Q": 10,
+    "indep_forms_vanishing_Q": 0,
+    "rank_F13": 10,
+    "forms_vanishing_F13": 0
+   },
+   "deg3": {
+    "n_monomials": 20,
+    "rank_Q": 20,
+    "indep_forms_vanishing_Q": 0,
+    "rank_F13": 20,
+    "forms_vanishing_F13": 0
+   },
+   "deg4": {
+    "n_monomials": 35,
+    "rank_Q": 35,
+    "indep_forms_vanishing_Q": 0,
+    "rank_F13": 35,
+    "forms_vanishing_F13": 0
+   },
+   "lifted_deg2": {
+    "n_monomials": 15,
+    "rank_Q": 14,
+    "rank_F13": 14,
+    "note": "1 relation (w - x^2-y^2-z^2) guaranteed; deficiency beyond rank 14 is structure"
+   }
+  },
+  "layer_profiles": {
+   "x": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    3,
+    3,
+    3,
+    2,
+    2,
+    1,
+    1
+   ],
+   "y": [
+    4,
+    4,
+    4,
+    4,
+    3,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "z": [
+    4,
+    4,
+    4,
+    4,
+    3,
+    3,
+    3,
+    3,
+    2,
+    2,
+    2,
+    1
+   ]
+  },
+  "layers_used": {
+   "x": 12,
+   "y": 12,
+   "z": 12
+  },
+  "parity_classes": [
+   5,
+   5,
+   5,
+   4,
+   4,
+   4,
+   4,
+   4
+  ],
+  "surface_points": 16,
+  "norm_mod13_distribution": {
+   "0": 2,
+   "1": 3,
+   "2": 3,
+   "3": 3,
+   "4": 2,
+   "5": 1,
+   "6": 2,
+   "7": 1,
+   "8": 6,
+   "9": 4,
+   "10": 3,
+   "11": 2,
+   "12": 3
+  },
+  "sum_mod13_distribution": {
+   "0": 4,
+   "1": 1,
+   "2": 3,
+   "3": 2,
+   "4": 4,
+   "5": 4,
+   "6": 1,
+   "7": 2,
+   "8": 3,
+   "9": 3,
+   "10": 3,
+   "11": 2,
+   "12": 3
+  },
+  "cube_stabilizer_order": 1,
+  "cube_stabilizer": [
+   [
+    [
+     0,
+     1,
+     2
+    ],
+    [
+     1,
+     1,
+     1
+    ]
+   ]
+  ],
+  "collinear_triples": 0,
+  "coplanar_quadruples": 98
+ },
+ {
+  "name": "record35_blockerrepair_2.json",
+  "size": 35,
+  "antipodal_pairs_about_666": 0,
+  "fixed_center_points": 0,
+  "vanishing": {
+   "deg1": {
+    "n_monomials": 4,
+    "rank_Q": 4,
+    "indep_forms_vanishing_Q": 0,
+    "rank_F13": 4,
+    "forms_vanishing_F13": 0
+   },
+   "deg2": {
+    "n_monomials": 10,
+    "rank_Q": 10,
+    "indep_forms_vanishing_Q": 0,
+    "rank_F13": 10,
+    "forms_vanishing_F13": 0
+   },
+   "deg3": {
+    "n_monomials": 20,
+    "rank_Q": 20,
+    "indep_forms_vanishing_Q": 0,
+    "rank_F13": 20,
+    "forms_vanishing_F13": 0
+   },
+   "deg4": {
+    "n_monomials": 35,
+    "rank_Q": 35,
+    "indep_forms_vanishing_Q": 0,
+    "rank_F13": 35,
+    "forms_vanishing_F13": 0
+   },
+   "lifted_deg2": {
+    "n_monomials": 15,
+    "rank_Q": 14,
+    "rank_F13": 14,
+    "note": "1 relation (w - x^2-y^2-z^2) guaranteed; deficiency beyond rank 14 is structure"
+   }
+  },
+  "layer_profiles": {
+   "x": [
+    4,
+    4,
+    4,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    2,
+    2,
+    1,
+    1
+   ],
+   "y": [
+    4,
+    4,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    2,
+    1,
+    1
+   ],
+   "z": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    3,
+    2,
+    2,
+    2,
+    1,
+    1
+   ]
+  },
+  "layers_used": {
+   "x": 13,
+   "y": 13,
+   "z": 12
+  },
+  "parity_classes": [
+   6,
+   5,
+   5,
+   5,
+   4,
+   4,
+   3,
+   3
+  ],
+  "surface_points": 16,
+  "norm_mod13_distribution": {
+   "1": 5,
+   "2": 3,
+   "3": 1,
+   "4": 1,
+   "5": 7,
+   "6": 2,
+   "7": 1,
+   "9": 2,
+   "10": 3,
+   "11": 3,
+   "12": 7
+  },
+  "sum_mod13_distribution": {
+   "0": 1,
+   "2": 1,
+   "3": 5,
+   "4": 1,
+   "5": 2,
+   "6": 4,
+   "7": 5,
+   "8": 3,
+   "9": 4,
+   "10": 3,
+   "11": 2,
+   "12": 4
+  },
+  "cube_stabilizer_order": 1,
+  "cube_stabilizer": [
+   [
+    [
+     0,
+     1,
+     2
+    ],
+    [
+     1,
+     1,
+     1
+    ]
+   ]
+  ],
+  "collinear_triples": 2,
+  "coplanar_quadruples": 180
+ },
+ {
+  "name": "record35_blockerrepair_3.json",
+  "size": 35,
+  "antipodal_pairs_about_666": 0,
+  "fixed_center_points": 0,
+  "vanishing": {
+   "deg1": {
+    "n_monomials": 4,
+    "rank_Q": 4,
+    "indep_forms_vanishing_Q": 0,
+    "rank_F13": 4,
+    "forms_vanishing_F13": 0
+   },
+   "deg2": {
+    "n_monomials": 10,
+    "rank_Q": 10,
+    "indep_forms_vanishing_Q": 0,
+    "rank_F13": 10,
+    "forms_vanishing_F13": 0
+   },
+   "deg3": {
+    "n_monomials": 20,
+    "rank_Q": 20,
+    "indep_forms_vanishing_Q": 0,
+    "rank_F13": 20,
+    "forms_vanishing_F13": 0
+   },
+   "deg4": {
+    "n_monomials": 35,
+    "rank_Q": 35,
+    "indep_forms_vanishing_Q": 0,
+    "rank_F13": 35,
+    "forms_vanishing_F13": 0
+   },
+   "lifted_deg2": {
+    "n_monomials": 15,
+    "rank_Q": 14,
+    "rank_F13": 14,
+    "note": "1 relation (w - x^2-y^2-z^2) guaranteed; deficiency beyond rank 14 is structure"
+   }
+  },
+  "layer_profiles": {
+   "x": [
+    4,
+    4,
+    4,
+    4,
+    3,
+    3,
+    3,
+    3,
+    2,
+    2,
+    1,
+    1,
+    1
+   ],
+   "y": [
+    4,
+    4,
+    4,
+    4,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    1,
+    1
+   ],
+   "z": [
+    4,
+    4,
+    4,
+    4,
+    3,
+    3,
+    3,
+    3,
+    2,
+    2,
+    1,
+    1,
+    1
+   ]
+  },
+  "layers_used": {
+   "x": 13,
+   "y": 12,
+   "z": 13
+  },
+  "parity_classes": [
+   6,
+   5,
+   5,
+   5,
+   4,
+   4,
+   4,
+   2
+  ],
+  "surface_points": 15,
+  "norm_mod13_distribution": {
+   "0": 3,
+   "1": 2,
+   "2": 1,
+   "3": 4,
+   "4": 3,
+   "5": 2,
+   "6": 3,
+   "7": 1,
+   "8": 3,
+   "9": 5,
+   "10": 5,
+   "11": 2,
+   "12": 1
+  },
+  "sum_mod13_distribution": {
+   "0": 2,
+   "1": 2,
+   "2": 4,
+   "3": 4,
+   "4": 3,
+   "5": 1,
+   "6": 3,
+   "7": 1,
+   "8": 4,
+   "9": 2,
+   "10": 4,
+   "11": 4,
+   "12": 1
+  },
+  "cube_stabilizer_order": 1,
+  "cube_stabilizer": [
+   [
+    [
+     0,
+     1,
+     2
+    ],
+    [
+     1,
+     1,
+     1
+    ]
+   ]
+  ],
+  "collinear_triples": 0,
+  "coplanar_quadruples": 121
+ },
+ {
+  "name": "record35_blockerrepair_4.json",
+  "size": 35,
+  "antipodal_pairs_about_666": 1,
+  "fixed_center_points": 0,
+  "vanishing": {
+   "deg1": {
+    "n_monomials": 4,
+    "rank_Q": 4,
+    "indep_forms_vanishing_Q": 0,
+    "rank_F13": 4,
+    "forms_vanishing_F13": 0
+   },
+   "deg2": {
+    "n_monomials": 10,
+    "rank_Q": 10,
+    "indep_forms_vanishing_Q": 0,
+    "rank_F13": 10,
+    "forms_vanishing_F13": 0
+   },
+   "deg3": {
+    "n_monomials": 20,
+    "rank_Q": 20,
+    "indep_forms_vanishing_Q": 0,
+    "rank_F13": 20,
+    "forms_vanishing_F13": 0
+   },
+   "deg4": {
+    "n_monomials": 35,
+    "rank_Q": 35,
+    "indep_forms_vanishing_Q": 0,
+    "rank_F13": 35,
+    "forms_vanishing_F13": 0
+   },
+   "lifted_deg2": {
+    "n_monomials": 15,
+    "rank_Q": 14,
+    "rank_F13": 14,
+    "note": "1 relation (w - x^2-y^2-z^2) guaranteed; deficiency beyond rank 14 is structure"
+   }
+  },
+  "layer_profiles": {
+   "x": [
+    4,
+    4,
+    4,
+    4,
+    3,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1
+   ],
+   "y": [
+    4,
+    4,
+    4,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2
+   ],
+   "z": [
+    4,
+    4,
+    4,
+    4,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    2
+   ]
+  },
+  "layers_used": {
+   "x": 13,
+   "y": 12,
+   "z": 11
+  },
+  "parity_classes": [
+   6,
+   6,
+   5,
+   5,
+   4,
+   4,
+   3,
+   2
+  ],
+  "surface_points": 16,
+  "norm_mod13_distribution": {
+   "1": 4,
+   "2": 1,
+   "3": 4,
+   "4": 3,
+   "5": 4,
+   "6": 2,
+   "7": 2,
+   "8": 1,
+   "9": 6,
+   "10": 3,
+   "11": 3,
+   "12": 2
+  },
+  "sum_mod13_distribution": {
+   "0": 2,
+   "1": 5,
+   "2": 3,
+   "3": 3,
+   "4": 1,
+   "5": 2,
+   "6": 3,
+   "7": 2,
+   "8": 3,
+   "9": 4,
+   "10": 3,
+   "11": 3,
+   "12": 1
+  },
+  "cube_stabilizer_order": 1,
+  "cube_stabilizer": [
+   [
+    [
+     0,
+     1,
+     2
+    ],
+    [
+     1,
+     1,
+     1
+    ]
+   ]
+  ],
+  "collinear_triples": 0,
+  "coplanar_quadruples": 120
+ },
+ {
+  "name": "record35_blockerrepair_5.json",
+  "size": 35,
+  "antipodal_pairs_about_666": 0,
+  "fixed_center_points": 0,
+  "vanishing": {
+   "deg1": {
+    "n_monomials": 4,
+    "rank_Q": 4,
+    "indep_forms_vanishing_Q": 0,
+    "rank_F13": 4,
+    "forms_vanishing_F13": 0
+   },
+   "deg2": {
+    "n_monomials": 10,
+    "rank_Q": 10,
+    "indep_forms_vanishing_Q": 0,
+    "rank_F13": 10,
+    "forms_vanishing_F13": 0
+   },
+   "deg3": {
+    "n_monomials": 20,
+    "rank_Q": 20,
+    "indep_forms_vanishing_Q": 0,
+    "rank_F13": 20,
+    "forms_vanishing_F13": 0
+   },
+   "deg4": {
+    "n_monomials": 35,
+    "rank_Q": 35,
+    "indep_forms_vanishing_Q": 0,
+    "rank_F13": 35,
+    "forms_vanishing_F13": 0
+   },
+   "lifted_deg2": {
+    "n_monomials": 15,
+    "rank_Q": 14,
+    "rank_F13": 14,
+    "note": "1 relation (w - x^2-y^2-z^2) guaranteed; deficiency beyond rank 14 is structure"
+   }
+  },
+  "layer_profiles": {
+   "x": [
+    4,
+    4,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2,
+    1
+   ],
+   "y": [
+    4,
+    4,
+    4,
+    4,
+    3,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1
+   ],
+   "z": [
+    4,
+    4,
+    4,
+    4,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1
+   ]
+  },
+  "layers_used": {
+   "x": 13,
+   "y": 13,
+   "z": 13
+  },
+  "parity_classes": [
+   6,
+   5,
+   5,
+   5,
+   4,
+   4,
+   3,
+   3
+  ],
+  "surface_points": 17,
+  "norm_mod13_distribution": {
+   "0": 6,
+   "1": 3,
+   "2": 4,
+   "3": 3,
+   "4": 1,
+   "5": 1,
+   "6": 2,
+   "7": 3,
+   "8": 2,
+   "10": 3,
+   "11": 6,
+   "12": 1
+  },
+  "sum_mod13_distribution": {
+   "0": 7,
+   "1": 2,
+   "2": 4,
+   "3": 2,
+   "4": 1,
+   "5": 2,
+   "6": 4,
+   "7": 4,
+   "8": 1,
+   "9": 4,
+   "10": 1,
+   "11": 1,
+   "12": 2
+  },
+  "cube_stabilizer_order": 1,
+  "cube_stabilizer": [
+   [
+    [
+     0,
+     1,
+     2
+    ],
+    [
+     1,
+     1,
+     1
+    ]
+   ]
+  ],
+  "collinear_triples": 0,
+  "coplanar_quadruples": 106
+ },
+ {
+  "name": "record35_blockerrepair_6.json",
+  "size": 35,
+  "antipodal_pairs_about_666": 0,
+  "fixed_center_points": 0,
+  "vanishing": {
+   "deg1": {
+    "n_monomials": 4,
+    "rank_Q": 4,
+    "indep_forms_vanishing_Q": 0,
+    "rank_F13": 4,
+    "forms_vanishing_F13": 0
+   },
+   "deg2": {
+    "n_monomials": 10,
+    "rank_Q": 10,
+    "indep_forms_vanishing_Q": 0,
+    "rank_F13": 10,
+    "forms_vanishing_F13": 0
+   },
+   "deg3": {
+    "n_monomials": 20,
+    "rank_Q": 20,
+    "indep_forms_vanishing_Q": 0,
+    "rank_F13": 20,
+    "forms_vanishing_F13": 0
+   },
+   "deg4": {
+    "n_monomials": 35,
+    "rank_Q": 35,
+    "indep_forms_vanishing_Q": 0,
+    "rank_F13": 35,
+    "forms_vanishing_F13": 0
+   },
+   "lifted_deg2": {
+    "n_monomials": 15,
+    "rank_Q": 14,
+    "rank_F13": 14,
+    "note": "1 relation (w - x^2-y^2-z^2) guaranteed; deficiency beyond rank 14 is structure"
+   }
+  },
+  "layer_profiles": {
+   "x": [
+    4,
+    4,
+    4,
+    4,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1
+   ],
+   "y": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    3,
+    3,
+    3,
+    2,
+    1,
+    1,
+    1,
+    1
+   ],
+   "z": [
+    4,
+    4,
+    4,
+    4,
+    3,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1
+   ]
+  },
+  "layers_used": {
+   "x": 13,
+   "y": 13,
+   "z": 13
+  },
+  "parity_classes": [
+   5,
+   5,
+   5,
+   5,
+   5,
+   4,
+   3,
+   3
+  ],
+  "surface_points": 18,
+  "norm_mod13_distribution": {
+   "1": 2,
+   "2": 2,
+   "3": 1,
+   "4": 5,
+   "5": 6,
+   "6": 4,
+   "7": 2,
+   "8": 1,
+   "9": 1,
+   "10": 1,
+   "11": 5,
+   "12": 5
+  },
+  "sum_mod13_distribution": {
+   "0": 2,
+   "1": 2,
+   "2": 2,
+   "3": 3,
+   "4": 1,
+   "5": 2,
+   "6": 4,
+   "7": 3,
+   "8": 1,
+   "9": 4,
+   "10": 3,
+   "11": 3,
+   "12": 5
+  },
+  "cube_stabilizer_order": 1,
+  "cube_stabilizer": [
+   [
+    [
+     0,
+     1,
+     2
+    ],
+    [
+     1,
+     1,
+     1
+    ]
+   ]
+  ],
+  "collinear_triples": 1,
+  "coplanar_quadruples": 147
+ }
+]

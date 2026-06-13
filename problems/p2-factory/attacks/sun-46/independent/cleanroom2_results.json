@@ -1,0 +1,208 @@
+{
+ "seed": "0x20260612",
+ "method_A": {
+  "s_3": 1,
+  "s_5": -1,
+  "s_7": 1,
+  "s_9": 9,
+  "s_11": 1,
+  "s_13": 51,
+  "s_15": 45,
+  "s_17": -239,
+  "s_19": 913,
+  "s_21": 2835,
+  "s_23": 12145,
+  "sp_3": 1,
+  "sp_5": 1,
+  "sp_7": -6,
+  "sp_11": 111,
+  "sp_13": 261,
+  "sp_17": 6784,
+  "sp_19": 245101,
+  "sp_23": -7094142,
+  "s_29": 1053859,
+  "sp_29": -4806838304,
+  "s_41": 5574476521
+ },
+ "method_B": {
+  "s_5": {
+   "lo": -1,
+   "hi": -1
+  },
+  "s_17": {
+   "lo": -239,
+   "hi": -239
+  },
+  "sp_7": {
+   "lo": -6,
+   "hi": -6
+  },
+  "sp_23": {
+   "lo": -7094142,
+   "hi": -7094142
+  },
+  "s_29": {
+   "lo": 1053859,
+   "hi": 1053859
+  },
+  "sp_29": {
+   "lo": -4806838304,
+   "hi": -4806838304
+  },
+  "s_41": {
+   "lo": 5574476521,
+   "hi": 5574476521
+  }
+ },
+ "checks": [
+  {
+   "check": "s_3 == 1 (paper)",
+   "pass": true
+  },
+  {
+   "check": "s_5 == -1 (paper)",
+   "pass": true
+  },
+  {
+   "check": "s_7 == 1 (paper)",
+   "pass": true
+  },
+  {
+   "check": "s_9 == 9 (paper)",
+   "pass": true
+  },
+  {
+   "check": "s_11 == 1 (paper)",
+   "pass": true
+  },
+  {
+   "check": "s_13 == 51 (paper)",
+   "pass": true
+  },
+  {
+   "check": "s_15 == 45 (paper)",
+   "pass": true
+  },
+  {
+   "check": "s_17 == -239 (paper)",
+   "pass": true
+  },
+  {
+   "check": "s_19 == 913 (paper)",
+   "pass": true
+  },
+  {
+   "check": "s_21 == 2835 (paper)",
+   "pass": true
+  },
+  {
+   "check": "s_23 == 12145 (paper)",
+   "pass": true
+  },
+  {
+   "check": "s'_3 == 1 (paper)",
+   "pass": true
+  },
+  {
+   "check": "s'_5 == 1 (paper)",
+   "pass": true
+  },
+  {
+   "check": "s'_7 == -6 (paper)",
+   "pass": true
+  },
+  {
+   "check": "s'_11 == 111 (paper)",
+   "pass": true
+  },
+  {
+   "check": "s'_13 == 261 (paper)",
+   "pass": true
+  },
+  {
+   "check": "s'_17 == 6784 (paper)",
+   "pass": true
+  },
+  {
+   "check": "s'_19 == 245101 (paper)",
+   "pass": true
+  },
+  {
+   "check": "s'_23 == -7094142 (paper)",
+   "pass": true
+  },
+  {
+   "check": "s_29  == 1053859 (claimed)",
+   "pass": true
+  },
+  {
+   "check": "s'_29 == -4806838304 (claimed)",
+   "pass": true
+  },
+  {
+   "check": "s_41  == 5574476521 (claimed)",
+   "pass": true
+  },
+  {
+   "check": "s_29 == -1 (mod 29)",
+   "pass": true
+  },
+  {
+   "check": "s'_29 == 1 (mod 29)",
+   "pass": true
+  },
+  {
+   "check": "s_41 == -1 (mod 41)",
+   "pass": true
+  },
+  {
+   "check": "s_5: enclosure contains exactly one integer, = -1",
+   "pass": true
+  },
+  {
+   "check": "s_17: enclosure contains exactly one integer, = -239",
+   "pass": true
+  },
+  {
+   "check": "s'_7: enclosure contains exactly one integer, = -6",
+   "pass": true
+  },
+  {
+   "check": "s'_23: enclosure contains exactly one integer, = -7094142",
+   "pass": true
+  },
+  {
+   "check": "s_29: enclosure contains exactly one integer, = 1053859",
+   "pass": true
+  },
+  {
+   "check": "s'_29: enclosure contains exactly one integer, = -4806838304",
+   "pass": true
+  },
+  {
+   "check": "s_41: enclosure contains exactly one integer, = 5574476521",
+   "pass": true
+  },
+  {
+   "check": "29 == 5 (mod 12)  [conjecture demands s_29 < 0]",
+   "pass": true
+  },
+  {
+   "check": "s_29 > 0  -> clause 1 ('<=' direction) FALSE at p=29",
+   "pass": true
+  },
+  {
+   "check": "29 == 5 (mod 8), i.e. NOT 7 (mod 8)  [conjecture demands s'_29 >= 0]",
+   "pass": true
+  },
+  {
+   "check": "s'_29 < 0  -> clause 2 ('=>' direction... only-if) FALSE at p=29",
+   "pass": true
+  },
+  {
+   "check": "41 == 5 (mod 12) and s_41 > 0  -> clause 1 fails at p=41 too",
+   "pass": true
+  }
+ ],
+ "all_passed": true
+}

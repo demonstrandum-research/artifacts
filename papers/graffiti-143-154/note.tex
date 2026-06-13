@@ -1,0 +1,790 @@
+% !TeX program = pdflatex
+% Counterexamples to two conjectures of Graffiti on graph eigenvalues
+% Build: pdflatex note.tex (run twice). See BUILD.md.
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Varp}{\operatorname{Var}^{+}}
+\newcommand{\dev}{\operatorname{dev}}
+\newcommand{\la}{\ell_{\mathrm{a}}}
+\newcommand{\ld}{\ell_{\mathrm{d}}}
+\newcommand{\D}{\mathrm{D}}
+\newcommand{\Lol}{\mathrm{L}}
+
+\title{Counterexamples to two conjectures of Graffiti\\ on graph eigenvalues}
+\author{John Erlbacher\thanks{Independent Researcher. Email: \texttt{erlbacher.research@gmail.com}. ORCID: 0009-0003-6851-4139.}}
+\date{June 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Graffiti, Fajtlowicz's conjecture-making program, produced hundreds of
+graph-theoretic conjectures, catalogued in \emph{Written on the Wall}. We
+refute two of its spectral conjectures, both of which survived the 1990--91
+computational attack of Brewster, Dinneen and Faber (exhaustive only through
+ten-vertex graphs) and an eight-algorithm search by Roucairol and
+Cazenave (2025). Conjecture~143 asserts that in every
+connected graph the variance of the positive adjacency eigenvalues is at most
+size/(average distance). It fails on dumbbell graphs (two cliques joined by a
+path): the smallest counterexample certified here has $39$ vertices under
+both conventions for average distance ($37$ under the distinct-pairs
+convention alone), and the ratio of the two
+sides tends to $2$ along a dumbbell sequence. Conjecture~154 asserts, under
+the standard-deviation reading of ``deviation of eigenvalues'', that the
+deviation is at most $n$/(average distance). It fails on lollipop graphs, at
+$118$ vertices for distinct pairs and $120$ for both conventions, with
+unbounded ratio. All counterexamples carry exact rational certificates,
+verified in exact arithmetic by two algorithmically independent routes per
+result (for Conjecture~154, by two independently written checkers).
+\end{abstract}
+
+\section{Introduction}\label{sec:intro}
+
+Graffiti, written by Siemion Fajtlowicz in the mid-1980s, generates
+graph-theoretic conjectures on a large scale
+\cite{Fajtlowicz1988,DeLaVina2005}. Its conjectures --- inequalities between
+graph invariants --- were collected, numbered, and annotated by Fajtlowicz in
+a working document known as \emph{Written on the Wall}
+\cite{WOW}\footnote{Numbering throughout this note follows \emph{Written on
+the Wall} (WoW). The later, separate list Graffiti.pc of DeLaVi\~na has its
+own numbering; its conjecture~143 is unrelated to the one treated here.};
+the numbering exceeds 800 in the compilation used here, the file archived by
+Roucairol and Cazenave as \texttt{wow-july2004.pdf} (its filename suggests
+July 2004, but the PDF's own metadata records a creation date of 26 July
+2006; we therefore pin the file by its checksum in
+Section~\ref{sec:verification} rather than by date). The list
+attracted substantial attention. Favaron, Mah\'eo and Sacl\'e
+\cite{FMS1993} resolved many of the early spectral conjectures, proving some
+and constructing infinite families of counterexamples to others; Brewster,
+Dinneen and Faber \cite{BDF1995} ran a computational attack on roughly 200 of
+the conjectures and refuted more than 40. The systematic formalization of
+such invariant inequalities was carried further in the AutoGraphiX line of
+work of Aouchiche, Hansen and coauthors; see the survey \cite{AouchicheHansen2010}.
+Most recently, Roucairol and Cazenave applied Monte-Carlo search to spectral
+graph conjectures, among them Graffiti's Conjecture~137
+\cite{RoucairolCazenave2022}, and then attacked the Graffiti list with a
+portfolio of eight search algorithms
+\cite{RoucairolCazenave2025}; the results table of
+\cite{RoucairolCazenave2025} lists WoW Conjecture~143 as open after searching
+graphs and trees up to size~100, and Conjecture~154 as open after searching up
+to size~50.
+
+This note refutes Conjecture~143, and refutes Conjecture~154 under the
+standard-deviation reading of ``deviation'' fixed in
+Section~\ref{sec:154}.
+
+\begin{quote}
+\emph{``143. variance of positive eigenvalues $\le$ size / average
+distance.''}\\[2pt]
+\emph{``154. deviation of eigenvalues $\le$ n / average distance.''}
+\end{quote}
+
+\noindent
+Here, by the conventions fixed in the WoW preamble (``$G$ always denotes a
+graph, $n$ the number of its vertices and eigenvalues (unless it is
+explicitly stated) denote eigenvalues of the adjacency matrix of $G$''),
+eigenvalues are those of the adjacency matrix; ``size'' is the number $m$ of
+edges; and both statements implicitly concern connected graphs, since the
+average distance must be defined. Both conjectures predate the 1990--91
+computational attack of \cite{BDF1995}: the WoW compilation records them
+among the conjectures that survived it. (That attack was exhaustive over
+the graphs on at most ten vertices, so survival there carries limited
+information: the counterexamples exhibited below have at least $37$
+vertices.) Conjecture~143 fails on
+\emph{dumbbells} (two cliques joined by a path), with the smallest
+counterexample certified here on $n=39$ vertices --- and on $n=37$ vertices under the
+distinct-pairs convention for average distance (Section~\ref{sec:143}).
+Conjecture~154, under the standard-deviation reading of ``deviation''
+discussed in Section~\ref{sec:154}, fails on \emph{lollipops} (a clique with
+a pendant path), first within that family at $n=118$ --- at $n=120$ under
+both conventions --- and along an infinite sequence; the violation there
+reduces to a pure integer inequality, $8mW^2 > n^5(n-1)^2$, in the Wiener
+index $W$. In both
+cases the failure is structural rather than marginal: along suitable
+parameter sequences the ratio of left- to right-hand side tends to $2$
+(Proposition~\ref{prop:143asymp}) and to infinity
+(Proposition~\ref{prop:154asymp}), respectively. Both refutations are
+robust to the standard ambiguity in the term ``average distance'': they hold
+under the two readings in use in this literature (see below). A literature
+check (most recently June 2026) found no prior or concurrent resolution of
+either conjecture; arXiv:2409.18626 \cite{RoucairolCazenave2025} remains at
+version~1, listing both as open.
+
+\paragraph{Conventions.}
+Let $G$ be a connected graph with $n$ vertices, $m$ edges, adjacency
+eigenvalues $\lambda_1 \ge \dots \ge \lambda_n$, and Wiener index
+$W = \sum_{\{u,v\}} d(u,v)$ (sum over unordered pairs of distinct vertices).
+Two readings of \emph{average distance} occur in the relevant literature:
+\[
+\ld = \frac{2W}{n(n-1)}
+\qquad\text{and}\qquad
+\la = \frac{2W}{n^2},
+\]
+the mean over distinct (ordered or unordered) pairs, and the mean over all
+$n^2$ entries of the distance matrix, zero diagonal included. The
+distinct-pairs convention $\ld$ is the one used by Favaron, Mah\'eo and
+Sacl\'e \cite{FMS1993} and matches WoW's own usage (its comment on
+conjecture~536, asserting that Paley graphs have average distance $3/2$,
+holds only under $\ld$); the all-entries convention $\la$ is the one
+hard-coded in the public search code of \cite{RoucairolCazenave2025}. Since
+$\la < \ld$, right-hand sides computed with $\la$ are \emph{larger}, so the
+$\la$ reading is the harder one to violate. We refute both readings of both
+conjectures; only the smallest certified instances depend on the reading
+(Conjecture~143: $n=39$ for both readings, $n=37$ under $\ld$ alone;
+Conjecture~154: $n=118$ under $\ld$, $n=120$ for both).
+``Variance'' and ``deviation'' are the population variance and population
+standard deviation (divide by the number of data points, not by one less);
+WoW computes statistical invariants on uniform sample spaces, and the only
+deviation routine published in the search-code repository of
+\cite{RoucairolCazenave2025} uses the same convention (see
+Section~\ref{sec:154}). For
+Conjecture~154 the reading of ``deviation'' carries genuine interpretive
+risk, which we discuss --- and quantify --- in Section~\ref{subsec:mad}.
+
+\paragraph{Methods and AI-use disclosure.}
+The counterexamples were found by Demonstrandum, a verification-first
+multi-agent AI search-and-reasoning pipeline built on Claude language
+models (Anthropic): agents fixed the
+conjecture statements and conventions from the frozen source of
+Section~\ref{sec:verification}, proposed candidate graph families, and ran
+parameter scans. Certificates were then verified by exact-arithmetic
+checkers written independently of the discovery code: for Conjecture~143, a
+single clean-room checker that accepts only if two algorithmically
+independent exact routes agree; for Conjecture~154, two independently
+written checkers, the second authored by an adversarial referee agent
+running on a different model family (Codex, GPT-5.5, OpenAI). All
+accept paths use integer or rational arithmetic only; floating point appears
+solely in advisory cross-checks. Both verification bundles passed mutation
+testing (deliberately corrupted certificates are rejected) and an adversarial
+automated audit. The text of this note was likewise drafted with the
+Claude-based pipeline; the author directed the work and takes responsibility
+for its content. Every number appearing in this note was recomputed during
+its preparation (June 2026): the certificate checkers and mutation tests
+were re-run, the family scans were re-executed, and the headline quantities
+were additionally recomputed by separate scripts
+(Section~\ref{sec:verification}). The mathematical claims rest on the
+certificates and checkers
+described in Section~\ref{sec:verification} and on the self-contained proofs
+of Propositions~\ref{prop:143asymp} and~\ref{prop:154asymp}.
+
+\section{Conjecture 143: variance of the positive eigenvalues}\label{sec:143}
+
+For a connected graph $G$ let $k = k(G)$ be the number of strictly positive
+adjacency eigenvalues, counted with multiplicity, let $\mu$ be their mean,
+and let
+\[
+\Varp(G) \;=\; \frac1k \sum_{i\colon \lambda_i > 0} (\lambda_i - \mu)^2
+\]
+be their population variance. Conjecture~143 asserts that
+$\Varp(G) \le m/\ell$ for every connected $G$, with $\ell$ the average
+distance.
+
+For integers $t_1, t_2 \ge 1$ and $p \ge 0$, the \emph{dumbbell}
+$\D(t_1,p,t_2)$ is obtained from disjoint cliques $K_{t_1}$ and $K_{t_2}$ and
+a path on $p$ internal vertices by joining one vertex of $K_{t_1}$ to one end
+of the path and the other end of the path to one vertex of $K_{t_2}$ (for
+$p=0$, a single bridge edge). It is connected, with
+$n = t_1 + t_2 + p$ and $m = \binom{t_1}{2} + \binom{t_2}{2} + p + 1$.
+
+\begin{theorem}\label{thm:143}
+Conjecture~143 is false, under either reading of average distance. The five
+dumbbells of Table~\ref{tab:143} satisfy the indicated strict violations; in
+particular, on $n=39$ vertices,
+\begin{align*}
+\Varp\bigl(\D(7,12,20)\bigr) \;=\; 34.31513046745\ldots
+\;&>\; \frac{m\,n^2}{2W} = \frac{10647}{311} = 34.2347266881\ldots\\
+\;&>\; \frac{m\,n(n-1)}{2W} = \frac{10374}{311},
+\end{align*}
+so both readings fail at $n = 39$; and on $n=37$ vertices
+\[
+\Varp\bigl(\D(6,12,19)\bigr) \;=\; 30.31239262097\ldots
+\;>\; \frac{m\,n(n-1)}{2W} = \frac{14726}{487} = 30.23819301848\ldots,
+\]
+so the distinct-pairs reading fails at $n = 37$.
+\end{theorem}
+
+\begin{proof}
+A finite exact computation, certified as described in
+Section~\ref{sec:verification}. The integers $n$, $m$, $W$, $k$ and the
+rational right-hand sides $m/\la = mn^2/(2W)$ and $m/\ld = mn(n-1)/(2W)$ are
+elementary exact counts. For $\Varp$, the certificate provides a rational
+enclosure of width below $10^{-19}$, obtained by exact real-root isolation of
+the integer characteristic polynomial (no floating point on the accept
+path); the margin columns of Table~\ref{tab:143} are decimal truncations of
+certified exact rational lower bounds on $\Varp - m/\ell$. The clean-room
+checker accepts the certificate only after two algorithmically independent
+exact routes certify every claimed inequality
+(Section~\ref{sec:verification}).
+\end{proof}
+
+\begin{table}[ht]
+\centering\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lrrrrlllll@{}}
+\toprule
+$G$ & $n$ & $m$ & $W$ & $k$ & $\Varp(G)$ &
+$m/\la$ & margin & $m/\ld$ & margin \\
+\midrule
+$\D(20,8,20)$ & 48 & 389 & 6568 & 6 & 69.6349632447 & $56016/821$  & $+1.405974206$ & $54849/821$  & $+2.827411478$ \\
+$\D(8,12,20)$ & 40 & 231 & 5372 & 8 & 34.8927644618 & $46200/1343$ & $+0.492168780$ & $45045/1343$ & $+1.352183672$ \\
+$\D(7,12,20)$ & 39 & 224 & 4976 & 8 & 34.3151304675 & $10647/311$  & $+0.080403779$ & $10374/311$  & $+0.958217284$ \\
+$\D(6,12,20)$ & 38 & 218 & 4581 & 8 & 33.9573790158 & $157396/4581$ & ---           & $153254/4581$ & $+0.503111388$ \\
+$\D(6,12,19)$ & 37 & 199 & 4383 & 8 & 30.3123926210 & $272431/8766$ & ---           & $14726/487$  & $+0.074199602$ \\
+\bottomrule
+\end{tabular}
+\caption{Certified dumbbell counterexamples to Conjecture~143. $\Varp(G)$ is
+the certified value rounded to ten decimals (the certificate encloses it in a
+rational interval of width $<10^{-19}$). The right-hand sides
+$m/\la = mn^2/(2W)$ and $m/\ld = mn(n-1)/(2W)$ are exact. Each margin is a
+decimal truncation of a certified exact rational lower bound on
+$\Varp(G) - m/\ell$; a dash means the corresponding reading is \emph{not}
+violated by that instance --- certified as well: the checker verifies that
+the certified enclosure of $\Varp(G)$ lies strictly below that right-hand
+side.}
+\label{tab:143}
+\end{table}
+
+\begin{remark}[Minimality within the family; smaller graphs]\label{rem:143min}
+A floating-point scan of the entire dumbbell family with $n \le 48$ (all
+$t_1 \ge 1$, $t_2 \ge t_1$, $p \ge 0$) indicates that $\D(7,12,20)$ is the
+family-minimal violator for the $\la$ reading and $\D(6,12,19)$ for the
+$\ld$ reading, with no dumbbell on $n \le 36$ vertices coming within $0.3$
+of either bound (the closest approach, by $\D(6,12,18)$ on $n = 36$
+vertices, falls short by about $0.355$) --- far above floating-point error,
+though this scan, unlike
+Table~\ref{tab:143}, is not an exact certificate. No minimality over
+\emph{all} connected graphs is claimed: a simulated-annealing probe at
+$n = 35$--$38$ found no smaller violator, but that evidence is heuristic.
+The prior search of \cite{RoucairolCazenave2025} covered sizes up to~100;
+the counterexamples were found not beyond the searched range but inside it,
+in a region apparently unfavourable to edge-by-edge search heuristics (a
+dumbbell must pass through long, low-scoring two-clique-plus-path
+intermediate states).
+\end{remark}
+
+\begin{remark}[Robustness of the reading]\label{rem:143robust}
+Replacing the population variance by the sample variance multiplies the
+left-hand side by $k/(k-1) > 1$, so all violations in Table~\ref{tab:143}
+persist a fortiori. Reading ``size'' as $n$ instead of $m$ also leaves the
+violations intact, since $n < m$ for every instance in the table and the
+right-hand side only shrinks. The adversarial audit
+(Section~\ref{sec:verification}) additionally reported, at floating-point
+level, that replacing average distance by average eccentricity does not
+rescue the inequality on these instances. The only readings found to rescue
+it are not supported by the source (e.g.\ taking the variance of \emph{all}
+eigenvalues).
+\end{remark}
+
+The mechanism behind the failure is simple: a dumbbell has exactly two large
+positive eigenvalues, close to $t-1$, coming from the cliques, while its
+remaining positive eigenvalues stay below $3$; making the path long drives
+the variance of the positive spectrum up faster than the ratio
+$m/\ell$. This intuition can be made precise, and shows that the conjecture
+fails by a factor approaching $2$:
+
+\begin{proposition}\label{prop:143asymp}
+For $t \to \infty$ let $p = p(t)$ be integers with $p \to \infty$ and
+$p/t \to 0$ (for instance $p = \lfloor t^{1/3} \rfloor$), and let
+$G_t = \D(t, p, t)$. Then, with $R = m/\ell$ for either reading
+$\ell \in \{\la, \ld\}$,
+\[
+\frac{\Varp(G_t)}{R(G_t)} \longrightarrow 2,
+\qquad\text{and}\qquad
+\Varp(G_t) - R(G_t) \;=\; \bigl(1+o(1)\bigr)\,\frac{2t^2}{p+3}
+\longrightarrow \infty .
+\]
+In particular $G_t$ violates Conjecture~143, under both readings, for all
+sufficiently large $t$.
+\end{proposition}
+
+\begin{proof}
+All asymptotic notation refers to $t \to \infty$, and all implied constants
+are absolute; recall $n = 2t + p$ and assume throughout $4 \le p \le t$.
+Write $A$ for the adjacency matrix of $G_t$ and $A_0$ for that of the
+disjoint union $K_t \sqcup P_p \sqcup K_t$, so that $A = A_0 + E$, where $E$
+is the adjacency matrix of the two bridge edges. Since $p \ge 2$, the two
+bridge edges are vertex-disjoint, so $E$ has eigenvalues $1, 1, -1, -1$ and
+$0$ ($n-4$ times); in particular $\lVert E\rVert_2 = 1$.
+
+The spectrum of $A_0$ is classical \cite{BrouwerHaemers2012}: $t-1$ with
+multiplicity $2$, $-1$ with multiplicity $2(t-1)$, and
+$2\cos\bigl(j\pi/(p+1)\bigr)$ for $j = 1, \dots, p$. Hence for $t \ge 4$ the
+two largest eigenvalues of $A_0$ equal $t - 1$, the third largest is
+$2\cos\bigl(\pi/(p+1)\bigr) < 2$, and the number of positive eigenvalues of
+$A_0$ is $k_0 = 2 + \lfloor p/2 \rfloor$.
+
+By Weyl's perturbation inequality,
+$\lvert \lambda_i(A) - \lambda_i(A_0)\rvert \le \lVert E \rVert_2 \le 1$ for
+all $i$; therefore
+\begin{equation}\label{eq:eigloc}
+\lambda_1(A),\, \lambda_2(A) \in [\,t-2,\; t\,],
+\qquad
+\lambda_i(A) < 3 \quad (i \ge 3).
+\end{equation}
+Moreover, since $E$ and $-E$ each have exactly two positive eigenvalues, the
+Weyl inequalities $\lambda_{i+j-1}(X+Y) \le \lambda_i(X) + \lambda_j(Y)$
+(applied with $j = 3$, once to $X = A_0$, $Y = E$ and once to $X = A$,
+$Y = -E$) give
+$\lambda_{i+2}(A) \le \lambda_i(A_0)$ and
+$\lambda_{i+2}(A_0) \le \lambda_i(A)$ for all admissible $i$. Consequently
+the number $k$ of (strictly) positive eigenvalues of $A$ satisfies
+$k \le k_0 + 2$ --- if $\lambda_i(A) > 0$ for some $i \ge 3$, then
+$\lambda_{i-2}(A_0) \ge \lambda_i(A) > 0$, so $i - 2 \le k_0$ --- and
+$k \ge k_0 - 2$, since $\lambda_i(A) \ge \lambda_{i+2}(A_0) > 0$ for every
+$i \le k_0 - 2$. Hence
+\begin{equation}\label{eq:kcount}
+\lvert k - k_0 \rvert \le 2, \qquad\text{so}\qquad k = \tfrac{p}{2} + O(1).
+\end{equation}
+Let $S_1$ and $S_2$ denote the sum and the sum of squares of the positive
+eigenvalues of $A$. By \eqref{eq:eigloc} and \eqref{eq:kcount}, the $k - 2$
+eigenvalues other than $\lambda_1, \lambda_2$ contribute at most $3(k-2) =
+O(p)$ to $S_1$ and at most $9(k-2) = O(p)$ to $S_2$, while
+$\lambda_1 + \lambda_2 = 2t + O(1)$ and
+$\lambda_1^2 + \lambda_2^2 = 2t^2 + O(t)$. Hence
+$S_1 = 2t + O(p)$ and $S_2 = 2t^2 + O(t)$, and
+\begin{equation}\label{eq:var}
+\Varp(G_t)
+= \frac{k S_2 - S_1^2}{k^2}
+= \frac{2t^2 (k-2) + O(tp)}{k^2}
+= \frac{4t^2}{p}\Bigl(1 + O\bigl(\tfrac1p + \tfrac{p}{t}\bigr)\Bigr),
+\end{equation}
+using \eqref{eq:kcount} in the last step.
+
+On the other side, $m = t(t-1) + p + 1 = t^2\bigl(1 + O(1/t)\bigr)$. Every
+distance in $G_t$ is at most the diameter $p + 3$, and the $(t-1)^2$ pairs
+formed by one non-attachment vertex from each clique are at distance exactly
+$p+3$; splitting the remaining pairs into within-clique pairs (distance $1$,
+at most $t(t-1)$ in total) and pairs involving a path vertex (fewer than
+$pn$ of them) gives
+\[
+(t-1)^2 (p+3) \;\le\; W \;\le\; t^2(p+3) + t(t-1) + pn(p+3),
+\]
+whence $W = t^2 (p+3)\bigl(1 + O(1/p + p/t)\bigr)$. Since
+$n^2 = 4t^2\bigl(1 + O(p/t)\bigr)$ and $n(n-1) = n^2\bigl(1 + O(1/t)\bigr)$,
+\begin{equation}\label{eq:rhs}
+R(G_t) \;=\; \frac{m\,n^2}{2W} \ \text{ or } \ \frac{m\,n(n-1)}{2W}
+\;=\; \frac{2t^2}{p+3}\Bigl(1 + O\bigl(\tfrac1p + \tfrac{p}{t}\bigr)\Bigr).
+\end{equation}
+Dividing \eqref{eq:var} by \eqref{eq:rhs}:
+\[
+\frac{\Varp(G_t)}{R(G_t)}
+= 2\cdot\frac{p+3}{p}\Bigl(1 + O\bigl(\tfrac1p + \tfrac{p}{t}\bigr)\Bigr)
+= 2 + O\bigl(\tfrac1p + \tfrac{p}{t}\bigr) \longrightarrow 2,
+\]
+since $p \to \infty$ and $p/t \to 0$. Finally
+$\Varp - R = R\,(\Varp/R - 1) = (1 + o(1))\, 2t^2/(p+3) \to \infty$, because
+$t^2/(p+3) \ge t^2/(t+3) \to \infty$.
+\end{proof}
+
+As a numerical illustration (floating point, not part of the certificates):
+$\D(40,10,40)$ on $n = 90$ vertices has $m = 1571$, $W = 27625$, $k = 7$,
+$\Varp \approx 290.01$ against $m/\la \approx 230.32$ --- a violation margin
+of about $59.7$ and a ratio of about $1.26$; for
+$\D(800,40,800)$ the ratio reaches about $1.81$.
+
+\section{Conjecture 154: deviation of the eigenvalues}\label{sec:154}
+
+Conjecture~154 reads, verbatim from the decoded WoW source:
+\emph{``deviation of eigenvalues $\le$ n / average distance.''} No
+surviving source defines ``deviation'' next to the conjecture itself, so the
+reading must be fixed from context. WoW uses \emph{variance} (e.g.\
+conjectures~38, 143) and \emph{deviation} (e.g.\ conjectures~39, 40, 140,
+154, 244, 253) as distinct invariants and spells out ``standard deviation''
+for degree sequences (conjectures~27, 812, 813); Favaron, Mah\'eo and
+Sacl\'e \cite{FMS1993}, the historical treatment of WoW's
+eigenvalue-deviation conjectures, define the eigenvalue deviation (there for
+the Laplacian spectrum) by a
+root-mean-square formula --- a standard deviation, not a mean absolute
+deviation; and the only public machine formalization, the search code of
+\cite{RoucairolCazenave2025}, scores the conjecture by the standard
+deviation of the adjacency spectrum (its scoring function calls a statistics
+helper module that is absent from the published tree; the one deviation
+routine the repository does publish, in \texttt{tools/calc.rs}, is a
+population standard deviation). We therefore work under the
+\textbf{standard-deviation reading}, and claim the refutation \emph{only}
+under that reading; Section~\ref{subsec:mad} states exactly what was checked
+about the alternative (mean-absolute-deviation) reading.
+
+Under the standard-deviation reading the left-hand side is exactly computable
+from $n$ and $m$ alone:
+
+\begin{lemma}\label{lem:dev}
+For every graph $G$ with $n$ vertices and $m$ edges, the population standard
+deviation of the $n$ adjacency eigenvalues equals
+$\dev(G) = \sqrt{2m/n}$.
+\end{lemma}
+
+\begin{proof}
+$\sum_i \lambda_i = \operatorname{tr} A = 0$ and
+$\sum_i \lambda_i^2 = \operatorname{tr} A^2 = \sum_v \deg(v) = 2m$, so the
+population variance is $\frac1n \sum_i \lambda_i^2 - \bigl(\frac1n \sum_i
+\lambda_i\bigr)^2 = 2m/n$.
+\end{proof}
+
+\begin{lemma}\label{lem:integer}
+Let $G$ be connected with $n \ge 2$ vertices, $m$ edges and Wiener index
+$W$. Under the standard-deviation reading, $G$ violates Conjecture~154
+\begin{itemize}\itemsep0pt
+\item under the distinct-pairs convention $\ell = \ld$ if and only if
+$\;8mW^2 > n^5(n-1)^2$;
+\item under the all-entries convention $\ell = \la$ if and only if
+$\;8mW^2 > n^7$.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{lem:dev} the conjecture asserts $\sqrt{2m/n} \le n/\ell$. Both
+sides are positive, so the inequality is equivalent to its square,
+$2m/n \le n^2/\ell^2$. Substituting $\ld = 2W/(n(n-1))$ gives
+$2m/n \le n^4(n-1)^2/(4W^2)$, i.e.\ $8mW^2 \le n^5(n-1)^2$; substituting
+$\la = 2W/n^2$ gives $8mW^2 \le n^7$. Violation is the strict reverse
+inequality. Note $n^7 > n^5(n-1)^2$, so every violation of the $\la$ reading
+is automatically one of the $\ld$ reading.
+\end{proof}
+
+The verdict is thus a pure integer comparison --- no eigenvalue computation
+and no floating point are needed at all. For integers $t \ge 3$, $p \ge 1$,
+the \emph{lollipop} $\Lol(t,p)$ is the clique $K_t$ with a pendant path on
+$p$ vertices attached by a bridge edge to a clique vertex $v_0$; it is
+connected with $n = t + p$ and $m = \binom{t}{2} + p$.
+
+\begin{lemma}\label{lem:wiener}
+The Wiener index of the lollipop is
+\[
+W\bigl(\Lol(t,p)\bigr) = \binom{t}{2} + \sum_{k=1}^{p}\bigl[k + (t-1)(k+1)\bigr]
++ \binom{p+1}{3}
+= \binom{t}{2} + \frac{p(p+1)}{2} + (t-1)\,\frac{p(p+3)}{2} + \binom{p+1}{3}.
+\]
+\end{lemma}
+
+\begin{proof}
+Label the path vertices $u_1, \dots, u_p$, with $u_k$ at distance $k$ from
+the attachment vertex $v_0$. The $\binom{t}{2}$ clique pairs are at distance
+$1$. The pair $\{u_k, v_0\}$ is at distance $k$ and the pairs $\{u_k, w\}$,
+for the $t-1$ clique vertices $w \neq v_0$, are at distance $k+1$. The
+path-path pairs contribute $\sum_{1 \le i < j \le p} (j - i) =
+\binom{p+1}{3}$. Summing gives the first expression; evaluating
+$\sum_{k=1}^p k = p(p+1)/2$ and $\sum_{k=1}^p (k+1) = p(p+3)/2$ gives the
+second.
+\end{proof}
+
+\begin{theorem}\label{thm:154}
+Conjecture~154 is false under the standard-deviation reading of
+``deviation'', under both conventions for average distance. The integer data
+of the three lollipops in Table~\ref{tab:154} are exact;
+by Lemma~\ref{lem:integer}, $\Lol(48,70)$ on $n = 118$ vertices violates the
+distinct-pairs reading, and $\Lol(50,70)$ on $n = 120$ and $\Lol(72,72)$ on
+$n = 144$ vertices violate both readings.
+\end{theorem}
+
+\begin{proof}
+$m$ and $W$ are evaluated by Lemma~\ref{lem:wiener} (and were re-verified by
+breadth-first search over the explicit edge lists); the products and
+comparisons in Table~\ref{tab:154} are exact integer arithmetic, reproduced
+by two independent implementations (Section~\ref{sec:verification}).
+\end{proof}
+
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+ & $\Lol(48,70)$ & $\Lol(50,70)$ & $\Lol(72,72)$ \\
+\midrule
+$n$ & $118$ & $120$ & $144$ \\
+$m$ & $1198$ & $1295$ & $2628$ \\
+$W$ & $180\,853$ & $186\,060$ & $259\,080$ \\
+$8mW^2$        & $313\,471\,628\,124\,656$ & $358\,645\,832\,496\,000$ & $1\,411\,182\,313\,113\,600$ \\
+$n^5(n-1)^2$   & $313\,171\,159\,328\,352$ & $352\,370\,995\,200\,000$ & $1\,266\,148\,181\,016\,576$ \\
+$n^7$          & $318\,547\,390\,056\,832$ & $358\,318\,080\,000\,000$ & $1\,283\,918\,464\,548\,864$ \\
+$8mW^2 - n^5(n-1)^2$ & $+300\,468\,796\,304$ & $+6\,274\,837\,296\,000$ & $+145\,034\,132\,097\,024$ \\
+$8mW^2 - n^7$        & $-5\,075\,761\,932\,176$ & $+327\,752\,496\,000$ & $+127\,263\,848\,564\,736$ \\
+violates       & $\ld$ only & both & both \\
+\bottomrule
+\end{tabular}
+\caption{Integer certificates for Theorem~\ref{thm:154}
+(Lemma~\ref{lem:integer}: violation of the $\ld$ reading iff
+$8mW^2 > n^5(n-1)^2$, of the $\la$ reading iff $8mW^2 > n^7$).}
+\label{tab:154}
+\end{table}
+
+For orientation: $\dev(\Lol(72,72)) = \sqrt{73/2} = 6.041522\ldots$ against
+$n/\la = n^3/(2W) = 62208/10795 = 5.762667\ldots$ and
+$n/\ld = n^2(n-1)/(2W) = 61776/10795 = 5.722649\ldots$; in the squared
+comparison of Lemma~\ref{lem:integer} the threshold is exceeded by about
+$11\%$ ($\ld$) and $10\%$ ($\la$). The whole refutation can be re-verified
+in well under a minute; the following self-contained check (quoted verbatim
+from the certificate bundle) needs nothing beyond a Python interpreter:
+
+\begin{quote}
+\begin{verbatim}
+t, p = 72, 72
+n, m = t+p, t*(t-1)//2 + p
+W = t*(t-1)//2 + sum(k + (t-1)*(k+1) for k in range(1, p+1)) \
+    + (p+1)*p*(p-1)//6
+assert 8*m*W*W > n**5 * (n-1)**2     # distinct-pairs convention
+assert 8*m*W*W > n**7                # all-n^2-entries convention
+print("Graffiti 154 (std-dev reading) refuted:", n, m, W)
+\end{verbatim}
+\end{quote}
+
+The failure is again structural: the standard deviation $\sqrt{2m/n}$ is
+unbounded along lollipops with $p = t$, while $n/\ell$ stays bounded.
+
+\begin{proposition}\label{prop:154asymp}
+For every integer $t \ge 71$, the lollipop $\Lol(t,t)$ on $n = 2t$ vertices
+violates Conjecture~154 (standard-deviation reading) under both conventions
+for average distance, and
+\[
+\frac{\dev\bigl(\Lol(t,t)\bigr)}{\,n/\ell\,} \;\ge\;
+\frac{\sqrt{(t+1)/2}}{6} \;\longrightarrow\; \infty
+\qquad (\ell \in \{\la, \ld\}).
+\]
+\end{proposition}
+
+\begin{proof}
+Here $m = \binom{t}{2} + t = t(t+1)/2$, so $\dev = \sqrt{2m/n} =
+\sqrt{(t+1)/2}$ exactly, by Lemma~\ref{lem:dev}. Specializing
+Lemma~\ref{lem:wiener} to $p = t$:
+\begin{align*}
+W &= \frac{t(t-1)}{2} + \frac{t(t+1)}{2} + \frac{t(t-1)(t+3)}{2}
++ \frac{(t+1)t(t-1)}{6}\\
+&= \frac{t\,\bigl(6t + 3(t-1)(t+3) + (t^2-1)\bigr)}{6}
+= \frac{t\,(2t^2 + 6t - 5)}{3}.
+\end{align*}
+Hence
+\[
+\frac{n}{\ld} = \frac{n^2(n-1)}{2W} = \frac{6t(2t-1)}{2t^2+6t-5}
+\qquad\text{and}\qquad
+\frac{n}{\la} = \frac{n^3}{2W} = \frac{12t^2}{2t^2+6t-5}.
+\]
+Both are smaller than $6$ for every $t \ge 1$: indeed
+$6t(2t-1) < 6(2t^2+6t-5)$ amounts to $30 < 42t$, and
+$12t^2 < 6(2t^2+6t-5)$ amounts to $30 < 36t$. For $t \ge 71$ we have
+$\dev = \sqrt{(t+1)/2} \ge 6 > n/\ell$ for both conventions, which is the
+asserted (strict) violation, and the ratio bound follows.
+\end{proof}
+
+\begin{remark}[Minimality within the family]\label{rem:154min}
+An exhaustive integer-arithmetic scan of all lollipops $\Lol(t,p)$ with
+$t \ge 3$, $p \ge 1$ and $n = t + p \le 130$ (re-run, like all computations
+quoted here, while preparing this note; the independent audit re-ran it
+allowing the degenerate values $t = 1, 2$ as well) shows: no lollipop with
+$n \le 117$ violates either reading; at $n = 118$ there are exactly four
+violators of the $\ld$ reading, $\Lol(48,70)$, $\Lol(49,69)$, $\Lol(50,68)$,
+$\Lol(51,67)$, none violating the $\la$ reading; at $n = 119$ exactly seven
+lollipops, $\Lol(t, 119-t)$ for $47 \le t \le 53$, violate the $\ld$ reading
+and again none the $\la$ reading; and at $n = 120$ exactly two
+lollipops, $\Lol(50,70)$ and $\Lol(51,69)$, violate both readings. Since
+this scan is exact, these statements are certificates, not numerics ---
+but they concern the lollipop family only. The minimum order of a
+counterexample over all connected graphs is not determined here: a smaller,
+non-lollipop violator of any order up to $117$ is not excluded --- the prior
+search for this conjecture \cite{RoucairolCazenave2025} reached size~50, but
+it was a heuristic search, not an exhaustive enumeration.
+\end{remark}
+
+\subsection{The mean-absolute-deviation reading}\label{subsec:mad}
+
+If Graffiti's ``deviation'' meant the \emph{mean absolute deviation} (MAD)
+rather than the standard deviation, the instances above would prove nothing:
+we record here, for completeness, exactly what was checked. Since the adjacency
+spectrum has mean zero, the MAD equals
+$\frac1n \sum_i \lvert\lambda_i\rvert = \mathcal{E}(G)/n$, where
+$\mathcal{E}(G)$ is the graph energy. For each
+$G \in \{\Lol(48,70), \Lol(50,70), \Lol(72,72)\}$ it was \emph{proved in
+exact arithmetic} that
+\[
+\frac{\mathcal{E}(G)}{n} \;<\; \frac{n}{\ell}
+\qquad \text{for both } \ell \in \{\la, \ld\},
+\]
+i.e.\ these lollipops do \emph{not} violate the MAD reading. Two independent
+exact routes were used: (i) a Sturm-certified rational enclosure of
+$\mathcal{E}(G)$ of width below $3 \times 10^{-17}$, computed from the
+integer characteristic polynomial of the $(p+2)\times(p+2)$ quotient matrix
+of the equitable partition $\{v_0\}, V(K_t)\setminus\{v_0\}, \{u_1\}, \dots,
+\{u_p\}$, together with the eigenvalue $-1$ of multiplicity $t-2$ (both
+verified by explicit eigenvectors and the two trace identities); and (ii) an
+exact-rational application of the Koolen--Moulton
+energy bound \cite{KoolenMoulton2001}. Numerically, the certified energies
+are $\mathcal{E} = 183.02566963\ldots$, $187.02616866\ldots$,
+$233.57628649\ldots$ respectively, giving MAD values
+$1.5510\ldots$, $1.5585\ldots$, $1.6220\ldots$ against right-hand sides
+between $4.5039\ldots$ and $5.7626\ldots$ --- sign gaps of $+2.95$ to
+$+4.14$, certified. The refutation of Conjecture~154 in this note is
+therefore claimed \emph{only} under the standard-deviation reading, which is
+the reading of \cite{FMS1993} and of the only known machine formalization
+\cite{RoucairolCazenave2025}; the residual interpretive risk is thereby
+documented, quantified, and confined. (For the sample standard deviation,
+which exceeds the population standard deviation by the factor
+$\sqrt{n/(n-1)} > 1$, the violations hold a fortiori.)
+
+\section{Verification}\label{sec:verification}
+
+Both refutations are packaged as machine-checkable certificate bundles, with
+no floating point on any accept path. Each result is certified by two
+algorithmically independent exact-arithmetic routes: for Conjecture~143 the
+two routes live inside a single clean-room checker, while Conjecture~154 has
+two independently written checkers.
+
+\paragraph{Statement provenance.}
+The conjecture statements were frozen from the compilation of
+\emph{Written on the Wall} archived as \texttt{wow-july2004.pdf} \cite{WOW}
+--- the same file used by \cite{RoucairolCazenave2025}, pinned here by the
+checksum below. That PDF uses Type-3 bitmap fonts without
+ToUnicode maps; the statements were recovered by a glyph-decoding script
+validated against the document title and the surrounding conjectures; the
+statement of Conjecture~154 was additionally confirmed by pixel-level
+rendering of the relevant pages during the adversarial audit.
+
+\paragraph{Conjecture 143.}
+The certificate lists, for each of the five dumbbells of
+Table~\ref{tab:143}, the explicit edge list, the integers $n, m, W, k$, the
+exact rational right-hand sides, a rational enclosure of $\Varp$ of width
+below $10^{-19}$, and exact rational lower bounds for every claimed margin.
+The checker (written clean-room, independently of the discovery pipeline)
+verifies every instance by two algorithmically independent exact routes and
+accepts only if both certify each claimed strict inequality and, for each
+reading not claimed (the dashes of Table~\ref{tab:143}), that the certified
+enclosure of $\Varp$ lies strictly below the right-hand side: route A
+computes the integer
+characteristic polynomial symbolically and isolates its real roots exactly
+(isolation width $2^{-70}$); route B is restricted to the Python standard
+library (exact fractions only) and recomputes the characteristic polynomial
+by the Berkowitz algorithm, checks it against an equitable-partition quotient
+via the exact integer identity
+$\operatorname{char}_A(x) = \operatorname{char}_B(x)\,(x+1)^{t_1+t_2-4}$,
+isolates roots by Sturm chains with bisection refinement to width $2^{-70}$,
+and evaluates the variance in rational interval arithmetic. Cross-checks
+include identical characteristic polynomials, trace and edge-count
+coefficient identities, agreement of $k$, intersection of the two variance
+enclosures, connectivity, and recomputation of $W$, $m$ and the right-hand
+sides from the edge lists. Ten targeted certificate corruptions (mutation
+tests) are all rejected, the pristine certificate accepted. An independent
+audit recomputed all five instances with separate numerical software and
+confirmed every certificate field, and an orchestrator-level script rebuilt
+$\D(20,8,20)$ from the construction description alone (rather than from the
+certified edge list) and reproduced both violations at floating-point
+precision.
+
+\paragraph{Conjecture 154.}
+Here the accept path is integer-only (Lemma~\ref{lem:integer}). Checker A
+rebuilds the three lollipops from scratch, recomputes $W$ both by
+breadth-first search and by the closed form of Lemma~\ref{lem:wiener}
+(demanding agreement), evaluates the integer violation forms, re-runs the
+exhaustive $n \le 130$ family scan of Remark~\ref{rem:154min}, and proves the
+MAD non-violation of Section~\ref{subsec:mad} in exact arithmetic by the two
+routes described there; the spectral side-checks (trace identities at double
+and 60-digit precision, agreement of the certified spectrum with a numerical
+eigensolver) are advisory only. Checker B was written independently by an
+adversarial referee agent from a different model family (Codex, GPT-5.5)
+and reproduces the
+integer inequalities, the margins, and the $n \le 117$ non-violation from
+its own reconstruction. Six mutation tests (e.g.\ claiming a violation at
+$\Lol(47,70)$, corrupting $W$ by one, claiming the $\la$ reading at
+$\Lol(48,70)$) are all rejected. An orchestrator-level script again rebuilds
+$\Lol(72,72)$ from the construction description and re-asserts both integer
+inequalities.
+
+\paragraph{Independent recomputation for this note.}
+In June 2026, while preparing this note, both checkers and the mutation
+tests were re-run (verdicts: \texttt{ACCEPT} and \texttt{ALL CHECKS PASS},
+with all mutation tests rejected); these re-runs certify every entry of
+Tables~\ref{tab:143} and~\ref{tab:154}, the lollipop family scan of
+Remark~\ref{rem:154min}, and the mean-absolute-deviation bounds of
+Section~\ref{subsec:mad}. The dumbbell family scan of
+Remark~\ref{rem:143min} was re-executed, and the headline quantities --- the
+values of Table~\ref{tab:143} and the numerical illustrations
+$\D(40,10,40)$, $\D(800,40,800)$ and $\Lol(t,t)$ --- were additionally
+recomputed by separate scripts written for the purpose.
+
+\paragraph{Data availability.}
+The two certificate bundles --- machine-readable certificates (JSON),
+all checkers, the mutation-test suites, the frozen source PDF of
+\emph{Written on the Wall} with its decoding script, the archived search code
+of \cite{RoucairolCazenave2025} used to fix the formalization conventions,
+and full verification logs --- will be made available at
+\url{https://github.com/demonstrandum-research/[REPO]}. The frozen source PDF has SHA-256 checksum
+\begin{center}
+\texttt{\small d2c779d2c28418b30ab1b4f84bf7112c0e000bca1f2d6a3c48d0baba78af7733}.
+\end{center}
+
+\begin{thebibliography}{10}
+
+\bibitem{AouchicheHansen2010}
+M.~Aouchiche and P.~Hansen,
+\emph{A survey of automated conjectures in spectral graph theory},
+Linear Algebra Appl.\ \textbf{432} (2010), 2293--2322.
+
+\bibitem{BDF1995}
+T.~L. Brewster, M.~J. Dinneen, and V.~Faber,
+\emph{A computational attack on the conjectures of Graffiti: new
+counterexamples and proofs},
+Discrete Math.\ \textbf{147} (1995), 35--55.
+
+\bibitem{BrouwerHaemers2012}
+A.~E. Brouwer and W.~H. Haemers,
+\emph{Spectra of Graphs},
+Universitext, Springer, New York, 2012.
+
+\bibitem{DeLaVina2005}
+E.~DeLaVi\~na,
+\emph{Some history of the development of Graffiti},
+in: Graphs and Discovery, DIMACS Ser.\ Discrete Math.\ Theoret.\ Comput.\
+Sci.\ \textbf{69}, Amer.\ Math.\ Soc., Providence, RI, 2005, pp.~81--118.
+
+\bibitem{Fajtlowicz1988}
+S.~Fajtlowicz,
+\emph{On conjectures of Graffiti},
+Discrete Math.\ \textbf{72} (1988), 113--118.
+
+\bibitem{WOW}
+S.~Fajtlowicz,
+\emph{Written on the Wall (conjectures of Graffiti)},
+working document, University of Houston, regularly updated; compilation
+archived by Roucairol and Cazenave as \texttt{wow-july2004.pdf} (the PDF
+metadata records a creation date of 26 July 2006). Archived copy (accessed
+2026-06-11):
+\url{https://raw.githubusercontent.com/RoucairolMilo/refutation-COCOON2022/master/wow-july2004.pdf}.
+
+\bibitem{FMS1993}
+O.~Favaron, M.~Mah\'eo, and J.-F. Sacl\'e,
+\emph{Some eigenvalue properties in graphs (conjectures of Graffiti---II)},
+Discrete Math.\ \textbf{111} (1993), 197--220.
+
+\bibitem{KoolenMoulton2001}
+J.~H. Koolen and V.~Moulton,
+\emph{Maximal energy graphs},
+Adv.\ in Appl.\ Math.\ \textbf{26} (2001), 47--52.
+
+\bibitem{RoucairolCazenave2022}
+M.~Roucairol and T.~Cazenave,
+\emph{Refutation of spectral graph theory conjectures with Monte Carlo
+search},
+in: Computing and Combinatorics (COCOON 2022), Lecture Notes in Comput.\
+Sci.\ \textbf{13595}, Springer, 2022, pp.~162--176.
+
+\bibitem{RoucairolCazenave2025}
+M.~Roucairol and T.~Cazenave,
+\emph{Refutation of spectral graph theory conjectures with search
+algorithms},
+presented at the Workshop on Intelligent Agents in Science and Engineering
+(IASE-2025) at ECAI 2025, Bologna, October 2025; arXiv:2409.18626.
+
+\end{thebibliography}
+
+\end{document}

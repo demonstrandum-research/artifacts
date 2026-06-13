@@ -1,0 +1,117 @@
+{
+ "n": 17,
+ "template": "union_ver_vera_verb7",
+ "seed": 2,
+ "budget": 300.0,
+ "pool_size": 662,
+ "pairs": 20,
+ "points": 40,
+ "iters": 331,
+ "elapsed": 303.1,
+ "verified": true,
+ "file_or_reason": "C:\\Users\\jacks\\source\\repos\\maths\\problems\\p1-records\\no-5-on-a-sphere-grid\\mining\\construct-algebraic\\set_union_ver_vera_verb7_n17_m40.json",
+ "evecs": [
+  [
+   0,
+   8,
+   14
+  ],
+  [
+   2,
+   -6,
+   4
+  ],
+  [
+   2,
+   12,
+   -12
+  ],
+  [
+   4,
+   -2,
+   -8
+  ],
+  [
+   4,
+   14,
+   14
+  ],
+  [
+   6,
+   -10,
+   -16
+  ],
+  [
+   6,
+   10,
+   2
+  ],
+  [
+   8,
+   -16,
+   -10
+  ],
+  [
+   8,
+   -12,
+   4
+  ],
+  [
+   10,
+   4,
+   -10
+  ],
+  [
+   10,
+   8,
+   -2
+  ],
+  [
+   12,
+   -12,
+   16
+  ],
+  [
+   12,
+   16,
+   2
+  ],
+  [
+   14,
+   -14,
+   16
+  ],
+  [
+   14,
+   -2,
+   -14
+  ],
+  [
+   14,
+   4,
+   0
+  ],
+  [
+   14,
+   14,
+   -6
+  ],
+  [
+   16,
+   -6,
+   -4
+  ],
+  [
+   16,
+   2,
+   16
+  ],
+  [
+   16,
+   16,
+   12
+  ]
+ ],
+ "p": 7,
+ "distinct_proj_dirs_mod_p": 13
+}

@@ -1,0 +1,27 @@
+{"done": 25, "extendable": 0, "f35": 0, "f36": 0}
+{"done": 50, "extendable": 0, "f35": 0, "f36": 0}
+{"done": 75, "extendable": 0, "f35": 0, "f36": 0}
+{"done": 100, "extendable": 0, "f35": 0, "f36": 0}
+{"done": 125, "extendable": 0, "f35": 0, "f36": 0}
+{"done": 150, "extendable": 0, "f35": 0, "f36": 0}
+{"done": 175, "extendable": 0, "f35": 0, "f36": 0}
+{"done": 200, "extendable": 0, "f35": 0, "f36": 0}
+{"done": 225, "extendable": 0, "f35": 0, "f36": 0}
+{"done": 250, "extendable": 0, "f35": 0, "f36": 0}
+{"done": 275, "extendable": 0, "f35": 0, "f36": 0}
+{"done": 300, "extendable": 0, "f35": 0, "f36": 0}
+{"done": 325, "extendable": 0, "f35": 0, "f36": 0}
+{"done": 350, "extendable": 0, "f35": 0, "f36": 0}
+{"done": 375, "extendable": 0, "f35": 0, "f36": 0}
+{"done": 400, "extendable": 0, "f35": 0, "f36": 0}
+{
+ "K": 400,
+ "addable_hist": {
+  "0": 400
+ },
+ "n_sets_extendable": 0,
+ "found35": 0,
+ "found36": 0,
+ "center_addable": 0
+}
+written aug_scan.json

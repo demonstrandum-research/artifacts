@@ -1,0 +1,1 @@
+{"n": 16, "template": "full", "pool_size": 2048, "pairs": 20, "points": 40, "verified": true, "distinct_proj_dirs_mod_p": null, "iters": 501}

@@ -1,0 +1,7 @@
+[13->15] singly-addable pairs: 0 of 1669 candidates (57.5s)
+13->15: +0 pairs => 36 points; singles addable after: 0
+[nested15->17] singly-addable pairs: 0 of 2438 candidates (90.6s)
+nested15->17: +0 pairs => 36 points; singles: 0
+[algebraic15->17] singly-addable pairs: 0 of 2437 candidates (111.4s)
+algebraic15->17: +0 pairs => 38 points; singles: 0
+written nested_growth.json

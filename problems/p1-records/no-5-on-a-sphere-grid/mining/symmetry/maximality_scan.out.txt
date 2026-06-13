@@ -1,0 +1,11 @@
+record36_centralsym.json: size 36, addable cells: 0 []
+record35_baseline.json: size 35, addable cells: 0 []
+record35_blockerrepair_1.json: size 35, addable cells: 0 []
+record35_blockerrepair_2.json: size 35, addable cells: 0 []
+record35_blockerrepair_3.json: size 35, addable cells: 0 []
+record35_blockerrepair_4.json: size 35, addable cells: 0 []
+record35_blockerrepair_5.json: size 35, addable cells: 0 []
+record35_blockerrepair_6.json: size 35, addable cells: 0 []
+
+1-pair-out/1-pair-in alternatives for the 36-set: 0
+written maximality_scan.json

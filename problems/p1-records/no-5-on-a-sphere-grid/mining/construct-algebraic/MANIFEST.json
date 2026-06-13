@@ -1,0 +1,1602 @@
+{
+ "n_files": 219,
+ "n_valid": 219,
+ "n_invalid": 0,
+ "best_by_n_and_category": {
+  "11|cone_ILS": "set_union_ver_vera_verb11_n11_m26.json",
+  "11|deterministic": "det_full_lex_n11_m26.json",
+  "11|formula": "formula_p11k1c1_n11_m10.json",
+  "11|full_ILS": "set_full_n11_m28.json",
+  "11|hybrid": "hybrid_ver5_n11_m26.json",
+  "12|cone_ILS": "set_union_ver_hyp11_n12_m28.json",
+  "12|deterministic": "det_full_desc_norm_n12_m26.json",
+  "12|full_ILS": "set_full_n12_m32.json",
+  "13|cone_ILS": "set_mix_ver11_hyp13_n13_m30.json",
+  "13|deterministic": "det_full_desc_norm_n13_m28.json",
+  "13|formula": "formula_p11k1c1_n13_m10.json",
+  "13|full_ILS": "set_full_n13_m32.json",
+  "13|hybrid": "hybrid_union_ver_hyp11_n13_m30.json",
+  "14|cone_ILS": "set_union_ver_hyp11_n14_m32.json",
+  "14|deterministic": "det_full_desc_norm_n14_m30.json",
+  "14|full_ILS": "set_full_n14_m36.json",
+  "15|cone_ILS": "set_union_ver_vera_verb11_n15_m36.json",
+  "15|deterministic": "det_full_corner_first_n15_m34.json",
+  "15|formula": "formula_p11k1c1_n15_m10.json",
+  "15|full_ILS": "set_full_n15_m38.json",
+  "15|hybrid": "hybrid_union_ver_hyp11_n15_m34.json",
+  "16|cone_ILS": "set_union_ver_hyp11_n16_m36.json",
+  "16|deterministic": "det_full_desc_norm_n16_m34.json",
+  "16|full_ILS": "set_full_n16_m40.json",
+  "17|cone_ILS": "set_union_ver_vera_verb11_n17_m40.json",
+  "17|deterministic": "det_full_desc_norm_n17_m36.json",
+  "17|formula": "formula_p17k2c1_n17_m16.json",
+  "17|full_ILS": "set_full_n17_m40.json",
+  "17|hybrid": "hybrid_union_ver_hyp11_n17_m40.json"
+ },
+ "best_sizes": {
+  "n11_cone_ILS": 26,
+  "n11_deterministic": 26,
+  "n11_formula": 10,
+  "n11_full_ILS": 28,
+  "n11_hybrid": 26,
+  "n12_cone_ILS": 28,
+  "n12_deterministic": 26,
+  "n12_full_ILS": 32,
+  "n13_cone_ILS": 30,
+  "n13_deterministic": 28,
+  "n13_formula": 10,
+  "n13_full_ILS": 32,
+  "n13_hybrid": 30,
+  "n14_cone_ILS": 32,
+  "n14_deterministic": 30,
+  "n14_full_ILS": 36,
+  "n15_cone_ILS": 36,
+  "n15_deterministic": 34,
+  "n15_formula": 10,
+  "n15_full_ILS": 38,
+  "n15_hybrid": 34,
+  "n16_cone_ILS": 36,
+  "n16_deterministic": 34,
+  "n16_full_ILS": 40,
+  "n17_cone_ILS": 40,
+  "n17_deterministic": 36,
+  "n17_formula": 16,
+  "n17_full_ILS": 40,
+  "n17_hybrid": 40
+ },
+ "files": [
+  {
+   "file": "det_full_corner_first_n15_m34.json",
+   "n": 15,
+   "m": 34,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_full_desc_norm_n11_m24.json",
+   "n": 11,
+   "m": 24,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_full_desc_norm_n12_m26.json",
+   "n": 12,
+   "m": 26,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_full_desc_norm_n13_m28.json",
+   "n": 13,
+   "m": 28,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_full_desc_norm_n14_m30.json",
+   "n": 14,
+   "m": 30,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_full_desc_norm_n15_m32.json",
+   "n": 15,
+   "m": 32,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_full_desc_norm_n16_m34.json",
+   "n": 16,
+   "m": 34,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_full_desc_norm_n17_m36.json",
+   "n": 17,
+   "m": 36,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_full_lex_n11_m26.json",
+   "n": 11,
+   "m": 26,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_hyp11_corner_first_n11_m22.json",
+   "n": 11,
+   "m": 22,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_hyp11_desc_norm_n11_m20.json",
+   "n": 11,
+   "m": 20,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_hyp11_desc_norm_n12_m22.json",
+   "n": 12,
+   "m": 22,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_hyp11_desc_norm_n13_m22.json",
+   "n": 13,
+   "m": 22,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_hyp11_desc_norm_n14_m26.json",
+   "n": 14,
+   "m": 26,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_hyp11_desc_norm_n15_m26.json",
+   "n": 15,
+   "m": 26,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_hyp11_desc_norm_n16_m32.json",
+   "n": 16,
+   "m": 32,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_hyp11_desc_norm_n17_m32.json",
+   "n": 17,
+   "m": 32,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_hyp7_asc_norm_n14_m22.json",
+   "n": 14,
+   "m": 22,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_hyp7_corner_first_n17_m32.json",
+   "n": 17,
+   "m": 32,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_hyp7_desc_norm_n11_m16.json",
+   "n": 11,
+   "m": 16,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_hyp7_desc_norm_n12_m20.json",
+   "n": 12,
+   "m": 20,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_hyp7_desc_norm_n13_m22.json",
+   "n": 13,
+   "m": 22,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_hyp7_desc_norm_n14_m20.json",
+   "n": 14,
+   "m": 20,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_hyp7_desc_norm_n15_m22.json",
+   "n": 15,
+   "m": 22,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_hyp7_desc_norm_n16_m28.json",
+   "n": 16,
+   "m": 28,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_hyp7_desc_norm_n17_m30.json",
+   "n": 17,
+   "m": 30,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_hyp7_lex_n11_m18.json",
+   "n": 11,
+   "m": 18,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_hyp7_lex_n15_m26.json",
+   "n": 15,
+   "m": 26,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_hyp11_corner_first_n12_m22.json",
+   "n": 12,
+   "m": 22,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_hyp11_corner_first_n17_m36.json",
+   "n": 17,
+   "m": 36,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_hyp11_desc_norm_n11_m22.json",
+   "n": 11,
+   "m": 22,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_hyp11_desc_norm_n12_m20.json",
+   "n": 12,
+   "m": 20,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_hyp11_desc_norm_n13_m26.json",
+   "n": 13,
+   "m": 26,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_hyp11_desc_norm_n14_m28.json",
+   "n": 14,
+   "m": 28,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_hyp11_desc_norm_n15_m28.json",
+   "n": 15,
+   "m": 28,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_hyp11_desc_norm_n16_m32.json",
+   "n": 16,
+   "m": 32,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_hyp11_desc_norm_n17_m34.json",
+   "n": 17,
+   "m": 34,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_hyp13_corner_first_n15_m30.json",
+   "n": 15,
+   "m": 30,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_hyp13_desc_norm_n11_m18.json",
+   "n": 11,
+   "m": 18,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_hyp13_desc_norm_n12_m22.json",
+   "n": 12,
+   "m": 22,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_hyp13_desc_norm_n13_m22.json",
+   "n": 13,
+   "m": 22,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_hyp13_desc_norm_n14_m26.json",
+   "n": 14,
+   "m": 26,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_hyp13_desc_norm_n15_m28.json",
+   "n": 15,
+   "m": 28,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_hyp13_desc_norm_n16_m32.json",
+   "n": 16,
+   "m": 32,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_hyp13_desc_norm_n17_m32.json",
+   "n": 17,
+   "m": 32,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_hyp7_corner_first_n11_m20.json",
+   "n": 11,
+   "m": 20,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_hyp7_corner_first_n12_m24.json",
+   "n": 12,
+   "m": 24,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_hyp7_corner_first_n13_m24.json",
+   "n": 13,
+   "m": 24,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_hyp7_corner_first_n15_m28.json",
+   "n": 15,
+   "m": 28,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_hyp7_desc_norm_n11_m18.json",
+   "n": 11,
+   "m": 18,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_hyp7_desc_norm_n12_m22.json",
+   "n": 12,
+   "m": 22,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_hyp7_desc_norm_n13_m22.json",
+   "n": 13,
+   "m": 22,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_hyp7_desc_norm_n14_m26.json",
+   "n": 14,
+   "m": 26,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_hyp7_desc_norm_n15_m26.json",
+   "n": 15,
+   "m": 26,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_hyp7_desc_norm_n16_m32.json",
+   "n": 16,
+   "m": 32,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_hyp7_desc_norm_n17_m32.json",
+   "n": 17,
+   "m": 32,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_vera_verb11_corner_first_n15_m32.json",
+   "n": 15,
+   "m": 32,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_vera_verb11_desc_norm_n11_m20.json",
+   "n": 11,
+   "m": 20,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_vera_verb11_desc_norm_n12_m24.json",
+   "n": 12,
+   "m": 24,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_vera_verb11_desc_norm_n13_m24.json",
+   "n": 13,
+   "m": 24,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_vera_verb11_desc_norm_n14_m26.json",
+   "n": 14,
+   "m": 26,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_vera_verb11_desc_norm_n15_m30.json",
+   "n": 15,
+   "m": 30,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_vera_verb11_desc_norm_n16_m32.json",
+   "n": 16,
+   "m": 32,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_vera_verb11_desc_norm_n17_m34.json",
+   "n": 17,
+   "m": 34,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_vera_verb13_asc_norm_n11_m18.json",
+   "n": 11,
+   "m": 18,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_vera_verb13_desc_norm_n11_m16.json",
+   "n": 11,
+   "m": 16,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_vera_verb13_desc_norm_n12_m24.json",
+   "n": 12,
+   "m": 24,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_vera_verb13_desc_norm_n13_m24.json",
+   "n": 13,
+   "m": 24,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_vera_verb13_desc_norm_n14_m26.json",
+   "n": 14,
+   "m": 26,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_vera_verb13_desc_norm_n15_m28.json",
+   "n": 15,
+   "m": 28,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_vera_verb13_desc_norm_n16_m32.json",
+   "n": 16,
+   "m": 32,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_vera_verb13_desc_norm_n17_m36.json",
+   "n": 17,
+   "m": 36,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_vera_verb7_corner_first_n14_m26.json",
+   "n": 14,
+   "m": 26,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_vera_verb7_desc_norm_n11_m18.json",
+   "n": 11,
+   "m": 18,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_vera_verb7_desc_norm_n12_m22.json",
+   "n": 12,
+   "m": 22,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_vera_verb7_desc_norm_n13_m22.json",
+   "n": 13,
+   "m": 22,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_vera_verb7_desc_norm_n14_m24.json",
+   "n": 14,
+   "m": 24,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_vera_verb7_desc_norm_n15_m30.json",
+   "n": 15,
+   "m": 30,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_vera_verb7_desc_norm_n16_m30.json",
+   "n": 16,
+   "m": 30,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_vera_verb7_desc_norm_n17_m32.json",
+   "n": 17,
+   "m": 32,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_union_ver_vera_verb7_lex_n11_m20.json",
+   "n": 11,
+   "m": 20,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_ver11_corner_first_n17_m32.json",
+   "n": 17,
+   "m": 32,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_ver11_desc_norm_n11_m20.json",
+   "n": 11,
+   "m": 20,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_ver11_desc_norm_n12_m20.json",
+   "n": 12,
+   "m": 20,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_ver11_desc_norm_n13_m24.json",
+   "n": 13,
+   "m": 24,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_ver11_desc_norm_n14_m26.json",
+   "n": 14,
+   "m": 26,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_ver11_desc_norm_n15_m32.json",
+   "n": 15,
+   "m": 32,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_ver11_desc_norm_n16_m28.json",
+   "n": 16,
+   "m": 28,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_ver11_desc_norm_n17_m30.json",
+   "n": 17,
+   "m": 30,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_ver11_lex_n11_m22.json",
+   "n": 11,
+   "m": 22,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_ver11_lex_n12_m22.json",
+   "n": 12,
+   "m": 22,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_ver11_lex_n14_m28.json",
+   "n": 14,
+   "m": 28,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_ver13_asc_norm_n12_m20.json",
+   "n": 12,
+   "m": 20,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_ver13_asc_norm_n14_m24.json",
+   "n": 14,
+   "m": 24,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_ver13_corner_first_n17_m32.json",
+   "n": 17,
+   "m": 32,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_ver13_desc_norm_n11_m18.json",
+   "n": 11,
+   "m": 18,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_ver13_desc_norm_n12_m18.json",
+   "n": 12,
+   "m": 18,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_ver13_desc_norm_n13_m24.json",
+   "n": 13,
+   "m": 24,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_ver13_desc_norm_n14_m22.json",
+   "n": 14,
+   "m": 22,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_ver13_desc_norm_n15_m24.json",
+   "n": 15,
+   "m": 24,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_ver13_desc_norm_n16_m30.json",
+   "n": 16,
+   "m": 30,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_ver13_desc_norm_n17_m30.json",
+   "n": 17,
+   "m": 30,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_ver13_lex_n12_m22.json",
+   "n": 12,
+   "m": 22,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_ver7_desc_norm_n11_m18.json",
+   "n": 11,
+   "m": 18,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_ver7_desc_norm_n12_m20.json",
+   "n": 12,
+   "m": 20,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_ver7_desc_norm_n13_m20.json",
+   "n": 13,
+   "m": 20,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_ver7_desc_norm_n14_m24.json",
+   "n": 14,
+   "m": 24,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_ver7_desc_norm_n15_m28.json",
+   "n": 15,
+   "m": 28,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_ver7_desc_norm_n16_m26.json",
+   "n": 16,
+   "m": 26,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_ver7_desc_norm_n17_m30.json",
+   "n": 17,
+   "m": 30,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "det_ver7_lex_n13_m22.json",
+   "n": 13,
+   "m": 22,
+   "category": "deterministic",
+   "valid": true
+  },
+  {
+   "file": "formula_p11k0c1_n11_m8.json",
+   "n": 11,
+   "m": 8,
+   "category": "formula",
+   "valid": true
+  },
+  {
+   "file": "formula_p11k0c1_n13_m8.json",
+   "n": 13,
+   "m": 8,
+   "category": "formula",
+   "valid": true
+  },
+  {
+   "file": "formula_p11k0c1_n15_m8.json",
+   "n": 15,
+   "m": 8,
+   "category": "formula",
+   "valid": true
+  },
+  {
+   "file": "formula_p11k0c1_n17_m8.json",
+   "n": 17,
+   "m": 8,
+   "category": "formula",
+   "valid": true
+  },
+  {
+   "file": "formula_p11k1c1_n11_m10.json",
+   "n": 11,
+   "m": 10,
+   "category": "formula",
+   "valid": true
+  },
+  {
+   "file": "formula_p11k1c1_n13_m10.json",
+   "n": 13,
+   "m": 10,
+   "category": "formula",
+   "valid": true
+  },
+  {
+   "file": "formula_p11k1c1_n15_m10.json",
+   "n": 15,
+   "m": 10,
+   "category": "formula",
+   "valid": true
+  },
+  {
+   "file": "formula_p11k1c1_n17_m10.json",
+   "n": 17,
+   "m": 10,
+   "category": "formula",
+   "valid": true
+  },
+  {
+   "file": "formula_p17k1c1_n17_m14.json",
+   "n": 17,
+   "m": 14,
+   "category": "formula",
+   "valid": true
+  },
+  {
+   "file": "formula_p17k2c1_n17_m16.json",
+   "n": 17,
+   "m": 16,
+   "category": "formula",
+   "valid": true
+  },
+  {
+   "file": "formula_p5k0c1_n11_m4.json",
+   "n": 11,
+   "m": 4,
+   "category": "formula",
+   "valid": true
+  },
+  {
+   "file": "formula_p5k0c1_n13_m4.json",
+   "n": 13,
+   "m": 4,
+   "category": "formula",
+   "valid": true
+  },
+  {
+   "file": "formula_p5k0c1_n15_m4.json",
+   "n": 15,
+   "m": 4,
+   "category": "formula",
+   "valid": true
+  },
+  {
+   "file": "formula_p5k0c1_n17_m4.json",
+   "n": 17,
+   "m": 4,
+   "category": "formula",
+   "valid": true
+  },
+  {
+   "file": "hybrid_union_ver_hyp11_n13_m30.json",
+   "n": 13,
+   "m": 30,
+   "category": "hybrid",
+   "valid": true
+  },
+  {
+   "file": "hybrid_union_ver_hyp11_n15_m34.json",
+   "n": 15,
+   "m": 34,
+   "category": "hybrid",
+   "valid": true
+  },
+  {
+   "file": "hybrid_union_ver_hyp11_n17_m40.json",
+   "n": 17,
+   "m": 40,
+   "category": "hybrid",
+   "valid": true
+  },
+  {
+   "file": "hybrid_ver5_n11_m26.json",
+   "n": 11,
+   "m": 26,
+   "category": "hybrid",
+   "valid": true
+  },
+  {
+   "file": "set_full_n11_m26.json",
+   "n": 11,
+   "m": 26,
+   "category": "full_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_full_n11_m28.json",
+   "n": 11,
+   "m": 28,
+   "category": "full_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_full_n12_m30.json",
+   "n": 12,
+   "m": 30,
+   "category": "full_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_full_n12_m32.json",
+   "n": 12,
+   "m": 32,
+   "category": "full_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_full_n13_m32.json",
+   "n": 13,
+   "m": 32,
+   "category": "full_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_full_n14_m36.json",
+   "n": 14,
+   "m": 36,
+   "category": "full_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_full_n15_m38.json",
+   "n": 15,
+   "m": 38,
+   "category": "full_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_full_n16_m40.json",
+   "n": 16,
+   "m": 40,
+   "category": "full_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_full_n17_m40.json",
+   "n": 17,
+   "m": 40,
+   "category": "full_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_hyp11_n11_m24.json",
+   "n": 11,
+   "m": 24,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_hyp11_n13_m28.json",
+   "n": 13,
+   "m": 28,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_hyp11_n15_m32.json",
+   "n": 15,
+   "m": 32,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_hyp11_n17_m34.json",
+   "n": 17,
+   "m": 34,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_hyp7_n11_m20.json",
+   "n": 11,
+   "m": 20,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_hyp7_n13_m26.json",
+   "n": 13,
+   "m": 26,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_hyp7_n15_m32.json",
+   "n": 15,
+   "m": 32,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_hyp7_n17_m36.json",
+   "n": 17,
+   "m": 36,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_iso11_n11_m8.json",
+   "n": 11,
+   "m": 8,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_iso11_n13_m14.json",
+   "n": 13,
+   "m": 14,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_iso11_n15_m20.json",
+   "n": 15,
+   "m": 20,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_iso11_n17_m22.json",
+   "n": 17,
+   "m": 22,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_iso13_n11_m4.json",
+   "n": 11,
+   "m": 4,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_iso13_n13_m8.json",
+   "n": 13,
+   "m": 8,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_iso13_n15_m10.json",
+   "n": 15,
+   "m": 10,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_iso13_n17_m14.json",
+   "n": 17,
+   "m": 14,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_iso5_n11_m18.json",
+   "n": 11,
+   "m": 18,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_iso5_n13_m20.json",
+   "n": 13,
+   "m": 20,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_iso5_n15_m24.json",
+   "n": 15,
+   "m": 24,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_iso5_n17_m26.json",
+   "n": 17,
+   "m": 26,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_iso7_n11_m8.json",
+   "n": 11,
+   "m": 8,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_iso7_n13_m16.json",
+   "n": 13,
+   "m": 16,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_iso7_n15_m20.json",
+   "n": 15,
+   "m": 20,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_iso7_n17_m24.json",
+   "n": 17,
+   "m": 24,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_mix_ver11_hyp13_n13_m30.json",
+   "n": 13,
+   "m": 30,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_mix_ver11_hyp13_n15_m34.json",
+   "n": 15,
+   "m": 34,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_mix_ver11_ver13_n13_m30.json",
+   "n": 13,
+   "m": 30,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_mix_ver11_ver13_n15_m34.json",
+   "n": 15,
+   "m": 34,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_mix_ver11_vera13_n13_m30.json",
+   "n": 13,
+   "m": 30,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_mix_ver13_hyp11_n13_m28.json",
+   "n": 13,
+   "m": 28,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_mix_ver13_hyp11_n13_m30.json",
+   "n": 13,
+   "m": 30,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_hyp11_n11_m24.json",
+   "n": 11,
+   "m": 24,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_hyp11_n12_m28.json",
+   "n": 12,
+   "m": 28,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_hyp11_n13_m30.json",
+   "n": 13,
+   "m": 30,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_hyp11_n14_m32.json",
+   "n": 14,
+   "m": 32,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_hyp11_n15_m34.json",
+   "n": 15,
+   "m": 34,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_hyp11_n16_m36.json",
+   "n": 16,
+   "m": 36,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_hyp11_n17_m38.json",
+   "n": 17,
+   "m": 38,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_hyp13_n11_m20.json",
+   "n": 11,
+   "m": 20,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_hyp13_n13_m28.json",
+   "n": 13,
+   "m": 28,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_hyp13_n15_m32.json",
+   "n": 15,
+   "m": 32,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_hyp13_n17_m34.json",
+   "n": 17,
+   "m": 34,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_hyp7_n11_m22.json",
+   "n": 11,
+   "m": 22,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_hyp7_n13_m28.json",
+   "n": 13,
+   "m": 28,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_hyp7_n15_m34.json",
+   "n": 15,
+   "m": 34,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_hyp7_n17_m38.json",
+   "n": 17,
+   "m": 38,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_vera_verb11_n11_m26.json",
+   "n": 11,
+   "m": 26,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_vera_verb11_n12_m28.json",
+   "n": 12,
+   "m": 28,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_vera_verb11_n13_m30.json",
+   "n": 13,
+   "m": 30,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_vera_verb11_n14_m32.json",
+   "n": 14,
+   "m": 32,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_vera_verb11_n15_m34.json",
+   "n": 15,
+   "m": 34,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_vera_verb11_n15_m36.json",
+   "n": 15,
+   "m": 36,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_vera_verb11_n16_m36.json",
+   "n": 16,
+   "m": 36,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_vera_verb11_n17_m38.json",
+   "n": 17,
+   "m": 38,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_vera_verb11_n17_m40.json",
+   "n": 17,
+   "m": 40,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_vera_verb13_n11_m22.json",
+   "n": 11,
+   "m": 22,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_vera_verb13_n13_m28.json",
+   "n": 13,
+   "m": 28,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_vera_verb13_n13_m30.json",
+   "n": 13,
+   "m": 30,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_vera_verb13_n15_m34.json",
+   "n": 15,
+   "m": 34,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_vera_verb13_n17_m38.json",
+   "n": 17,
+   "m": 38,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_vera_verb13_n17_m40.json",
+   "n": 17,
+   "m": 40,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_vera_verb7_n11_m22.json",
+   "n": 11,
+   "m": 22,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_vera_verb7_n13_m30.json",
+   "n": 13,
+   "m": 30,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_vera_verb7_n15_m34.json",
+   "n": 15,
+   "m": 34,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_union_ver_vera_verb7_n17_m40.json",
+   "n": 17,
+   "m": 40,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_ver11_n11_m24.json",
+   "n": 11,
+   "m": 24,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_ver11_n13_m28.json",
+   "n": 13,
+   "m": 28,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_ver11_n15_m32.json",
+   "n": 15,
+   "m": 32,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_ver11_n17_m36.json",
+   "n": 17,
+   "m": 36,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_ver13_n11_m20.json",
+   "n": 11,
+   "m": 20,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_ver13_n13_m26.json",
+   "n": 13,
+   "m": 26,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_ver13_n15_m32.json",
+   "n": 15,
+   "m": 32,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_ver13_n17_m36.json",
+   "n": 17,
+   "m": 36,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_ver5_n11_m26.json",
+   "n": 11,
+   "m": 26,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_ver5_n13_m26.json",
+   "n": 13,
+   "m": 26,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_ver5_n15_m30.json",
+   "n": 15,
+   "m": 30,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_ver5_n17_m34.json",
+   "n": 17,
+   "m": 34,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_ver7_n11_m20.json",
+   "n": 11,
+   "m": 20,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_ver7_n13_m26.json",
+   "n": 13,
+   "m": 26,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_ver7_n15_m32.json",
+   "n": 15,
+   "m": 32,
+   "category": "cone_ILS",
+   "valid": true
+  },
+  {
+   "file": "set_ver7_n17_m32.json",
+   "n": 17,
+   "m": 32,
+   "category": "cone_ILS",
+   "valid": true
+  }
+ ]
+}

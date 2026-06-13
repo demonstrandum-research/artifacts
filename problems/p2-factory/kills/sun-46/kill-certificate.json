@@ -1,0 +1,88 @@
+{
+  "conjecture": "Sun Conjecture 4.6 (arXiv:2108.07723v7, 'Arithmetic properties of some permanents', Zhi-Wei Sun, last revised 6 Jun 2022)",
+  "statement": {
+    "definitions": "s_n := (2^((n-1)/2)/sqrt(n)) * per[sin(2*pi*j*k/n)]_{1<=j,k<=(n-1)/2} (integer for all odd n>1, Thm 1.6(i)); s'_p := (sqrt(p)/2^((p-1)/2)) * per[csc(2*pi*j*k/p)]_{1<=j,k<=(p-1)/2} (integer for odd primes p, Thm 1.6(ii))",
+    "part_i": "If n>1 is odd and composite, then s_n == 0 (mod n).",
+    "part_ii": "For odd primes p: s_p < 0 <=> p == 5 (mod 12), and s'_p < 0 <=> p == 7 (mod 8)."
+  },
+  "verdict": "Conjecture 4.6(ii) is FALSE — both iff clauses fail at p = 29, the very first prime beyond Sun's tested range (p <= 23) — hence Conjecture 4.6 as stated (the conjunction of (i) and (ii)) is false. Part (i) itself survives all tests (all 15 odd composites n <= 65) and remains plausible.",
+  "counterexamples": [
+    {
+      "prime": 29,
+      "s_p": 1053859,
+      "clause": "s_p < 0 <=> p == 5 (mod 12)",
+      "why_violated": "29 == 5 (mod 12) so the conjecture demands s_29 < 0, but s_29 = 1053859 > 0.",
+      "consistency": "s_29 == -1 == (-1)^((29+1)/2) (mod 29), matching Sun's PROVEN congruence (1.21)."
+    },
+    {
+      "prime": 29,
+      "s'_p": -4806838304,
+      "clause": "s'_p < 0 <=> p == 7 (mod 8)",
+      "why_violated": "29 == 5 (mod 8), not 7, so the iff demands s'_29 >= 0 (and s'_29 > 0 follows since the proven congruence s'_29 == 1 (mod 29) excludes 0); but s'_29 = -4806838304 < 0.",
+      "consistency": "s'_29 == 1 (mod 29), matching Sun's PROVEN congruence (1.21)."
+    },
+    {
+      "prime": 41,
+      "s_p": 5574476521,
+      "clause": "s_p < 0 <=> p == 5 (mod 12)",
+      "why_violated": "41 == 5 (mod 12) demands s_41 < 0, but s_41 = 5574476521 > 0. (Second counterexample to the mod-12 clause; independently Glynn-verified.)"
+    },
+    {
+      "prime": 53,
+      "s_p": 1540679755916971,
+      "clause": "s_p < 0 <=> p == 5 (mod 12)",
+      "why_violated": "53 == 5 (mod 12) demands s_53 < 0, but s_53 > 0. (Third counterexample to the mod-12 clause; the law fails at EVERY tested prime == 5 mod 12 beyond Sun's range. CRT/held-out-prime verified.)"
+    },
+    {
+      "prime": 61,
+      "s'_p": -2904784276786469053142518062479,
+      "clause": "s'_p < 0 <=> p == 7 (mod 8)",
+      "why_violated": "61 == 5 (mod 8) demands s'_61 not negative, but s'_61 < 0. (Second counterexample to the mod-8 clause. CRT/held-out-prime verified; s'_61 == 1 mod 61 consistent with proven congruence.)"
+    }
+  ],
+  "verification": {
+    "method_1": "CRT/finite-field (driver.py + ryser_mod.c): for 59-bit primes q == 1 (mod 4n), embed Z[zeta_4n] -> F_q (w of verified multiplicative order 4n); entries (w^{4jk}-w^{-4jk})/(2w^n); sqrt(n) by Gauss sum (sign pinned by Gauss's theorem, sanity-checked gs^2 == n mod q); permanent by Gray-code Ryser with Montgomery arithmetic (C, OpenMP); CRT of 3-4 primes against a conservative magnitude bound (padded float of min(m!, prod of absolute row sums)); every run additionally verified against a HELD-OUT extra prime not used in reconstruction.",
+    "method_2": "From-scratch checker (checker.py): Glynn's formula (different algorithm), pure Python, mpmath 60-digit real arithmetic, entries direct from mpmath.sin — no shared code, no finite fields. Agreement to better than 1e-15 on the p=29 kill pair (s_29, s'_29) and on (s_41, s'_41); see checker_big.log. p=53 and p=61 values rest on method 1 (with held-out-prime check and proven-congruence consistency).",
+    "method_3": "Adversarial recomputation during Codex foil review: row-by-row subset-DP permanent (third distinct algorithm), 100-digit mpmath; reproduced s_29 = 1053859 and s'_29 = -4806838304 with error ~1e-90; independently confirmed the statement reading against the paper text.",
+    "pipeline_validation": "All 19 values published by Sun (Remark 1.6) reproduced exactly, including all four negative ones (s_5, s_17, s'_7, s'_23) — sign conventions validated end-to-end.",
+    "proven_congruence_check": "Sun's proved Thm 1.6(iii) congruences s_p == (-1)^((p+1)/2) (mod p) and s'_p == 1 (mod p) hold on every computed value (s_p for p = 29..61, s'_p for p = 29..61).",
+    "method_4_session_2026-06-12": "Fourth from-scratch exact layer (mycheck_2026-06-12.py, log mycheck_2026-06-12.log): pure-Python, exact integers only, permanent by SUBSET-DP recursion f[S]=sum_{j in S} A[popcount(S)-1][j]*f[S\\{j}] (distinct from Ryser and Glynn used by all prior layers), fresh random 57-bit primes q == 1 (mod 4n) via own deterministic Miller-Rabin, rigorous CRT-uniqueness bounds (2^m*m! for sin; exact-Fraction chord bound |sin(pi x)| >= 2*dist(x,Z) for csc), prod(q) > 4*bound with |x| <= 2*bound, plus a held-out prime per value. Reproduced all 19 Sun values (incl. the four negatives), then s_29 = 1053859, s'_29 = -4806838304, s_41 = 5574476521 exactly.",
+    "codex_hostile_audit_2026-06-12": "Second adversarial Codex audit (GPT-5.5 xhigh, thread 019eba3a-b136-7dd2-bb7b-a5df569b6ff3): probed statement numbering/reading against paper.tex and the compiled PDF, global-sign-flip hole (closed by Sun's four negative published values plus its own Gauss-sum-free recomputation), '=:' typo, literature/staleness (arXiv still v7 of 2022-06-06; arXiv:2605.19502 confirmed to target a DIFFERENT Sun paper's 4.6); independently recomputed at 100-digit precision with direct real sin/csc entries: s_29 = 1053859 (err ~5e-93), s'_29 = -4806838304 (err ~8e-89), s_41 = 5574476521 (err ~4e-87). Round 2 audited mycheck_2026-06-12.py line by line (DP recurrence brute-checked to m=6, embedding, bounds, CRT-uniqueness logic) and found no false-pass flaw. Verdict both rounds: KILL STANDS.",
+    "supplementary_value_provenance": "Caveat (provenance, not weakness): the supplementary values s_53 and s'_61 were not float-recomputed in the 2026-06-12 audit; they rest on two independent exact CRT layers (attack driver.py 59-bit primes + clean-room crt_verify.py 60-61-bit primes, disjoint prime sets, rigorous uniqueness bounds, held-out checks). The kill itself depends only on p = 29 (with p = 41 as float-and-exact-verified backup)."
+  },
+  "full_data": {
+    "s_p (primes 29..61)": {
+      "29": 1053859, "31": 10542977, "37": 1519663259, "41": 5574476521,
+      "43": 453435884081, "47": 4570760060257, "53": 1540679755916971,
+      "59": 493044351638203633, "61": 3864901746617921299
+    },
+    "s'_p (primes 29..61)": {
+      "29": -4806838304, "31": -1518806869720, "37": 43041655439377,
+      "41": 88188655594502880, "43": 7817331967711147274,
+      "47": -208210243110377949730, "53": 1364915376262405923148317,
+      "59": 7313054784852201235037895089487, "61": -2904784276786469053142518062479
+    },
+    "s_n odd composites (part i, all == 0 mod n, clause HOLDS throughout)": {
+      "9": 9, "15": 45, "21": 2835, "25": 63125, "27": 59049, "33": -1643895,
+      "35": 334186125, "39": 9154298673, "45": 696741294375, "49": 3078195713761,
+      "51": 113109498706113, "55": 9553828212328125, "57": 89237136634668369,
+      "63": 14357464732984700313, "65": 23595726326056828125
+    }
+  },
+  "sign_pattern_observed": "Within the computed range (Sun's table plus this sweep, p <= 61): every s_p for p = 29..61 is positive, so the only negative s_p computed to date are p = 5, 17 — the mod-12 'law' was an artifact of two coincidences in eight data points. Negative s'_p occur at p = 7, 23, 29, 31, 47, 61: the mod-8 'law' breaks at 29 and 61 while 31, 47 happen to conform.",
+  "status_check": "Targeted searches (web + Codex, June 2026) found no proof, refutation, or correction of this conjecture; OEIS contains neither sequence; latest arXiv version remains v7 of June 2022. Trap noted in harvest confirmed avoided: arXiv:2605.19502 concerns conjectures 4.6/4.7 of a DIFFERENT 2024 Sun paper.",
+  "artifacts": [
+    "C:/Users/jacks/source/repos/maths/problems/p2-factory/attacks/sun-46/notes.md",
+    "C:/Users/jacks/source/repos/maths/problems/p2-factory/attacks/sun-46/driver.py",
+    "C:/Users/jacks/source/repos/maths/problems/p2-factory/attacks/sun-46/ryser_mod.c",
+    "C:/Users/jacks/source/repos/maths/problems/p2-factory/attacks/sun-46/checker.py",
+    "C:/Users/jacks/source/repos/maths/problems/p2-factory/attacks/sun-46/checker_big.log",
+    "C:/Users/jacks/source/repos/maths/problems/p2-factory/attacks/sun-46/results.json",
+    "C:/Users/jacks/source/repos/maths/problems/p2-factory/attacks/sun-46/sun-permanents.txt",
+    "C:/Users/jacks/source/repos/maths/problems/p2-factory/attacks/sun-46/mycheck_2026-06-12.py",
+    "C:/Users/jacks/source/repos/maths/problems/p2-factory/attacks/sun-46/mycheck_2026-06-12.log",
+    "C:/Users/jacks/source/repos/maths/problems/p2-factory/attacks/sun-46/paper.tex",
+    "C:/Users/jacks/source/repos/maths/problems/p2-factory/attacks/sun-46/independent/verification-certificate.json"
+  ],
+  "date": "2026-06-11; re-verified with a fourth independent exact layer and second hostile Codex audit 2026-06-12"
+}

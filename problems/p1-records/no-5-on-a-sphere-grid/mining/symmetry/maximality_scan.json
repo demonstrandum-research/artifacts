@@ -1,0 +1,35 @@
+{
+ "record36_centralsym.json": {
+  "size": 36,
+  "addable": []
+ },
+ "record35_baseline.json": {
+  "size": 35,
+  "addable": []
+ },
+ "record35_blockerrepair_1.json": {
+  "size": 35,
+  "addable": []
+ },
+ "record35_blockerrepair_2.json": {
+  "size": 35,
+  "addable": []
+ },
+ "record35_blockerrepair_3.json": {
+  "size": 35,
+  "addable": []
+ },
+ "record35_blockerrepair_4.json": {
+  "size": 35,
+  "addable": []
+ },
+ "record35_blockerrepair_5.json": {
+  "size": 35,
+  "addable": []
+ },
+ "record35_blockerrepair_6.json": {
+  "size": 35,
+  "addable": []
+ },
+ "pair_swaps_36": []
+}

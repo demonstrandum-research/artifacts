@@ -1,0 +1,505 @@
+% !TeX program = pdflatex
+% The sign pattern of Sun's trigonometric permanents and a counterexample
+% to his Conjecture 4.6.  Build: pdflatex note.tex (run twice). See BUILD.md.
+\documentclass[10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\per}{per}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+
+\title{The sign pattern of Sun's trigonometric permanents\\
+and a counterexample to his Conjecture 4.6}
+\author{John Erlbacher\thanks{Independent Researcher. Email: \texttt{erlbacher.research@gmail.com}. ORCID: 0009-0003-6851-4139.}}
+\date{June 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+In \emph{Arithmetic properties of some permanents} (arXiv:2108.07723),
+Zhi-Wei Sun proved that
+$s_n := (2^{(n-1)/2}/\sqrt n)\per[\sin 2\pi jk/n]_{1\le j,k\le(n-1)/2}$ and
+$s'_p := (\sqrt p/2^{(p-1)/2})\per[\csc 2\pi jk/p]_{1\le j,k\le(p-1)/2}$ are
+integers, and conjectured (Conjecture~4.6) that (i) $n \mid s_n$ for odd
+composite $n$, and (ii) for odd primes, $s_p<0 \iff p\equiv 5 \pmod{12}$ and
+$s'_p<0 \iff p\equiv 7\pmod 8$. We refute part~(ii) --- hence the conjecture
+as stated --- at $p=29$, the first prime beyond Sun's published table:
+$s_{29}=1\,053\,859>0$ although $29\equiv 5\pmod{12}$, and
+$s'_{29}=-4\,806\,838\,304<0$ although $29\equiv 5\pmod 8$. The mod-$12$
+clause fails again at $p=41$ and $53$, the mod-$8$ clause at $p=61$. Every
+value is certified exactly, by at least two of four independently written
+exact programs, via a cyclotomic identity evaluated in two ways:
+big-integer arithmetic in $\Z[x]/(x^{4n}-1)$ (the counterexample pair,
+among others), and finite-field specialization with CRT uniqueness
+proofs. The pipeline reproduces all nineteen of Sun's
+published values, and every new prime value satisfies his proven
+congruences.
+Part~(i) survives all tests (the fifteen odd composites $n\le 65$) and
+remains open.
+\end{abstract}
+
+\section{Introduction}\label{sec:intro}
+
+In \cite{Sun2021}, Sun studies permanents of trigonometric matrices and
+proves, among many results, the following integrality theorem
+(Theorem~1.6 of \cite{Sun2021}). For odd $n>1$ write $m=(n-1)/2$. Then
+\begin{equation}\label{eq:defs}
+s_n := \frac{2^{m}}{\sqrt n}\,
+       \per\Bigl[\sin 2\pi\frac{jk}{n}\Bigr]_{1\le j,k\le m} \in \Z
+\qquad\text{and}\qquad
+s'_p := \frac{\sqrt p}{2^{m}}\,
+       \per\Bigl[\csc 2\pi\frac{jk}{p}\Bigr]_{1\le j,k\le m} \in \Z,
+\end{equation}
+the first for all odd $n>1$, the second for all odd primes
+$p$.\footnote{In the arXiv \TeX{} source the second definition is typeset
+``$s_p'=:$'', an evident typo for ``$:=$''; the intended reading is
+unambiguous from the surrounding theorem.} Here $\per A = \sum_{\tau\in
+S_m}\prod_{j=1}^{m} a_{j\tau(j)}$ is the permanent. The same theorem proves
+the congruences
+\begin{equation}\label{eq:cong}
+s_p \equiv (-1)^{(p+1)/2} \pmod p
+\qquad\text{and}\qquad
+s'_p \equiv 1 \pmod p
+\end{equation}
+for every odd prime $p$. In Remark~1.6, Sun reports the values
+$s_3,\dots,s_{23}$ and $s'_3,\dots,s'_{23}$ (nineteen integers, reproduced
+in Table~\ref{tab:calibration} below), and in Section~4 he poses, motivated
+by those data:\footnote{Conjectures in \cite{Sun2021} are numbered by
+section; the statement quoted here is the sixth conjecture of Section~4,
+i.e.\ Conjecture~4.6 of the compiled paper (verified against the compiled
+PDF of arXiv:2108.07723v7). It should not be confused with the identically
+numbered conjectures of other papers of Sun.}
+
+\begin{quote}
+\textbf{Conjecture 4.6} (Sun \cite{Sun2021}). \emph{(i) If $n>1$ is odd and
+composite, then $s_n\equiv 0\pmod n$. (ii) Let $p$ be an odd prime. Then
+\[
+s_p<0 \iff p\equiv 5 \pmod{12},
+\qquad\text{and}\qquad
+s'_p<0 \iff p\equiv 7 \pmod 8.
+\]}
+\end{quote}
+
+\noindent
+We disprove the conjecture by computing $s_p$ and $s'_p$ exactly for the
+nine primes $29\le p\le 61$ and $s_n$ for all fifteen odd composite
+$n\le 65$. Both clauses of part~(ii) already fail at $p=29$, the first
+prime beyond the published table (Theorem~\ref{thm:main}). Part~(i), by
+contrast, is \emph{not} refuted: $n\mid s_n$ holds in every tested case
+(Remark~\ref{rem:parti}), and that clause remains an open and, on this
+evidence, plausible conjecture.
+
+The matrices are dense, with $m$ up to $32$, and the values grow to $31$
+digits, so the computation's trustworthiness deserves comment. Every value
+reported here was computed by
+\emph{exact} methods only: an identity in the cyclotomic ring
+$\Z[\zeta_{4n}]$ (Lemma~\ref{lem:cyclo}) reduces each $s_n$, $s'_p$ to an
+exactly verifiable integer equation, which was evaluated in two ways ---
+exact big-integer arithmetic in $\Z[x]/(x^{4n}-1)$ (for the
+counterexample pair and the small cases), and finite-field
+specialization at several primes $q\equiv 1\pmod{4n}$ with
+Chinese-remainder uniqueness proofs (Section~\ref{sec:method}). Five
+independently written programs were used --- four exact, plus a
+high-precision check by Glynn's formula; every value reported here was
+certified by at least two of the exact programs, with no disagreement
+observed anywhere, and every new prime value satisfies the proven
+congruences~\eqref{eq:cong} (Section~\ref{sec:verification}).
+
+Related recent work concerns the \emph{determinant} analogues: Gao and Guo
+\cite{GaoGuo2025} resolve a conjecture of Sun on a trigonometric
+$\sec$-determinant (the $\csc$ analogue having been settled in earlier
+work of the same authors, cited there). We are not aware of any prior work on the permanent
+conjecture treated here; as of June~2026 the arXiv record of \cite{Sun2021}
+is unchanged since 2022 (v7), and neither of the sequences $(s_n)$,
+$(s'_p)$ appears in the OEIS, so Tables~\ref{tab:primes}
+and~\ref{tab:composites} also extend the published data --- thirty new
+exact values --- beyond Sun's table.
+
+\paragraph{Methods and AI-use disclosure.}
+The counterexamples were found and verified by Demonstrandum, a
+verification-first multi-agent AI search-and-reasoning pipeline built on
+Claude language models (Anthropic):
+agents froze the conjecture statement from the arXiv \TeX{} source of
+\cite{Sun2021}, wrote the attack code, and then wrote the verification
+layers of Section~\ref{sec:verification} independently of one another and
+of the attack code. An adversarial audit was performed by a model from a
+different family (Codex, GPT-5.5, OpenAI), which probed the statement
+reading and the verification mathematics and independently recomputed the
+kill pair $(s_{29},s'_{29})$ and $s_{41}$ at 100--120-digit precision. All
+accept paths run on exact integer and finite-field arithmetic; floating
+point appears only in advisory cross-checks and in the generously padded
+magnitude bounds of one CRT program (Section~\ref{sec:method}), and every
+value is also certified by a layer whose bounds are exact-rational or
+that needs no magnitude bound at all.
+The text of this note was likewise drafted with the Claude-based pipeline;
+the author directed the work and takes responsibility for its content.
+Every number appearing in this note was recomputed or re-verified from the
+certificate data during its preparation (June 2026); see
+Section~\ref{sec:verification}.
+
+\section{The counterexamples}\label{sec:results}
+
+\begin{theorem}\label{thm:main}
+Conjecture~4.6 of \cite{Sun2021} is false. Both clauses of part~(ii) fail
+at $p=29$, where $29\equiv 5\pmod{12}$ and $29\equiv 5\pmod 8$:
+\[
+s_{29} \;=\; 1\,053\,859 \;>\; 0,
+\qquad\qquad
+s'_{29} \;=\; -4\,806\,838\,304 \;<\; 0,
+\]
+so the implication $p\equiv 5\pmod{12}\Rightarrow s_p<0$ fails, and so does
+the implication $s'_p<0\Rightarrow p\equiv 7\pmod 8$. Moreover the
+first clause fails at every prime $p\equiv 5\pmod{12}$ in the computed
+range ($p=29,41,53$, with $s_{41}=5\,574\,476\,521$ and
+$s_{53}=1\,540\,679\,755\,916\,971$, both positive), and the second clause
+fails again at $p=61\equiv 5\pmod 8$, where
+\[
+s'_{61}\;=\;-2\,904\,784\,276\,786\,469\,053\,142\,518\,062\,479\;<\;0.
+\]
+\end{theorem}
+
+\begin{proof}
+A finite exact computation. The values of $s_p$ and $s'_p$ for the nine
+primes $29\le p\le 61$ are listed in Table~\ref{tab:primes}; each is
+certified, via the cyclotomic method of Section~\ref{sec:method}, by at
+least two independently written exact programs with disjoint prime sets
+(the kill pair additionally by the exact big-integer implementation and a
+third CRT program), validated as described in
+Section~\ref{sec:verification}. The residues are elementary. Since both
+violations are sign statements about nonzero integers, no boundary or
+strictness issue arises; note that $s'_p=0$ is in any case excluded by the
+proven congruence~\eqref{eq:cong}.
+\end{proof}
+
+\begin{table}[ht]
+\centering\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{@{}rrrrrl@{}}
+\toprule
+$p$ & $p\bmod{12}$ & $p\bmod 8$ & $s_p$ & $s'_p$ & violates \\
+\midrule
+29 & 5 & 5 & $1\,053\,859$ & $-4\,806\,838\,304$ & both clauses \\
+31 & 7 & 7 & $10\,542\,977$ & $-1\,518\,806\,869\,720$ & --- \\
+37 & 1 & 5 & $1\,519\,663\,259$ & $43\,041\,655\,439\,377$ & --- \\
+41 & 5 & 1 & $5\,574\,476\,521$ & $88\,188\,655\,594\,502\,880$ & mod-12 clause \\
+43 & 7 & 3 & $453\,435\,884\,081$ & $7\,817\,331\,967\,711\,147\,274$ & --- \\
+47 & 11 & 7 & $4\,570\,760\,060\,257$ & $-208\,210\,243\,110\,377\,949\,730$ & --- \\
+53 & 5 & 5 & $1\,540\,679\,755\,916\,971$ & $1\,364\,915\,376\,262\,405\,923\,148\,317$ & mod-12 clause \\
+59 & 11 & 3 & $493\,044\,351\,638\,203\,633$ & $7\,313\,054\,784\,852\,201\,235\,037\,895\,089\,487$ & --- \\
+61 & 1 & 5 & $3\,864\,901\,746\,617\,921\,299$ & $-2\,904\,784\,276\,786\,469\,053\,142\,518\,062\,479$ & mod-8 clause \\
+\bottomrule
+\end{tabular}
+\caption{Exact values of $s_p$ and $s'_p$ for the nine primes beyond Sun's
+published table. The mod-12 clause of Conjecture~4.6(ii) is violated iff
+($p\equiv 5\pmod{12}$ and $s_p>0$) or ($p\not\equiv 5$ and $s_p<0$); the
+mod-8 clause iff ($p\equiv 7\pmod 8$ and $s'_p>0$) or ($p\not\equiv 7$ and
+$s'_p<0$). Every value satisfies the proven
+congruences~\eqref{eq:cong}.}
+\label{tab:primes}
+\end{table}
+
+\begin{remark}[Part (i) is not refuted]\label{rem:parti}
+The divisibility clause was tested exactly for \emph{all} fifteen odd
+composite $n\le 65$, including the prime squares $9$, $25$, $49$ and the
+values $25,35,49,55,65$ coprime to~$3$; Table~\ref{tab:composites} lists $s_n$ and
+the integer quotient $s_n/n$. The divisibility $n\mid s_n$ holds in every
+case. Part~(i) of Conjecture~4.6 therefore survives this attack and remains
+open; our refutation of the conjecture (a conjunction) rests entirely on
+part~(ii).
+\end{remark}
+
+\begin{table}[ht]
+\centering\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{@{}rrr@{\hspace{2em}}rrr@{}}
+\toprule
+$n$ & $s_n$ & $s_n/n$ & $n$ & $s_n$ & $s_n/n$ \\
+\midrule
+ 9 & $9$ & $1$                              & 45 & $696\,741\,294\,375$ & $15\,483\,139\,875$ \\
+15 & $45$ & $3$                             & 49 & $3\,078\,195\,713\,761$ & $62\,820\,320\,689$ \\
+21 & $2\,835$ & $135$                       & 51 & $113\,109\,498\,706\,113$ & $2\,217\,833\,307\,963$ \\
+25 & $63\,125$ & $2\,525$                   & 55 & $9\,553\,828\,212\,328\,125$ & $173\,705\,967\,496\,875$ \\
+27 & $59\,049$ & $2\,187$                   & 57 & $89\,237\,136\,634\,668\,369$ & $1\,565\,563\,800\,608\,217$ \\
+33 & $-1\,643\,895$ & $-49\,815$            & 63 & $14\,357\,464\,732\,984\,700\,313$ & $227\,896\,265\,602\,931\,751$ \\
+35 & $334\,186\,125$ & $9\,548\,175$        & 65 & $23\,595\,726\,326\,056\,828\,125$ & $363\,011\,174\,247\,028\,125$ \\
+39 & $9\,154\,298\,673$ & $234\,725\,607$   &    &  & \\
+\bottomrule
+\end{tabular}
+\caption{The part-(i) test set: exact $s_n$ for all odd composite
+$n\le 65$. The quotient $s_n/n$ is an integer in every case, so part~(i) of
+Conjecture~4.6 is \emph{not} refuted. (The values for $n=9,15,21$ agree
+with Sun's table.)}
+\label{tab:composites}
+\end{table}
+
+\begin{remark}[Why the pattern broke]\label{rem:pattern}
+Each sign law of part~(ii) was fitted to eight primes containing only two
+negatives each ($s_p<0$ at $p=5,17$; $s'_p<0$ at $p=7,23$). In the extended
+range the first law collapses completely: $s_p>0$ for \emph{every} prime
+$29\le p\le 61$, so the only known negative values of $s_p$ remain $p=5$
+and $17$, and the law fails at every tested $p\equiv 5\pmod{12}$ beyond the
+published table. Negative values of $s'_p$ do persist --- at $p=31$ and
+$47$, both $\equiv 7\pmod 8$, the second law happens to conform --- but
+they also appear at $p=29$ and $61$, both $\equiv 5\pmod 8$. Galois
+equivariance does not separate the permanent from its determinant
+cousins here: the automorphism $\sigma_a\colon\zeta_p\mapsto\zeta_p^a$ of
+$\Q(\zeta_p)$ multiplies $\per M$ (the matrix of Lemma~\ref{lem:cyclo}
+with $n=p$; its entries $\zeta_p^{jk}-\zeta_p^{-jk}$ lie in
+$\Z[\zeta_p]$) by the Legendre symbol $(\tfrac ap)$
+--- the computation at the heart of Sun's integrality proof --- so the
+permanent, too, is a Galois eigenvector, and that symmetry constrains
+the sign of neither quantity. What the determinant analogues studied by Sun and in
+\cite{GaoGuo2025} additionally possess is a character factorization:
+their determinants factor over Dirichlet characters into character sums
+--- in \cite{GaoGuo2025}, into special values of Dirichlet $L$-functions
+--- and structure of that kind can force residue-class behaviour. No
+analogous factorization is known for the permanent, and we know of no
+mechanism that could enforce a residue-class sign rule for $s_p$ or
+$s'_p$. We do not propose a replacement law: the observed signs describe
+the computed range $p\le 61$ only.
+\end{remark}
+
+\section{The cyclotomic verification method}\label{sec:method}
+
+The permanents in~\eqref{eq:defs} are sums of $m!$ products of irrational
+reals, the results are integers as large as $10^{30}$, and a sign is
+precisely what is at stake; the following identity removes all analysis
+from the problem.
+
+For odd $n>1$ let $\zeta=e^{2\pi i/(4n)}$, a primitive $4n$-th root of
+unity, so that $i=\zeta^{n}$ and $e^{2\pi i\,jk/n}=\zeta^{4jk}$, and let
+\[
+G \;=\; \sum_{a=0}^{n-1} \zeta^{4a^2} \;\in\; \Z[\zeta]
+\]
+be the quadratic Gauss sum. By Gauss's theorem (see, e.g.,
+\cite[Thm.~1.5.2]{BEW1998}), $G=\sqrt n$ if $n\equiv 1\pmod 4$ and
+$G=i\sqrt n$ if $n\equiv 3\pmod 4$. Set $\widetilde G=G$ in the first case
+and $\widetilde G=\zeta^{-n}G=-iG$ in the second, so that
+$\widetilde G=\sqrt n$ for every odd $n$; in particular
+$\sqrt n\in\Z[\zeta]$.
+
+\begin{lemma}\label{lem:cyclo}
+Let $n>1$ be odd, $m=(n-1)/2$, and $M_{jk}=\zeta^{4jk}-\zeta^{-4jk}$ for
+$1\le j,k\le m$. Then
+\begin{equation}\label{eq:sin-id}
+\per M \;=\; s_n\, i^{m}\sqrt n \qquad\text{in } \Z[\zeta].
+\end{equation}
+If moreover $n=p$ is prime, the matrix $U$ with entries
+$U_{jk}=p\,(\zeta^{4jk}-\zeta^{-4jk})^{-1}$ has entries in $\Z[\zeta]$, and
+\begin{equation}\label{eq:csc-id}
+\per U \;=\; s'_p\, p^{\,m-1}\sqrt p\; i^{-m} \qquad\text{in } \Z[\zeta].
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+From $\sin\theta=(e^{i\theta}-e^{-i\theta})/(2i)$ we get $\sin(2\pi
+jk/n)=M_{jk}/(2i)$, and multilinearity of the permanent in the rows gives
+$\per[\sin 2\pi jk/n]=(2i)^{-m}\per M$; substituting into~\eqref{eq:defs}
+yields~\eqref{eq:sin-id}. For~\eqref{eq:csc-id}, $\csc(2\pi
+jk/p)=2i\,M_{jk}^{-1}$, so $\per[\csc 2\pi jk/p]=(2i)^{m}p^{-m}\per U$, and
+\eqref{eq:defs} gives $\per U=s'_p\,p^{m}i^{-m}/\sqrt p
+=s'_p\,p^{m-1}\sqrt p\,i^{-m}$. The entries of $U$ are algebraic integers:
+$\zeta^{4jk}-\zeta^{-4jk}=\zeta^{-4jk}(\omega^{jk}-1)$ with
+$\omega=\zeta^{8}$ a primitive $p$-th root of unity and $p\nmid jk$, and
+$\omega^{jk}-1$ divides $p=\prod_{t=1}^{p-1}(1-\omega^{t})$ in
+$\Z[\omega]$.
+\end{proof}
+
+Both sides of \eqref{eq:sin-id} and \eqref{eq:csc-id} lie in $\Z[\zeta]
+\cong \Z[x]/(\Phi_{4n}(x))$, where $\Phi_{4n}$ is the $4n$-th cyclotomic
+polynomial, and the right-hand sides are nonzero integer multiples of a
+fixed ring element; hence each identity determines the integer $s_n$
+(resp.\ $s'_p$) uniquely and reduces its computation to finite integer
+arithmetic. We used two independent implementations.
+
+\paragraph{Implementation A: exact arithmetic in $\Z[x]/(x^{4n}-1)$.}
+Represent elements of $\Z[\zeta]$ by integer polynomials modulo
+$x^{4n}-1$, with $x$ standing for $\zeta$. The permanent of $M$ (or $U$) is
+computed by Ryser's inclusion--exclusion formula \cite{Ryser1963} over this
+ring, a Gray-code walk over the $2^m$ column subsets; for speed, ring
+elements are packed into pairs of nonnegative big integers by Kronecker
+substitution $x\mapsto 2^{K}$, with $K$ chosen from a rigorous a-priori
+$L^1$ coefficient bound so that no base-$2^{K}$ digit can overflow, and
+cyclic reduction modulo $x^{4n}-1$ becomes arithmetic modulo $2^{4nK}-1$
+(every decode is re-encoded and asserted equal as an integrity check). The
+program then \emph{solves} for the unique integer $t$ with $P\equiv
+t\,B\pmod{\Phi_{4n}(x)}$ over $\Z$, where $P$ is the computed permanent and
+$B=x^{nm}\,\widetilde G(x)$ (resp.\ the right side of~\eqref{eq:csc-id});
+$\Phi_{4n}$
+is computed by exact division of $x^{4n}-1$ by lower cyclotomic
+polynomials. For the $\csc$ case the entries $U_{jk}$ are obtained by the
+extended Euclidean algorithm over $\Q[x]$ modulo $\Phi_{4p}$ and verified
+by exact back-multiplication $U_{jk}\cdot(x^{4jk}-x^{-4jk})\equiv
+p\pmod{\Phi_{4p}}$ over~$\Z$. No floating point and no finite fields are
+used anywhere. On a desktop machine this implementation delivers $s_{29}$
+in about four and a half minutes and $s'_{29}$ in about seven.
+
+\paragraph{Implementation B: finite-field specialization and CRT
+uniqueness.}
+For a prime $q\equiv 1\pmod{4n}$, the field $\F_q$ contains elements $w$ of
+exact multiplicative order $4n$; any such $w$ is a root of $\Phi_{4n}$
+modulo $q$, so reduction modulo $q$ and evaluation $x\mapsto w$ is a ring
+homomorphism $\Z[x]/(\Phi_{4n}(x))\to\F_q$. The images of
+\eqref{eq:sin-id}--\eqref{eq:csc-id} are then identities in $\F_q$ in which
+the image $g$ of $\widetilde G$ is computed from the defining sum $\sum_a
+w^{4a^2}$, multiplied by $w^{-n}$ when $n\equiv 3\pmod 4$ (so no
+square-root sign ambiguity can arise; the implementations assert
+$g^2\equiv n \pmod q$), the permanent of the specialized matrix is computed
+modulo $q$, and $s_n \bmod q$ is read off. Repeating this for several
+random primes $q$ and combining by the Chinese remainder theorem with
+$\prod q > 4B$, where $B$ is a bound on the magnitude of the
+target integer ($|s_n|\le 2^m m!$ suffices for the $\sin$ case; for the
+$\csc$ case an explicit bound follows from the chord inequality $|\sin \pi
+x|\ge 2\,\mathrm{dist}(x,\Z)$), determines the integer \emph{uniquely}
+--- a proof, not a probabilistic check, provided $B$ itself is rigorous.
+Three independently written programs of this type were run, with disjoint
+random prime sets and different permanent kernels: a Gray-code Ryser in C
+with Montgomery arithmetic (59-bit primes; generously padded
+floating-point bounds, with every value additionally confirmed at a
+held-out prime not used in the reconstruction), a plain 128-bit-integer
+Ryser in C (fresh primes from $[2^{60},2^{61})$; bounds evaluated in
+exact rational arithmetic), and a pure-Python subset-dynamic-programming
+permanent (57-bit primes; exact rational bounds and a held-out prime per
+value), the last using the recursion
+$f(S)=\sum_{j\in S}A_{|S|,j}\,f(S\setminus\{j\})$
+rather than Ryser's formula. The $[2^{60},2^{61})$ run certified 32 values
+--- the kill pair, every $s_n$ for odd $31\le n\le 65$, every $s'_p$ for
+$31\le p\le 61$, and four values from Sun's table --- in about 22 minutes
+of wall-clock time.
+
+Implementations A and B share no code; A was written by an agent with no
+access to the discovery code. In addition to the exact layers, two
+floating-point recomputations were performed as advisory cross-checks:
+Glynn's formula \cite{Glynn2010} --- a third permanent algorithm --- in
+60-digit arithmetic, and, during the adversarial audit, independent
+100--120-digit recomputations of $s_{29}$, $s'_{29}$ and $s_{41}$ by both
+Glynn's and Ryser's formulas directly from the real entries (residuals
+below $10^{-86}$ in all cases).
+
+\section{Verification and calibration}\label{sec:verification}
+
+\paragraph{Calibration on Sun's table.}
+Before computing anything new, the pipeline was calibrated against the
+nineteen values published in Remark~1.6 of \cite{Sun2021}
+(Table~\ref{tab:calibration}): three of the five programs ---
+implementation A, the first CRT program, and the subset-DP program ---
+reproduced all nineteen exactly, and the remaining two were first
+validated on subsets containing negative entries (the clean-room CRT
+program on $s_{17}$, $s_{23}$, $s'_{17}$, $s'_{23}$; the Glynn check on
+its anchors). The four negative entries ($s_5$, $s_{17}$, $s'_7$,
+$s'_{23}$) pin the sign conventions end-to-end: a global sign error in any
+layer --- in the Gauss sum, in the power of $i$, or in the permanent
+kernel --- would flip at least one of them.
+
+\begin{table}[ht]
+\centering\footnotesize
+\setlength{\tabcolsep}{5.5pt}
+\begin{tabular}{@{}lrrrrrrrrrrr@{}}
+\toprule
+$n$    & 3 & 5 & 7 & 9 & 11 & 13 & 15 & 17 & 19 & 21 & 23 \\
+$s_n$  & $1$ & $-1$ & $1$ & $9$ & $1$ & $51$ & $45$ & $-239$ & $913$ & $2\,835$ & $12\,145$ \\
+\midrule
+$p$    & 3 & 5 & 7 & 11 & 13 & 17 & 19 & 23 & & & \\
+$s'_p$ & $1$ & $1$ & $-6$ & $111$ & $261$ & $6\,784$ & $245\,101$ & $-7\,094\,142$ & & & \\
+\bottomrule
+\end{tabular}
+\caption{Calibration: the nineteen values published by Sun
+\cite[Remark~1.6]{Sun2021}, all reproduced exactly --- by three of the
+five programs in full, by the other two on validation subsets --- before
+any new value was computed.}
+\label{tab:calibration}
+\end{table}
+
+\paragraph{Cross-checks on the new values.}
+The exact programs of Section~\ref{sec:method} agree wherever their
+coverage overlaps, and every entry of Tables~\ref{tab:primes}
+and~\ref{tab:composites} is certified by at least two of
+them.\footnote{Coverage detail: implementation A computed the kill pair
+and the small composites exactly; the first CRT program computed every
+value; the clean-room CRT program certified the 32 values listed above;
+the subset-DP program covers the kill pair and $s_{41}$. Thus the headline
+values are certified by three or four exact programs plus the
+floating-point layers. The supplementary values $s_{53}$ and $s'_{61}$
+rest on the two independent CRT programs alone and were not part of the
+100-digit audit recomputation.} Beyond
+mutual agreement: every $s_p$, $s'_p$ for $29\le p\le 61$ satisfies the
+congruences~\eqref{eq:cong}, which are \emph{proven} in \cite{Sun2021} ---
+the only theorem available to test the new values against (for the kill
+pair: $s_{29}\equiv 28\equiv(-1)^{15}$ and $s'_{29}\equiv 1\pmod{29}$); the
+first and third CRT programs confirmed each of their values --- between
+them, every value in this note --- at a held-out prime; and the adversarial
+audit (three rounds, Codex/GPT-5.5) probed the statement provenance
+(permanent vs.\ determinant, the half-range index set, the conjecture
+numbering) and recomputed the headline values independently at high
+precision.
+
+\paragraph{Reproducibility.}
+All computations were re-run while preparing this note (June 2026). A
+reader can reproduce the kill in under two minutes: a one-page
+floating-point script (Ryser's formula in IEEE doubles) reproduces
+$s_{17}$, $s'_7$, $s'_{23}$ and the kill pair to the nearest integer in
+about a second, and the pure-Python
+exact program (implementation B, subset-DP kernel) re-derives all nineteen
+calibration values, the kill pair, and $s_{41}$, with full CRT uniqueness
+proofs, in under a minute. While drafting this note we additionally
+re-verified the congruences~\eqref{eq:cong} and the residues and quotients
+of Tables~\ref{tab:primes}--\ref{tab:composites}, and recomputed, by a
+freshly written floating-point Gray-code Ryser, every table entry with
+$m\le 18$ (all nineteen calibration values; $s_p$, $s'_p$ for
+$p=29,31,37$; $s_n$ for $n=25,27,33,35$).
+
+\paragraph{Data availability.}
+The certificate bundle (all five programs, their logs, machine-readable
+certificates with the 33 exact integers of
+Tables~\ref{tab:primes}--\ref{tab:composites} and their provenance, and
+the frozen arXiv source of \cite{Sun2021}) will be made available at
+\url{https://github.com/demonstrandum-research/[REPO]}.
+
+\begin{thebibliography}{9}\small\setlength{\itemsep}{1pt}
+
+\bibitem{BEW1998}
+B.~C. Berndt, R.~J. Evans, and K.~S. Williams,
+\emph{Gauss and Jacobi Sums},
+Canadian Mathematical Society Series of Monographs and Advanced Texts
+\textbf{21}, Wiley, New York, 1998.
+
+\bibitem{GaoGuo2025}
+L.~Gao and X.~Guo,
+\emph{Integrality of a trigonometric determinant arising from a conjecture
+of Sun},
+preprint, arXiv:2512.24012 (2025).
+
+\bibitem{Glynn2010}
+D.~G. Glynn,
+\emph{The permanent of a square matrix},
+European J. Combin.\ \textbf{31} (2010), 1887--1891.
+
+\bibitem{Ryser1963}
+H.~J. Ryser,
+\emph{Combinatorial Mathematics},
+Carus Mathematical Monographs \textbf{14},
+Mathematical Association of America, 1963.
+
+\bibitem{Sun2021}
+Z.-W. Sun,
+\emph{Arithmetic properties of some permanents},
+preprint, arXiv:2108.07723v7 (2021--2022).
+
+\end{thebibliography}
+
+\end{document}

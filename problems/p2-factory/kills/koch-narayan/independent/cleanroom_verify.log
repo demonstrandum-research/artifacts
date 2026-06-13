@@ -1,0 +1,107 @@
+==========================================================================
+CLEAN-ROOM VERIFICATION (second pass, written from scratch)
+Target: Conjecture 1 of arXiv:2511.01719 (Koch & Narayan)
+Checker: independent/cleanroom_check.py  --  no attacker code reused
+==========================================================================
+
+[1] Formula transcription anchored against the paper's own values
+[anchor] m(6,2) [literal] = 6  (paper says 6)  OK
+[anchor] m(6,2) [corrected] = 6  (paper says 6)  OK
+[anchor] m(7,2) [literal] = 9  (paper says 9)  OK
+[anchor] m(7,2) [corrected] = 9  (paper says 9)  OK
+[anchor] gamma=2 closed form m(n,2) checked for n=6..40, both Phi readings: PASS
+[anchor] n=3*gamma simplification checked for gamma=2..11, both Phi readings: PASS
+
+[2] Primary counterexample rebuilt from the attack-report DESCRIPTION (edge list typed in from the report, not loaded from any attacker file)
+  every described edge joins A={0..5} to B={6..12}: True
+--- PRIMARY: n=13, claimed gamma=4, 22 edges ---
+  n = 13, s(G) = |E| = 22 (simple: no loops/dups verified on construction)
+  no isolated vertices: OK
+  bipartite: OK (2-coloring found; part sizes [6, 7])
+  connected: True  (not a hypothesis of Conjecture 1; informational)
+  domination number gamma = 4 (exhaustive over all subsets of sizes 1..4; 1092 subsets examined)
+  minimum dominating sets of size 4: count = 1
+  unique minimum dominating set = [0, 1, 8, 9]
+  hypotheses of Conjecture 1 (bipartite, no isolated vertices, unique MDS, gamma=4>=2, n=13>=3*gamma=12): ALL SATISFIED
+  m(13,4) [literal  ] = 21   s(G) = 22 > 21
+  m(13,4) [corrected] = 21   s(G) = 22 > 21
+  VERDICT: COUNTEREXAMPLE CONFIRMED (violates both Phi readings)
+
+[3] Independent graph6 decode of the report's string 'L??CA?oBDwN_~?'
+  decoded: n=13, |E|=22; labeled edge set identical to described list: True
+
+[4] Supplementary certificates (JSON data files; data only)
+--- certificate_14_4.json: n=14, claimed gamma=4 ---
+  n = 14, s(G) = |E| = 28 (simple: no loops/dups verified on construction)
+  no isolated vertices: OK
+  bipartite: OK (2-coloring found; part sizes [7, 7])
+  connected: True  (not a hypothesis of Conjecture 1; informational)
+  domination number gamma = 4 (exhaustive over all subsets of sizes 1..4; 1470 subsets examined)
+  minimum dominating sets of size 4: count = 1
+  unique minimum dominating set = [0, 3, 4, 5]
+  hypotheses of Conjecture 1 (bipartite, no isolated vertices, unique MDS, gamma=4>=2, n=14>=3*gamma=12): ALL SATISFIED
+  m(14,4) [literal  ] = 26   s(G) = 28 > 26
+  m(14,4) [corrected] = 26   s(G) = 28 > 26
+  VERDICT: COUNTEREXAMPLE CONFIRMED (violates both Phi readings)
+
+--- certificate_15_4.json: n=15, claimed gamma=4 ---
+  n = 15, s(G) = |E| = 35 (simple: no loops/dups verified on construction)
+  no isolated vertices: OK
+  bipartite: OK (2-coloring found; part sizes [7, 8])
+  connected: True  (not a hypothesis of Conjecture 1; informational)
+  domination number gamma = 4 (exhaustive over all subsets of sizes 1..4; 1940 subsets examined)
+  minimum dominating sets of size 4: count = 1
+  unique minimum dominating set = [0, 3, 4, 5]
+  hypotheses of Conjecture 1 (bipartite, no isolated vertices, unique MDS, gamma=4>=2, n=15>=3*gamma=12): ALL SATISFIED
+  m(15,4) [literal  ] = 31   s(G) = 35 > 31
+  m(15,4) [corrected] = 31   s(G) = 35 > 31
+  VERDICT: COUNTEREXAMPLE CONFIRMED (violates both Phi readings)
+
+--- certificate_15_4_max.json: n=15, claimed gamma=4 ---
+  n = 15, s(G) = |E| = 35 (simple: no loops/dups verified on construction)
+  no isolated vertices: OK
+  bipartite: OK (2-coloring found; part sizes [7, 8])
+  connected: True  (not a hypothesis of Conjecture 1; informational)
+  domination number gamma = 4 (exhaustive over all subsets of sizes 1..4; 1940 subsets examined)
+  minimum dominating sets of size 4: count = 1
+  unique minimum dominating set = [0, 8, 9, 10]
+  hypotheses of Conjecture 1 (bipartite, no isolated vertices, unique MDS, gamma=4>=2, n=15>=3*gamma=12): ALL SATISFIED
+  m(15,4) [literal  ] = 31   s(G) = 35 > 31
+  m(15,4) [corrected] = 31   s(G) = 35 > 31
+  VERDICT: COUNTEREXAMPLE CONFIRMED (violates both Phi readings)
+
+--- certificate_18_5.json: n=18, claimed gamma=5 ---
+  n = 18, s(G) = |E| = 45 (simple: no loops/dups verified on construction)
+  no isolated vertices: OK
+  bipartite: OK (2-coloring found; part sizes [9, 9])
+  connected: True  (not a hypothesis of Conjecture 1; informational)
+  domination number gamma = 5 (exhaustive over all subsets of sizes 1..5; 12615 subsets examined)
+  minimum dominating sets of size 5: count = 1
+  unique minimum dominating set = [0, 3, 4, 5, 6]
+  hypotheses of Conjecture 1 (bipartite, no isolated vertices, unique MDS, gamma=5>=2, n=18>=3*gamma=15): ALL SATISFIED
+  m(18,5) [literal  ] = 43   s(G) = 45 > 43
+  m(18,5) [corrected] = 43   s(G) = 45 > 43
+  VERDICT: COUNTEREXAMPLE CONFIRMED (violates both Phi readings)
+
+--- certificate_20_6.json: n=20, claimed gamma=6 ---
+  n = 20, s(G) = |E| = 46 (simple: no loops/dups verified on construction)
+  no isolated vertices: OK
+  bipartite: OK (2-coloring found; part sizes [10, 10])
+  connected: True  (not a hypothesis of Conjecture 1; informational)
+  domination number gamma = 6 (exhaustive over all subsets of sizes 1..6; 60459 subsets examined)
+  minimum dominating sets of size 6: count = 1
+  unique minimum dominating set = [0, 1, 6, 7, 8, 9]
+  hypotheses of Conjecture 1 (bipartite, no isolated vertices, unique MDS, gamma=6>=2, n=20>=3*gamma=18): ALL SATISFIED
+  m(20,6) [literal  ] = 44   s(G) = 46 > 44
+  m(20,6) [corrected] = 44   s(G) = 46 > 44
+  VERDICT: COUNTEREXAMPLE CONFIRMED (violates both Phi readings)
+
+==========================================================================
+OVERALL VERDICT: KILL CONFIRMED.
+The rebuilt n=13 graph satisfies every hypothesis of Conjecture 1
+of arXiv:2511.01719 (bipartite, no isolated vertices, unique
+minimum dominating set {0,1,8,9}, gamma=4>=2, n=13>=12=3*gamma)
+and has s(G)=22 > 21 = m(13,4) under BOTH the literal printed
+Phi and the construction-consistent (typo-corrected) Phi.
+All five supplementary certificates also violate both readings.
+==========================================================================

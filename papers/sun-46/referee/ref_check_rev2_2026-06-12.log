@@ -1,0 +1,152 @@
+== 0. kernel self-tests ==
+  OK   kernel vs brute-force permutation sum, m=1
+  OK   kernel vs brute-force permutation sum, m=2
+  OK   kernel vs brute-force permutation sum, m=3
+  OK   kernel vs brute-force permutation sum, m=4
+  OK   kernel vs brute-force permutation sum, m=5
+  OK   kernel vs brute-force permutation sum, m=6
+  OK   kernel vs brute-force permutation sum, m=7
+  OK   kernel vs pure-Python Ryser, m=10
+  OK   kernel vs pure-Python Ryser, m=13
+== 1. calibration: Sun's nineteen published values ==
+  OK   s_3 = 1  [recomputed 1; 1+1 primes, prod 2^62, bound 2^2, 0.0s]
+  OK   s_5 = -1  [recomputed -1; 1+1 primes, prod 2^62, bound 2^4, 0.0s]
+  OK   s_7 = 1  [recomputed 1; 1+1 primes, prod 2^62, bound 2^6, 0.0s]
+  OK   s_9 = 9  [recomputed 9; 1+1 primes, prod 2^62, bound 2^9, 0.0s]
+  OK   s_11 = 1  [recomputed 1; 1+1 primes, prod 2^62, bound 2^12, 0.0s]
+  OK   s_13 = 51  [recomputed 51; 1+1 primes, prod 2^62, bound 2^16, 0.0s]
+  OK   s_15 = 45  [recomputed 45; 1+1 primes, prod 2^62, bound 2^20, 0.0s]
+  OK   s_17 = -239  [recomputed -239; 1+1 primes, prod 2^62, bound 2^24, 0.0s]
+  OK   s_19 = 913  [recomputed 913; 1+1 primes, prod 2^62, bound 2^28, 0.0s]
+  OK   s_21 = 2835  [recomputed 2835; 1+1 primes, prod 2^62, bound 2^32, 0.0s]
+  OK   s_23 = 12145  [recomputed 12145; 1+1 primes, prod 2^62, bound 2^37, 0.0s]
+  OK   s'_3 = 1  [recomputed 1; 1+1 primes, prod 2^62, bound 2^2, 0.0s]
+  OK   s'_5 = 1  [recomputed 1; 1+1 primes, prod 2^62, bound 2^4, 0.0s]
+  OK   s'_7 = -6  [recomputed -6; 1+1 primes, prod 2^62, bound 2^7, 0.0s]
+  OK   s'_11 = 111  [recomputed 111; 1+1 primes, prod 2^62, bound 2^16, 0.0s]
+  OK   s'_13 = 261  [recomputed 261; 1+1 primes, prod 2^62, bound 2^20, 0.0s]
+  OK   s'_17 = 6784  [recomputed 6784; 1+1 primes, prod 2^62, bound 2^31, 0.0s]
+  OK   s'_19 = 245101  [recomputed 245101; 1+1 primes, prod 2^62, bound 2^37, 0.0s]
+  OK   s'_23 = -7094142  [recomputed -7094142; 1+1 primes, prod 2^62, bound 2^48, 0.0s]
+== 2. Table 1: s_p, s'_p for the nine primes 29..61 ==
+  OK   s_29 = 1053859  [recomputed 1053859; 1+1 primes, prod 2^62, bound 2^51, 0.0s]
+  OK   s'_29 = -4806838304  [recomputed -4806838304; 2+1 primes, prod 2^123, bound 2^67, 0.0s]
+  OK   s_31 = 10542977  [recomputed 10542977; 1+1 primes, prod 2^62, bound 2^56, 0.0s]
+  OK   s'_31 = -1518806869720  [recomputed -1518806869720; 2+1 primes, prod 2^124, bound 2^73, 0.0s]
+  OK   s_37 = 1519663259  [recomputed 1519663259; 2+1 primes, prod 2^124, bound 2^71, 0.0s]
+  OK   s'_37 = 43041655439377  [recomputed 43041655439377; 2+1 primes, prod 2^124, bound 2^94, 0.0s]
+  OK   s_41 = 5574476521  [recomputed 5574476521; 2+1 primes, prod 2^124, bound 2^82, 0.0s]
+  OK   s'_41 = 88188655594502880  [recomputed 88188655594502880; 2+1 primes, prod 2^124, bound 2^107, 0.0s]
+  OK   s_43 = 453435884081  [recomputed 453435884081; 2+1 primes, prod 2^124, bound 2^87, 0.1s]
+  OK   s'_43 = 7817331967711147274  [recomputed 7817331967711147274; 2+1 primes, prod 2^124, bound 2^114, 0.1s]
+  OK   s_47 = 4570760060257  [recomputed 4570760060257; 2+1 primes, prod 2^124, bound 2^98, 0.1s]
+  OK   s'_47 = -208210243110377949730  [recomputed -208210243110377949730; 3+1 primes, prod 2^185, bound 2^129, 0.2s]
+  OK   s_53 = 1540679755916971  [recomputed 1540679755916971; 2+1 primes, prod 2^124, bound 2^115, 0.7s]
+  OK   s'_53 = 1364915376262405923148317  [recomputed 1364915376262405923148317; 3+1 primes, prod 2^186, bound 2^151, 0.9s]
+  OK   s_59 = 493044351638203633  [recomputed 493044351638203633; 3+1 primes, prod 2^186, bound 2^132, 6.8s]
+  OK   s'_59 = 7313054784852201235037895089487  [recomputed 7313054784852201235037895089487; 3+1 primes, prod 2^185, bound 2^174, 6.8s]
+  OK   s_61 = 3864901746617921299  [recomputed 3864901746617921299; 3+1 primes, prod 2^185, bound 2^138, 14.1s]
+  OK   s'_61 = -2904784276786469053142518062479  [recomputed -2904784276786469053142518062479; 3+1 primes, prod 2^184, bound 2^181, 14.1s]
+== 3. Table 2: s_n for the fifteen odd composites <= 65 ==
+  OK   s_9 = 9  [recomputed 9; 1+1 primes, prod 2^62, bound 2^9, 0.0s]
+  OK   s_15 = 45  [recomputed 45; 1+1 primes, prod 2^62, bound 2^20, 0.0s]
+  OK   s_21 = 2835  [recomputed 2835; 1+1 primes, prod 2^62, bound 2^32, 0.0s]
+  OK   s_25 = 63125  [recomputed 63125; 1+1 primes, prod 2^62, bound 2^41, 0.0s]
+  OK   s_27 = 59049  [recomputed 59049; 1+1 primes, prod 2^62, bound 2^46, 0.0s]
+  OK   s_33 = -1643895  [recomputed -1643895; 2+1 primes, prod 2^123, bound 2^61, 0.0s]
+  OK   s_35 = 334186125  [recomputed 334186125; 2+1 primes, prod 2^123, bound 2^66, 0.0s]
+  OK   s_39 = 9154298673  [recomputed 9154298673; 2+1 primes, prod 2^124, bound 2^76, 0.0s]
+  OK   s_45 = 696741294375  [recomputed 696741294375; 2+1 primes, prod 2^124, bound 2^92, 0.1s]
+  OK   s_49 = 3078195713761  [recomputed 3078195713761; 2+1 primes, prod 2^124, bound 2^104, 0.2s]
+  OK   s_51 = 113109498706113  [recomputed 113109498706113; 2+1 primes, prod 2^124, bound 2^109, 0.4s]
+  OK   s_55 = 9553828212328125  [recomputed 9553828212328125; 2+1 primes, prod 2^124, bound 2^121, 1.3s]
+  OK   s_57 = 89237136634668369  [recomputed 89237136634668369; 3+1 primes, prod 2^186, bound 2^126, 3.4s]
+  OK   s_63 = 14357464732984700313  [recomputed 14357464732984700313; 3+1 primes, prod 2^185, bound 2^144, 29.4s]
+  OK   s_65 = 23595726326056828125  [recomputed 23595726326056828125; 3+1 primes, prod 2^185, bound 2^150, 59.8s]
+== 4. table-audit: every numerical side-claim of the note ==
+  OK   nine primes 29<=p<=61 exactly
+  OK   fifteen odd composites n<=65 exactly
+  OK   prime squares among them: 9, 25, 49
+  OK   composites coprime to 3: exactly 25,35,49,55,65
+  OK   p=29: (p mod 12, p mod 8) = (5, 5) as printed
+  OK   p=29: 'violates' column = both
+  OK   p=31: (p mod 12, p mod 8) = (7, 7) as printed
+  OK   p=31: 'violates' column = none
+  OK   p=37: (p mod 12, p mod 8) = (1, 5) as printed
+  OK   p=37: 'violates' column = none
+  OK   p=41: (p mod 12, p mod 8) = (5, 1) as printed
+  OK   p=41: 'violates' column = mod12
+  OK   p=43: (p mod 12, p mod 8) = (7, 3) as printed
+  OK   p=43: 'violates' column = none
+  OK   p=47: (p mod 12, p mod 8) = (11, 7) as printed
+  OK   p=47: 'violates' column = none
+  OK   p=53: (p mod 12, p mod 8) = (5, 5) as printed
+  OK   p=53: 'violates' column = mod12
+  OK   p=59: (p mod 12, p mod 8) = (11, 3) as printed
+  OK   p=59: 'violates' column = none
+  OK   p=61: (p mod 12, p mod 8) = (1, 5) as printed
+  OK   p=61: 'violates' column = mod8
+  OK   s_3 = (-1)^((p+1)/2) (mod 3)
+  OK   s_5 = (-1)^((p+1)/2) (mod 5)
+  OK   s_7 = (-1)^((p+1)/2) (mod 7)
+  OK   s_11 = (-1)^((p+1)/2) (mod 11)
+  OK   s_13 = (-1)^((p+1)/2) (mod 13)
+  OK   s_17 = (-1)^((p+1)/2) (mod 17)
+  OK   s_19 = (-1)^((p+1)/2) (mod 19)
+  OK   s_23 = (-1)^((p+1)/2) (mod 23)
+  OK   s_29 = (-1)^((p+1)/2) (mod 29)
+  OK   s_31 = (-1)^((p+1)/2) (mod 31)
+  OK   s_37 = (-1)^((p+1)/2) (mod 37)
+  OK   s_41 = (-1)^((p+1)/2) (mod 41)
+  OK   s_43 = (-1)^((p+1)/2) (mod 43)
+  OK   s_47 = (-1)^((p+1)/2) (mod 47)
+  OK   s_53 = (-1)^((p+1)/2) (mod 53)
+  OK   s_59 = (-1)^((p+1)/2) (mod 59)
+  OK   s_61 = (-1)^((p+1)/2) (mod 61)
+  OK   s'_3 = 1 (mod 3)
+  OK   s'_5 = 1 (mod 5)
+  OK   s'_7 = 1 (mod 7)
+  OK   s'_11 = 1 (mod 11)
+  OK   s'_13 = 1 (mod 13)
+  OK   s'_17 = 1 (mod 17)
+  OK   s'_19 = 1 (mod 19)
+  OK   s'_23 = 1 (mod 23)
+  OK   s'_29 = 1 (mod 29)
+  OK   s'_31 = 1 (mod 31)
+  OK   s'_37 = 1 (mod 37)
+  OK   s'_41 = 1 (mod 41)
+  OK   s'_43 = 1 (mod 43)
+  OK   s'_47 = 1 (mod 47)
+  OK   s'_53 = 1 (mod 53)
+  OK   s'_59 = 1 (mod 59)
+  OK   s'_61 = 1 (mod 61)
+  OK   kill-pair residues as quoted: s_29=28, s'_29=1 (mod 29)
+  OK   n=9: n | s_n and s_n/n = 1 as printed
+  OK   n=15: n | s_n and s_n/n = 3 as printed
+  OK   n=21: n | s_n and s_n/n = 135 as printed
+  OK   n=25: n | s_n and s_n/n = 2525 as printed
+  OK   n=27: n | s_n and s_n/n = 2187 as printed
+  OK   n=33: n | s_n and s_n/n = -49815 as printed
+  OK   n=35: n | s_n and s_n/n = 9548175 as printed
+  OK   n=39: n | s_n and s_n/n = 234725607 as printed
+  OK   n=45: n | s_n and s_n/n = 15483139875 as printed
+  OK   n=49: n | s_n and s_n/n = 62820320689 as printed
+  OK   n=51: n | s_n and s_n/n = 2217833307963 as printed
+  OK   n=55: n | s_n and s_n/n = 173705967496875 as printed
+  OK   n=57: n | s_n and s_n/n = 1565563800608217 as printed
+  OK   n=63: n | s_n and s_n/n = 227896265602931751 as printed
+  OK   n=65: n | s_n and s_n/n = 363011174247028125 as printed
+  OK   s_p > 0 for every prime 29..61
+  OK   negative s'_p in 29..61 exactly at {29,31,47,61}
+  OK   31 = 47 = 7 (mod 8); 29 = 61 = 5 (mod 8)
+  OK   Sun-table negatives exactly s_5, s_17, s'_7, s'_23
+  OK   eight primes in each of Sun's two prime data sets
+  OK   abstract kill pair: s_29 = 1053859 > 0, s'_29 = -4806838304 < 0
+  OK   abstract: s_41 = 5574476521, s_53 = 1540679755916971, both > 0
+  OK   abstract: s'_61 = -2904784276786469053142518062479 < 0
+  OK   values grow to 31 digits (max digits = 31)
+  OK   m up to 32 (n = 65)
+  OK   |s_n| <= 2^m m! for every sin value in the note
+  OK   counts: 19 calibration values, 18 new prime values, 15 composites, 30 new beyond Sun's table
+
+REFEREE: ALL CHECKS PASS

@@ -1,0 +1,14 @@
+{
+ "negI": {
+  "quad_blocked": 0.02101,
+  "cond221_zero": 0.034395
+ },
+ "rot180z": {
+  "quad_blocked": 0.034265,
+  "cond221_zero": 0.05145
+ },
+ "S4z": {
+  "orbit_blocked_est": 0.07866,
+  "orbit_plus_point_zero": 0.09836
+ }
+}

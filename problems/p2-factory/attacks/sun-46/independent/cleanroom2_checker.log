@@ -1,0 +1,88 @@
+== Self-tests ==
+  perm_ryser_mod == perm_naive (mod 2^89-1) on 36 random signed matrices, m<=6: OK
+  perm_ryser_iv encloses perm_naive on random integer matrices, m<=5: OK
+  symmetric CRT round-trip on 20 random 40-digit signed integers: OK
+  Miller-Rabin on known primes/Carmichaels: OK
+
+== METHOD A: exact CRT values ==
+ Anchor sweep: all 19 values published in Remark 1.6 of the paper
+  s_3 = 1   [1 CRT primes + 1 held-out, B=2.000e+00, 0.0s]
+  PASS  s_3 == 1 (paper)
+  s_5 = -1   [1 CRT primes + 1 held-out, B=8.000e+00, 0.0s]
+  PASS  s_5 == -1 (paper)
+  s_7 = 1   [1 CRT primes + 1 held-out, B=4.800e+01, 0.0s]
+  PASS  s_7 == 1 (paper)
+  s_9 = 9   [1 CRT primes + 1 held-out, B=3.840e+02, 0.0s]
+  PASS  s_9 == 9 (paper)
+  s_11 = 1   [1 CRT primes + 1 held-out, B=3.840e+03, 0.0s]
+  PASS  s_11 == 1 (paper)
+  s_13 = 51   [1 CRT primes + 1 held-out, B=4.608e+04, 0.0s]
+  PASS  s_13 == 51 (paper)
+  s_15 = 45   [1 CRT primes + 1 held-out, B=6.451e+05, 0.0s]
+  PASS  s_15 == 45 (paper)
+  s_17 = -239   [1 CRT primes + 1 held-out, B=1.032e+07, 0.0s]
+  PASS  s_17 == -239 (paper)
+  s_19 = 913   [1 CRT primes + 1 held-out, B=1.858e+08, 0.0s]
+  PASS  s_19 == 913 (paper)
+  s_21 = 2835   [1 CRT primes + 1 held-out, B=3.716e+09, 0.0s]
+  PASS  s_21 == 2835 (paper)
+  s_23 = 12145   [1 CRT primes + 1 held-out, B=8.175e+10, 0.0s]
+  PASS  s_23 == 12145 (paper)
+  s'_3 = 1   [1 CRT primes + 1 held-out, B=3.000e+00, 0.0s]
+  PASS  s'_3 == 1 (paper)
+  s'_5 = 1   [1 CRT primes + 1 held-out, B=1.600e+01, 0.0s]
+  PASS  s'_5 == 1 (paper)
+  s'_7 = -6   [1 CRT primes + 1 held-out, B=2.260e+02, 0.0s]
+  PASS  s'_7 == -6 (paper)
+  s'_11 = 111   [1 CRT primes + 1 held-out, B=2.076e+05, 0.0s]
+  PASS  s'_11 == 111 (paper)
+  s'_13 = 261   [1 CRT primes + 1 held-out, B=1.103e+07, 0.0s]
+  PASS  s'_13 == 261 (paper)
+  s'_17 = 6784   [1 CRT primes + 1 held-out, B=7.296e+10, 0.0s]
+  PASS  s'_17 == 6784 (paper)
+  s'_19 = 245101   [1 CRT primes + 1 held-out, B=8.487e+12, 0.0s]
+  PASS  s'_19 == 245101 (paper)
+  s'_23 = -7094142   [1 CRT primes + 1 held-out, B=2.086e+17, 0.0s]
+  PASS  s'_23 == -7094142 (paper)
+ Targets:
+  s_29 = 1053859   [1 CRT primes + 1 held-out, B=1.428e+15, 0.3s]
+  s'_29 = -4806838304   [2 CRT primes + 1 held-out, B=2.802e+24, 0.3s]
+  s_41 = 5574476521   [2 CRT primes + 1 held-out, B=2.551e+24, 46.7s]
+  PASS  s_29  == 1053859 (claimed)
+  PASS  s'_29 == -4806838304 (claimed)
+  PASS  s_41  == 5574476521 (claimed)
+
+ Proven-congruence cross-checks (Theorem 1.6(iii)):
+  PASS  s_29 == -1 (mod 29)
+  PASS  s'_29 == 1 (mod 29)
+  PASS  s_41 == -1 (mod 41)
+
+== METHOD B: rigorous interval enclosures (192-bit, Gauss-sum-free) ==
+  s_5 in [-1.0, -1.0]  width=1.0674e-56  (0.0s)
+  PASS  s_5: enclosure contains exactly one integer, = -1
+  s_17 in [-239.0, -239.0]  width=1.5486e-50  (0.0s)
+  PASS  s_17: enclosure contains exactly one integer, = -239
+  s'_7 in [-6.0, -6.0]  width=4.3587e-55  (0.0s)
+  PASS  s'_7: enclosure contains exactly one integer, = -6
+  s'_23 in [-7094142.0, -7094142.0]  width=3.0696e-44  (0.2s)
+  PASS  s'_23: enclosure contains exactly one integer, = -7094142
+  s_29 in [1053859.0, 1053859.0]  width=5.2542e-44  (4.7s)
+  PASS  s_29: enclosure contains exactly one integer, = 1053859
+  s'_29 in [-4806838304.0, -4806838304.0]  width=1.0382e-39  (3.8s)
+  PASS  s'_29: enclosure contains exactly one integer, = -4806838304
+  s_41 in [5574476521.0, 5574476521.0]  width=4.6667e-37  (150.4s)
+  PASS  s_41: enclosure contains exactly one integer, = 5574476521
+
+== Conjecture 4.6(ii) verdict logic ==
+  PASS  29 == 5 (mod 12)  [conjecture demands s_29 < 0]
+  PASS  s_29 > 0  -> clause 1 ('<=' direction) FALSE at p=29
+  PASS  29 == 5 (mod 8), i.e. NOT 7 (mod 8)  [conjecture demands s'_29 >= 0]
+  PASS  s'_29 < 0  -> clause 2 ('=>' direction... only-if) FALSE at p=29
+  PASS  41 == 5 (mod 12) and s_41 > 0  -> clause 1 fails at p=41 too
+
+VERDICT: ALL CHECKS PASSED.
+Conjecture 4.6(ii) of arXiv:2108.07723v7 is FALSE at p = 29 (both clauses),
+hence Conjecture 4.6 (the conjunction of (i) and (ii)) is FALSE as stated.
+Part (i) (n | s_n for odd composite n) is NOT addressed by this counterexample.
+
+Results written to C:\Users\jacks\source\repos\maths\problems\p2-factory\attacks\sun-46\independent\cleanroom2_results.json

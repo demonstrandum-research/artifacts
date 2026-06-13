@@ -1,0 +1,127 @@
+INDEPENDENT CLEAN-ROOM CHECKER -- Sun Conjecture 4.6 (arXiv:2108.07723v7)
+Method: exact Z[x]/(x^4n - 1) arithmetic, Kronecker-substitution Ryser,
+        Gauss-sum sqrt, verification mod Phi_4n(x). No floats/finite fields.
+
+== SELF-TESTS: Kronecker-Ryser engine vs brute-force permanent ==
+      [ryser m=2 N=20: K=11 bits/digit, ints of 220 bits]
+   sin n=5: Ryser==brute-force OK
+      [ryser m=4 N=36: K=27 bits/digit, ints of 972 bits]
+   sin n=9: Ryser==brute-force OK
+      [ryser m=6 N=52: K=51 bits/digit, ints of 2652 bits]
+   sin n=13: Ryser==brute-force OK
+      [ryser m=7 N=60: K=66 bits/digit, ints of 3960 bits]
+   sin n=15: Ryser==brute-force OK
+      [ryser m=8 N=68: K=83 bits/digit, ints of 5644 bits]
+   sin n=17: Ryser==brute-force OK
+      [ryser m=2 N=20: K=15 bits/digit, ints of 300 bits]
+   csc p=5: Ryser==brute-force OK
+      [ryser m=3 N=28: K=28 bits/digit, ints of 784 bits]
+   csc p=7: Ryser==brute-force OK
+      [ryser m=5 N=44: K=61 bits/digit, ints of 2684 bits]
+   csc p=11: Ryser==brute-force OK
+      [ryser m=6 N=52: K=82 bits/digit, ints of 4264 bits]
+   csc p=13: Ryser==brute-force OK
+   self-tests PASSED
+
+== s_n (sin) : exact values ==
+      [ryser m=1 N=12: K=6 bits/digit, ints of 72 bits]
+   s_3 = 1   [Sun:1; float~1, relerr 2.2e-16] 0.0s  PASS
+      [ryser m=2 N=20: K=11 bits/digit, ints of 220 bits]
+   s_5 = -1   [Sun:-1; float~-1, relerr 2.2e-16] 0.0s  PASS
+      [ryser m=3 N=28: K=18 bits/digit, ints of 504 bits]
+   s_7 = 1   [Sun:1; float~1, relerr 3.3e-16] 0.0s  PASS
+      [ryser m=4 N=36: K=27 bits/digit, ints of 972 bits]
+   s_9 = 9   [Sun:9; float~9, relerr 7.9e-16] 0.0s  PASS
+      [ryser m=5 N=44: K=38 bits/digit, ints of 1672 bits]
+   s_11 = 1   [Sun:1; float~1, relerr 1.7e-14] 0.0s  PASS
+      [ryser m=6 N=52: K=51 bits/digit, ints of 2652 bits]
+   s_13 = 51   [Sun:51; float~51, relerr 0.0e+00] 0.0s  PASS
+      [ryser m=7 N=60: K=66 bits/digit, ints of 3960 bits]
+   s_15 = 45   [Sun:45; float~45, relerr 1.9e-15] 0.2s  PASS
+      [ryser m=8 N=68: K=83 bits/digit, ints of 5644 bits]
+   s_17 = -239   [Sun:-239; float~-239, relerr 8.2e-15] 0.4s  PASS
+      [ryser m=9 N=76: K=102 bits/digit, ints of 7752 bits]
+   s_19 = 913   [Sun:913; float~913, relerr 1.4e-15] 1.1s  PASS
+      [ryser m=10 N=84: K=123 bits/digit, ints of 10332 bits]
+   s_21 = 2835   [Sun:2835; float~2835, relerr 1.3e-14] 2.2s  PASS
+      [ryser m=11 N=92: K=146 bits/digit, ints of 13432 bits]
+   s_23 = 12145   [Sun:12145; float~12145, relerr 6.4e-14] 10.3s  PASS
+      [ryser m=12 N=100: K=171 bits/digit, ints of 17100 bits]
+   s_25 = 63125   [claim:63125; float~63125, relerr 1.1e-13] 33.3s  PASS
+      [ryser m=13 N=108: K=198 bits/digit, ints of 21384 bits]
+   s_27 = 59049   [claim:59049; float~59049, relerr 5.3e-13] 98.9s  PASS
+      [ryser m=14 N=116: K=227 bits/digit, ints of 26332 bits]
+   s_29 = 1053859   [claim:1053859; float~1.05386e+06, relerr 1.6e-13] 337.0s  PASS
+
+== s'_p (csc) : exact values ==
+      [ryser m=1 N=12: K=6 bits/digit, ints of 72 bits]
+   s'_3 = 1   [Sun:1; float~1, relerr 1.1e-16] 0.0s  PASS
+      [ryser m=2 N=20: K=15 bits/digit, ints of 300 bits]
+   s'_5 = 1   [Sun:1; float~1, relerr 5.6e-16] 0.0s  PASS
+      [ryser m=3 N=28: K=28 bits/digit, ints of 784 bits]
+   s'_7 = -6   [Sun:-6; float~-6, relerr 5.9e-16] 0.0s  PASS
+      [ryser m=5 N=44: K=61 bits/digit, ints of 2684 bits]
+   s'_11 = 111   [Sun:111; float~111, relerr 2.2e-15] 0.1s  PASS
+      [ryser m=6 N=52: K=82 bits/digit, ints of 4264 bits]
+   s'_13 = 261   [Sun:261; float~261, relerr 8.7e-16] 0.1s  PASS
+      [ryser m=8 N=68: K=131 bits/digit, ints of 8908 bits]
+   s'_17 = 6784   [Sun:6784; float~6784, relerr 2.0e-15] 0.5s  PASS
+      [ryser m=9 N=76: K=159 bits/digit, ints of 12084 bits]
+   s'_19 = 245101   [Sun:245101; float~245101, relerr 9.3e-15] 1.6s  PASS
+      [ryser m=11 N=92: K=222 bits/digit, ints of 20424 bits]
+   s'_23 = -7094142   [Sun:-7094142; float~-7.09414e+06, relerr 1.4e-15] 15.2s  PASS
+      [ryser m=14 N=116: K=334 bits/digit, ints of 38744 bits]
+   s'_29 = -4806838304   [claim:-4806838304; float~-4.80684e+09, relerr 4.0e-13] 384.6s  PASS
+
+== Proven congruences (Thm 1.6(iii)) as internal consistency check ==
+   s_3 mod 3 = 1, expected 1  OK
+   s_5 mod 5 = 4, expected 4  OK
+   s_7 mod 7 = 1, expected 1  OK
+   s_11 mod 11 = 1, expected 1  OK
+   s_13 mod 13 = 12, expected 12  OK
+   s_17 mod 17 = 16, expected 16  OK
+   s_19 mod 19 = 1, expected 1  OK
+   s_23 mod 23 = 1, expected 1  OK
+   s_29 mod 29 = 28, expected 28  OK
+   s'_3 mod 3 = 1, expected 1  OK
+   s'_5 mod 5 = 1, expected 1  OK
+   s'_7 mod 7 = 1, expected 1  OK
+   s'_11 mod 11 = 1, expected 1  OK
+   s'_13 mod 13 = 1, expected 1  OK
+   s'_17 mod 17 = 1, expected 1  OK
+   s'_19 mod 19 = 1, expected 1  OK
+   s'_23 mod 23 = 1, expected 1  OK
+   s'_29 mod 29 = 1, expected 1  OK
+
+== Conjecture 4.6 evaluated on independently computed values ==
+   (i) odd composite n => s_n == 0 (mod n):
+      n=9: s_n mod n = 0  holds
+      n=15: s_n mod n = 0  holds
+      n=21: s_n mod n = 0  holds
+      n=25: s_n mod n = 0  holds
+      n=27: s_n mod n = 0  holds
+   (ii) s_p < 0  <=>  p == 5 (mod 12):
+      p=3: s_p=1 (pos), p mod 12 = 3  -> ok
+      p=5: s_p=-1 (neg), p mod 12 = 5  -> ok
+      p=7: s_p=1 (pos), p mod 12 = 7  -> ok
+      p=11: s_p=1 (pos), p mod 12 = 11  -> ok
+      p=13: s_p=51 (pos), p mod 12 = 1  -> ok
+      p=17: s_p=-239 (neg), p mod 12 = 5  -> ok
+      p=19: s_p=913 (pos), p mod 12 = 7  -> ok
+      p=23: s_p=12145 (pos), p mod 12 = 11  -> ok
+      p=29: s_p=1053859 (pos), p mod 12 = 5  -> **VIOLATED**
+   (ii) s'_p < 0  <=>  p == 7 (mod 8):
+      p=3: s'_p=1 (pos), p mod 8 = 3  -> ok
+      p=5: s'_p=1 (pos), p mod 8 = 5  -> ok
+      p=7: s'_p=-6 (neg), p mod 8 = 7  -> ok
+      p=11: s'_p=111 (pos), p mod 8 = 3  -> ok
+      p=13: s'_p=261 (pos), p mod 8 = 5  -> ok
+      p=17: s'_p=6784 (pos), p mod 8 = 1  -> ok
+      p=19: s'_p=245101 (pos), p mod 8 = 3  -> ok
+      p=23: s'_p=-7094142 (neg), p mod 8 = 7  -> ok
+      p=29: s'_p=-4806838304 (neg), p mod 8 = 5  -> **VIOLATED**
+
+ALL CHECKS PASSED (engine self-tests, Sun's 19 published values, claimed values, proven congruences, float sanity).
+CONJECTURE 4.6(ii) VIOLATIONS CONFIRMED at: [('s', 29), ("s'", 29)]
+=> Conjecture 4.6(ii) is FALSE; hence Conjecture 4.6 (conjunction of (i) and (ii)) is FALSE.
+total time 897.8s

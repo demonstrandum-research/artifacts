@@ -1,0 +1,83 @@
+=== Gate-4 verification log: graffiti-143 ===
+date: 2026-06-12T02:48:34Z
+python 3.11.9 | sympy 1.14.0 | numpy 2.4.2
+
+--- artifact hashes (sha256) ---
+d2c779d2c28418b30ab1b4f84bf7112c0e000bca1f2d6a3c48d0baba78af7733 *wow-july2004.pdf
+fdda6abff9fd19f503a907f4170ea2040238cf0c0f0f317d280c2613fd17603f *ecai2025.pdf
+df66843ae27eb74b7aa39feb1d3900c3398b7c160b03997994deb47377b8d8b2 *certificate_g143.json
+37f6ba6c3fd73011222eb03afdef5aea85d2b9b9593e460646ba11a0c9c031bb *checker_g143.py
+1bdea7231543e209e9c2a31542bf57795a569fb37ef2a5ef7f7052f1bac2c6ae *build_certificate.py
+90870799fc2deb3a0abb9f362de49baa50b23d2d4215e62b64569ae9f9ecc9d2 *mutation_tests.py
+32d9b24b737ca663864f293ac16ca1c7b54943051abd7f33829cb882cf6e5f0c *scan_dumbbells.py
+b579d5eb898845ad515dd48681159999bb0cea346b9b9b83b2226a8ca648ce41 *local_search_probe.py
+715137dfc9ef6e8b7fa35bd0830ecc140836c8edf37189d52f1099359c725c3a *decode_wow.py
+
+--- fresh checker run (no PYTHONIOENCODING override needed) ---
+Certificate: Refutation of Graffiti Conjecture 143 (Gate-4 clean-room rebuild)
+Conjecture : 143. variance of positive eigenvalues ≤ size / average distance.  [S. Fajtlowicz, "Written on the Wall" (Graffiti), July 2004 compilation, p.65; ≤ glyph = cmsy 0x14]
+  [PASS] dumbbell(20,8,20)  n=48 headline (claim record) : n=48 m=389 W=6568 k=6
+         var_pos in [69.634963244720, 69.634963244720]  (certified width 1.46e-20)
+         RHS_n2 = 56016/821 = 68.228989037759   margin_lo = +1.405974206961  -> VIOLATED
+         RHS_pairs = 54849/821 = 66.807551766139   margin_lo = +2.827411478581  -> VIOLATED
+  [PASS] dumbbell(8,12,20)  n=40 claim-record minimal : n=40 m=231 W=5372 k=8
+         var_pos in [34.892764461836, 34.892764461836]  (certified width 5.15e-21)
+         RHS_n2 = 46200/1343 = 34.400595681310   margin_lo = +0.492168780526  -> VIOLATED
+         RHS_pairs = 45045/1343 = 33.540580789278   margin_lo = +1.352183672558  -> VIOLATED
+  [PASS] dumbbell(7,12,20)  n=39 NEW smallest, both conventions : n=39 m=224 W=4976 k=8
+         var_pos in [34.315130467452, 34.315130467452]  (certified width 5.25e-21)
+         RHS_n2 = 10647/311 = 34.234726688103   margin_lo = +0.080403779349  -> VIOLATED
+         RHS_pairs = 10374/311 = 33.356913183280   margin_lo = +0.958217284172  -> VIOLATED
+  [PASS] dumbbell(6,12,20)  n=38 pairs-convention violation : n=38 m=218 W=4581 k=8
+         var_pos in [33.957379015823, 33.957379015823]  (certified width 6.78e-21)
+         RHS_n2 = 157396/4581 = 34.358437022484   margin_lo = -0.401058006662  -> not certified violated
+         RHS_pairs = 153254/4581 = 33.454267627156   margin_lo = +0.503111388667  -> VIOLATED
+  [PASS] dumbbell(6,12,19)  n=37 smallest known, pairs convention : n=37 m=199 W=4383 k=8
+         var_pos in [30.312392620978, 30.312392620978]  (certified width 7.24e-21)
+         RHS_n2 = 272431/8766 = 31.078142824549   margin_lo = -0.765750203571  -> not certified violated
+         RHS_pairs = 14726/487 = 30.238193018480   margin_lo = +0.074199602498  -> VIOLATED
+CHECKER VERDICT: ACCEPT
+checker exit code: 0
+
+--- mutation test suite (post-patch) ---
+positive control: pristine certificate must ACCEPT
+  pristine -> ACCEPT
+  M1 false claim: D(10,5,10) said to violate both         -> REJECT (expected REJECT)
+  M2 overclaim: D(6,12,19) said to violate n2             -> REJECT (expected REJECT)
+  M3 missing path edge (disconnected)                     -> REJECT (expected REJECT)
+  M4 Wiener index off by one                              -> REJECT (expected REJECT)
+  M5 k off by one                                         -> REJECT (expected REJECT)
+  M6 corrupted rhs_n2                                     -> REJECT (expected REJECT)
+  M7 inflated claimed margin bound                        -> REJECT (expected REJECT)
+  M8 relabeled edges vs canonical dumbbell                -> REJECT (expected REJECT)
+  M9 edge swapped (clique edge -> path chord)             -> REJECT (expected REJECT)
+  M10 family metadata mismatched                          -> REJECT (expected REJECT)
+MUTATION TESTS: ALL KILLED
+
+--- beyond-family local-search probe (heuristic, float) ---
+full run (24 anneals x 3000 iters per task, seed 143):
+conv=n2    n=38 best margin over 24 anneals: -0.571135 
+conv=n2    n=37 best margin over 24 anneals: -1.062630 
+conv=pairs n=36 best margin over 24 anneals: -1.322150 
+conv=pairs n=35 best margin over 24 anneals: -1.005832 
+probe done
+bounded re-run (10 anneals x 1500 iters): same outcome, no violation found
+
+--- Codex (GPT-5.5) final verdict ---
+VERDICT: ACCEPT (kill stands)
+
+=== 2026-06-12 checker revision + re-run (research-note preparation) ===
+checker_g143.py revised: for every convention an instance does NOT claim to
+violate, the checker now ALSO asserts that both routes' certified upper
+bounds on Var+ lie strictly below the right-hand side (var_hi < RHS), i.e.
+the non-violations ("dash" entries of the note's Table 1) are certified, not
+merely implied by the enclosure data. No other change.
+
+Re-run results (Python 3.11, Windows host):
+  python checker_g143.py certificate_g143.json
+    -> CHECKER VERDICT: ACCEPT
+       D(6,12,20): RHS_n2 margin_lo = -0.401058006662 -> certified NOT violated
+       D(6,12,19): RHS_n2 margin_lo = -0.765750203571 -> certified NOT violated
+       (all five claimed violations re-certified, unchanged)
+  python mutation_tests.py
+    -> pristine ACCEPT; M1..M10 all REJECT; MUTATION TESTS: ALL KILLED

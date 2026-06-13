@@ -1,0 +1,11 @@
+36-set law violations: {'L1_dup_norms': 0, 'L2_parallel': 0, 'L3_coplanar_triples': 0}
+symmetric pool sets checked: 4098; sets violating any law: {}
+B3-equivalent pair-direction collisions in first 500 pool sets: 0
+36-set B3-equivalent pair collisions: 0
+m=10: lawful-random configs fully valid 3/120; violating 5-subsets per config: median 12.0, mean 18.2, max 102
+m=13: lawful-random configs fully valid 0/120; violating 5-subsets per config: median 55.0, mean 65.1, max 290
+m=15: lawful-random configs fully valid 0/120; violating 5-subsets per config: median 128.0, mean 136.3, max 330
+m=17: lawful-random configs fully valid 0/120; violating 5-subsets per config: median 255.0, mean 273.5, max 602
+greedy[laws]: (pairs, violating-5-subsets) per seed: [(32, 8494), (35, 9680), (34, 9814), (34, 11228), (35, 13210)]
+greedy[full]: (pairs, violating-5-subsets) per seed: [(13, 0), (13, 0), (14, 0), (13, 0), (15, 0)]
+written pool_laws.json

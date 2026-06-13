@@ -1,0 +1,54 @@
+{
+ "13": {
+  "desc_norm": {
+   "pairs": 14,
+   "points": 28
+  },
+  "asc_norm": {
+   "pairs": 11,
+   "points": 22
+  },
+  "corner_first": {
+   "pairs": 13,
+   "points": 26
+  },
+  "lex": {
+   "pairs": 13,
+   "points": 26
+  },
+  "norm_mod13": {
+   "pairs": 13,
+   "points": 26
+  },
+  "odd_first_desc": {
+   "pairs": 14,
+   "points": 28
+  }
+ },
+ "15": {
+  "desc_norm": {
+   "pairs": 16,
+   "points": 32
+  },
+  "asc_norm": {
+   "pairs": 14,
+   "points": 28
+  },
+  "corner_first": {
+   "pairs": 17,
+   "points": 34
+  },
+  "lex": {
+   "pairs": 15,
+   "points": 30
+  },
+  "norm_mod13": {
+   "pairs": 16,
+   "points": 32
+  },
+  "odd_first_desc": {
+   "pairs": 17,
+   "points": 34
+  }
+ }
+}

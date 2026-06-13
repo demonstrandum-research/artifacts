@@ -1,0 +1,1 @@
+{"n": 17, "template": "iso13", "pool_size": 180, "pairs": 7, "points": 14, "verified": true, "distinct_proj_dirs_mod_p": 7, "iters": 2257}

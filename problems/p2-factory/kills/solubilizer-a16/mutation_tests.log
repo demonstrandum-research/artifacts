@@ -1,0 +1,9 @@
+M0-original | ACCEPTED as required | genuine certificate | 
+M1-wrong-sol-order | REJECTED as required | claims |Sol|=120 instead of 240 | [FAIL] check 13: |Sol_G(x)| = 240 matches claimed 120
+M2-D10xA4 | REJECTED as required | claimed subgroup is D10 x A4, order 120 | [FAIL] check 14: claimed generators generate a group of the claimed order (D10 x S4)
+M3-wrong-x | REJECTED as required | x = ((012), id) has a different solubilizer | [FAIL] check 12: x is the 5-cycle (0 1 2 3 4) with identity S4-part
+M4-fake-derived-orders | REJECTED as required | claims derived orders [240,60,1] | [FAIL] check 25: orders match claimed [240, 60, 1]
+M5-x-identity | REJECTED as required | Sol_G(1) = G, not the claimed proper subgroup | [FAIL] check 12: x is the 5-cycle (0 1 2 3 4) with identity S4-part
+M6-S5xS4 | REJECTED as required | generators give S5 x S4 of order 2880 | [FAIL] check  8: |G| = 1440
+P1-A5xS3-control | metabelian=True as required | A.16 instance true for A5 x S3 | 
+ALL MUTATION TESTS PASSED

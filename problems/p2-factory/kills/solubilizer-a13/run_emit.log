@@ -1,0 +1,15 @@
+derived series of G orders: [360, 180, 60]
+(1) G = A5 x S3, |G| = 360, non-solvable (derived series stabilizes at order 60 perfect subgroup)
+|Sol_G(x)| = 60
+(2) Sol_G(x) is a proper subgroup of order 60 = (order-10 subgroup of A5) x S3
+|core| = 6, core = [[0, 1, 2, 3, 4, 5, 6, 7], [0, 1, 2, 3, 4, 5, 7, 6], [0, 1, 2, 3, 4, 6, 5, 7], [0, 1, 2, 3, 4, 6, 7, 5], [0, 1, 2, 3, 4, 7, 5, 6], [0, 1, 2, 3, 4, 7, 6, 5]]
+(3) core of Sol_G(x) = 1 x S3, order 6, normal in G
+upper central series orders: [1] (stable)
+(4) Z(G) = 1, hypercenter Z_inf(G) = 1
+(5) core (order 6) is NOT contained in hypercenter (order 1); witness element [0, 1, 2, 3, 4, 5, 7, 6]
+==> Conjecture A.13 is FALSE for G = A5 x S3, x = ((0 1 2 3 4), id).
+extension: Sol_G(x) sizes over all 360 x: {60: 144, 144: 120, 216: 90, 360: 6}
+extension: #x with Sol a subgroup: 150; proper subgroup: 144; A.13 violated for ALL 144 of them
+extension: 1 x S3 (solvable, normal) lies in Sol_G(x) for every x; both readings of 'its conjugates' coincide
+certificate written to certificate_a13.json
+ACCEPT

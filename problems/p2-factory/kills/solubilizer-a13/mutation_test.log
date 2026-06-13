@@ -1,0 +1,8 @@
+drop-sol-element       -> REJECTED | REJECT: certificate field 'sol_x' does not match recomputation
+extra-core-element     -> REJECTED | REJECT: certificate field 'core' does not match recomputation
+inflate-hypercenter    -> REJECTED | REJECT: certificate field 'upper_central_series_orders' does not match recomputation
+wrong-x                -> REJECTED | REJECT: certificate field 'x' does not match recomputation
+bad-witness            -> REJECTED | REJECT: certificate field 'witness_in_core_not_in_hypercenter' does not match recomputation
+tampered-statement     -> REJECTED | REJECT: certificate field 'statement_verbatim' does not match recomputation
+sweep-zeroed           -> REJECTED | REJECT: certificate field 'sweep_all_x' does not match recomputation
+MUTATION TEST: PASS (all mutants rejected)

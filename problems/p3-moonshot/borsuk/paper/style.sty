@@ -1,0 +1,95 @@
+\usepackage[letterpaper, margin=2.3cm]{geometry}
+\linespread{1.05}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern} % want this cause it has caps caps
+
+\usepackage{parskip} % sets 0 indent, and 1 paragraph skip for paragraphs
+\usepackage{amsmath,amsthm,amssymb,stmaryrd}
+\usepackage{graphicx}
+\usepackage[font=small,labelfont=bf, width=\textwidth]{caption}
+\usepackage[font=small,labelfont=bf, width=\textwidth]{subcaption}
+\usepackage{float} 
+\usepackage{mathtools}
+\usepackage{xcolor}
+\usepackage{enumitem}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+%\usepackage{relsize} %adjust size of font a little bit wrt current font size, \relsize{+1}, \relsize{-2} or in math mode \mathlarger{} or \mathsmaller{}
+
+\usepackage[pdftex, colorlinks]{hyperref}
+\hypersetup{linkcolor=darklav!70!lilac, citecolor=darklav!70!lilac, urlcolor=blue}
+
+%have to put it after hyperref!
+\usepackage[nameinlink]{cleveref} 
+%use \Cref so that the reference automatically puts the type of thing in the reference, like Theorem 1.1 instead of just 1.1, and also makes the whole word clickable.
+
+%Redefines amsmath's \eqref command in order to have not only the equation numbers hyperlinked but also the parentheses
+\makeatletter
+\renewcommand*{\eqref}[1]{%
+  \hyperref[{#1}]{\textup{\tagform@{\ref*{#1}}}}%
+}
+\makeatother
+
+\usepackage{comment}
+
+\usepackage{authblk}
+
+\usepackage{tikz, tikz-3dplot}
+\tikzstyle{every node}=[circle, inner sep=0pt, minimum width=3pt]
+%For tono picture
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\tikzstyle{every line}=[width=0.3pt]
+\usetikzlibrary{arrows, arrows.meta, patterns, shapes.geometric,decorations.pathreplacing,calligraphy}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}{Conjecture}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+% \newcommand{\exampleqed}{\hfill \small \vspace{-0.5em}$\triangle$}
+% % Redefine the environment to insert the symbol at the end
+% \let\oldexample\example
+% \let\endoldexample\endexample
+% \renewenvironment{example}{\begin{oldexample}}{\exampleqed\end{oldexample}}
+%
+
+\newtheoremstyle{manual}
+  {}% ⟶ Space above
+  {}% ⟶ Space below
+  {\itshape}% ⟶ Body font
+  {}% ⟶ Indent amount
+  {\bfseries}% ⟶ Theorem head font
+  {}% ⟶ Punctuation after theorem head (nothing here)
+  {0em}% ⟶ Space after theorem head
+  {}% ⟶ Theorem head spec
+
+\theoremstyle{manual}
+\newtheorem*{manualthm}{}
+
+% %FANCY BOXES
+% \usepackage[]{mdframed} 
+% %\setlength{\fboxsep}{10pt} %sets buffer for the frame around the box
+% \newmdenv[innertopmargin=8pt, innerbottommargin=8pt, skipabove=12pt, skipbelow=12pt, linecolor=gray!20, backgroundcolor=gray!20, nobreak=true]{graybox}
+% \newmdenv[innertopmargin=8pt, innerbottommargin=8pt, skipabove=8pt]{nicebox}
+% \newmdenv[innertopmargin=8pt, innerbottommargin=8pt, skipabove=8pt, linewidth=1.4pt,]{fatbox}
+
+\makeatletter
+\def\keywords{\xdef\@thefnmark{}\@footnotetext}
+\makeatother
+
+\makeatletter
+\def\mscclasses{\xdef\@thefnmark{}\@footnotetext}
+\makeatother

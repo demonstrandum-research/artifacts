@@ -1,0 +1,101 @@
+\section{Diameter directions and the discrete Borsuk partition problem} \label{sec:directions-Borsuk}
+
+We begin with \Cref{thm:diam-dir} which bounds the number of diameter directions of a lattice polytope. Thereafter, we expand our study of lattice diameters to bounded sets $S \subset \Z^d$. Note that if $S = \conv(S) \cap \Z^d$, then $\ldiam(S)=\ldiam(\conv (S))$, where $\conv (S)$ is a lattice polytope, but our results hold for any discrete set of lattice points $S$. In \Cref{Lemma:MaxDegree}, we prove an upper bound on the number of lattice diameter segments that end at a given point in $S$. Using this, we prove \Cref{Thm:Borsuk}, the discrete Borsuk partition problem. A lemma which will be of much use in this section, from \cite{rabi89}, is the following:
+
+\begin{lemma}[Rabinowitz, 1989]\label{lemma:Rabinowitz}
+    Let $S \subseteq \Z^d$ be a bounded set and let $m \in \N$ satisfy $|S| > m^d$. Then $\conv (S)$ has at least $m+1$ collinear points. In other words, if $\ldiam(S)<m$, then $|S| \leq  m^d$.
+\end{lemma}
+
+% \begin{proof}
+%     Suppose, for the sake of contradiction, that $\lvert S \rvert > 2^d$. Each point in $\Z^d$ has a well-defined parity vector in $\{0,1\}^d$, obtained by reducing each coordinate modulo 2. Since there are only $2^d$ such parity vectors, by the pigeonhole principle, there exist two distinct points $x, y \in S$ with the same parity vector. This implies that $x \equiv y \pmod{2}$, so their average $(x+y)/2$ is an integer point. But then the midpoint lies in $\Z^d$ and is distinct from both $x$ and $y$, contradicting the assumption that $\diam_\Z(S) = 1$, which means no lattice point lies strictly between any two points of $S$. Therefore, we must have $\lvert S \rvert \leq 2^d$.
+% \end{proof}
+
+\subsection{Diameter directions of a lattice polytope}
+
+Alarcon \cite[Theorem~4.1]{Alarcon_PhD} showed that the number of diameter directions of a lattice polygon $P$ is at most six if $\ldiam(P)=1$ and at most four if $\ldiam(P)>1$; see \Cref{fig:diam-dir} for an example.
+
+
+\begin{figure}[ht!]
+  \centering
+  \input{Figures/3.1_diam-dir.tex}
+  \caption{Lattice diameter lines colored by their diameter direction.}
+  \label{fig:diam-dir}
+\end{figure}
+
+
+We show an analogous statement to the first part, when $\ldiam(P)=1$, in higher dimensions. Our computational experiments suggest that an even smaller bound holds when $\ldiam(P)>1$, but this remains an open problem.
+
+Define the direction $\dir(\bx,\by)$ between two points $\bx,\by \in \R^d$ as $\by-\bx$ or any of its non-zero multiples. For $X \subseteq \R^d$ (usually discrete) define the set of its directions as
+\begin{align*}
+    \dir(X):= \lb \dir(\bx_1,\bx_2): \bx_1,\bx_2 \in X, \ \bx_1 \neq \bx_2  \rb.
+\end{align*}
+
+\begin{lemma}\label{lemma:hyp-dir}
+    Let $X,Y \subseteq \R^d$ be sets contained in parallel hyperplanes $H(\ba,\alpha)$ and $ H(\ba,\beta)$, respectively. Suppose that $\dir(X) \cap \dir(Y) = \emptyset$. Then all $\dir(\bx,\by)$ where $\bx \in X$ and $\by \in Y$ are \mbox{pairwise distinct}. 
+\end{lemma}
+
+\begin{proof}
+    Suppose there exist two distinct pairs $(\bx_1,\by_1), (\bx_2,\by_2) \in X \times Y$ with $\dir(\bx_1,\by_1)=\dir(\bx_2,\by_2)$, that is, $\bx_1-\by_1=\lambda(\bx_2-\by_2)$ for some non-zero $\lambda \in \R$. Then, since $\bx_i \in X \subseteq H(\ba,\alpha)$ and $\by_i \in Y \subseteq H(\ba,\beta)$ we have
+    \begin{align*}
+        0 \neq \alpha - \beta = \langle a, \bx_1 - \by_1 \rangle = \langle a, \lambda(\bx_2 - \by_2) \rangle 
+        = \lambda \langle \ba, \bx_2 - 
+        \by_2 \rangle 
+        =\lambda (\alpha - \beta)
+    \end{align*}
+    and thus $\lambda =1$. It follows that $\bx_1-\bx_2 =\by_1-\by_2 \in \dir(X) \cap \dir(Y)$, a contradiction.
+\end{proof}
+
+\begin{theorem}\label{thm:diam-dir}
+    Let $P$ be a lattice $d$-polytope, with $\ldiam(P)=1$. Then $P$ has at most $\binom{2^d}{2}$ diameter directions and this bound is best possible.
+\end{theorem}
+
+\begin{proof}
+Let $d \in \N$. For $d=1$ the claim is clear, so assume $d \geq 2$. Since $\ldiam(P)<2$, by \ref{lemma:Rabinowitz} $|P \cap \Z^d| \leq 2^d$. A lattice diameter line is determined by two lattice points in $P$, so the number of possible diameter directions is bounded above by $\binom{2^d}{2}$.
+
+Next, we give a construction of a lattice $d$-polytope attaining this bound. For $t \in \N$ and $x \in \N_{\geq 3}$, let\vspace{-5pt}
+    \begin{align*}
+        \bv_1=(1,t), \ \bv_2=(x, tx+1), \ \bv_3=(-x-1, -tx-t-1)
+    \end{align*}
+    and let $T_{t,x} = \conv (\{\bv_1,\bv_2,\bv_3\})$.
+    Then $(0,0) = \frac{1}{3}\bv_1+ \frac{1}{3}\bv_2+ \frac{1}{3}\bv_3 \in T_{t,x}$ and since  $T_{t,x}$ has area $\frac{3}{2}$, Pick's Theorem \cite{pick99} implies that $T_{t,x}$ contains no lattice points besides $(0,0)$. Moreover, no three points in $T_{t,x}$ are collinear, thus $\ldiam(T_{t,x})=1$. The slopes of the six diameter lines in $T_{t,x}$ are
+    \begin{align*}
+    t, \ t + \dfrac{1}{2x + 1}, \ t + \dfrac{1}{x + 2}, \ t + \dfrac{1}{x + 1}, \ t + \dfrac{1}{x}, \text{ and }\ t + \dfrac{1}{x - 1},
+    \end{align*}
+    which are all distinct and contained in $[t,t+\frac{1}{2}]$.
+
+    %We prove via induction over $k$, for $2 \leq k \leq d$, that there exists a lattice $k$-polytope with $\ldiam(P)=2$ that has $\binom{2^k}{2}$ diameter directions. For $d=k$ this proves the claim.
+    \emph{Induction Claim:} For $k \in \{2, \ldots, d\}$ there exist $2^{d-k}$ lattice $k$-polytopes $P_1, \ldots, P_{2^{d-k}}$ such that $|P_i \cap \Z^k| = 2^k$, $P_i$ has $\binom{2^k}{2}$ diameter directions, and $\dir(P_i) \cap \dir(P_j)  = \emptyset$ for all $i,j \in [2^{d-k}], \ i \neq j$.
+    
+    \emph{Base Case:} For $k=2$ consider $\{ T_{i,3} \st i=1, \ldots, 2^{d-2} \}$. As we showed above $T_{i,3}$ contains $4=2^2$ lattice points, $\ldiam(T_{i,3})=2$ and all lines through two different lattice points have a different diameter direction, thus $T_{i,3}$ has $\binom{4}{2}=6$ diameter directions. Furthermore $\dir(T_{i,3}) \subseteq [i,i+1/2]$, thus the diameter directions of all $T_{i,3}$ for $i =1, \ldots, 2^{d-2}$  are distinct. 
+
+    \emph{Induction Hypothesis:} For $k \in \{2, \ldots, d-1\}$ let $P_1, \ldots, P_{2^{d-k}}$ be lattice $k$-polytopes such that $|P_i \cap \Z^k| = 2^k$, $P_i$ has $\binom{2^k}{2}$ diameter directions, and $\dir(P_i) \cap \dir(P_j)  = \emptyset$ for all $i,j \in [2^{d-k}], \ i \neq j$. In particular, any two pairs of lattice points in $P_i$ define lattice diameter lines \mbox{with distinct slopes.}
+
+    \emph{Induction Step:} Let $P_i$ for $i \in [2^{d-k}]$ be as given in the induction hypothesis. Let $\underline{P_i}:= P_{2i-1} \times \{0\}$ and $\overline{P_{2i}}:= P_{2i} \times \{1\}$ and construct polytopes
+    \begin{align*}
+        Q_i:= \conv \lp \lb \underline{P_i},\overline{P_{2i}}  \rb \rp\subseteq \R^{k+1}.
+    \end{align*}
+    Since $\underline{P_i}$ and $\overline{P_{2i}}$ are contained in parallel hyperplanes
+    \begin{align*}
+        |Q_i \cap \Z^{k+1}| = |\underline{P_i} \cap \Z^{k+1}| +|\overline{P_{2i}} \cap \Z^{k+1}| = 2^{k+1}, 
+    \end{align*}
+    and $\ldiam(Q_i)=2$. By \Cref{lemma:hyp-dir} all $\dir(\bx,\by)$ for any $\bx \in \underline{P_i}$ and $\by \in \overline{P_{2i}}$ are distinct so any two points in $Q_i$ define different lattice diameter lines with distinct diameter directions, i.e., $Q_i$ has $\binom{2^{k+1}}{2}$ diameter directions. Furthermore, again by \Cref{lemma:hyp-dir}, any two diameter directions in $Q_i$ and $Q_j$ are distinct.
+    This proves the induction claim. 
+\end{proof}
+
+\begin{example}
+    We give an example of our recursive construction using the same idea as in the proof of \mbox{\Cref{thm:diam-dir}}.
+    Here $T_0=\conv(\{(0,-3), (1,-4), (5,-5)\})$ and $T_1 = \conv(\{ (3,-3),(4,-2), (2,-7)\})$ each have $6=\binom{2^2}{2}$ distinct diameter directions and thus $P = \conv( T_0 \times \{0\}, T_1 \times \{1\})$ has $\binom{2^3}{2}$ diameter directions. See \Cref{fig:construction-diam-dir}.
+\begin{figure}[ht!]
+    \centering
+    \input{Figures/28dir_USED.tikz}
+    \caption{The convex hull of two lattice triangles with each $\binom{2^2}{2}$ diameter directions which yields a $3$-dimensional lattice polytope with $\binom{2^3}{2}$ distinct diameter directions.}
+    \label{fig:construction-diam-dir}
+\end{figure}
+%\input{Figures/3.1_diam-dir-triangles}
+\end{example}
+
+
+   
+
+
+

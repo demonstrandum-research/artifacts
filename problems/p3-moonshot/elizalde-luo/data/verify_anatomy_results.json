@@ -1,0 +1,44 @@
+{
+ "1": {
+  "bf": 1,
+  "data": 1,
+  "formula": 1,
+  "ok": true
+ },
+ "2": {
+  "bf": 4,
+  "data": 4,
+  "formula": 4,
+  "ok": true
+ },
+ "3": {
+  "bf": 16,
+  "data": 16,
+  "formula": 16,
+  "ok": true
+ },
+ "4": {
+  "bf": 58,
+  "data": 58,
+  "formula": 58,
+  "ok": true
+ },
+ "5": {
+  "bf": 196,
+  "data": 196,
+  "formula": 196,
+  "ok": true
+ },
+ "6": {
+  "bf": 634,
+  "data": 634,
+  "formula": 634,
+  "ok": true
+ },
+ "7": {
+  "bf": 1996,
+  "data": 1996,
+  "formula": 1996,
+  "ok": true
+ }
+}

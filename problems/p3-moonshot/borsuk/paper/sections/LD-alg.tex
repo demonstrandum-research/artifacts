@@ -1,0 +1,312 @@
+\section{Computing lattice diameters and lattice diameter lines}\label{sec:LD-computation}
+
+In this section we will explain and prove \Cref{thm:LD-poly} and \Cref{thm:NP-hard}.
+
+\subsection{A polynomial-time algorithm to compute lattice diameter lines in the plane}\label{sec:LD-poly}
+
+Let $P$ be a lattice polygon. We present an algorithm that runs in polynomial time in the input size of $P$ and computes a lattice diameter line of $P$ for every direction in which one exists. 
+% The input size of the algorithm is $n\cdot \log_2(c)$ where $n$ is the number of vertices in $P$ and $c$ is the largest absolute value of a coordinate of a vertex. Since the edges of $P$ can be obtained from the vertices in polynomial time, we may assume that the edges of $P$ also belong to the input. We reduce the problem to finding \textit{local lattice diameter lines}. A \textit{local lattice diameter line} at vertex $\bv$ of a lattice polygon $P$, is an affine line $L$ intersecting $\bv$ such that $|L \cap P \cap \Z^2|$ is maximal among all affine lines intersecting $\bv$. See \Cref{fig:local-ld}.
+% %\input{Figures/2.0_local-ld}
+% \begin{figure}[ht!]
+%     \centering
+%     \includegraphics[width=0.75\linewidth]{Figures/2.0_local-ld.png}
+%     \caption{}
+%     \label{fig:local-ld}
+% \end{figure}
+The algorithm relies on the following three claims:
+\begin{itemize}
+    \item For every diameter direction $\bu$, there exists a lattice diameter line in direction $\bu$ passing through a vertex $\bv$ and an edge $e$ such that some translate of $\aff(e)$ is tangent to $P$ at $\bv$. In this case, we say that $\bv$ is an \textit{opposite vertex} to the edge $e$. %This is \Cref{lemma:vertex_edge_pair}.
+    \item For every pair $(e,\bv)$, where $e$ is an edge and $\bv$ is an opposite vertex to $e$, one can compute in polynomial time a \textit{local lattice diameter line} at $\bv$ of the triangle $\conv \{ e, \bv\}$, i.e., a line through $\bv$ that intersects $\conv(\{e,\bv\})$ in the most lattice points.
+    %This relies \Cref{lemma:min-gens}
+    \item At most three lattice diameter lines pass through any fixed vertex. This was proven by Alarcon \cite[Lemma 2.4]{Alarcon_PhD} (and it also follows from our \Cref{Lemma:MaxDegree}).
+\end{itemize}
+
+The algorithm is as follows:
+
+\begin{algorithm}[ht!]
+\caption{\textsc{Computing Lattice Diameter Lines}}
+\textbf{Input:} a lattice polygon $P$ given by its vertices \\
+\textbf{Output:} at least one lattice diameter line for each direction in which a lattice diameter line exists
+\begin{algorithmic}[1]
+\State Initialize two empty sets: $\Tcal$ for triangles, and $\Lcal$ for candidate lines
+\ForAll{edges $e$ of $P$}
+    \State compute all opposite vertices $\bv$ to $e$ (each edge has at most two opposite vertices)
+    \State form triangles $\conv(\{e,\bv\})$ and add them to $\Tcal$
+\EndFor
+\ForAll{triangles in $\Tcal$}
+    \State compute up to three local lattice diameter lines of $T=\conv(\{e,\bv\})$ at $\bv$
+    \State add these local lattice diameter lines to $\Lcal$
+\EndFor
+\State \Return all lines in $L \in \Lcal$ that maximize $|L \cap P \cap \Z^2|$
+\end{algorithmic}
+\end{algorithm}
+
+We proceed to prove some lemmas. Recall that for a primitive vector $\bu \in \Z^d\setminus \{0\}$, and a $\bu$-lattice line $L$, the lattice normalized length of the segment $L \cap P$ is $\nvol(L \cap P) := \frac{\vol(L \cap P)}{\|\bu\|}$.
+
+\begin{lemma}\label{lem:nvol}
+    Let $P$ be a lattice polytope and $L$ be a line that intersects $P$. Then
+    \begin{align*}
+    \left \lfloor \nvol(L \cap P) \right \rfloor \leq |L \cap P \cap \Z^d| \leq  \left \lfloor \nvol(L \cap P) \right \rfloor + 1
+    \end{align*}
+and the upper bound is attained if $L$ contains a lattice point on the boundary of $P$.
+\end{lemma}
+
+%Anouks Proof to wordy/long
+% \begin{proof}
+%     Let $L=(x+\spn\{u\})$ where $u \in \Z^d$ is primitive. Write $L \cap P=[a,b]$ and let $a',b' \in [a,b] \cap \Z^2$ be the closest lattice points to $a$ and $b$, respectively. Then
+%     \begin{align}\label{eq:line_ineq}
+%         \left( \big | [a,b]\cap \Z^2 \big |-1 \right) \cdot \|\bu\|= \left( \big | [a',b']\cap \Z^2 \big |-1 \right) \cdot \|\bu\| = \vol([a',b'])
+%     \end{align}
+%     as depicted in \Cref{fig:bound_nlp}.
+    
+%     %\input{Figures/2.12_bound_nlp}
+%     \begin{figure}[ht!]
+%     \centering
+%     \includegraphics[width=0.66\linewidth]{Figures/2.12_bound_nlp.png}
+%     \caption{number of lattice points on a line in comparison to its Euclidean length}
+%     \label{fig:bound_nlp}
+%     \end{figure}
+
+    
+%     Plugging $ \vol( [a',b'] )\leq \vol( [a,b] )$ into \eqref{eq:line_ineq}
+%     we get $\left( \big | [a,b]\cap \Z^2 \big |-1 \right) \cdot \|\bu\| \leq \vol([a,b])$, and the right-hand-side follows from rearranging this inequality, and using the fact that $| [a,b]\cap \Z^2|$ is an integer.
+%     Also $\vol([a,b])-\vol([a',b']) < 2 \|\bu\|$
+%     which together with \eqref{eq:line_ineq} yields
+%     \begin{align}\label{eq:nvol-LHS}
+%         \nvol([a,b]) -1 < |[a,b] \cap \Z^2|.
+%     \end{align} If $\nvol([a,b]) \in \Z$ then the strict inequality in \eqref{eq:nvol-LHS} implies $\nvol([a,b]) \leq |[a,b] \cap \Z^2|$. If $\nvol([a,b]) \notin \Z$, then $ \left \lfloor \nvol([a,b])\right \rfloor = 
+%     \left \lceil \nvol([a,b]) \right \rceil -1 \leq |[a,b] \cap \Z^2|$. This proves the left-hand-side. For the equality: Suppose $a=a'$ is a lattice point, then $\vol([a,b])=\vol([a',b'])+\vol([b',b])$, and $\vol([b',b])< \|\bu\|$ which implies that 
+%     \begin{align*}
+%         \bigg \lfloor \frac{\vol([a,b])}{\|\bu\|} \bigg \rfloor = \bigg \lfloor  \underbrace{\frac{\vol([a',b'])}{\|\bu\|}}_{\in \N} + \underbrace{\frac{\vol([b',b])}{\|\bu\|}}_{\in [0,1)} \bigg \rfloor = \frac{\vol([a',b'])}{\|\bu\|} = \big |[a',b'] \cap \Z^2 \big | -1 = \big |[a,b] \cap \Z^2 \big | -1.
+%     \end{align*}
+% \end{proof}
+
+\begin{proof}
+Parametrize the line as $L = \{\bx_0 + t\bu : t \in \mathbb{R}\}$, where $\bx_0$ is an arbitrary lattice point on $L$ and $\bu \in \mathbb{Z}^d$ is a primitive vector in the direction of $L$. Then, the intersection $L \cap P$ is a segment with endpoints $\ba = \bx_0 + t_1\bu$ and $\bb = \bx_0 + t_2\bu$, for some real numbers $t_1 \leq t_2$.
+The lattice points in $L \cap P$ are precisely those points of the form $\bx_0 + k\bu$ with $k \in \mathbb{Z} \cap [t_1, t_2]$. Moreover,
+\[
+\nvol(L \cap P) = \frac{\|\bb - \ba\|}{\|\bu\|} = \frac{\|(t_2 - t_1) \bu\|}{\|\bu\|} = |t_2 - t_1|=t_2-t_1.
+\]
+% Using $\lceil t_1 \rceil - 1 < t_1 \leq \lceil t_1 \rceil$ and $\lfloor t_2 \rfloor \leq t_2 < \lfloor t_2 \rfloor + 1$ we obtain
+
+If $t_1$ is not an integer, then $|L \cap P \cap \mathbb{Z}^d| 
+= \lfloor t_2 \rfloor - \lceil t_1 \rceil + 1 = \lfloor t_2 \rfloor - \lfloor t_1 \rfloor$
+and the claim follows from the observation
+$\lfloor t_2-t_1 \rfloor \leq \lfloor t_2 \rfloor - \lfloor t_1 \rfloor \leq \lfloor t_2-t_1 \rfloor +1$. If at least one of $t_1$ or $t_2$ is an integer, then
+$|L \cap P \cap \Z^d| = \lfloor t_2 \rfloor - \lceil t_1 \rceil + 1 = \lfloor t_2 - t_1 \rfloor + 1=\lfloor \nvol(L \cap P) \rfloor +1$.
+\end{proof}
+
+%TRIANGLE INEQUALITY FOR FLOORING 
+% \begin{proposition}
+%     Let $a,b \in \R$. Then $\lfloor a \rfloor + \lfloor b \rfloor \leq \lfloor a+b \rfloor$. Equivalently $\lfloor b \rfloor - \lfloor a \rfloor \geq \lfloor b-a \rfloor$.
+% \end{proposition}
+
+% \begin{proof}
+%     The first inequality should be clear. For a proof, it suffices to consider $a,b \in (0,1)$ (after subtracting the integer part of both numbers) and then the equality reduces to $0 \leq 0$ or $0 \leq 1$. The equivalence to the second inequality comes from letting $c=a+b$ and rearranging.
+% \end{proof}
+
+%MORE EXPLANATIONS
+% \begin{proposition}
+% Let $t_1 < t_2$ be two real numbers. Then
+% \[
+% \lfloor t_2 \rfloor - \lceil t_1 \rceil + 1 \geq \lfloor t_2 - t_1 \rfloor.
+% \]
+% \end{proposition}
+
+% \begin{proof}
+% We have $\lceil t_1 \rceil - 1 < t_1 \leq \lceil t_1 \rceil$ and $\lfloor t_2 \rfloor \leq t_2 < \lfloor t_2 \rfloor + 1$.
+
+% The number of integers in the interval $[t_1, t_2]$ is
+% \[
+% N := \lfloor t_2 \rfloor - \lceil t_1 \rceil + 1.
+% \]
+
+% Observe that
+% \[
+% t_2 - t_1 < (\lfloor t_2 \rfloor + 1) - (\lceil t_1 \rceil - 1) = \lfloor t_2 \rfloor - \lceil t_1 \rceil + 2,
+% \]
+% and also
+% \[
+% t_2 - t_1 > \lfloor t_2 \rfloor - \lceil t_1 \rceil.
+% \]
+
+% Therefore,
+% \[
+% \lfloor t_2 \rfloor - \lceil t_1 \rceil < t_2 - t_1 < \lfloor t_2 \rfloor - \lceil t_1 \rceil + 2,
+% \]
+% so the floor of $t_2 - t_1$ is at most $\lfloor t_2 \rfloor - \lceil t_1 \rceil + 1$, that is,
+% \[
+% \lfloor t_2 - t_1 \rfloor \leq \lfloor t_2 \rfloor - \lceil t_1 \rceil + 1 = N.
+% \]
+
+% This concludes the proof.
+% \end{proof}
+
+As mentioned above, we say that a vertex $\bv$ of a lattice polygon $P$ is an \emph{opposite vertex} to an edge $e$ of $P$ if the furthest translate of $\aff(e)$ that intersects $P$ passes through $\bv$. More formally, if $\ba$ is an outward normal vector of the edge $e$, then $\langle \ba, \bv \rangle = \min_{\bx \in P} \langle \ba,\bx \rangle$. See \Cref{fig:edge-far-vertex}.
+\input{Figures/2.13_edge-far-vertex}
+
+If $\bu \in \Z^2 \setminus \{0\}$, then we call a $\bu$-lattice line $L$ a \emph{$\bu$-lattice diameter line} of $P$, if among all lines in direction $\bu$, it contains the most lattice points in $P$. The following lemma shows that a $\bu$-lattice diameter line of $P$ can always be chosen to pass through an edge of $P$ and an opposite vertex. This follows from \cite[Lemma~1]{Barany_Furedi}, where it is stated without a proof. We include one here for completeness.
+
+\begin{lemma}\cite[Lemma 1]{Barany_Furedi}\label{lemma:vertex_edge_pair}
+Let $P$ be a lattice polygon and $\bu \in \Z^2 \setminus \{0\}$. There exists a $\bu$-lattice diameter line $L$ that passes through a vertex $\bv$ of $P$ and through an edge $e$ of $P$ with outward normal vector $\ba$ such that $\langle \ba, \bv \rangle = \min_{\bx \in P} \langle \ba,\bx \rangle$.
+\end{lemma}
+
+% A lattice diameter line can also pass through two vertices. In this case \Cref{lemma:vertex_edge_pair} still holds. It says that for one of the two vertices (call it $\bv$) and one of the edges that the other vertex is contained in (call it $e$), $\bv$ is an opposite vertex to $e$.
+
+\begin{proof}
+    \Cref{lem:nvol} implies that if a $\bu$-lattice line $L$ passes through a vertex of $P$, and satisfies $\vol(L\cap P) \geq \vol(L' \cap P)$ for all $\bu$-lattice lines $L'$, then $L$ is a $\bu$-lattice diameter line of $P$.
+
+    First we prove that such a line exists. Let $L$ be \textit{any} line in direction $\bu$ satisfying $\vol(L\cap P) \geq \vol(L' \cap P)$ for all lines $L'$ in direction $\bu$ (by compactness of $P$ such a line exists). If $L$ passes through parallel edges, then a translate of $L$ along $\bu^{\perp}$ will pass through a vertex of $P$ and its intersection with $P$ will have the same length. Else, translating $L$ in one direction along $\bu^{\perp}$, until it passes through a vertex, will strictly increase the length of its intersection with $P$, a contradiction. This proves the existence of such a line, and necessarily, it will be a $\bu$-lattice line.
+    
+    So let $L$ be a $\bu$-lattice line that passes through some vertex of $P$ and satisfies
+    $\vol(L\cap P) \geq \vol(L' \cap P)$ for all $\bu$-lattice lines $L'$.
+    First, suppose that $L$ passes through the relative interior of an edge $e$ and through a vertex $\bv$ of $P$. Towards a contradiction, suppose $\langle \ba, \bv \rangle \neq \min_{\bx \in P} \langle \ba,\bx \rangle$. Let $\tilde{\bv}$ be a vertex for which $\min_{\bx \in P} \langle \ba,\bx \rangle$ is attained. It is an elementary trigonometry calculation to show that there exists a point $\bp \in [\bv,\tilde{\bv}] \subseteq P$ such that a translate of $L$ passing through $\bp$ also passes through $e$, and its intersection with $P$ is longer.
+    For the second case, suppose $L$ passes through two vertices $\bv$ and $\bw$. Using convexity of $P$ and the fact that $L \cap P$ is the longest segment in $P$ in direction $\bu$ one can find parallel supporting hyperplanes (lines) of $P$ at $\bv$ and at $\bw$. Rotating them, until one of the lines becomes tangent to an edge of $P$ proves this case.
+\end{proof}
+
+%\input{Figures/2.13_p-longer}
+
+%EXPLANATION:
+% Fixing $\alpha$, the distance (in direction $a$) of a parallel hyperplane $H(a,\beta)$ to $H(a,\alpha)$ where $\alpha>\beta$, is given by $\delta_a:=\frac{\alpha-\beta}{\|a\|}$, thus the distance increases if $\beta$ decreases. Note that $\langle u,\ba \rangle \neq 0$ since $L$ has direction $\bu$ and passes through the interior of $P$, and an edge with normal vector $a$. Thus the distance between parallel hyperplanes $H(a,\alpha)$ and $H(a,\beta)$ in direction $\bu$ is given by $\delta_u:=\delta_a \cdot \frac{\langle u,\ba \rangle}{\|\bu\|\|a\|}=\frac{\alpha-\beta}{\|a\|} \cdot \frac{\langle u,\ba \rangle}{\|\bu\|\|a\|}$ (this is jus ttrigonometry)
+% %(This is trigonometry: Consider the right angled triangle with hypotenuse side $(x+\spn\{u\}) \cap P$, adjacent side $(x+\spn\{a\}) \cap P$, and the opposite side contained in $H(a,\alpha)$. Let $\theta$ be the angle between the adjacent and hypotenuse, see \Cref{fig:dist-hp}. It is $\delta_a/\delta_u = \cos \theta$. Also $\cos \theta = \frac{\langle u,a\rangle}{\|\bu\|\|a\|}$, so $\delta_a = \delta_u \cdot \frac{\langle u,\ba \rangle}{\| u \| \|a\|}$.), 
+% so the distance in direction $\bu$ increases if and only if $\beta$ decreases.
+% %\input{Figures/2.13_dist-hp} 
+% \begin{figure}[ht!]
+%     \centering
+%     \includegraphics[width=0.61\linewidth]{Figures/2.13_dist-hp.png}
+%     \caption{distance of two hyperplanes in direction $a$ and direction $\bu$}
+%     \label{fig:dist-hp}
+% \end{figure}
+
+
+% Since $L$ passes through the interior of $e$, there exists a small translation of $L$ to $L'$ such that $L'$ passes through a point $p \in [v,\tilde{v}] \subseteq P$ as well as the same edge $e \subseteq H(a,\alpha)$, and thus  $\vol(L'\cap P)$ is exactly the distance (in direction $\bu$) of the hyperplanes $H(a,\alpha)$ and $H(a,\langle p,a\rangle)$. Since $\beta:= \langle p, a \rangle < \langle v, a \rangle$, the Euclidean length of $L' \cap P$ is longer than the Euclidean length $L \cap P$, a contradiction.
+
+
+%LONG VERSION
+% \textit{Case 2:} Suppose $L$ passes through two vertices $v_L$ and $v_R$.  In \Cref{fig:hyp-arr} we assume that the diameter direction is $u=(1,0)$, which one can always achieve after applying a unimodular transformation to $P$.
+% % This explains the notation of subscripts ``$L$'' for left and ``$R$'' for right.
+% For $i=1,2$ let $v_L + H_{L_i}$ and $v_R + H_{R_i}$ be the support hyperplanes of the two edges incident to $v_L$, and $v_R$, respectively, see \Cref{fig:hyp-arr}.
+% %\input{Figures/2.13_hyp-arr}
+% \begin{figure}[ht!]
+%     \centering
+%     \includegraphics[width=0.98\linewidth]{Figures/2.13_hyp-arr.png}
+%     \caption{hyperplane arrangement corresponding to the four edges at $v_L$ and $v_R$}
+%     \label{fig:hyp-arr}
+% \end{figure}
+
+% Define the positive and negative halfspaces of $H_{L_i}$ and $H_{R_i}$ such that $P \subseteq v_L +H^{-}_{L_i}, \ v_R +H^{-}_{R_i} $. We consider the ``$L$''- and ``$R$''-hyperplane arrangements, defined the $H_{L_i}$ and $H_{r_i}$ for $i=1,2$ respectively. Define $L(\sgn_1, \sgn_2):= H^{\sgn_1}_{L_1} \cap H^{\sgn_2}_{L_2}$ for $\sgn_1,\sgn_2 \in \{+,-\}$, and $R(\sgn_1, \sgn_2)$ analogously, as the four cones of the hyperplane arrangement, that partitions $\R^2$ (up to lower-dimensional intersection). So $v_L + L(-,-)$, $v_R + R(-,-)$, are the tangent cones of $P$ at $v_L$ and $v_R$, respectively.
+
+% An edge $e_{L_i}$ is tangent to $P$ at $v_R$ if and only if $H_{L_i}$ is tangent the the cone $R(-,-)$ if and only if $H_{L_i} \subseteq R(+,-) \cup R(-,+)$, and analogously when swapping $L$ with $R$.
+
+% Suppose $H_{L_1},H_{L_2}$ are both not tangent to $R(-,-)$, that is, $H_{L_1},H_{L_2} 
+% \subseteq R(+,+) \cup R(-,-)$. Since the diameter direction $\bu$ points inside the tangent cones of $P$ at $v_R$ and $v_L$, it follows that $ L(+,+) \cup L(-,-) \subseteq R(+,+) \cup R(-,-)$, and so both $H_{R_i} \subseteq L(+,-) \cup L(-,+)$ which proves the claim.
+
+
+%TOÑO IDEA
+% \Tonosays{For \Cref{lemma:vertex_edge_pair}, I don't think we need to be too detailed, since it's not our result. Here's a shorter proof that skips the technicalities: \hskip .5cm
+% \begin{proof}
+% The equality $\langle v, a \rangle = \min_{x \in P} \langle x,\ba \rangle$ means that the translate of $\aff(e)$ passing through $\bv$ is tangent to $P$; that is, it is the furthest translate of $\aff(e)$ in direction $-a$ that still intersects $P$.\\
+% Let $L_1,L_2$ be two supporting lines of $P$ orthogonal to $\bu$. These lines intersect $P$ either along an edge or at a single vertex. If one of the lines, say $L_1$, intersects $P$ along an edge $e$, we can take any vertex $\bv$ of $P$ lying on the other line $L_2$. Then the translate of $\aff(e)$ passing through $\bv$ lies in $L_2$ and is therefore tangent to $P$.\\
+% If both lines intersect $P$ only at a single vertex, we can rotate them continuously (either clockwise or counterclockwise) around their respective contact points with $P$, keeping $P$ enclosed between them at all times. Eventually, one of the lines—say $L_1$—will intersect $P$ along an edge $e$, while the other, $L_2$, still contains at least one vertex $\bv$ of $P$. This reduces the situation to the previous case, completing the proof.
+% \end{proof}}
+
+% \Anouksays{In proof we still need to show that the line $L$ with longest length in direction $\bu$ passes through vertex and edge that are tangent as described. These lines don't have to be orthogonal to the direction $\bu$.}
+
+%OLD PROOF (TOO LONG!)
+% Without loss of generality\footnote{Else apply an affine unimodular transformation; these preserve all lattice lines.} we can assume that $u=(1,0)$, one of the vertices is $v=(0,0)$, and the other vertex is $w=(w_1,0)$ with $w_1>0$. One can draw all cases of hyperplane angles and conclude that the claim is true. We abstract these ideas to show that the claim.
+
+% Let $e_L,d_L$ ($L$ for ``left'') be the two edges adjacent to $v=(0,0)$ and $e_R,d_R$ ($R$ for ``right'') be the two edges adjacent to $w$, where $e_L,e_R$ are in the upper half-plane and $d_L,d_R$ are in the lower half-plane. Write $H(e) := \aff(e)$ which is the supporting hyperplane, in this case a line, of an edge $e$. We characterize these lines by their angle from the positive $\bx$-axis, that is, if $H(e)=\spn\{z\}$, for $e \in \{e_R,e_L,d_R,d_L\}$ then we write the angle as $a(e):=\min\{ \angle (0,z), \angle (0,-z)\}$, see \Cref{fig:VV_setup}.
+% \begin{figure}[h!]
+%     \begin{center}
+%     %\includegraphics[width=0.8\linewidth]{Figures/VV-setup.jpeg}
+%     \input{Figures/2.13_VV-setup.tikz}
+%     \caption{parametrizing hyperplanes of vertices}
+%     \label{fig:VV_setup}
+%     \end{center}
+% \end{figure}
+
+% Now by our assumptions, we get:
+% \begin{enumerate}
+%     \item $a(e_L) \leq a(e_R)$ and $a(d_R) \leq a(d_L)$, otherwise, translating $\spn\{u\}$ parallel upwards (or downwards) would yield a line in direction $\bu$ of greater Euclidean length, which is a contradiction to $\spn\{u\}$ through $\bv$ and $w$ having maximal Euclidean length, see \Cref{fig:VV-conditions}.
+%     \item $a(d_R) < a(e_R)$ and $a(e_L) < a(d_L)$. This follows from convexity of the polygon since $P \subseteq H^+(e_L)$ and $d_L \subseteq H^-(u,0)$, see \Cref{fig:VV-conditions}.
+%     \item Combining 1.~and 2., we get $\max \{a(e_L), a(d_R) \}\leq \min \{a(e_R), a(d_L)\}$. This means that, for at least one of the two sides (left or right), the angle of one edge lies between the angles of the two edges on the opposite side. This condition is equivalent to the translated hyperplane being tangent to the other side's vertex. More precisely: without loss of generality, suppose $a(e_L) \leq a(e_R) \leq a(d_L)$. So $H(e_R)$ separates the hyperplanes $H(d_L)$ and $H(e_L)$. More generally, a line through the origin with angle $a$ is tangent to $P$ at $v=(0,0)$ if and only if it lies in $H^-(e_L) \cap H^-(d_L)$. Lying in $H^-(e_L)$ means that the line is left of $e_L$ in the upper half-plane, so $a\geq a(e_L)$. Lying in $H^-(d_L)$ means that the line is left of $d_L$ in the lower half-plane, so $a+180 \leq a(d_L)+180$, or equivalently $a \leq a(d_L)$. Since $a(e_L) \leq a(e_R) \leq a(d_L)$, it follows that $H(e_R)$ is tangent to $P$ at $(0,0)$.
+% \end{enumerate}
+% \begin{figure}[h!]
+%     \centering
+%      \input{Figures/2.13_VV-conditions.tikz}
+%      \vskip -1.6cm
+%     \caption{conditions on edge angles}\label{fig:VV-conditions}
+% \end{figure}
+
+Now consider all triangles $T_e=\conv(\{e,\bv_e\})$ where $e$ is an edge of $P$, and $\bv_e$ is an opposite vertex to $e$. \Cref{lemma:vertex_edge_pair} implies that for every diameter direction $\bu$ there exists a lattice diameter line that is a local lattice diameter line of $T_e$ at $\bv_e$ for some edge $e$. \Cref{lemma:min-gens} is the key ingredient to compute local lattice diameter lines of lattice triangles.
+
+\begin{lemma}\label{lemma:min-gens}
+    Let $T = \conv \{e,\bv\}$ be a lattice triangle, where $e$ is an edge of $T$ with outward normal vector $\ba$, and $\bv$ is its opposite vertex. If $\bw_1,\bw_2 \in T \cap \Z^2 \setminus \{\bv\}$ satisfy $\langle \ba, \bw_1 \rangle \leq \langle \ba, \bw_2 \rangle$, then for $L_1:= \aff(\{\bv,\bw_1\})$ and $L_2:= \aff(\{\bv,\bw_2\})$
+    \[
+    |L_1 \cap T \cap \Z^2| \geq |L_2 \cap T \cap \Z^2|.
+    \]
+\end{lemma}
+
+\begin{proof}
+    If $\langle \ba, \bw_1 \rangle = \langle \ba, \bw_2 \rangle$, then $\bw_1$ and $\bw_2$ lie on the same hyperplane $H(\ba, \langle \ba, \bw_1 \rangle)$, and by  proportionality of lines 
+\[
+\frac{\operatorname{vol}(L_1 \cap T)}{\|\bw_1- \bv\|} = \frac{\operatorname{vol}(L_2 \cap T)}{\|\bw_2- \bv\|}.
+\]
+Applying \Cref{lem:nvol}, we obtain
+\[
+|L_1 \cap T \cap \mathbb{Z}^2| = \left\lfloor \frac{\operatorname{vol}(L_1 \cap T)}{\|\bw_1- \bv\|} \right\rfloor + 1= \left\lfloor \frac{\operatorname{vol}(L_2 \cap T)}{\|\bw_2- \bv\|} \right\rfloor + 1 = |L_2 \cap T \cap \mathbb{Z}^2|.
+\]
+On the other hand, if $\langle \ba, \bw_1 \rangle < \langle \ba, \bw_2 \rangle$, then there exists a $\bw' \in [\bv, \bw_2]$ such that $\langle \ba, \bw' \rangle = \langle \ba, \bw_1 \rangle$. Again, by proportionality of lines
+\[
+\frac{\operatorname{vol}(L_1 \cap T)}{\|\bw_1- \bv\|} = \frac{\operatorname{vol}(L_1 \cap T)}{\|\bw'- \bv\|} \geq \frac{\operatorname{vol}(L_2 \cap T)}{\|\bw_2- \bv\|}.
+\]
+Applying \Cref{lem:nvol} it follows that $|L_1 \cap T \cap \mathbb{Z}^2| \geq |L_2 \cap T \cap \mathbb{Z}^2|$.
+% %\input{Figures/2.14_LLgenerator}
+\end{proof}
+
+% \begin{remark}
+%     Using notation as in \Cref{lemma:min-gens}, if $\langle a, \bw_1 \rangle <\langle a, \bw_2 \rangle$ then we also have strict inequality between the normalized volumes $\nvol(\aff\{\bv,\bw_1\} \cap T) > \nvol(\aff\{\bv,\bw_2\} \cap T)$ however the number of lattice points could be the same.
+% \end{remark}
+
+Using the lemmas above, we prove that the algorithm \textsc{Computing Lattice Diameters} is correct and runs in polynomial time in $n$ and $\log_2(c)$, where $n$ is the number of vertices of $P$ and $c$ is the largest absolute value of a coordinate of a vertex.
+
+\begin{theorem}\label{thm:LD-poly}
+     Let $P$ be a lattice polygon. There exists a polynomial-time algorithm that computes a lattice diameter line of $P$ for every direction in which a lattice diameter line exists. In particular, the lattice diameter of $P$ can be computed in polynomial time.
+\end{theorem}
+
+\begin{proof}
+    \emph{Correctness of the algorithm:} Let $\bu$ be a diameter direction of $P$. By \Cref{lemma:vertex_edge_pair}, there exists a lattice diameter line $L$ in direction $\bu$, that passes through an edge $e$ and an opposite vertex $\bv$ to that edge. Thus $L$ is a local lattice diameter line of $T=\conv(\{e,\bv\})$ at $\bv$. Let $m = \min \{3, |T \cap \Z^2 \setminus \{\bv\}|\}$, and let $L_i$ for $i \in [m]$ be the lattice lines computed in the second \textit{for loop}. By Alarcon \cite[Lemma~2.4]{Alarcon_PhD} at most three lattice diameter lines pass through $\bv$, thus $L$ must be contained in $\{L_i \st i \in [m]\}$.
+
+    \emph{Complexity of the algorithm:} We can assume that the input data is a list of vertices, edges, and incidence relations between the vertices and edges, since in dimension two this data can be computed from the vertices of $P$ in polynomial time. Let $n$ denote the number of vertices of $P$.
+
+    \begin{enumerate}
+        \item \emph{first for loop:} This loop is repeated $n$ times, since $P$ has $n$ edges. Finding an opposite vertex $\bv$ to an edge $e$ is linear optimization, which can be done in polynomial time in the input \cite{LP_Poly}. Further, checking if $\bv$ lies on an edge $[\bv,\bv']$ that is parallel to $e$, in which case $e$ has two opposite vertices, can also be done in $O(1)$. Each edge contributes at most two triangles, so throughout the whole algorithm $|\Tcal| \leq 2n$.
+        \item \emph{second for loop:} This for loop is repeated $|\mathcal{T}|$ times. For one iteration:
+        Computing $|T \cap \Z^2|$ can be computed in polynomial time, for example, by Pick's Theorem \cite{pick99}. Let $\ba$ be an outward normal vector of $T$ with $\min_{\bx \in T} \langle \ba, \bx \rangle = \langle \ba,\bv \rangle$.
+        A lattice point $\bw_1 \in T \cap \mathbb{Z}^2 \setminus \{\bv\}$ minimizes the functional $\langle \ba, \cdot \rangle$ if and only if it minimizes this functional over the lattice points of the rational polygon
+        \[
+        T' := T \cap H^-(\ba, \langle \ba, \bv \rangle + 1).
+        \]
+        The other $\bw_i$ for $i \in [m]$ can be computed similarly, with an additional check if $\bw_i \in T \cap H(\ba, \langle \ba, \bw_{i-1} \rangle)$. Since integer linear programming can be solved in polynomial time in dimension two~\cite{ILP-2d-poly}, the minimizers $\bw_i$ can be computed in polynomial time in the input size of $P$. 
+        \item The number of lattice points on a segment $L \cap T$, where $L = \aff(\{\bv,\bw\})$, is given by
+        \[
+        |L \cap T \cap \mathbb{Z}^2| = \left\lfloor \frac{\operatorname{vol}(L \cap T)}{\|\bw - \bv\|} \right\rfloor + 1.
+        \]
+        $|\mathcal{L}|$ is bounded above by $3\cdot (2n)$
+        % To compute $|L \cap T \cap \Z^2|$: computing the intersection points of $L \cap T$ and then its Euclidean length can be done in constant time. Finding a primitive vector for the direction of the line, reduces to computing greatest common divisors which lies in $O(poly(n\cdot log_2(c)))$. Finally, using \Cref{lem:nvol}, the number of lattice points in $L \cap T$ can also be computed in polynomial-time,
+        and finding maximizers of $|L \cap T \cap \Z^2|$ is linear in $|\mathcal{L}|$.
+    \end{enumerate}\vspace{-1.5em}
+\end{proof}
+
+\begin{remark}
+   \Cref{lemma:min-gens} extends to simplices in any dimension. Let $S = \conv(\{F, \bv\})$ be a simplex where $\bv$ is an opposite vertex to a facet $F$. The argument from \mbox{\Cref{thm:LD-poly}} and the fact that integer linear programming can be solved in polynomial time in fixed dimension~\cite{ILP_poly} yield a polynomial-time method to compute the local lattice diameter \mbox{of $S$ at $\bv$}.
+\end{remark}
+
+% \begin{remark}
+%     Alarcon's Lemma \cite[Lemma~2.4]{Alarcon_PhD} does not say, that a polygon has at most three local lattice diameter lines at any fixed vertex, and this need not be true, as can be seen for $T=\conv\{(0,0),(-m,1), (m,1)\}$ for any $m>1$, where $v=(0,0)$. His lemma says that \emph{if} local lattice diameter lines of $T$ at $v$ are also lattice diameter lines of $T$, \emph{then} there are at most three of them.
+% \end{remark}
+
+
+
+
+

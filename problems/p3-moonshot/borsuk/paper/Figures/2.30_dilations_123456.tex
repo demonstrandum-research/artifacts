@@ -1,0 +1,212 @@
+\tikzset{every picture/.style={line width=0.75pt}} % ancho por defecto
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-.3,xscale=.3]
+
+
+% ---------- Estilos ----------
+\tikzset{
+  graydot/.style={circle, draw=lightgray, fill=lightgray, minimum width=1pt, inner sep=0pt},
+  sone/.style={circle, draw={rgb,255:red,245;lightgreen,166;blue,35}, fill={rgb,255:red,245;lightgreen,166;blue,35}, minimum width=1pt, inner sep=0pt}, % naranja (S1)
+  stwo/.style={circle, draw={rgb,255:red,144;lightgreen,19;blue,254},  fill={rgb,255:red,144;lightgreen,19;blue,254},  minimum width=1pt, inner sep=0pt}  % morado (S2)
+}
+
+
+
+% ==================================================
+% MALLA 1 (izquierda)
+% ==================================================
+\pgfmathsetmacro{\XL}{460}
+\pgfmathsetmacro{\YL}{180}
+\foreach \i in {0,...,6}{
+  \foreach \j in {0,...,4}{
+    \node[graydot] at ({\XL + 20*\i},{\YL + 20*\j}) {};
+  }
+}
+% Quadrilateros
+\foreach \j in {0}{
+  \pgfmathsetmacro{\XL}{460+\j*20}
+  \pgfmathsetmacro{\YL}{180-\j*60}
+  \foreach \i in {0}{
+    \draw [color=black, draw opacity=1]
+  (\XL+\i*100,\YL+80-\i*20)  -- (\XL+100+\i*100,\YL+60-\i*20) -- (\XL+120+\i*100,\YL-\i*20) --(\XL+20+\i*100,\YL+20-\i*20) -- cycle;
+  }
+}
+
+% Dibujar líneas naranjas paralelas
+\draw[color=orange, line width=.8pt, draw opacity=1] (478, 200) -- (576, 200);
+\draw[color=orange, line width=.8pt, draw opacity=1] (471, 220) -- (569, 220);
+\draw[color=orange, line width=.8pt, draw opacity=1] (464, 240) -- (562, 240);
+
+  
+
+% ==================================================
+% MALLA 2 (medio)  ---- puntos grises con bucle
+% ==================================================
+\pgfmathsetmacro{\XL}{1020}
+\pgfmathsetmacro{\YL}{140}
+\foreach \i in {0,...,12}{
+  \foreach \j in {0,...,8}{
+    \node[graydot] at ({\XL + 20*\i},{\YL + 20*\j}) {};
+  }
+}
+
+% Quadrilateros
+\foreach \j in {0,1}{
+  \pgfmathsetmacro{\XL}{1020+\j*20}
+  \pgfmathsetmacro{\YL}{220-\j*60}
+  \foreach \i in {0,1}{
+    \draw [color=black, draw opacity=1]
+  (\XL+\i*100,\YL+80-\i*20)  -- (\XL+100+\i*100,\YL+60-\i*20) -- (\XL+120+\i*100,\YL-\i*20) --(\XL+20+\i*100,\YL+20-\i*20) -- cycle;
+  }
+}
+
+% Dibujar líneas moradas paralelas
+\draw[color=darklav, line width=.8pt, draw opacity=1] (1056, 180) -- (1247.61, 180);
+\draw[color=darklav, line width=.8pt, draw opacity=1] (1051, 200) -- (1242.61, 200);
+\draw[color=darklav, line width=.8pt, draw opacity=1] (1037, 240) -- (1229.61, 240);
+\draw[color=darklav, line width=.8pt, draw opacity=1] (1030, 260) -- (1222.61, 260);
+
+% ==================================================
+% MALLA 3 (derecha)  ---- puntos grises con bucle
+% ==================================================
+\pgfmathsetmacro{\Xo}{1680}
+\pgfmathsetmacro{\Yo}{110}
+\foreach \i in {0,...,18}{
+  \foreach \j in {0,...,12}{
+    \node[graydot] at ({\Xo + 20*\i},{\Yo + 20*\j}) {};
+  }
+}
+
+% Quadrilateros
+\foreach \j in {0,1,2}{
+  \pgfmathsetmacro{\XL}{1680+\j*20}
+  \pgfmathsetmacro{\YL}{270-\j*60}
+  \foreach \i in {0,1,2}{
+    \draw [color=black, draw opacity=1]
+  (\XL+\i*100,\YL+80-\i*20)  -- (\XL+100+\i*100,\YL+60-\i*20) -- (\XL+120+\i*100,\YL-\i*20) --(\XL+20+\i*100,\YL+20-\i*20) -- cycle;
+  }
+}
+
+\draw[color=lightgreen, line width=.8pt, draw opacity=1] (1740, 170) -- (2020, 170);
+\draw[color=lightgreen, line width=.8pt, draw opacity=1] (1720, 230) -- (2000, 230);
+\draw[color=lightgreen, line width=.8pt, draw opacity=1] (1700, 290) -- (1980, 290);
+
+
+% ==================================================
+% MALLA 4 (izquierda) ---- puntos grises con bucle
+% ==================================================
+\pgfmathsetmacro{\XL}{290}
+\pgfmathsetmacro{\YL}{600}
+\foreach \i in {0,...,24}{
+  \foreach \j in {0,...,16}{
+    \node[graydot] at ({\XL + 20*\i},{\YL + 20*\j}) {};
+  }
+}
+
+% Quadrilateros
+\foreach \j in {0,...,3}{
+  \pgfmathsetmacro{\XL}{290+\j*20}
+  \pgfmathsetmacro{\YL}{840-\j*60}
+  \foreach \i in {0,...,3}{
+    \draw [color=black, draw opacity=1]
+  (\XL+\i*100,\YL+80-\i*20)  -- (\XL+100+\i*100,\YL+60-\i*20) -- (\XL+120+\i*100,\YL-\i*20) --(\XL+20+\i*100,\YL+20-\i*20) -- cycle;
+  }
+}
+
+% Dibujar líneas naranjas paralelas
+\draw[color=orange, line width=.8pt, draw opacity=1] (371, 680) -- (745.61, 680);
+\draw[color=orange, line width=.8pt, draw opacity=1] (364, 700) -- (738.61, 700);
+\draw[color=orange, line width=.8pt, draw opacity=1] (357, 720) -- (731.61, 720);
+\draw[color=orange, line width=.8pt, draw opacity=1] (350, 740) -- (724.61, 740);
+\draw[color=orange, line width=.8pt, draw opacity=1] (343, 760) -- (717.61, 760);
+\draw[color=orange, line width=.8pt, draw opacity=1] (336, 780) -- (710.61, 780);
+\draw[color=orange, line width=.8pt, draw opacity=1] (329, 800) -- (703.61, 800);
+\draw[color=orange, line width=.8pt, draw opacity=1] (322, 820) -- (696.61, 820);
+\draw[color=orange, line width=.8pt, draw opacity=1] (315, 840) -- (689.61, 840);
+
+
+% ==================================================
+% MALLA 5 (medio)  ---- puntos grises con bucle
+% ==================================================
+\pgfmathsetmacro{\Xo}{850}
+    \pgfmathsetmacro{\Yo}{560}
+\foreach \i in {0,...,30}{
+  \foreach \j in {0,...,20}{
+    \node[graydot] at ({\Xo + 20*\i},{\Yo + 20*\j}) {};
+  }
+}
+
+
+% Quadrilateros
+\foreach \j in {0,...,4}{
+  \pgfmathsetmacro{\XL}{850+\j*20}
+  \pgfmathsetmacro{\YL}{880-\j*60}
+  \foreach \i in {0,...,4}{
+    \draw [color=black, draw opacity=1]
+  (\XL+\i*100,\YL+80-\i*20)  -- (\XL+100+\i*100,\YL+60-\i*20) -- (\XL+120+\i*100,\YL-\i*20) --(\XL+20+\i*100,\YL+20-\i*20) -- cycle;
+  }
+}
+
+% Dibujar líneas moradas paralelas
+\draw[color=darklav, line width=.8pt, draw opacity=1] (948, 660) -- (1417.61, 660);
+\draw[color=darklav, line width=.8pt, draw opacity=1] (943, 680) -- (1412.61, 680);
+\draw[color=darklav, line width=.8pt, draw opacity=1] (929, 720) -- (1399.61, 720);
+\draw[color=darklav, line width=.8pt, draw opacity=1] (922, 740) -- (1392.61, 740);
+\draw[color=darklav, line width=.8pt, draw opacity=1] (908, 780) -- (1378.61, 780);
+\draw[color=darklav, line width=.8pt, draw opacity=1] (901, 800) -- (1371.61, 800);
+\draw[color=darklav, line width=.8pt, draw opacity=1] (888, 840) -- (1357.61, 840);
+\draw[color=darklav, line width=.8pt, draw opacity=1] (883, 860) -- (1353.61, 860);
+
+
+% ==================================================
+% MALLA 6 (derecha)  ---- puntos grises con bucle
+% ==================================================
+\pgfmathsetmacro{\Xo}{1540}
+\pgfmathsetmacro{\Yo}{520}
+\foreach \i in {0,...,36}{
+  \foreach \j in {0,...,24}{
+    \node[graydot] at ({\Xo + 20*\i},{\Yo + 20*\j}) {};
+  }
+}
+
+% Quadrilateros
+\foreach \j in {0,...,5}{
+  \pgfmathsetmacro{\XL}{1540+\j*20}
+  \pgfmathsetmacro{\YL}{920-\j*60}
+  \foreach \i in {0,...,5}{
+    \draw [color=black, draw opacity=1]
+  (\XL+\i*100,\YL+80-\i*20)  -- (\XL+100+\i*100,\YL+60-\i*20) -- (\XL+120+\i*100,\YL-\i*20) --(\XL+20+\i*100,\YL+20-\i*20) -- cycle;
+  }
+}
+
+% Dibujar líneas moradas paralelas
+
+\draw[color=lightgreen, line width=.8pt, draw opacity=1] (1662, 640) -- (2224, 640);
+\draw[color=lightgreen, line width=.8pt, draw opacity=1] (1642, 700) -- (2204, 700);
+\draw[color=lightgreen, line width=.8pt, draw opacity=1] (1622, 760) -- (2184, 760);
+\draw[color=lightgreen, line width=.8pt, draw opacity=1] (1600, 820) -- (2164, 820);
+\draw[color=lightgreen, line width=.8pt, draw opacity=1] (1582, 880) -- (2144, 880);
+
+
+
+
+
+
+
+
+% Text Node
+\draw (490,300) node [anchor=north west][inner sep=0.75pt]    {$P$};
+% Text Node
+\draw (1120,335) node [anchor=north west][inner sep=0.75pt]    {$2P$};
+% Text Node
+\draw (1840,385) node [anchor=north west][inner sep=0.75pt]    {$3P$};
+% Text Node
+\draw (480,960) node [anchor=north west][inner sep=0.75pt]    {$4P$};
+% Text Node
+\draw (1120,1010) node [anchor=north west][inner sep=0.75pt]    {$5P$};
+% Text Node
+\draw (1840,1050) node [anchor=north west][inner sep=0.75pt]    {$6P$};
+
+
+
+\end{tikzpicture}

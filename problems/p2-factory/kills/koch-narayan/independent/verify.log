@@ -1,0 +1,96 @@
+========================================================================
+Independent clean-room verification: Koch-Narayan Conjecture 1
+(arXiv:2511.01719) -- claimed refutation
+========================================================================
+
+[formula] transcription sanity vs paper's own gamma=2 closed form: PASS
+[formula] m(10,3) literal=15 corrected=15 (expected 15, 15)
+
+[13,4] claimed bipartition A={0..5}, B={6..12} consistent with every listed edge
+--- PRIMARY counterexample (rebuilt from description): n=13, gamma=4 ---
+  n = 13, |E| = 22
+  no isolated vertices: OK
+  bipartite: OK (parts sizes [6, 7])
+  connected: True (not required by Conjecture 1; reported for completeness)
+  domination number gamma = 4 (exhaustive over all C(13,k) subsets, k=1..4); searched 1092 subsets
+  number of minimum dominating sets = 1
+  unique minimum dominating set = [0, 1, 8, 9]
+  hypotheses: bipartite, no isolated vertices, unique MDS, gamma=4>=2, n=13>=3*gamma=12: ALL SATISFIED
+  m(13,4) literal-Phi   = 21  -> s(G)=22 > 21
+  m(13,4) corrected-Phi = 21  -> s(G)=22 > 21
+  VERDICT: VIOLATES Conjecture 1 under BOTH Phi readings
+
+[13,4] independent graph6 decode of 'L??CA?oBDwN_~?': n=13, |E|=22, identical to described labeled edge list: True
+
+--- supplementary certificate_14_4.json ---
+  n = 14, |E| = 28
+  no isolated vertices: OK
+  bipartite: OK (parts sizes [7, 7])
+  connected: True (not required by Conjecture 1; reported for completeness)
+  domination number gamma = 4 (exhaustive over all C(14,k) subsets, k=1..4); searched 1470 subsets
+  number of minimum dominating sets = 1
+  unique minimum dominating set = [0, 3, 4, 5]
+  hypotheses: bipartite, no isolated vertices, unique MDS, gamma=4>=2, n=14>=3*gamma=12: ALL SATISFIED
+  m(14,4) literal-Phi   = 26  -> s(G)=28 > 26
+  m(14,4) corrected-Phi = 26  -> s(G)=28 > 26
+  VERDICT: VIOLATES Conjecture 1 under BOTH Phi readings
+
+--- supplementary certificate_15_4.json ---
+  n = 15, |E| = 35
+  no isolated vertices: OK
+  bipartite: OK (parts sizes [7, 8])
+  connected: True (not required by Conjecture 1; reported for completeness)
+  domination number gamma = 4 (exhaustive over all C(15,k) subsets, k=1..4); searched 1940 subsets
+  number of minimum dominating sets = 1
+  unique minimum dominating set = [0, 3, 4, 5]
+  hypotheses: bipartite, no isolated vertices, unique MDS, gamma=4>=2, n=15>=3*gamma=12: ALL SATISFIED
+  m(15,4) literal-Phi   = 31  -> s(G)=35 > 31
+  m(15,4) corrected-Phi = 31  -> s(G)=35 > 31
+  VERDICT: VIOLATES Conjecture 1 under BOTH Phi readings
+
+--- supplementary certificate_15_4_max.json ---
+  n = 15, |E| = 35
+  no isolated vertices: OK
+  bipartite: OK (parts sizes [7, 8])
+  connected: True (not required by Conjecture 1; reported for completeness)
+  domination number gamma = 4 (exhaustive over all C(15,k) subsets, k=1..4); searched 1940 subsets
+  number of minimum dominating sets = 1
+  unique minimum dominating set = [0, 8, 9, 10]
+  hypotheses: bipartite, no isolated vertices, unique MDS, gamma=4>=2, n=15>=3*gamma=12: ALL SATISFIED
+  m(15,4) literal-Phi   = 31  -> s(G)=35 > 31
+  m(15,4) corrected-Phi = 31  -> s(G)=35 > 31
+  VERDICT: VIOLATES Conjecture 1 under BOTH Phi readings
+
+--- supplementary certificate_18_5.json ---
+  n = 18, |E| = 45
+  no isolated vertices: OK
+  bipartite: OK (parts sizes [9, 9])
+  connected: True (not required by Conjecture 1; reported for completeness)
+  domination number gamma = 5 (exhaustive over all C(18,k) subsets, k=1..5); searched 12615 subsets
+  number of minimum dominating sets = 1
+  unique minimum dominating set = [0, 3, 4, 5, 6]
+  hypotheses: bipartite, no isolated vertices, unique MDS, gamma=5>=2, n=18>=3*gamma=15: ALL SATISFIED
+  m(18,5) literal-Phi   = 43  -> s(G)=45 > 43
+  m(18,5) corrected-Phi = 43  -> s(G)=45 > 43
+  VERDICT: VIOLATES Conjecture 1 under BOTH Phi readings
+
+--- supplementary certificate_20_6.json ---
+  n = 20, |E| = 46
+  no isolated vertices: OK
+  bipartite: OK (parts sizes [10, 10])
+  connected: True (not required by Conjecture 1; reported for completeness)
+  domination number gamma = 6 (exhaustive over all C(20,k) subsets, k=1..6); searched 60459 subsets
+  number of minimum dominating sets = 1
+  unique minimum dominating set = [0, 1, 6, 7, 8, 9]
+  hypotheses: bipartite, no isolated vertices, unique MDS, gamma=6>=2, n=20>=3*gamma=18: ALL SATISFIED
+  m(20,6) literal-Phi   = 44  -> s(G)=46 > 44
+  m(20,6) corrected-Phi = 44  -> s(G)=46 > 44
+  VERDICT: VIOLATES Conjecture 1 under BOTH Phi readings
+
+========================================================================
+OVERALL: KILL CONFIRMED.
+The n=13 graph (and every supplementary certificate) satisfies
+all hypotheses of Conjecture 1 of arXiv:2511.01719 and exceeds
+m(n,gamma) under both the literal and the typo-corrected Phi
+readings.  In particular s = 22 > 21 = m(13,4).
+========================================================================

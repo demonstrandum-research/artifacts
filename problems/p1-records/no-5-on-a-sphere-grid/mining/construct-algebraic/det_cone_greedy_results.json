@@ -1,0 +1,136 @@
+{
+ "17": {
+  "full/desc_norm": 36,
+  "full/asc_norm": 30,
+  "full/corner_first": 36,
+  "full/lex": 34,
+  "full/odd_first_desc": 36,
+  "full/BEST": {
+   "order": "desc_norm",
+   "points": 36,
+   "verified": true,
+   "file": "C:\\Users\\jacks\\source\\repos\\maths\\problems\\p1-records\\no-5-on-a-sphere-grid\\mining\\construct-algebraic\\det_full_desc_norm_n17_m36.json"
+  },
+  "ver7/desc_norm": 30,
+  "ver7/asc_norm": 22,
+  "ver7/corner_first": 26,
+  "ver7/lex": 26,
+  "ver7/odd_first_desc": 30,
+  "ver7/BEST": {
+   "order": "desc_norm",
+   "points": 30,
+   "verified": true,
+   "file": "C:\\Users\\jacks\\source\\repos\\maths\\problems\\p1-records\\no-5-on-a-sphere-grid\\mining\\construct-algebraic\\det_ver7_desc_norm_n17_m30.json"
+  },
+  "ver11/desc_norm": 30,
+  "ver11/asc_norm": 24,
+  "ver11/corner_first": 32,
+  "ver11/lex": 28,
+  "ver11/odd_first_desc": 30,
+  "ver11/BEST": {
+   "order": "corner_first",
+   "points": 32,
+   "verified": true,
+   "file": "C:\\Users\\jacks\\source\\repos\\maths\\problems\\p1-records\\no-5-on-a-sphere-grid\\mining\\construct-algebraic\\det_ver11_corner_first_n17_m32.json"
+  },
+  "ver13/desc_norm": 30,
+  "ver13/asc_norm": 22,
+  "ver13/corner_first": 32,
+  "ver13/lex": 28,
+  "ver13/odd_first_desc": 30,
+  "ver13/BEST": {
+   "order": "corner_first",
+   "points": 32,
+   "verified": true,
+   "file": "C:\\Users\\jacks\\source\\repos\\maths\\problems\\p1-records\\no-5-on-a-sphere-grid\\mining\\construct-algebraic\\det_ver13_corner_first_n17_m32.json"
+  },
+  "hyp7/desc_norm": 30,
+  "hyp7/asc_norm": 24,
+  "hyp7/corner_first": 32,
+  "hyp7/lex": 32,
+  "hyp7/odd_first_desc": 30,
+  "hyp7/BEST": {
+   "order": "corner_first",
+   "points": 32,
+   "verified": true,
+   "file": "C:\\Users\\jacks\\source\\repos\\maths\\problems\\p1-records\\no-5-on-a-sphere-grid\\mining\\construct-algebraic\\det_hyp7_corner_first_n17_m32.json"
+  },
+  "hyp11/desc_norm": 32,
+  "hyp11/asc_norm": 24,
+  "hyp11/corner_first": 32,
+  "hyp11/lex": 28,
+  "hyp11/odd_first_desc": 32,
+  "hyp11/BEST": {
+   "order": "desc_norm",
+   "points": 32,
+   "verified": true,
+   "file": "C:\\Users\\jacks\\source\\repos\\maths\\problems\\p1-records\\no-5-on-a-sphere-grid\\mining\\construct-algebraic\\det_hyp11_desc_norm_n17_m32.json"
+  },
+  "union_ver_hyp7/desc_norm": 32,
+  "union_ver_hyp7/asc_norm": 24,
+  "union_ver_hyp7/corner_first": 30,
+  "union_ver_hyp7/lex": 30,
+  "union_ver_hyp7/odd_first_desc": 32,
+  "union_ver_hyp7/BEST": {
+   "order": "desc_norm",
+   "points": 32,
+   "verified": true,
+   "file": "C:\\Users\\jacks\\source\\repos\\maths\\problems\\p1-records\\no-5-on-a-sphere-grid\\mining\\construct-algebraic\\det_union_ver_hyp7_desc_norm_n17_m32.json"
+  },
+  "union_ver_hyp11/desc_norm": 34,
+  "union_ver_hyp11/asc_norm": 24,
+  "union_ver_hyp11/corner_first": 36,
+  "union_ver_hyp11/lex": 30,
+  "union_ver_hyp11/odd_first_desc": 34,
+  "union_ver_hyp11/BEST": {
+   "order": "corner_first",
+   "points": 36,
+   "verified": true,
+   "file": "C:\\Users\\jacks\\source\\repos\\maths\\problems\\p1-records\\no-5-on-a-sphere-grid\\mining\\construct-algebraic\\det_union_ver_hyp11_corner_first_n17_m36.json"
+  },
+  "union_ver_hyp13/desc_norm": 32,
+  "union_ver_hyp13/asc_norm": 24,
+  "union_ver_hyp13/corner_first": 30,
+  "union_ver_hyp13/lex": 30,
+  "union_ver_hyp13/odd_first_desc": 32,
+  "union_ver_hyp13/BEST": {
+   "order": "desc_norm",
+   "points": 32,
+   "verified": true,
+   "file": "C:\\Users\\jacks\\source\\repos\\maths\\problems\\p1-records\\no-5-on-a-sphere-grid\\mining\\construct-algebraic\\det_union_ver_hyp13_desc_norm_n17_m32.json"
+  },
+  "union_ver_vera_verb7/desc_norm": 32,
+  "union_ver_vera_verb7/asc_norm": 28,
+  "union_ver_vera_verb7/corner_first": 32,
+  "union_ver_vera_verb7/lex": 28,
+  "union_ver_vera_verb7/odd_first_desc": 32,
+  "union_ver_vera_verb7/BEST": {
+   "order": "desc_norm",
+   "points": 32,
+   "verified": true,
+   "file": "C:\\Users\\jacks\\source\\repos\\maths\\problems\\p1-records\\no-5-on-a-sphere-grid\\mining\\construct-algebraic\\det_union_ver_vera_verb7_desc_norm_n17_m32.json"
+  },
+  "union_ver_vera_verb11/desc_norm": 34,
+  "union_ver_vera_verb11/asc_norm": 26,
+  "union_ver_vera_verb11/corner_first": 34,
+  "union_ver_vera_verb11/lex": 34,
+  "union_ver_vera_verb11/odd_first_desc": 34,
+  "union_ver_vera_verb11/BEST": {
+   "order": "desc_norm",
+   "points": 34,
+   "verified": true,
+   "file": "C:\\Users\\jacks\\source\\repos\\maths\\problems\\p1-records\\no-5-on-a-sphere-grid\\mining\\construct-algebraic\\det_union_ver_vera_verb11_desc_norm_n17_m34.json"
+  },
+  "union_ver_vera_verb13/desc_norm": 36,
+  "union_ver_vera_verb13/asc_norm": 30,
+  "union_ver_vera_verb13/corner_first": 34,
+  "union_ver_vera_verb13/lex": 30,
+  "union_ver_vera_verb13/odd_first_desc": 36,
+  "union_ver_vera_verb13/BEST": {
+   "order": "desc_norm",
+   "points": 36,
+   "verified": true,
+   "file": "C:\\Users\\jacks\\source\\repos\\maths\\problems\\p1-records\\no-5-on-a-sphere-grid\\mining\\construct-algebraic\\det_union_ver_vera_verb13_desc_norm_n17_m36.json"
+  }
+ }
+}

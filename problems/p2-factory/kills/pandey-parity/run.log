@@ -1,0 +1,87 @@
+== SELFTEST / MUTATION TESTS ==
+selftest: all unit and mutation tests passed
+== STATEMENT UNDER TEST ==
+Conjecture 4.1 (arXiv:2601.03293): "For all integers n >= 2k+1,
+the independence polynomial I(GP(n,k),x) has only real roots if
+and only if k is even."  GP domain: n >= 3, 1 <= k < n/2.
+
+GP(9,2): I = [1, 18, 126, 438, 801, 747, 303, 27]
+  degree 7, squarefree=True, distinct real roots (Sturm, exact) = 5
+  => NOT real-rooted although k=2 is even: the 'if' direction is FALSE.
+  brute-force 2^18 subset enumeration: coefficients confirmed
+
+GP(7,3): I = [1, 14, 70, 154, 147, 49]
+  degree 5, squarefree=True, distinct real roots (Sturm, exact) = 5
+  => real-rooted although k=3 is odd: the 'only if' direction is FALSE.
+  brute-force 2^14 subset enumeration: coefficients confirmed
+GP(3,1) (triangular prism): I = [1, 6, 6], real_rooted=True (k=1 odd)
+  => second, minimal 'only if' violation (n=3 >= 2*1+1).
+
+== STRUCTURAL INCOHERENCE: GP(7,2) ~= GP(7,3) ==
+explicit isomorphism GP(7,2) -> GP(7,3):  u_j |-> v_{3j mod 7},  v_j |-> u_{3j mod 7}
+  verified: bijection on 14 vertices; all 21 edges map bijectively onto all 21 edges.
+  consistency: I(GP(7,2)) = I(GP(7,3)) = [1, 14, 70, 154, 147, 49]
+  GP(7,2) has k even, GP(7,3) has k odd, yet they are the SAME graph:
+  the conjecture's predicate is not isomorphism-invariant, so as
+  stated it is not even well-posed (and with k=2 it predicts
+  real-rooted for this graph, which is correct here, while with
+  k=3 it predicts non-real-rooted for the very same graph).
+
+== FULL SCAN: all GP(n,k), 3 <= n <= 14, 1 <= k < n/2 ==
+GP( 3,1): k odd , deg= 2, sqfree=Y, realroots= 2, real_rooted=True   <-- VIOLATION (only-if (k odd but real-rooted))
+GP( 4,1): k odd , deg= 4, sqfree=Y, realroots= 2, real_rooted=False
+GP( 5,1): k odd , deg= 4, sqfree=Y, realroots= 2, real_rooted=False
+GP( 5,2): k even, deg= 4, sqfree=Y, realroots= 4, real_rooted=True 
+GP( 6,1): k odd , deg= 6, sqfree=Y, realroots= 4, real_rooted=False
+GP( 6,2): k even, deg= 4, sqfree=Y, realroots= 4, real_rooted=True 
+GP( 7,1): k odd , deg= 6, sqfree=Y, realroots= 4, real_rooted=False
+GP( 7,2): k even, deg= 5, sqfree=Y, realroots= 5, real_rooted=True 
+GP( 7,3): k odd , deg= 5, sqfree=Y, realroots= 5, real_rooted=True   <-- VIOLATION (only-if (k odd but real-rooted))
+GP( 8,1): k odd , deg= 8, sqfree=Y, realroots= 4, real_rooted=False
+GP( 8,2): k even, deg= 6, sqfree=Y, realroots= 6, real_rooted=True 
+GP( 8,3): k odd , deg= 8, sqfree=Y, realroots= 6, real_rooted=False
+GP( 9,1): k odd , deg= 8, sqfree=Y, realroots= 4, real_rooted=False
+GP( 9,2): k even, deg= 7, sqfree=Y, realroots= 5, real_rooted=False  <-- VIOLATION (if (k even but NOT real-rooted))
+GP( 9,3): k odd , deg= 7, sqfree=Y, realroots= 5, real_rooted=False
+GP( 9,4): k even, deg= 7, sqfree=Y, realroots= 5, real_rooted=False  <-- VIOLATION (if (k even but NOT real-rooted))
+GP(10,1): k odd , deg=10, sqfree=Y, realroots= 6, real_rooted=False
+GP(10,2): k even, deg= 8, sqfree=Y, realroots= 6, real_rooted=False  <-- VIOLATION (if (k even but NOT real-rooted))
+GP(10,3): k odd , deg=10, sqfree=Y, realroots= 6, real_rooted=False
+GP(10,4): k even, deg= 8, sqfree=Y, realroots= 8, real_rooted=True 
+GP(11,1): k odd , deg=10, sqfree=Y, realroots= 6, real_rooted=False
+GP(11,2): k even, deg= 8, sqfree=Y, realroots= 6, real_rooted=False  <-- VIOLATION (if (k even but NOT real-rooted))
+GP(11,3): k odd , deg= 9, sqfree=Y, realroots= 7, real_rooted=False
+GP(11,4): k even, deg= 9, sqfree=Y, realroots= 7, real_rooted=False  <-- VIOLATION (if (k even but NOT real-rooted))
+GP(11,5): k odd , deg= 8, sqfree=Y, realroots= 6, real_rooted=False
+GP(12,1): k odd , deg=12, sqfree=Y, realroots= 6, real_rooted=False
+GP(12,2): k even, deg= 9, sqfree=Y, realroots= 9, real_rooted=True 
+GP(12,3): k odd , deg=12, sqfree=Y, realroots= 6, real_rooted=False
+GP(12,4): k even, deg= 9, sqfree=Y, realroots= 9, real_rooted=True 
+GP(12,5): k odd , deg=12, sqfree=Y, realroots= 6, real_rooted=False
+GP(13,1): k odd , deg=12, sqfree=Y, realroots= 6, real_rooted=False
+GP(13,2): k even, deg=10, sqfree=Y, realroots=10, real_rooted=True 
+GP(13,3): k odd , deg=11, sqfree=Y, realroots= 7, real_rooted=False
+GP(13,4): k even, deg=11, sqfree=Y, realroots= 7, real_rooted=False  <-- VIOLATION (if (k even but NOT real-rooted))
+GP(13,5): k odd , deg=10, sqfree=Y, realroots= 6, real_rooted=False
+GP(13,6): k even, deg=10, sqfree=Y, realroots=10, real_rooted=True 
+GP(14,1): k odd , deg=14, sqfree=Y, realroots= 8, real_rooted=False
+GP(14,2): k even, deg=11, sqfree=Y, realroots= 9, real_rooted=False  <-- VIOLATION (if (k even but NOT real-rooted))
+GP(14,3): k odd , deg=14, sqfree=Y, realroots= 8, real_rooted=False
+GP(14,4): k even, deg=11, sqfree=Y, realroots= 9, real_rooted=False  <-- VIOLATION (if (k even but NOT real-rooted))
+GP(14,5): k odd , deg=14, sqfree=Y, realroots= 8, real_rooted=False
+GP(14,6): k even, deg=12, sqfree=Y, realroots=10, real_rooted=False  <-- VIOLATION (if (k even but NOT real-rooted))
+
+violations in 9 <= n <= 14: [(9, 2), (9, 4), (10, 2), (11, 2), (11, 4), (13, 4), (14, 2), (14, 4), (14, 6)]
+all violations in 3 <= n <= 14: [(3, 1), (7, 3), (9, 2), (9, 4), (10, 2), (11, 2), (11, 4), (13, 4), (14, 2), (14, 4), (14, 6)]
+
+== CERTIFICATE COMPARISON (certificate.json) ==
+certificate matches recomputation exactly
+
+== VERDICT ==
+Conjecture 4.1 of arXiv:2601.03293 is FALSE in both directions:
+  * 'if' direction killed by GP(9,2) (k even, not real-rooted);
+  * 'only if' direction killed by GP(7,3) and GP(3,1) (k odd,
+    real-rooted);
+  * and the statement is not isomorphism-invariant, witnessed by
+    the explicit isomorphism GP(7,2) ~= GP(7,3).
+ALL CHECKS PASSED

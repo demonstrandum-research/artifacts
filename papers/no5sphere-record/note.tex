@@ -1,0 +1,550 @@
+% !TeX program = pdflatex
+% C(13) >= 36 for the "no 5 on a sphere" grid problem (AlphaEvolve Problem 6.60)
+% Build: pdflatex note.tex (run twice). See BUILD.md.
+\documentclass[10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+
+\title{A 36-point subset of the $13\times 13\times 13$ grid\\
+with no five points on a sphere or a plane}
+\author{John Erlbacher\thanks{Independent Researcher. Email: \texttt{erlbacher.research@gmail.com}. ORCID: 0009-0003-6851-4139.}}
+\date{June 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For the ``no 5 on a sphere'' problem --- determine $C(n)$, the size of the
+largest subset of the grid $\{1,\dots,n\}^3$ containing no five points on a
+common sphere or plane --- the strongest published lower bounds for
+$7 \le n \le 12$ are due to AlphaEvolve, ending with $C(12) \ge 33$; nothing
+specific to $n = 13$ has been published, so the best previously known lower
+bound was $C(13) \ge C(12) \ge 33$. We exhibit an explicit $36$-point subset of
+$\{0,\dots,12\}^3$ with no five points on a sphere or a plane, proving
+$C(13) \ge 36$. The set is invariant under the central inversion
+$p \mapsto (12,12,12) - p$: eighteen antipodal point pairs whose squared
+distances from the cube center are pairwise distinct. Verification is a
+finite exact-integer computation --- all $\binom{36}{5} = 376{,}992$ lifted
+$5 \times 5$ determinants are nonzero --- reproduced here by a $21$-line
+program, printed in full, and carried out by three independently written
+checkers validated by mutation testing. The set was found in $841$ seconds
+on eight CPU threads by an exact-arithmetic local search restricted to
+centrally symmetric configurations; en route, four independent search
+pilots produced thousands of distinct $34$-point sets and dozens of
+$35$-point sets. The trivial upper bound $C(13) \le 52$ is unaffected.
+\end{abstract}
+
+\section{Introduction}\label{sec:intro}
+
+The following problem appears as Problem~6.60 in the AlphaEvolve
+``repository of problems'' of Georgiev, G\'omez-Serrano, Tao and Wagner
+\cite{AlphaEvolveMath,Repo}:
+
+\begin{quote}
+\emph{``For $n$ a natural number, let $C(n)$ denote the size of the largest
+subset of $[n]^3 = \{1,\dots,n\}^3$ such that no 5 points lie on a sphere or
+a plane. Obtain upper and lower bounds for $C(n)$ that are as strong as
+possible.''}
+\end{quote}
+
+\noindent
+It is the three-dimensional case of the no-$(d{+}2)$-on-a-sphere problem
+(see \cite[Problem~4 of Chapter~10.1]{BMP2005}), a generalization, going
+back to Thiele \cite{Thiele1995}, of the no-four-on-a-circle problem of
+Erd\H{o}s and Purdy. Thiele \cite{Thiele1995} proved
+$c\sqrt{n} \le C(n) \le 4n$ (the upper bound is the observation that each of
+the $n$ planes $x = \text{const}$ carries at most $4$ points of a valid
+set); Suk and White \cite{SukWhite2025} improved the lower bound to
+$n^{3/4-o(1)}$, and Dong and Xu \cite{DongXu2025} to $n - o(n)$, with a
+related construction from rational normal curves given by Szab\'o
+\cite{Szabo2025}. These constructions are asymptotic and yield no values for
+specific small $n$.
+
+For small $n$ the record lower bounds come from AI-driven search. PatternBoost
+\cite{PatternBoost} reported $C(3) \ge 8$, $C(4) \ge 11$, $C(5) \ge 14$,
+$C(6) \ge 18$, $C(7) \ge 20$, $C(8) \ge 22$, $C(9) \ge 25$ and
+$C(10) \ge 27$;\footnote{The explicit witnesses printed in the appendix of
+\cite{PatternBoost} pass the determinant criterion of
+Proposition~\ref{prop:det} for $n = 3,\dots,9$ (we re-checked them), but the
+printed $n = 10$ list is corrupted --- as printed it contains coordinates up
+to $13$ and a vanishing $5$-subset --- so we quote that value as reported; it
+is in any case superseded by AlphaEvolve's verified $C(10) \ge 28$.}
+AlphaEvolve \cite{AlphaEvolve,AlphaEvolveMath} improved
+these to $C(7) \ge 21$, $C(8) \ge 23$, $C(9) \ge 26$, $C(10) \ge 28$, and
+added the new bounds $C(11) \ge 31$ and $C(12) \ge 33$
+\cite[Problem~6.60]{AlphaEvolveMath}. Beyond the general bounds above and the
+monotone consequence $C(13) \ge C(12) \ge 33$, we could find no published
+bound for any specific $n \ge 13$ (literature and web searches dated 11--12
+June 2026; see Section~\ref{sec:scope}), so the baseline for $n = 13$ was
+$33$. This note establishes:
+
+\begin{theorem}\label{thm:main}
+$C(13) \ge 36$. Explicitly, the $36$-point set $S \subseteq \{0,\dots,12\}^3$
+of Table~\ref{tab:cert} contains no five points on a common sphere or plane.
+\end{theorem}
+
+By monotonicity, $C(n) \ge 36$ for all $n \ge 13$. The best known upper
+bound remains the trivial $C(13) \le 4 \cdot 13 = 52$.
+
+\paragraph{Conventions.}
+We work in $\{0,\dots,12\}^3$; adding $1$ to every coordinate places $S$ in
+the problem's $[13]^3$, and the defining condition is translation-invariant.
+``No five on a sphere or a plane'' is interpreted, as in the source problem
+and its official evaluation code \cite{Repo}, through the determinant
+criterion of Proposition~\ref{prop:det}, which treats planes as degenerate
+spheres; the checkers used here accept all six published AlphaEvolve record
+sets for $n = 7,\dots,12$ under this criterion
+(Section~\ref{sec:verification}), so the comparison $33 \to 36$ is made
+under the very convention that produced the $33$.
+
+\paragraph{Methods and AI-use disclosure.}
+The set was found by Demonstrandum, a verification-first multi-agent AI
+search pipeline built on Claude language models (Anthropic): agents froze the problem statement and
+conventions from the official sources, proposed attack plans, and wrote and
+ran the search programs (Rust and Python) of Section~\ref{sec:method}; every
+geometric test in the search and every step of the verification is exact
+integer arithmetic (floating point appears only in search-heuristic branch
+probabilities and timers, never in any validity decision). Certificates
+were verified by three independently written exact-integer checkers,
+validated by mutation testing, plus a fourth written by an adversarial
+referee agent from a different model family (Codex, GPT-5.5, OpenAI)
+(Section~\ref{sec:verification}). The text of this note was likewise
+drafted with the Claude-based pipeline; the author directed the work and
+takes responsibility for its content. Every number in this note that derives
+from the certificate or from our own runs was recomputed from the underlying
+artifacts during its preparation (12 June 2026). The mathematical claim of Theorem~\ref{thm:main} rests
+solely on the explicit set of Table~\ref{tab:cert} and the finite
+computation of Section~\ref{sec:verification}, which any reader can
+reproduce in under a minute.
+
+\section{The certificate}\label{sec:cert}
+
+Throughout, identify a point $p = (x,y,z) \in \R^3$ with its \emph{lift}
+$\Lambda(p) = (x,\, y,\, z,\, x^2{+}y^2{+}z^2,\, 1) \in \R^5$.
+
+\begin{proposition}\label{prop:det}
+Five pairwise distinct points $p_1,\dots,p_5 \in \R^3$ lie on a common
+sphere or plane if and only if
+$\det\bigl(\Lambda(p_1),\dots,\Lambda(p_5)\bigr) = 0$.
+\end{proposition}
+
+\begin{proof}
+A sphere or plane is the zero set of
+$f(x,y,z) = a(x^2{+}y^2{+}z^2) + bx + cy + dz + e$ for some
+$(a,b,c,d,e) \neq 0$: a plane when $a = 0$ (then $(b,c,d) \neq 0$, else
+$f \equiv e \ne 0$ has empty zero set), a sphere of radius
+$r$, $r^2 = (b^2{+}c^2{+}d^2{-}4ae)/4a^2$, when $a \neq 0$. If the five
+points lie on such a zero set, the vector $(b,c,d,a,e)$ is orthogonal to all
+five lifts, so the determinant vanishes. Conversely, if the determinant
+vanishes, some $(b,c,d,a,e) \neq 0$ is orthogonal to all five lifts, giving
+an $f$ as above vanishing at all five points; if $a \ne 0$, its zero set
+contains five distinct points, hence is neither empty nor a single point,
+hence is a genuine sphere ($r^2 > 0$); if $a = 0$ it is a plane.
+\end{proof}
+
+Call a finite set $S \subset \R^3$ \emph{valid} if every $5$-subset has
+nonvanishing lifted determinant. By Proposition~\ref{prop:det} this is
+exactly the problem's condition. One consequence used heavily by the search
+(but not needed for verification) is worth recording:
+
+\begin{lemma}\label{lem:degenerate}
+If four distinct points are collinear, or lie on a common circle, then these
+four points together with \emph{any} fifth point have vanishing lifted
+determinant.
+\end{lemma}
+
+\begin{proof}
+A line is contained in two distinct planes, and a circle in a plane and a
+sphere; in both cases the four lifts satisfy two linearly independent
+orthogonality constraints, so they span a subspace of dimension at most $3$.
+Together with the lift of any fifth point they therefore lie in a subspace
+of dimension at most $4$, and the $5 \times 5$ determinant vanishes.
+\end{proof}
+
+Thus a valid set with at least $5$ points has at most $3$ points on any line
+and at most $3$ on any circle, and a search must treat such
+\emph{rank-degenerate} quadruples as blocking every cell.
+
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{@{}rllr@{\hspace{2.5em}}rllr@{}}
+\toprule
+\# & $p$ & $\sigma(p)$ & $4\rho^2$ & \# & $p$ & $\sigma(p)$ & $4\rho^2$ \\
+\midrule
+1 & $(3,5,7)$ & $(9,7,5)$ & 44 & 10 & $(0,3,7)$ & $(12,9,5)$ & 184 \\
+2 & $(4,3,5)$ & $(8,9,7)$ & 56 & 11 & $(3,1,10)$ & $(9,11,2)$ & 200 \\
+3 & $(4,8,3)$ & $(8,4,9)$ & 68 & 12 & $(2,6,12)$ & $(10,6,0)$ & 208 \\
+4 & $(3,7,10)$ & $(9,5,2)$ & 104 & 13 & $(1,4,1)$ & $(11,8,11)$ & 216 \\
+5 & $(1,6,4)$ & $(11,6,8)$ & 116 & 14 & $(0,9,10)$ & $(12,3,2)$ & 244 \\
+6 & $(5,2,2)$ & $(7,10,10)$ & 132 & 15 & $(5,0,0)$ & $(7,12,12)$ & 292 \\
+7 & $(5,11,3)$ & $(7,1,9)$ & 140 & 16 & $(1,12,11)$ & $(11,0,1)$ & 344 \\
+8 & $(6,0,4)$ & $(6,12,8)$ & 160 & 17 & $(0,1,12)$ & $(12,11,0)$ & 388 \\
+9 & $(2,8,1)$ & $(10,4,11)$ & 180 & 18 & $(0,12,0)$ & $(12,0,12)$ & 432 \\
+\bottomrule
+\end{tabular}
+\caption{The certificate: a valid $36$-point set
+$S \subset \{0,\dots,12\}^3$, listed as the $18$ orbit pairs
+$\{p,\sigma(p)\}$ of the central inversion $\sigma(p) = (12,12,12) - p$,
+sorted by the squared diameter $4\rho^2 = 4\,|p - c|^2 \in \Z$ of the pair
+about the cube center $c = (6,6,6)$. The $18$ values $4\rho^2$ are pairwise
+distinct (Lemma~\ref{lem:sym}\,(ii) explains why they must be).}
+\label{tab:cert}
+\end{table}
+
+The certificate set $S$ is reproduced in machine-readable form here:
+
+{\scriptsize
+\begin{verbatim}
+[[0,1,12],[0,3,7],[0,9,10],[0,12,0],[1,4,1],[1,6,4],[1,12,11],[2,6,12],
+ [2,8,1],[3,1,10],[3,5,7],[3,7,10],[4,3,5],[4,8,3],[5,0,0],[5,2,2],
+ [5,11,3],[6,0,4],[6,12,8],[7,1,9],[7,10,10],[7,12,12],[8,4,9],[8,9,7],
+ [9,5,2],[9,7,5],[9,11,2],[10,4,11],[10,6,0],[11,0,1],[11,6,8],[11,8,11],
+ [12,0,12],[12,3,2],[12,9,5],[12,11,0]]
+\end{verbatim}
+}
+
+\paragraph{Structure.}
+$S$ is invariant under the central inversion $\sigma(p) = (12,12,12) - p$ of
+the $13$-cube, with $18$ orbit pairs and no fixed point (the unique fixed
+cell $(6,6,6)$ is not in $S$ --- by Lemma~\ref{lem:sym}\,(i) it could not
+be). The per-axis layer profiles (number of points with the given
+coordinate value $0,1,\dots,12$), palindromic by symmetry, are
+\begin{center}\small
+$x$: 4,3,2,3,2,3,2,3,2,3,2,3,4;\qquad
+$y$: 4,3,1,3,3,2,4,2,3,3,1,3,4;\qquad
+$z$: 4,3,4,2,2,3,0,3,2,2,4,3,4;
+\end{center}
+\noindent
+so every axis-aligned plane carries at most $4$ points --- the budget that
+the trivial bound $C(13) \le 52$ counts. $16$ of the $36$ points lie on the
+surface of the cube. Over all $376{,}992$ lifted $5\times 5$ determinants
+the minimum absolute value is $2$ ($200$ subsets have $|\det| \le 10$; the
+maximum is $198{,}750$): like the published record sets for $n \le 12$, the
+object sits at the very edge of degeneracy. Finally, $S$ is \emph{saturated}:
+an exhaustive check of all $2197 - 36$ remaining cells of $\{0,\dots,12\}^3$
+(re-run while preparing this note) shows that no $37$th point can be added.
+
+The following elementary facts drove the choice of search space; they are
+stated for the $13$-cube but hold for any odd $n$.
+
+\begin{lemma}\label{lem:sym}
+Let $c = (6,6,6)$ and $\sigma(p) = 2c - p$, and let $T$ be a
+$\sigma$-invariant subset of $\{0,\dots,12\}^3$.
+\begin{itemize}\itemsep1pt
+\item[(i)] If $c \in T$ and $T$ contains at least two orbit pairs, then $T$
+is not valid.
+\item[(ii)] If two orbit pairs $\{p, \sigma(p)\}$, $\{q, \sigma(q)\}$ of $T$
+satisfy $|p - c| = |q - c|$, then these four points are cocircular or
+collinear, so (by Lemma~\ref{lem:degenerate}) $T$ is not valid if
+$|T| \ge 5$.
+\item[(iii)] Any two orbit pairs of $T$ form a parallelogram, hence a
+coplanar quadruple.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+(iii): the diagonals $[p, \sigma(p)]$ and $[q, \sigma(q)]$ bisect each other
+at $c$. (ii): a parallelogram with equal diagonals is a rectangle (or a
+degenerate one: four collinear points), and a rectangle is cyclic. (i): let
+$\{p,\sigma(p)\}$ and $\{q,\sigma(q)\}$ be two orbit pairs of $T$. If $p$,
+$q$ and $c$ are collinear, all five points lie on one line, hence on one
+plane. Otherwise the plane through $c$, $p$ and $q$ is $\sigma$-invariant
+(it contains $c$), so it also contains $\sigma(p)$ and $\sigma(q)$: again
+five points of $T$ on one plane.
+\end{proof}
+
+\section{Verification}\label{sec:verification}
+
+Theorem~\ref{thm:main} reduces, via Proposition~\ref{prop:det}, to a finite
+integer computation: \emph{all $\binom{36}{5} = 376{,}992$ five-subsets of
+$S$ have nonzero lifted determinant}. Subtracting the first row of the
+$5\times 5$ matrix from the others and expanding along the last column
+reduces this to a $4\times 4$ integer determinant in the differences
+$\Lambda'(p_i) - \Lambda'(p_1)$, $\Lambda'(p) =
+(x,y,z,x^2{+}y^2{+}z^2)$. Coordinate differences are at most $12$ and lifted
+fourth-coordinate differences at most $432$ in absolute value, so every such
+determinant is bounded by $24 \cdot 12^3 \cdot 432 = 17{,}915{,}904 <
+2^{25}$: native 64-bit (even 32-bit) integer arithmetic is exact, and no
+floating point is needed or used. The complete accept path of the reference
+checker is the following $21$ lines of Python (quoted verbatim from
+\texttt{check\_cert.py} in the certificate bundle):
+
+{\footnotesize
+\begin{verbatim}
+import sys, json
+from itertools import combinations
+
+def check(points, n=13):
+    """Return (True, None) if valid, else (False, reason-or-offending-5-subset)."""
+    pts = [tuple(p) for p in points]
+    if len(set(pts)) != len(pts):
+        return False, "duplicate points"
+    if any(len(p) != 3 or any(not isinstance(c, int) or not 0 <= c < n for c in p) for p in pts):
+        return False, "non-integer or out-of-range coordinate"
+    L = [(x, y, z, x * x + y * y + z * z) for (x, y, z) in pts]
+    for idx in combinations(range(len(pts)), 5):
+        p = L[idx[0]]
+        (a0, a1, a2, a3), (b0, b1, b2, b3), (c0, c1, c2, c3), (d0, d1, d2, d3) = \
+            [tuple(L[i][k] - p[k] for k in range(4)) for i in idx[1:]]
+        det = ((a0*b1 - a1*b0) * (c2*d3 - c3*d2) - (a0*b2 - a2*b0) * (c1*d3 - c3*d1)
+             + (a0*b3 - a3*b0) * (c1*d2 - c2*d1) + (a1*b2 - a2*b1) * (c0*d3 - c3*d0)
+             - (a1*b3 - a3*b1) * (c0*d2 - c2*d0) + (a2*b3 - a3*b2) * (c0*d1 - c1*d0))
+        if det == 0:
+            return False, [pts[i] for i in idx]
+    return True, None
+\end{verbatim}
+}
+
+\noindent
+Running \texttt{check\_cert.py} on the list above prints
+\texttt{VALID m=36 n=13} in about a second. A skeptical reader is encouraged to re-implement the criterion
+independently rather than trust any of our code; the float-based verifier
+in the official problem notebook \cite{Repo} should \emph{not} be used as a
+certificate checker.
+
+Beyond the reference checker (route A), the certificate bundle contains two
+independently written checkers: route B performs fraction-free Bareiss
+elimination on the full $5\times 5$ lifted matrix (Python), and route C is a
+separate Rust implementation (with $28$ unit tests, including traps built
+from the rank-degenerate quadruples of Lemma~\ref{lem:degenerate}). All
+three routes were written by different agents than the one that found the
+set, and a fourth checker was written from scratch by an adversarial referee
+agent from a different model family (Codex, GPT-5.5), which confirmed all
+$376{,}992$ determinants nonzero, minimum $|\det| = 2$, and the central
+symmetry. The checkers were validated by mutation testing: seven targeted
+corruptions of the certificate (a duplicated point; an out-of-range
+coordinate $13$; a negative coordinate; a float coordinate; appending the
+center cell $(6,6,6)$; replacing a point by the center; appending an
+in-range cell completing a coplanar $5$-subset) are rejected by every
+applicable route: the float corruption is rejected by both Python routes and
+does not even parse for the integer-only Rust route; the other six
+corruptions are rejected by all three routes. As a convention anchor, the
+same checkers accept all six official
+AlphaEvolve record sets for $n = 7,\dots,12$ (sizes $21, 23, 26, 28, 31,
+33$, taken verbatim from the official notebook \cite{Repo}) and reject a
+known-invalid $34$-point set. All of these checks, and every
+certificate- and run-derived number quoted
+in this note, were re-run on 12 June 2026 while preparing it.
+
+\section{Method: search in the centrally symmetric subspace}\label{sec:method}
+
+The published $33$-point record set for $n = 12$ is the residue of a generic
+evolved local search \cite[Problem~6.60]{AlphaEvolveMath}, with no visible
+structure. Our route to $36$ was to \emph{impose} structure: the cube
+$\{0,\dots,12\}^3$ has a true center $c = (6,6,6)$, and we searched only
+sets invariant under the central inversion $\sigma(p) = 2c - p$, i.e.\
+unions of orbit pairs $\{p, \sigma(p)\}$. This halves the search dimension
+($36$ points are $18$ pair choices); by Lemma~\ref{lem:sym}\,(iii) every two
+orbit pairs automatically form a \emph{coplanar, legal} quadruple,
+pre-paying densely the four-points-per-plane budget that record-grade sets
+must exhaust, while Lemma~\ref{lem:sym}\,(ii) gives a cheap exact pruning
+rule (one squared norm per pair) against the rectangle degeneracies
+symmetry would otherwise mass-produce.
+
+The searcher (Rust; exact integer arithmetic in every geometric predicate)
+maintains an
+incrementally updated \emph{blocker grid}: for the current set $T$ and every
+cell $u$ of the grid, the number of $4$-subsets $Q \subseteq T$ whose lifted
+cofactor vector is orthogonal to $\Lambda(u)$; by
+Proposition~\ref{prop:det}, $u$ is addable only if this count is zero. For a
+candidate \emph{pair} $(p, \sigma(p))$, zero blocker counts at both cells
+decide all $5$-subsets with at most one new point, and two further exact
+layers (cofactor tests over member $2$-subsets, determinant tests over
+member $3$-subsets) decide those containing both new points, including all
+rank-degenerate cases of Lemma~\ref{lem:degenerate}. On top of this sits a
+standard iterated local search: greedy randomized fill over pair orbits,
+ruin-and-rebuild (remove $1$--$3$ random pairs, rebuild with a tabu list,
+accept if not worse), restart after $800$ non-improving iterations. Every
+accepted set is re-verified in-process by the brute-force all-subsets test
+before being written to disk.
+
+\begin{table}[ht]
+\centering\footnotesize
+\begin{tabular}{@{}llll@{}}
+\toprule
+bound & date found & pilot & evidence \\
+\midrule
+$C(12) \ge 33$ & Nov.\ 2025 & AlphaEvolve (prior record) & \cite{AlphaEvolveMath,Repo} \\
+$C(13) \ge 34$ & 11 June 2026 & centrally symmetric pilot, $4.0$\,s into & run logs \\
+ & & its first smoke run ($2$ threads); independently & \\
+ & & baseline ILS, $53.8$\,s into its own smoke run; & \\
+ & & both further pilots followed within hours & \\
+$C(13) \ge 35$ & 11 June 2026 & baseline ILS main run ($t = 538$\,s); & run logs \\
+ & & independently, blocker-repair pilot & \\
+$C(13) \ge 36$ & 12 June 2026 & centrally symmetric main run: $8$ threads, & Table~\ref{tab:cert} \\
+ & & $840.9$\,s elapsed, $611{,}969$ ILS iterations, & \\
+ & & $627$ restarts & \\
+\bottomrule
+\end{tabular}
+\caption{Record progression. All searches ran on one desktop CPU (Ryzen~9
+9950X3D, 16 cores); roughly three hours elapsed between freezing the
+problem dossier and finding the $36$-point set.}
+\label{tab:timeline}
+\end{table}
+
+Four independent pilots ran in parallel
+(Tables~\ref{tab:timeline} and~\ref{tab:abundance}): the
+centrally symmetric search; a faithful port of the published evolved
+$n = 12$ recipe (the official notebook discloses that, due to a misplaced
+\texttt{\#\,EVOLVE-BLOCK-START} line, AlphaEvolve's search for this problem
+``had to start its search from scratch every time'' \cite{Repo} --- our port
+runs it both as published and with that harness bug fixed); an exact
+blocker-cofactor \emph{repair} search over hitting sets of blocking
+quadruples; and a finite-field pilot mining mod-$13$ arc structure for
+seeds (a direct mod-$13$ construction of size $34$ is impossible: arcs in
+$\mathrm{PG}(4,13)$ have at most $14$ points by Ball's theorem
+\cite{Ball2012}, so the lifted-matroid-mod-$13$ condition can serve only as
+seed diversity).
+
+\begin{table}[ht]
+\centering\footnotesize
+\begin{tabular}{@{}lllll@{}}
+\toprule
+pilot & run length & distinct $34$s & distinct $35$s & $36$ \\
+\midrule
+baseline ILS ($8$ threads, two arms) & $22$\,min snapshot & $198$ & $1$ & --- \\
+blocker-repair, $3$ runs & $55 + 48 + 48$\,min & $4068\,/\,2528\,/\,2833$ & $20\,/\,30\,/\,47$ & --- \\
+centrally symmetric (symmetric sets) & $14$\,min & $4126$ & n/a & $\mathbf{1}$ \\
+finite-field $\mathbb{F}_{13}$, $2$ seeded runs & $5.5 + 11.8$\,min & $69\,/\,71$ & --- & --- \\
+\bottomrule
+\end{tabular}
+\caption{Distinct valid sets logged in the pilots' principal runs (each set
+brute-force verified in-process before logging; counts deduplicated within
+each run by hash, not across runs and not up to cube symmetries). Of the
+baseline ILS $34$s, $182$ of $198$ came from the arm with the harness bug
+fixed. A centrally symmetric set has even size, so the symmetric pilot
+cannot log a $35$; its $34$s are symmetric ($17$ pairs). The two
+finite-field runs' $34$-families overlapped almost completely: all $69$ of
+the first run's sets recur among the second's $71$.}
+\label{tab:abundance}
+\end{table}
+
+Two findings frame the result. First, \emph{abundance}
+(Table~\ref{tab:abundance}): valid $34$-point sets in the $13$-cube are not
+rare --- pilots logged thousands of distinct ones within minutes, including
+$4126$ distinct \emph{centrally symmetric} $34$-sets in the $14$ minutes of
+the main symmetric run. Second, \emph{saturation of the old record}: the
+published $33$-point set admits no $34$th point in the $13$-cube --- an
+exhaustive check of all eight translates of the $12$-cube inside
+$\{0,\dots,12\}^3$, re-run while preparing this note, finds zero addable
+cells for every translate. The published record was a dead local optimum;
+the $34$--$36$ region was simply unexplored. Within the symmetric subspace
+the climb did not stop at $34$: where the asymmetric pilots plateaued hard
+at $35$ (the first blocker-repair run logged $510$ dead-end local optima at
+size $34$ and $18$ at size $35$ in $55$ minutes), one symmetric run pushed
+through to $18$ pairs, with the fixed seed $20260612$, reproducible from
+the archived search-code snapshot and command line in the bundle.
+
+\section{What this does and does not show}\label{sec:scope}
+
+\begin{itemize}\itemsep0pt\parskip0pt
+\item \emph{The exact value of $C(13)$ remains unknown.} Theorem~\ref{thm:main}
+is a lower bound; the best upper bound remains the trivial $C(13) \le 52$.
+We make no optimality claim.
+\item \emph{No empirical maximality claim either.} Our searches are
+heuristic. The specific set $S$ admits no $37$th grid point, but other
+$36$-point sets, or larger sets, may exist in unexplored basins; no
+exhaustive search of any kind is claimed.
+\item \emph{Nothing is claimed for other $n$.} In particular we did not find
+$C(12) \ge 34$, and we claim no bounds for $n = 14, 15$ beyond the monotone
+$C(n) \ge 36$.
+\item \emph{No structural theorem.} Central symmetry is a search heuristic
+that worked, not a proven property of optimal sets.
+\item \emph{Priority.} Openness was checked on 11--12 June 2026 against the
+official repository and paper \cite{Repo,AlphaEvolveMath} (whose published
+data end at $C(12) \ge 33$), arXiv listings and API, GitHub code search,
+OpenReview, and general web search, including an independent sweep by the
+adversarial referee agent; no public claim of $C(13) \ge 34$ (or
+$C(12) \ge 34$) was found. Concurrent unpublished work cannot be excluded.
+\end{itemize}
+
+\paragraph{Data availability.}
+The certificate (JSON), the three checkers and the referee's independent
+checker, the mutation-test suite, the search code (Rust) with run logs and
+the discovering run's command line, and full verification logs will be made
+available at \url{https://github.com/demonstrandum-research/[REPO]}. The certificate file
+has SHA-256 checksum
+\begin{center}
+\texttt{\small 333d36ece36e3d845cd2f5bb26e5460f78d881c00418c92cae8bd5215ab0629a}.
+\end{center}
+
+\begingroup\small
+\begin{thebibliography}{10}
+
+\bibitem{Ball2012}
+S.~Ball,
+\emph{On sets of vectors of a finite vector space in which every subset of
+basis size is a basis},
+J. Eur. Math. Soc. \textbf{14} (2012), 733--748.
+
+\bibitem{BMP2005}
+P.~Brass, W.~Moser, and J.~Pach,
+\emph{Research Problems in Discrete Geometry},
+Springer, New York, 2005.
+
+\bibitem{PatternBoost}
+F.~Charton, J.~S. Ellenberg, A.~Z. Wagner, and G.~Williamson,
+\emph{PatternBoost: constructions in mathematics with a little help from AI},
+arXiv:2411.00566 (2024).
+
+\bibitem{DongXu2025}
+Z.~Dong and Z.~Xu,
+\emph{Large grid subsets without many cospherical points},
+arXiv:2506.18113 (2025).
+
+\bibitem{AlphaEvolveMath}
+B.~Georgiev, J.~G\'omez-Serrano, T.~Tao, and A.~Z. Wagner,
+\emph{Mathematical exploration and discovery at scale},
+arXiv:2511.02864 (2025); v3 of 22 December 2025.
+
+\bibitem{Repo}
+B.~Georgiev, J.~G\'omez-Serrano, T.~Tao, and A.~Z. Wagner,
+\emph{AlphaEvolve repository of problems}, problem~60 (``The no 5 on a
+sphere problem''), with evaluation notebook
+\texttt{no\_5\_on\_a\_sphere.ipynb}. Accessed 12 June 2026:
+\url{https://google-deepmind.github.io/alphaevolve_repository_of_problems/problems/60.html}.
+
+\bibitem{AlphaEvolve}
+A.~Novikov, N.~V\~u, M.~Eisenberger, E.~Dupont, P.-S. Huang, A.~Z. Wagner,
+S.~Shirobokov, B.~Kozlovskii, F.~J.~R. Ruiz, A.~Mehrabian, M.~P. Kumar,
+A.~See, S.~Chaudhuri, G.~Holland, A.~Davies, S.~Nowozin, P.~Kohli, and
+M.~Balog,
+\emph{AlphaEvolve: a coding agent for scientific and algorithmic discovery},
+arXiv:2506.13131 (2025).
+
+\bibitem{SukWhite2025}
+A.~Suk and E.~P. White,
+\emph{A note on the no-$(d+2)$-on-a-sphere problem},
+in: 41st International Symposium on Computational Geometry (SoCG 2025),
+LIPIcs \textbf{332} (2025), 76:1--76:8; arXiv:2412.02866.
+
+\bibitem{Szabo2025}
+D.~R. Szab\'o,
+\emph{Rational normal curves as no-$(d+2)$-on-$Q$-quadric sets},
+arXiv:2511.03526 (2025).
+
+\bibitem{Thiele1995}
+T.~Thiele,
+\emph{Geometric Selection Problems and Hypergraphs},
+Dissertation, Freie Universit\"at Berlin, 1995.
+
+\end{thebibliography}
+\endgroup
+
+\end{document}

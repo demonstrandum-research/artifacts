@@ -1,0 +1,91 @@
+INDEPENDENT RE-DERIVATION LOG — IRIS Conjecture 6.1 (NuevaMirada) counterexample sweep
+Date: 2026-06-11
+Machine: Windows 11 / WSL2 Ubuntu (gcc 15.2.0, python3)
+
+INDEPENDENCE: all code in this directory (rederive_filter.c, run_rederive.sh,
+verify_dual.py, match_certs.py) was written from scratch for this run.
+problems/p0-iris/code/iris_filter.c and run_iris.sh were NOT read or executed.
+
+CONJECTURE (verbatim, OpenReview v6Ulp3U1ZT, Conjecture 6.1): "If P is a simple
+3-polytope with face vector (p3, p4, . . . , pm), such that sum_{k>=7} pk >= 3,
+then p6 >= 39/20 + p3/2 - p5/4 - sum_{k>=7} pk."
+Integer violation test used (p6 integral, S := sum_{k>=7} pk):
+    S >= 3  AND  20*p6 < 39 + 10*p3 - 5*p5 - 20*S
+
+GENERATOR: plantri 5.8, downloaded fresh from
+https://users.cecs.anu.edu.au/~bdm/plantri/plantri58.tar.gz
+sha256(plantri58.tar.gz) = e78a944116fec9f2c9f5e484206276cc2b0043bae803e9815f4b2683614629b8
+Built in WSL Ubuntu with: gcc -O3 -o plantri plantri.c
+Exact invocation per n:  plantri -a <n>  |  rederive_filter
+plantri default class (manual plantri-guide.txt, "SELECTING THE GRAPH CLASS"):
+  "-c3m3 (default)  3-connected plane triangulation.
+       The dual is a 3-connected plane cubic graph.
+       Both primal and dual graphs are simple."
+i.e. exactly the simple planar triangulations whose duals are, by Steinitz's
+theorem, the graphs of simple 3-polytopes.
+
+DUAL-DEGREE EQUIVALENCE: pk(polytope) = #{degree-k vertices of triangulation}.
+Verified independently by EXPLICIT dual construction (verify_dual.py): for all
+14 triangulations at n=8 and for all 5 violating triangulations at n=10, the
+planar dual was built face-by-face from the rotation system, its faces traced,
+and each dual face shown to surround a unique primal vertex with
+face size == primal degree.  Result: ALL 19 LINES VERIFIED (PASS).
+
+SWEEP COUNTS (n = triangulation vertices = polytope faces)
+n   triangulations   with S>=3   violations
+4              1            0            0
+5              1            0            0
+6              2            0            0
+7              5            0            0
+8             14            0            0
+9             50            0            0
+10           233           16            5
+11         1,249          266           27
+12         7,595        3,120          108
+13        49,566       30,145          357
+14       339,722      259,193        1,149
+15     2,406,841    2,087,267        3,766
+16    17,490,241   16,264,573       12,078
+(Triangulation totals agree with the known counts of simple planar
+triangulations, OEIS A000109: 1,1,2,5,14,50,233,1249,7595,49566,339722,
+2406841,17490241 — full-coverage cross-check of the generation.)
+
+MINIMALITY: zero violations for all n <= 9; the smallest counterexamples have
+10 faces.  (For n <= 7 the condition S>=3 is unsatisfiable anyway: a degree-7
+vertex needs >= 8 vertices; confirmed empirically above with Sge3 = 0.)
+
+n=10 VIOLATIONS (exactly 5; file violations_n10.txt), face vectors via dual:
+  1: {p3:3, p4:3, p5:1, p7:2, p8:1}  -> 20*p6=0  < 39+30-5-60  = 4   VIOLATES
+  2: {p3:4, p4:1, p5:2, p7:2, p8:1}  -> 20*p6=0  < 39+40-10-60 = 9   VIOLATES
+  3: {p3:3, p4:3, p5:1, p7:2, p8:1}  -> 20*p6=0  < 39+30-5-60  = 4   VIOLATES
+  4: {p3:5, p5:1, p6:1, p7:2, p8:1}  -> 20*p6=20 < 39+50-5-60  = 24  VIOLATES
+  5: {p3:4, p5:3, p7:3}              -> 20*p6=0  < 39+40-15-60 = 4   VIOLATES
+
+CERTIFICATE MATCHING (match_certs.py): canonical-form matching.  For each
+embedded triangulation, the canonical code is the lexicographic minimum, over
+all starting directed edges and both global orientations (mirror included),
+of a BFS relabeling code of the rotation system; by Whitney's theorem this is
+a complete isomorphism invariant for 3-connected planar graphs.
+Result against certificates/cex10.txt:
+  certificates: 5   rederived violations: 5
+  cert line 1: MATCHES violation line 1
+  cert line 2: MATCHES violation line 2
+  cert line 3: MATCHES violation line 3
+  cert line 4: MATCHES violation line 4
+  cert line 5: MATCHES violation line 5
+  RESULT: 5/5 certificates matched; 0 extra violation(s) beyond certificates
+(In fact the match was line-for-line identical; canonical forms confirm this
+is not coincidental formatting.)
+
+FILES
+  rederive_filter.c     independent C filter (stdin = plantri -a lines)
+  run_rederive.sh       driver: plantri -a <n> | rederive_filter, n sweep
+  verify_dual.py        explicit planar-dual construction check
+  match_certs.py        canonical-form certificate matching
+  violations_n10.txt .. violations_n13.txt   violating triangulation lines
+  (n=14..16 violation files kept in WSL: ~/iris_rederive/out{,16}/ — 1149,
+   3766, 12078 lines; omitted here for size, regenerable in seconds)
+
+CONCLUSION: Conjecture 6.1 is FALSE.  Minimal counterexamples are the 5
+simple 3-polytopes with 10 faces found above; they coincide exactly (5/5,
+no extras) with the known certificates in certificates/cex10.txt.
