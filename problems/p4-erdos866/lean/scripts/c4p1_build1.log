@@ -1,0 +1,352 @@
+Erdos866/H4Dichotomy.lean:219:16: warning: `Finset.filter_card_add_filter_neg_card_eq_card` has been deprecated: Use `Finset.card_filter_add_card_filter_not` instead
+Erdos866/H4Dichotomy.lean:305:4: error: linarith failed to find a contradiction
+n : ℕ
+hn : 331777 ≤ n
+x : ℝ
+hx2 : 2 ≤ x
+hxle : x ≤ 2 * ↑n - 2
+hnR : 331777 ≤ ↑n
+hw0 : 0 ≤ x / 2
+hw1 : 1 ≤ x / 2
+hn0 : 0 ≤ ↑n - 1
+v : ℝ := (x / 2) ^ (1 / 4)
+hvdef : v = (x / 2) ^ (1 / 4)
+u : ℝ := (↑n - 1) ^ (1 / 4)
+hudef : u = (↑n - 1) ^ (1 / 4)
+hv0 : 0 ≤ v
+hu0 : 0 ≤ u
+hv1 : 1 ≤ v
+hv4 : v ^ 4 = x / 2
+hu4 : u ^ 4 = ↑n - 1
+hv2 : √(x / 2) = v ^ 2
+hvu : v ≤ u
+hlt : u < 24
+h24 : n ≤ 331777
+⊢ False
+failed
+Erdos866/H4Dichotomy.lean:706:10: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+Erdos866/H4Dichotomy.lean:702:20: warning: 'omega' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+Erdos866/H4Dichotomy.lean:706:10: warning: '(
+  have h2 : p.2 = q.2 := by omega
+  have h1 : p.1 = q.1 := by omega
+  exact Prod.ext h1 h2)' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+Erdos866/H4Dichotomy.lean:769:10: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+Erdos866/H4Dichotomy.lean:765:20: warning: 'omega' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+Erdos866/H4Dichotomy.lean:769:10: warning: '(
+  have h2 : p.2 = q.2 := by omega
+  have h1 : p.1 = q.1 := by omega
+  exact Prod.ext h1 h2)' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+Erdos866/H4Dichotomy.lean:856:20: warning: 'omega' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+Erdos866/H4Dichotomy.lean:917:32: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  g ≥ 1
+  f ≥ 0
+  f ≥ 0
+  3*f - g ≥ -1
+  e ≥ 0
+  c - d ≤ -1
+  b - c ≤ -1
+  0 ≤ a - 2*d ≤ 1
+  a - 2*e + 6*f ≤ -3
+  a + 2*b - 2*d ≥ 1
+where
+ a := z
+ b := x / 2
+ c := y / 2
+ d := z / 2
+ e := ↑n
+ f := ↑(#D)
+ g := j
+Erdos866/H4Dichotomy.lean:919:52: error: Application type mismatch: The argument
+  k1
+has type
+  x + (2 * j - (1 - x % 2)) ∉ D
+but is expected to have type
+  x + x ∉ D
+in the application
+  hodd (x + x) ?m.395 ?m.396 ?m.397 k1
+Erdos866/H4Dichotomy.lean:919:34: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  g ≥ 1
+  f ≥ 0
+  f ≥ 0
+  3*f - g ≥ -1
+  e ≥ 0
+  c - d ≤ -1
+  b - c ≤ -1
+  0 ≤ a - 2*d ≤ 1
+  a - 2*e + 6*f ≤ -3
+  a + 2*b - 2*d ≥ 1
+  a + 2*b - 2*d - e ≥ 1
+where
+ a := z
+ b := x / 2
+ c := y / 2
+ d := z / 2
+ e := ↑n
+ f := ↑(#D)
+ g := j
+Erdos866/H4Dichotomy.lean:919:45: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  g ≥ 1
+  f ≥ 1
+  e ≥ 0
+  e ≥ 0
+  3*e - f ≥ -1
+  d ≥ 0
+  b - c ≤ -1
+  a - b ≤ -1
+  2*a - 2*c + 2*d - 6*e - g ≥ 3
+  -1 ≤ 2*a - g ≤ 0
+where
+ a := x / 2
+ b := y / 2
+ c := z / 2
+ d := ↑n
+ e := ↑(#D)
+ f := j
+ g := (x + x) / 2
+Erdos866/H4Dichotomy.lean:920:52: error: Application type mismatch: The argument
+  k2
+has type
+  y + (2 * j - (1 - x % 2)) ∉ D
+but is expected to have type
+  y + x ∉ D
+in the application
+  hodd (y + x) ?m.417 ?m.418 ?m.419 k2
+Erdos866/H4Dichotomy.lean:920:34: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  g ≥ 1
+  f ≥ 0
+  f ≥ 0
+  3*f - g ≥ -1
+  e ≥ 0
+  c - d ≤ -1
+  b - c ≤ -1
+  0 ≤ a - 2*d ≤ 1
+  a - 2*e + 6*f ≤ -3
+  a + b + c - 2*d - e ≥ 1
+  a + 2*b - 2*d ≥ 1
+where
+ a := z
+ b := x / 2
+ c := y / 2
+ d := z / 2
+ e := ↑n
+ f := ↑(#D)
+ g := j
+Erdos866/H4Dichotomy.lean:920:45: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  f ≥ 1
+  e ≥ 0
+  e ≥ 0
+  3*e - f ≥ -1
+  d ≥ 0
+  b - c ≤ -1
+  a - b ≤ -1
+  a - b + g ≥ 1
+  a + b - 2*c + 2*d - 6*e - g ≥ 3
+  -1 ≤ a + b - g ≤ 0
+where
+ a := x / 2
+ b := y / 2
+ c := z / 2
+ d := ↑n
+ e := ↑(#D)
+ f := j
+ g := (y + x) / 2
+Erdos866/H4Dichotomy.lean:921:52: error: Application type mismatch: The argument
+  k3
+has type
+  z + (2 * j - (1 - x % 2)) ∉ D
+but is expected to have type
+  z + x ∉ D
+in the application
+  hodd (z + x) ?m.439 ?m.440 ?m.441 k3
+Erdos866/H4Dichotomy.lean:921:34: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  g ≥ 1
+  f ≥ 0
+  f ≥ 0
+  3*f - g ≥ -1
+  e ≥ 0
+  c - d ≤ -1
+  b - c ≤ -1
+  0 ≤ a - 2*d ≤ 1
+  a - 2*e + 6*f ≤ -3
+  a + b - d - e ≥ 1
+  a + 2*b - 2*d ≥ 1
+where
+ a := z
+ b := x / 2
+ c := y / 2
+ d := z / 2
+ e := ↑n
+ f := ↑(#D)
+ g := j
+Erdos866/H4Dichotomy.lean:921:45: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  f ≥ 1
+  e ≥ 0
+  e ≥ 0
+  3*e - f ≥ -1
+  d ≥ 0
+  b - c ≤ -1
+  a - b ≤ -1
+  a - c + g ≥ 1
+  a - c + 2*d - 6*e - g ≥ 3
+  -1 ≤ a + c - g ≤ 0
+where
+ a := x / 2
+ b := y / 2
+ c := z / 2
+ d := ↑n
+ e := ↑(#D)
+ f := j
+ g := (z + x) / 2
+Erdos866/H4Dichotomy.lean:940:47: error: Application type mismatch: The argument
+  hmaps
+has type
+  ∀ w ∈ WS, f w ∈ D ×ˢ range 3
+but is expected to have type
+  Set.MapsTo f ↑?m.945 ↑?m.946
+in the application
+  card_le_card_of_injOn f hmaps
+Erdos866/H4Dichotomy.lean:899:13: error: unsolved goals
+n : ℕ
+A D : Finset ℤ
+hfree : ¬HasPosPairwiseSums A 4
+hodd : ∀ (x : ℤ), 1 ≤ x → x ≤ 2 * ↑n → x % 2 = 1 → x ∉ D → x ∈ A
+x y z : ℤ
+h0x : 0 < x
+hxy : x < y
+hyz : y < z
+hpxy : x % 2 = y % 2
+hpyz : y % 2 = z % 2
+hxyA : x + y ∈ A
+hxzA : x + z ∈ A
+hyzA : y + z ∈ A
+dZ : ℤ := ↑(#D)
+hcap : z + 6 * dZ + 3 ≤ 2 * ↑n
+hdZ : dZ = ↑(#D)
+hd0 : 0 ≤ dZ
+WS : Finset ℤ := image (fun j => 2 * j - (1 - x % 2)) (Icc 1 (3 * dZ + 1))
+hWS : WS = image (fun j => 2 * j - (1 - x % 2)) (Icc 1 (3 * dZ + 1))
+hWcard : #WS = 3 * #D + 1
+hkill : ∀ w ∈ WS, x + w ∈ D ∨ y + w ∈ D ∨ z + w ∈ D
+f : ℤ → ℤ × ℕ := fun w => if x + w ∈ D then (x + w, 0) else if y + w ∈ D then (y + w, 1) else (z + w, 2)
+hfdef : f = fun w => if x + w ∈ D then (x + w, 0) else if y + w ∈ D then (y + w, 1) else (z + w, 2)
+hmaps : ∀ w ∈ WS, f w ∈ D ×ˢ range 3
+hinj : Set.InjOn f ↑WS
+⊢ False
+Erdos866/H4Dichotomy.lean:967:36: error: unsolved goals
+p✝ p : ℕ
+hp : 2 ≤ p
+ih :
+  ∀ (Λ : Finset ℤ),
+    #Λ = p →
+      (∀ a ∈ Λ, 1 ≤ a) →
+        (∀ a ∈ Λ, ∀ b ∈ Λ, ∀ c ∈ Λ, a < b → b < c → a + b ≤ c) →
+          ∃ M ∈ Λ, ∃ M' ∈ Λ, M' < M ∧ ↑(Nat.fib (p + 1)) ≤ M ∧ ↑(Nat.fib p) ≤ M'
+Λ : Finset ℤ
+hcard : #Λ = p + 1
+hpos : ∀ a ∈ Λ, 1 ≤ a
+htf : ∀ a ∈ Λ, ∀ b ∈ Λ, ∀ c ∈ Λ, a < b → b < c → a + b ≤ c
+hne : Λ.Nonempty
+M : ℤ := Λ.max' hne
+hM : M = Λ.max' hne
+hMmem : M ∈ Λ
+Λ' : Finset ℤ := Λ.erase M
+hΛ' : Λ' = Λ.erase M
+⊢ p + 1 - 1 = p
+Erdos866/H4Dichotomy.lean:982:6: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  g ≥ 0
+  f ≥ 0
+  e ≥ 0
+  e - f ≤ 0
+  d - e ≥ 0
+  c - d ≥ 1
+  c + e - f ≥ 0
+  b ≥ 2
+  a - c ≥ 1
+  a - c - d ≥ 0
+  a - g ≤ -1
+where
+ a := Λ.max' hne
+ b := ↑(#Λ')
+ c := M₁
+ d := M₂
+ e := ↑(Nat.fib p)
+ f := ↑(Nat.fib (p + 2))
+ g := ↑(Nat.fib (p + 1 + 1))
+Erdos866/H4Dichotomy.lean:999:8: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  d ≥ 0
+  c ≥ 0
+  c - d ≥ 5
+  b ≥ 1
+  4*b - c ≥ -7
+  a ≥ 0
+  a - 4*b ≥ 4
+where
+ a := ↑(Nat.fib (k + 5))
+ b := ↑k
+ c := ↑(Nat.fib (k + 1 + 5))
+ d := ↑(Nat.fib (k + 4 + 1))
+Erdos866/H4Dichotomy.lean:1146:13: error(lean.unknownIdentifier): Unknown identifier `le_or_lt`
+Erdos866/H4Dichotomy.lean:1146:40: error: Tactic `rcases` failed: `x✝ : ?m.1066` is not an inductive datatype
+Erdos866/H4Dichotomy.lean:1171:6: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  d - e ≤ -1
+  c ≥ 0
+  b ≥ 0
+  b - c ≤ -4
+  a ≥ 331781
+  a - 8*b ≥ 12
+where
+ a := ↑(#A)
+ b := ↑(#D)
+ c := ↑(#E)
+ d := u / 2
+ e := v / 2
+'Erdos866.Dicho.fFunPos_four_lt_crossover' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.hasPosPairwiseSums_of_dense' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.evens_card_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.dense_case' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.fFunPos_four_lt_crossover8' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Erdos866.Dicho.hasPosPairwiseSums_of_dense8' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Erdos866.Dicho.dense_case8' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Erdos866.Dicho.pigeonhole_disjoint_hits' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.hasPPS_of_combo' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.endgame_no_survivor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.dichoCerts_ok' depends on axioms: [propext, Quot.sound]
+'Erdos866.Dicho.K_opairs_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.K_epairs_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.K_epairs_le2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.hasPPS_of_quad' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.T_star' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Erdos866.Dicho.triangle_free_fib' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Erdos866.Dicho.cap_fib' depends on axioms: [sorryAx]
+'Erdos866.Dicho.balanced_kill' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.tt_aux' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Erdos866.Dicho.structural_case' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Erdos866.h4_le_4' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Erdos866.h4_eq_4' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Erdos866.h4_eq_4_charter' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Erdos866.h4_eq_4_c2' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+EXIT: 1

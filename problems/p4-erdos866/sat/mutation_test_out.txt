@@ -1,0 +1,5 @@
+PASS M1_truncated_drat_rejected
+PASS M2_deleted_clause_cakelpr_rejected
+PASS M3_flipped_lit_lratcheck_rejected
+PASS M3_flipped_lit_cakelpr_rejected
+mutation tests: ALL PASS

@@ -13,7 +13,11 @@ every result below is mechanically checkable by you, with zero trust in any AI
 or in the author. This repository is the complete wave-1 artifact bundle:
 14 verified results (11 refutations of published conjectures, two proofs of
 published conjectures, one numerical record), six accompanying papers, and a
-one-command master verification battery.
+one-command master verification battery. It additionally carries the
+**Erdős problem #866 release (2026-07-08)** — the eventual value of the
+Choi–Erdős–Szemerédi constant, h₄(n) = 4 for all n ≥ 331,777,
+kernel-verified in Lean 4, with improved g₅/h₅ bounds and a 298-cell
+dual-engine SAT-certified exact-value table — row 15 below.
 
 - Exact claims, verbatim frozen statements, per-result caveats: [`RESULTS.md`](RESULTS.md)
 - What each check does and does not establish (guide for an outside mathematician): [`VALIDATION.md`](VALIDATION.md)
@@ -44,6 +48,7 @@ runnable checker plus adversarial clean-room audits across model families.
 | 12 | C(13) ≥ 36 record ("no 5 on a sphere") | dual-checker | [`papers/no5sphere-record/`](papers/no5sphere-record/) | `python verify_all.py --only no5` |
 | 13 | Elizalde–Luo {1132, 3312} conjecture — proved in Lean 4 | **kernel** | [`papers/elizalde-luo/`](papers/elizalde-luo/) | `python verify_all.py --only eliz` |
 | 14 | Kurkov's 2018 A000670 conjecture (Fubini-number sum) — proved | audit-panel | [`papers/kurkov-a000670/`](papers/kurkov-a000670/) | `python papers/kurkov-a000670/checker.py` |
+| 15 | Erdős #866: h₄(n) = 4 for all n ≥ 331,777 (eventual CES constant); 4 ≤ h₄ ≤ 1000; g₅ ≤ 3,519,219; h₅ ≥ #{Fib ≤ n}+1; exact cells incl. g₅ = 4 on [15,23] | **kernel** (headline theorems) + certificate ([E]: dual-engine SAT, DRAT/LRAT via cake_lpr, 298 cells) | [`problems/p4-erdos866/paper/`](problems/p4-erdos866/paper/) | see [`problems/p4-erdos866/README.md`](problems/p4-erdos866/README.md) |
 
 Each result also carries an explicit "what this does NOT show" caveat in
 [`RESULTS.md`](RESULTS.md) — claim calibration is part of the protocol.
@@ -192,6 +197,16 @@ See [`problems/p3-moonshot/elizalde-luo/lean/STATUS.md`](problems/p3-moonshot/el
 for the full green-gate table (build, sorry/axiom grep, `#print axioms`, n ≤ 4
 sanity layer).
 
+**Erdős #866 (kernel-graded headline theorems)** —
+`problems/p4-erdos866/lean/`. The exact-value theorem `Erdos866.h4_eq_4`
+(h₄(n) = 4 for all n ≥ 331,777, both halves), 4 ≤ h₄(n) ≤ 1000, the first
+strict g₄ < h₄ separation beyond k = 3, g₅ < 3,519,220, and the h₅
+Fibonacci lower bound — all sorry-free on exactly the three standard axioms.
+Note it pins **upstream's** toolchain (`leanprover/lean4:v4.28.0`, mathlib
+`8f9d9cff`) and vendors van Doorn's public formalization byte-identical; see
+[`problems/p4-erdos866/lean/SETUP.md`](problems/p4-erdos866/lean/SETUP.md)
+and the audit scripts `scripts/AuditC4P1.lean` / `scripts/AuditC4Synth.lean`.
+
 **Union-closed sets / Frankl constant** —
 `problems/p6-moonshot/uc-frankl/lean/`. A kernel-checked reduction proving
 `franklWithConstant_psi`: the union-closed-sets constant ψ = (3 − √5)/2 is a
@@ -211,6 +226,7 @@ axiom discipline — `lake env lean scripts/CheckAxioms.lean` reports only
 - `problems/p1-records/no-5-on-a-sphere-grid/` — the C(13) ≥ 36 certificate, three checker routes, hostile cross-model checker, provenance, construction-mining writeup
 - `problems/p3-moonshot/borsuk/` — Lean 4 project (kernel proof), paper source, status
 - `problems/p3-moonshot/elizalde-luo/` — pinned definitions, ground-truth enumerators (Python/Rust/clean-room), audited proof drafts, spot-audit, and the kernel-checked Lean 4 proof (`lean/`, theorem `elizalde_luo_1132_3312`)
+- `problems/p4-erdos866/` — the Erdős #866 release: frozen paper, complete Lean 4 development (`Erdos866.h4_eq_4` + the other kernel claims), frozen verification reports with sha256s, checker scripts, and the SAT certificate-archive manifest (the 4.4 GB DRAT/LRAT archive itself lives on Zenodo — `problems/p4-erdos866/RETRIEVAL.md`)
 
 ## Differences from the internal working tree
 

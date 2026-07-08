@@ -1,0 +1,3 @@
+info: Erdos866/G5Port.lean:1160:0: 'Erdos866.g5upper_star_charter' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/G5Port.lean:1161:0: 'Erdos866.T1TargetG5_closed_charter' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (8038 jobs).

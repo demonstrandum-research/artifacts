@@ -1,0 +1,50 @@
+Erdos866/H4Dichotomy.lean:104:36: error: too many tactics
+Erdos866/H4Dichotomy.lean:146:76: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  0 ≤ c ≤ 1
+  b ≥ 2
+  a ≥ 80000000
+where
+ a := ↑n
+ b := ↑(#E)
+ c := ↑(#?m.159)
+Erdos866/H4Dichotomy.lean:187:8: error(lean.unknownIdentifier): Unknown constant `Finset.card_insert_of_not_mem`
+Erdos866/H4Dichotomy.lean:204:16: warning: `Finset.filter_card_add_filter_neg_card_eq_card` has been deprecated: Use `Finset.card_filter_add_card_filter_not` instead
+Erdos866/H4Dichotomy.lean:320:38: error: Function expected at
+  List.mem_cons_self
+but this term has type
+  ?m.63 ∈ ?m.63 :: ?m.64
+
+Note: Expected a function because this term is being applied to the argument
+  l
+Erdos866/H4Dichotomy.lean:345:29: warning: This simp argument is unused:
+  show ((0 : Fin 4) = 0) = True from by simp
+
+Hint: Omit it from the simp argument list.
+  simp only [̵s̵h̵o̵w̵ ̵(̵(̵0̵:̵F̵i̵n̵ ̵4̵)̵ ̵=̵ ̵0̵)̵ ̵=̵ ̵T̵r̵u̵e̵ ̵f̵r̵o̵m̵ ̵b̵y̵ ̵s̵i̵m̵p̵]̵ ̵at hij ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+Erdos866/H4Dichotomy.lean:346:8: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+Erdos866/H4Dichotomy.lean:345:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+Erdos866/H4Dichotomy.lean:346:8: warning: '(exfalso; simp at hij; omega)' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+Erdos866/H4Dichotomy.lean:512:8: warning: declaration uses `sorry`
+Erdos866/H4Dichotomy.lean:528:8: warning: declaration uses `sorry`
+'Erdos866.Dicho.fFunPos_four_lt_crossover' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Erdos866.Dicho.hasPosPairwiseSums_of_dense' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Erdos866.Dicho.evens_card_lower' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Erdos866.Dicho.dense_case' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Erdos866.Dicho.pigeonhole_disjoint_hits' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Erdos866.Dicho.hasPPS_of_combo' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.endgame_no_survivor' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Erdos866.Dicho.dichoCerts_ok' depends on axioms: [propext, Quot.sound]
+'Erdos866.Dicho.K_opairs_le' depends on axioms: [propext, sorryAx, Quot.sound]
+'Erdos866.Dicho.structural_case' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Erdos866.h4_le_4' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Erdos866.h4_eq_4' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+EXIT:1

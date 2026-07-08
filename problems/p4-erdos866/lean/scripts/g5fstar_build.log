@@ -1,0 +1,7 @@
+Erdos866/G5FStar.lean:79:8: warning: declaration uses `sorry`
+'Erdos866.key_ineq_star' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.key_ineq_star_tuned' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.fStar5_le_poly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.young_u7' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.poly_nonneg38' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.ceslemgeneral_star' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

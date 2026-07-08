@@ -1,0 +1,30 @@
+{
+ "n_cells": 4,
+ "n_failed": 0,
+ "reports": [
+  {
+   "cell": "h4_n62",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 66 (20003 config clauses)"
+  },
+  {
+   "cell": "h4_n63",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 67 (20519 config clauses)"
+  },
+  {
+   "cell": "h4_n64",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 68 (20869 config clauses)"
+  },
+  {
+   "cell": "g5_n23",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 27 (38760 config clauses)"
+  }
+ ]
+}

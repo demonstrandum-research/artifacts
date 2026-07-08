@@ -1,0 +1,2126 @@
+{
+ "manifest_sha256": "45f0eedccfa5e22636108f633cde6c1c28f139d06446d92be6a09858bfc1400e",
+ "n_cells": 298,
+ "n_failed": 0,
+ "reports": [
+  {
+   "cell": "g2_n1",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 1 (2 config clauses)"
+  },
+  {
+   "cell": "g2_n2",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 1 (4 config clauses)"
+  },
+  {
+   "cell": "g2_n3",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 1 (6 config clauses)"
+  },
+  {
+   "cell": "g2_n4",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 1 (8 config clauses)"
+  },
+  {
+   "cell": "g2_n5",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 1 (10 config clauses)"
+  },
+  {
+   "cell": "g2_n6",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 1 (12 config clauses)"
+  },
+  {
+   "cell": "g2_n7",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 1 (14 config clauses)"
+  },
+  {
+   "cell": "g2_n8",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 1 (16 config clauses)"
+  },
+  {
+   "cell": "g3_n1",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "trivial (M = |{1..2n}|)"
+  },
+  {
+   "cell": "g3_n2",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 4 (2 config clauses)"
+  },
+  {
+   "cell": "g3_n3",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 4 (10 config clauses)"
+  },
+  {
+   "cell": "g3_n4",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 5 (25 config clauses)"
+  },
+  {
+   "cell": "g3_n5",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 6 (35 config clauses)"
+  },
+  {
+   "cell": "g3_n6",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 7 (50 config clauses)"
+  },
+  {
+   "cell": "g3_n7",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 8 (71 config clauses)"
+  },
+  {
+   "cell": "g3_n8",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 9 (99 config clauses)"
+  },
+  {
+   "cell": "g3_n9",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 10 (135 config clauses)"
+  },
+  {
+   "cell": "g3_n10",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 11 (179 config clauses)"
+  },
+  {
+   "cell": "g3_n11",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 12 (231 config clauses)"
+  },
+  {
+   "cell": "g3_n12",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 13 (291 config clauses)"
+  },
+  {
+   "cell": "g3_n13",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 14 (359 config clauses)"
+  },
+  {
+   "cell": "g3_n14",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 15 (435 config clauses)"
+  },
+  {
+   "cell": "g3_n15",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 16 (519 config clauses)"
+  },
+  {
+   "cell": "g3_n16",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 17 (611 config clauses)"
+  },
+  {
+   "cell": "g3_n17",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 18 (711 config clauses)"
+  },
+  {
+   "cell": "g3_n18",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 19 (819 config clauses)"
+  },
+  {
+   "cell": "g3_n19",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 20 (935 config clauses)"
+  },
+  {
+   "cell": "g3_n20",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 21 (1059 config clauses)"
+  },
+  {
+   "cell": "g3_n21",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 22 (1191 config clauses)"
+  },
+  {
+   "cell": "g3_n22",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 23 (1331 config clauses)"
+  },
+  {
+   "cell": "g3_n23",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 24 (1479 config clauses)"
+  },
+  {
+   "cell": "g3_n24",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 25 (1635 config clauses)"
+  },
+  {
+   "cell": "g3_n25",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 26 (1799 config clauses)"
+  },
+  {
+   "cell": "g3_n26",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 27 (1971 config clauses)"
+  },
+  {
+   "cell": "g3_n27",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 28 (2151 config clauses)"
+  },
+  {
+   "cell": "g3_n28",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 29 (2339 config clauses)"
+  },
+  {
+   "cell": "g3_n29",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 30 (2535 config clauses)"
+  },
+  {
+   "cell": "g3_n30",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 31 (2739 config clauses)"
+  },
+  {
+   "cell": "g3_n31",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 32 (2951 config clauses)"
+  },
+  {
+   "cell": "g3_n32",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 33 (3171 config clauses)"
+  },
+  {
+   "cell": "g3_n33",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 34 (3399 config clauses)"
+  },
+  {
+   "cell": "g3_n34",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 35 (3635 config clauses)"
+  },
+  {
+   "cell": "g3_n35",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 36 (3879 config clauses)"
+  },
+  {
+   "cell": "g3_n36",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 37 (4131 config clauses)"
+  },
+  {
+   "cell": "g3_n37",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 38 (4387 config clauses)"
+  },
+  {
+   "cell": "g3_n38",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 39 (4643 config clauses)"
+  },
+  {
+   "cell": "g3_n39",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 40 (4899 config clauses)"
+  },
+  {
+   "cell": "g3_n40",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 41 (5155 config clauses)"
+  },
+  {
+   "cell": "g3_n41",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 42 (5411 config clauses)"
+  },
+  {
+   "cell": "g3_n42",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 43 (5667 config clauses)"
+  },
+  {
+   "cell": "g3_n43",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 44 (5923 config clauses)"
+  },
+  {
+   "cell": "g3_n44",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 45 (6179 config clauses)"
+  },
+  {
+   "cell": "g3_n45",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 46 (6435 config clauses)"
+  },
+  {
+   "cell": "g3_n46",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 47 (6691 config clauses)"
+  },
+  {
+   "cell": "g3_n47",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 48 (6947 config clauses)"
+  },
+  {
+   "cell": "g3_n48",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 49 (7203 config clauses)"
+  },
+  {
+   "cell": "g3_n49",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 50 (7459 config clauses)"
+  },
+  {
+   "cell": "g3_n50",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 51 (7715 config clauses)"
+  },
+  {
+   "cell": "g4_n1",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "trivial (M = |{1..2n}|)"
+  },
+  {
+   "cell": "g4_n2",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "trivial (M = |{1..2n}|)"
+  },
+  {
+   "cell": "g4_n3",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 6 (2 config clauses)"
+  },
+  {
+   "cell": "g4_n4",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 7 (11 config clauses)"
+  },
+  {
+   "cell": "g4_n5",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 8 (32 config clauses)"
+  },
+  {
+   "cell": "g4_n6",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 9 (72 config clauses)"
+  },
+  {
+   "cell": "g4_n7",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 10 (132 config clauses)"
+  },
+  {
+   "cell": "g4_n8",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 11 (213 config clauses)"
+  },
+  {
+   "cell": "g4_n9",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 12 (362 config clauses)"
+  },
+  {
+   "cell": "g4_n10",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 13 (497 config clauses)"
+  },
+  {
+   "cell": "g4_n11",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 14 (729 config clauses)"
+  },
+  {
+   "cell": "g4_n12",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 15 (905 config clauses)"
+  },
+  {
+   "cell": "g4_n13",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 16 (1155 config clauses)"
+  },
+  {
+   "cell": "g4_n14",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 17 (1380 config clauses)"
+  },
+  {
+   "cell": "g4_n15",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 18 (1586 config clauses)"
+  },
+  {
+   "cell": "g4_n16",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 19 (1828 config clauses)"
+  },
+  {
+   "cell": "g4_n17",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 20 (2099 config clauses)"
+  },
+  {
+   "cell": "g4_n18",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 21 (2414 config clauses)"
+  },
+  {
+   "cell": "g4_n19",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 22 (2634 config clauses)"
+  },
+  {
+   "cell": "g4_n20",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 23 (3055 config clauses)"
+  },
+  {
+   "cell": "g4_n21",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 24 (3245 config clauses)"
+  },
+  {
+   "cell": "g4_n22",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 25 (3666 config clauses)"
+  },
+  {
+   "cell": "g4_n23",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 26 (3951 config clauses)"
+  },
+  {
+   "cell": "g4_n24",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 27 (4179 config clauses)"
+  },
+  {
+   "cell": "g4_n25",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 28 (4669 config clauses)"
+  },
+  {
+   "cell": "g4_n26",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 29 (4792 config clauses)"
+  },
+  {
+   "cell": "g4_n27",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 30 (5276 config clauses)"
+  },
+  {
+   "cell": "g4_n28",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 31 (5617 config clauses)"
+  },
+  {
+   "cell": "g4_n29",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 32 (6061 config clauses)"
+  },
+  {
+   "cell": "g4_n30",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 33 (6517 config clauses)"
+  },
+  {
+   "cell": "g4_n31",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 34 (6984 config clauses)"
+  },
+  {
+   "cell": "g4_n32",
+   "from_log": "verify_canonical_c5.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 35 (7418 config clauses)"
+  },
+  {
+   "cell": "g4_n33",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 36 (7820 config clauses)"
+  },
+  {
+   "cell": "g4_n34",
+   "from_log": "verify_canonical_c5.resume-shard2of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 37 (8387 config clauses)"
+  },
+  {
+   "cell": "g4_n35",
+   "from_log": "verify_canonical_c5.resume-shard3of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 38 (8663 config clauses)"
+  },
+  {
+   "cell": "g4_n36",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 39 (9092 config clauses)"
+  },
+  {
+   "cell": "g4_n37",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 40 (9609 config clauses)"
+  },
+  {
+   "cell": "g4_n40",
+   "from_log": "verify_canonical_c5.resume-shard2of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 43 (6523 config clauses)"
+  },
+  {
+   "cell": "g4_n60",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 63 (19976 config clauses)"
+  },
+  {
+   "cell": "g5_n1",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "trivial (M = |{1..2n}|)"
+  },
+  {
+   "cell": "g5_n2",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "trivial (M = |{1..2n}|)"
+  },
+  {
+   "cell": "g5_n3",
+   "from_log": "verify_canonical_c5.resume-shard2of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "trivial (M = |{1..2n}|)"
+  },
+  {
+   "cell": "g5_n4",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 8 (2 config clauses)"
+  },
+  {
+   "cell": "g5_n5",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 10 (8 config clauses)"
+  },
+  {
+   "cell": "g5_n6",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 11 (32 config clauses)"
+  },
+  {
+   "cell": "g5_n7",
+   "from_log": "verify_canonical_c5.resume-shard2of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 12 (91 config clauses)"
+  },
+  {
+   "cell": "g5_n8",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 13 (180 config clauses)"
+  },
+  {
+   "cell": "g5_n9",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 14 (341 config clauses)"
+  },
+  {
+   "cell": "g5_n10",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 15 (648 config clauses)"
+  },
+  {
+   "cell": "g5_n11",
+   "from_log": "verify_canonical_c5.resume-shard2of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 16 (1083 config clauses)"
+  },
+  {
+   "cell": "g5_n12",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 17 (1883 config clauses)"
+  },
+  {
+   "cell": "g5_n13",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 18 (2915 config clauses)"
+  },
+  {
+   "cell": "g5_n14",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 19 (4134 config clauses)"
+  },
+  {
+   "cell": "g5_n15",
+   "from_log": "verify_canonical_c5.resume-shard2of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 19 (6188 config clauses)"
+  },
+  {
+   "cell": "g5_n16",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 20 (9312 config clauses)"
+  },
+  {
+   "cell": "g5_n17",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 21 (12758 config clauses)"
+  },
+  {
+   "cell": "g5_n18",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 22 (11528 config clauses)"
+  },
+  {
+   "cell": "g5_n19",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 23 (15649 config clauses)"
+  },
+  {
+   "cell": "g5_n20",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 24 (19626 config clauses)"
+  },
+  {
+   "cell": "g5_n21",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 25 (25243 config clauses)"
+  },
+  {
+   "cell": "g5_n22",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 26 (34040 config clauses)"
+  },
+  {
+   "cell": "g5_n23",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 27 (38760 config clauses)"
+  },
+  {
+   "cell": "g6_n1",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172935.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "trivial (M = |{1..2n}|)"
+  },
+  {
+   "cell": "g6_n2",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "trivial (M = |{1..2n}|)"
+  },
+  {
+   "cell": "g6_n3",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "trivial (M = |{1..2n}|)"
+  },
+  {
+   "cell": "g6_n4",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172935.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "trivial (M = |{1..2n}|)"
+  },
+  {
+   "cell": "g6_n5",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 10 (2 config clauses)"
+  },
+  {
+   "cell": "g6_n6",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 12 (6 config clauses)"
+  },
+  {
+   "cell": "g6_n7",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 14 (23 config clauses)"
+  },
+  {
+   "cell": "g6_n8",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 15 (68 config clauses)"
+  },
+  {
+   "cell": "g6_n9",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 16 (176 config clauses)"
+  },
+  {
+   "cell": "g6_n10",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 18 (259 config clauses)"
+  },
+  {
+   "cell": "g6_n11",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 19 (574 config clauses)"
+  },
+  {
+   "cell": "g6_n12",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 20 (1218 config clauses)"
+  },
+  {
+   "cell": "g6_n13",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 21 (2301 config clauses)"
+  },
+  {
+   "cell": "g6_n14",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 22 (3826 config clauses)"
+  },
+  {
+   "cell": "g6_n15",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 23 (6382 config clauses)"
+  },
+  {
+   "cell": "g6_n16",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 24 (9940 config clauses)"
+  },
+  {
+   "cell": "g6_n17",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 25 (13392 config clauses)"
+  },
+  {
+   "cell": "g6_n18",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 26 (21157 config clauses)"
+  },
+  {
+   "cell": "h2_n1",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "trivial (M = |{1..2n}|)"
+  },
+  {
+   "cell": "h2_n2",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 3 (2 config clauses)"
+  },
+  {
+   "cell": "h2_n3",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 3 (4 config clauses)"
+  },
+  {
+   "cell": "h2_n4",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 3 (6 config clauses)"
+  },
+  {
+   "cell": "h2_n5",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 3 (8 config clauses)"
+  },
+  {
+   "cell": "h2_n6",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 3 (10 config clauses)"
+  },
+  {
+   "cell": "h2_n7",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 3 (12 config clauses)"
+  },
+  {
+   "cell": "h2_n8",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 3 (14 config clauses)"
+  },
+  {
+   "cell": "h3_n1",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "trivial (M = |{1..2n}|)"
+  },
+  {
+   "cell": "h3_n2",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172935.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "trivial (M = |{1..2n}|)"
+  },
+  {
+   "cell": "h3_n3",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 6 (2 config clauses)"
+  },
+  {
+   "cell": "h3_n4",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 6 (8 config clauses)"
+  },
+  {
+   "cell": "h3_n5",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 7 (20 config clauses)"
+  },
+  {
+   "cell": "h3_n6",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 8 (36 config clauses)"
+  },
+  {
+   "cell": "h3_n7",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 9 (52 config clauses)"
+  },
+  {
+   "cell": "h3_n8",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 10 (72 config clauses)"
+  },
+  {
+   "cell": "h3_n9",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 11 (85 config clauses)"
+  },
+  {
+   "cell": "h3_n10",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 12 (106 config clauses)"
+  },
+  {
+   "cell": "h3_n11",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 13 (137 config clauses)"
+  },
+  {
+   "cell": "h3_n12",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 14 (170 config clauses)"
+  },
+  {
+   "cell": "h3_n13",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 15 (205 config clauses)"
+  },
+  {
+   "cell": "h3_n14",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 16 (241 config clauses)"
+  },
+  {
+   "cell": "h3_n15",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 17 (285 config clauses)"
+  },
+  {
+   "cell": "h3_n16",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 18 (329 config clauses)"
+  },
+  {
+   "cell": "h3_n17",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 19 (377 config clauses)"
+  },
+  {
+   "cell": "h3_n18",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 20 (426 config clauses)"
+  },
+  {
+   "cell": "h3_n19",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 21 (482 config clauses)"
+  },
+  {
+   "cell": "h3_n20",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 22 (542 config clauses)"
+  },
+  {
+   "cell": "h3_n21",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 23 (605 config clauses)"
+  },
+  {
+   "cell": "h3_n22",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 24 (673 config clauses)"
+  },
+  {
+   "cell": "h3_n23",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 25 (745 config clauses)"
+  },
+  {
+   "cell": "h3_n24",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 26 (821 config clauses)"
+  },
+  {
+   "cell": "h3_n25",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 27 (901 config clauses)"
+  },
+  {
+   "cell": "h3_n26",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 28 (985 config clauses)"
+  },
+  {
+   "cell": "h3_n27",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 29 (1073 config clauses)"
+  },
+  {
+   "cell": "h3_n28",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 30 (1165 config clauses)"
+  },
+  {
+   "cell": "h3_n29",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 31 (1261 config clauses)"
+  },
+  {
+   "cell": "h3_n30",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 32 (1361 config clauses)"
+  },
+  {
+   "cell": "h3_n31",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 33 (1465 config clauses)"
+  },
+  {
+   "cell": "h3_n32",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 34 (1573 config clauses)"
+  },
+  {
+   "cell": "h3_n33",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 35 (1685 config clauses)"
+  },
+  {
+   "cell": "h3_n34",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 36 (1801 config clauses)"
+  },
+  {
+   "cell": "h3_n35",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 37 (1921 config clauses)"
+  },
+  {
+   "cell": "h3_n36",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 38 (2045 config clauses)"
+  },
+  {
+   "cell": "h3_n37",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 39 (2172 config clauses)"
+  },
+  {
+   "cell": "h3_n38",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 40 (2304 config clauses)"
+  },
+  {
+   "cell": "h3_n39",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 41 (2440 config clauses)"
+  },
+  {
+   "cell": "h3_n40",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 42 (2580 config clauses)"
+  },
+  {
+   "cell": "h3_n41",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 43 (2724 config clauses)"
+  },
+  {
+   "cell": "h3_n42",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 44 (2872 config clauses)"
+  },
+  {
+   "cell": "h3_n43",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 45 (3024 config clauses)"
+  },
+  {
+   "cell": "h3_n44",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 46 (3180 config clauses)"
+  },
+  {
+   "cell": "h3_n45",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 47 (3340 config clauses)"
+  },
+  {
+   "cell": "h3_n46",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 48 (3504 config clauses)"
+  },
+  {
+   "cell": "h3_n47",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 49 (3672 config clauses)"
+  },
+  {
+   "cell": "h3_n48",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 50 (3844 config clauses)"
+  },
+  {
+   "cell": "h3_n49",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 51 (4020 config clauses)"
+  },
+  {
+   "cell": "h3_n50",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 52 (4196 config clauses)"
+  },
+  {
+   "cell": "h4_n1",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172935.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "trivial (M = |{1..2n}|)"
+  },
+  {
+   "cell": "h4_n2",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "trivial (M = |{1..2n}|)"
+  },
+  {
+   "cell": "h4_n3",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "trivial (M = |{1..2n}|)"
+  },
+  {
+   "cell": "h4_n4",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 8 (2 config clauses)"
+  },
+  {
+   "cell": "h4_n5",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 10 (7 config clauses)"
+  },
+  {
+   "cell": "h4_n6",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 10 (29 config clauses)"
+  },
+  {
+   "cell": "h4_n7",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 11 (58 config clauses)"
+  },
+  {
+   "cell": "h4_n8",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 12 (105 config clauses)"
+  },
+  {
+   "cell": "h4_n9",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 13 (179 config clauses)"
+  },
+  {
+   "cell": "h4_n10",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 14 (306 config clauses)"
+  },
+  {
+   "cell": "h4_n11",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 15 (429 config clauses)"
+  },
+  {
+   "cell": "h4_n12",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 16 (575 config clauses)"
+  },
+  {
+   "cell": "h4_n13",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 17 (830 config clauses)"
+  },
+  {
+   "cell": "h4_n14",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 18 (1076 config clauses)"
+  },
+  {
+   "cell": "h4_n15",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 19 (1334 config clauses)"
+  },
+  {
+   "cell": "h4_n16",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 20 (1791 config clauses)"
+  },
+  {
+   "cell": "h4_n17",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 21 (2187 config clauses)"
+  },
+  {
+   "cell": "h4_n18",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 22 (2555 config clauses)"
+  },
+  {
+   "cell": "h4_n19",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 23 (2975 config clauses)"
+  },
+  {
+   "cell": "h4_n20",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 24 (3295 config clauses)"
+  },
+  {
+   "cell": "h4_n21",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 25 (3460 config clauses)"
+  },
+  {
+   "cell": "h4_n22",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 26 (3791 config clauses)"
+  },
+  {
+   "cell": "h4_n23",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 27 (4189 config clauses)"
+  },
+  {
+   "cell": "h4_n24",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 28 (4665 config clauses)"
+  },
+  {
+   "cell": "h4_n25",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 29 (4863 config clauses)"
+  },
+  {
+   "cell": "h4_n26",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 30 (5208 config clauses)"
+  },
+  {
+   "cell": "h4_n27",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 31 (5698 config clauses)"
+  },
+  {
+   "cell": "h4_n28",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 32 (6168 config clauses)"
+  },
+  {
+   "cell": "h4_n29",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 33 (6453 config clauses)"
+  },
+  {
+   "cell": "h4_n30",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 34 (6696 config clauses)"
+  },
+  {
+   "cell": "h4_n31",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 35 (7080 config clauses)"
+  },
+  {
+   "cell": "h4_n32",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 36 (7711 config clauses)"
+  },
+  {
+   "cell": "h4_n33",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 37 (8082 config clauses)"
+  },
+  {
+   "cell": "h4_n34",
+   "from_log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 38 (8373 config clauses)"
+  },
+  {
+   "cell": "h4_n35",
+   "from_log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 39 (8764 config clauses)"
+  },
+  {
+   "cell": "h4_n36",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 40 (9202 config clauses)"
+  },
+  {
+   "cell": "h4_n37",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 41 (9529 config clauses)"
+  },
+  {
+   "cell": "h4_n38",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 42 (9781 config clauses)"
+  },
+  {
+   "cell": "h4_n39",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 43 (10066 config clauses)"
+  },
+  {
+   "cell": "h4_n40",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 44 (10442 config clauses)"
+  },
+  {
+   "cell": "h4_n41",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 45 (10738 config clauses)"
+  },
+  {
+   "cell": "h4_n42",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 46 (11040 config clauses)"
+  },
+  {
+   "cell": "h4_n43",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 47 (11599 config clauses)"
+  },
+  {
+   "cell": "h4_n44",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 48 (12010 config clauses)"
+  },
+  {
+   "cell": "h4_n45",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 49 (12379 config clauses)"
+  },
+  {
+   "cell": "h4_n46",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 50 (12606 config clauses)"
+  },
+  {
+   "cell": "h4_n47",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 51 (13002 config clauses)"
+  },
+  {
+   "cell": "h4_n48",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 52 (13329 config clauses)"
+  },
+  {
+   "cell": "h4_n49",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 53 (13466 config clauses)"
+  },
+  {
+   "cell": "h4_n50",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 54 (14057 config clauses)"
+  },
+  {
+   "cell": "h4_n51",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 55 (14582 config clauses)"
+  },
+  {
+   "cell": "h4_n52",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 56 (15049 config clauses)"
+  },
+  {
+   "cell": "h4_n53",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 57 (15728 config clauses)"
+  },
+  {
+   "cell": "h4_n54",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 58 (16360 config clauses)"
+  },
+  {
+   "cell": "h4_n55",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 59 (17092 config clauses)"
+  },
+  {
+   "cell": "h4_n56",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 60 (17467 config clauses)"
+  },
+  {
+   "cell": "h4_n57",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 61 (17731 config clauses)"
+  },
+  {
+   "cell": "h4_n58",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 62 (18328 config clauses)"
+  },
+  {
+   "cell": "h4_n59",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 63 (19020 config clauses)"
+  },
+  {
+   "cell": "h4_n60",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 64 (19244 config clauses)"
+  },
+  {
+   "cell": "h4_n61",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 65 (19502 config clauses)"
+  },
+  {
+   "cell": "h4_n62",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 66 (20003 config clauses)"
+  },
+  {
+   "cell": "h4_n63",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 67 (20519 config clauses)"
+  },
+  {
+   "cell": "h4_n64",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 68 (20869 config clauses)"
+  },
+  {
+   "cell": "h5_n1",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172935.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "trivial (M = |{1..2n}|)"
+  },
+  {
+   "cell": "h5_n2",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172935.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "trivial (M = |{1..2n}|)"
+  },
+  {
+   "cell": "h5_n3",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172935.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "trivial (M = |{1..2n}|)"
+  },
+  {
+   "cell": "h5_n4",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172935.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "trivial (M = |{1..2n}|)"
+  },
+  {
+   "cell": "h5_n5",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 10 (2 config clauses)"
+  },
+  {
+   "cell": "h5_n6",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 12 (7 config clauses)"
+  },
+  {
+   "cell": "h5_n7",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 14 (18 config clauses)"
+  },
+  {
+   "cell": "h5_n8",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 14 (63 config clauses)"
+  },
+  {
+   "cell": "h5_n9",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 16 (109 config clauses)"
+  },
+  {
+   "cell": "h5_n10",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 17 (235 config clauses)"
+  },
+  {
+   "cell": "h5_n11",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 18 (410 config clauses)"
+  },
+  {
+   "cell": "h5_n12",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 19 (723 config clauses)"
+  },
+  {
+   "cell": "h5_n13",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 20 (1195 config clauses)"
+  },
+  {
+   "cell": "h5_n14",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 21 (1797 config clauses)"
+  },
+  {
+   "cell": "h5_n15",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 22 (2622 config clauses)"
+  },
+  {
+   "cell": "h5_n16",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 23 (3682 config clauses)"
+  },
+  {
+   "cell": "h5_n17",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 24 (5067 config clauses)"
+  },
+  {
+   "cell": "h5_n18",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 25 (6664 config clauses)"
+  },
+  {
+   "cell": "h5_n19",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 26 (8500 config clauses)"
+  },
+  {
+   "cell": "h5_n20",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 27 (10337 config clauses)"
+  },
+  {
+   "cell": "h5_n21",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 29 (12221 config clauses)"
+  },
+  {
+   "cell": "h5_n22",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 30 (14104 config clauses)"
+  },
+  {
+   "cell": "h5_n23",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 31 (17296 config clauses)"
+  },
+  {
+   "cell": "h5_n24",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 32 (25182 config clauses)"
+  },
+  {
+   "cell": "h5_n25",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 33 (29782 config clauses)"
+  },
+  {
+   "cell": "h5_n26",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 34 (36664 config clauses)"
+  },
+  {
+   "cell": "h6_n1",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172935.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "trivial (M = |{1..2n}|)"
+  },
+  {
+   "cell": "h6_n2",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172935.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "trivial (M = |{1..2n}|)"
+  },
+  {
+   "cell": "h6_n3",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172935.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "trivial (M = |{1..2n}|)"
+  },
+  {
+   "cell": "h6_n4",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172935.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "trivial (M = |{1..2n}|)"
+  },
+  {
+   "cell": "h6_n5",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172935.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "trivial (M = |{1..2n}|)"
+  },
+  {
+   "cell": "h6_n6",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 12 (2 config clauses)"
+  },
+  {
+   "cell": "h6_n7",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 14 (6 config clauses)"
+  },
+  {
+   "cell": "h6_n8",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 16 (17 config clauses)"
+  },
+  {
+   "cell": "h6_n9",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 18 (32 config clauses)"
+  },
+  {
+   "cell": "h6_n10",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 18 (141 config clauses)"
+  },
+  {
+   "cell": "h6_n11",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 20 (222 config clauses)"
+  },
+  {
+   "cell": "h6_n12",
+   "from_log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "ok": true,
+   "problems": [],
+   "unsat_check": "z3 UNSAT & CaDiCaL UNSAT at |A| >= 21 (464 config clauses)"
+  }
+ ],
+ "resumed": true,
+ "runs": [
+  {
+   "log": "verify_canonical_c5.log",
+   "n_ok_cells": 90
+  },
+  {
+   "log": "verify_canonical_c5.resume-cloud-20260708T172904.log",
+   "n_ok_cells": 116
+  },
+  {
+   "log": "verify_canonical_c5.resume-cloud-20260708T172935.log",
+   "n_ok_cells": 13
+  },
+  {
+   "log": "verify_canonical_c5.resume-shard1of4-20260708T125503.log",
+   "n_ok_cells": 36
+  },
+  {
+   "log": "verify_canonical_c5.resume-shard2of4-20260708T125503.log",
+   "n_ok_cells": 7
+  },
+  {
+   "log": "verify_canonical_c5.resume-shard3of4-20260708T125503.log",
+   "n_ok_cells": 1
+  },
+  {
+   "log": "verify_canonical_c5.resume-shard4of4-20260708T125503.log",
+   "n_ok_cells": 35
+  },
+  {
+   "log": "verify_canonical_c5.resume-20260708T173002.log",
+   "n_run_cells": 0
+  }
+ ]
+}

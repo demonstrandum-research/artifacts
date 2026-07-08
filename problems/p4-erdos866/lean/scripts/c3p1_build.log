@@ -1,0 +1,25 @@
+info: Erdos866/G5Port.lean:1161:0: 'Erdos866.T1TargetG5_closed_charter' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [8037/8038] Built Erdos866 (14s)
+Build completed successfully (8038 jobs).
+---AUDIT---
+'Erdos866.fStar_ge_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.fStar_mono_x' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.fStar_root_base' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.fStar_root_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.lemmaA_pigeonhole' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.lemmaA_base3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.lemmaA_extend' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.lemmaA' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.ceslemgeneral_star' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.key_ineq_star_tuned' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.g5upper_case_even_star' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.g5upper_aux_star' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.g5upper_star' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.T1TargetG5_closed_3520600' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.fStar5_le_poly_sharp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.young_u7_charter' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.key_ineq_star_charter' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.g5upper_star_charter' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.T1TargetG5_closed_charter' depends on axioms: [propext, Classical.choice, Quot.sound]
+'g5upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+AUDIT_EXIT:0

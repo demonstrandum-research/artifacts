@@ -1,0 +1,95 @@
+⚠ [8026/8039] Built Erdos866.H4Tail (42s)
+warning: Erdos866/H4Tail.lean:27:4: `mul_le_mul_right'` has been deprecated: Use `mul_le_mul_left` instead
+✔ [8027/8039] Built Erdos866.H4Cert (46s)
+ℹ [8028/8039] Built Erdos866.Upstream (280s)
+info: Erdos866/Upstream.lean:206:0: 'g3' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/Upstream.lean:586:0: 'h3' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/Upstream.lean:686:0: 'g4' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/Upstream.lean:1512:0: 'h4upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/Upstream.lean:3021:0: 'g5upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/Upstream.lean:3494:0: 'generalupper' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [8029/8039] Built Erdos866.Statements (16s)
+✔ [8030/8039] Built Erdos866.Warmup (26s)
+✔ [8031/8039] Built Erdos866.G5Small (26s)
+ℹ [8032/8039] Built Erdos866.G5FStar (26s)
+info: Erdos866/G5FStar.lean:281:0: 'Erdos866.key_ineq_star' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/G5FStar.lean:282:0: 'Erdos866.key_ineq_star_tuned' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/G5FStar.lean:283:0: 'Erdos866.fStar5_le_poly' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/G5FStar.lean:284:0: 'Erdos866.young_u7' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/G5FStar.lean:285:0: 'Erdos866.poly_nonneg38' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8033/8039] Built Erdos866.LowerBounds (26s)
+info: Erdos866/LowerBounds.lean:321:0: 'Erdos866.four_le_hFun_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/LowerBounds.lean:322:0: 'Erdos866.gFun_four_lt_hFun_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/LowerBounds.lean:323:0: 'Erdos866.fibCnt_lt_hFun_five' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [8034/8039] Built Erdos866.H4Improved (27s)
+warning: Erdos866/H4Improved.lean:356:28: unused variable `hn`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+info: Erdos866/H4Improved.lean:362:0: 'h4_le_1000' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8035/8039] Built Erdos866.H4Target (15s)
+info: Erdos866/H4Target.lean:16:0: 'Erdos866.T1TargetH4_closed_1000' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8036/8039] Built Erdos866.G5Port (29s)
+info: Erdos866/G5Port.lean:1155:0: 'Erdos866.lemmaA' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/G5Port.lean:1156:0: 'Erdos866.ceslemgeneral_star' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/G5Port.lean:1157:0: 'Erdos866.g5upper_star' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/G5Port.lean:1158:0: 'Erdos866.T1TargetG5_closed_3520600' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/G5Port.lean:1159:0: 'Erdos866.key_ineq_star_charter' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/G5Port.lean:1160:0: 'Erdos866.g5upper_star_charter' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/G5Port.lean:1161:0: 'Erdos866.T1TargetG5_closed_charter' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [8037/8039] Built Erdos866.H4Dichotomy (42s)
+warning: Erdos866/H4Dichotomy.lean:219:16: `Finset.filter_card_add_filter_neg_card_eq_card` has been deprecated: Use `Finset.card_filter_add_card_filter_not` instead
+warning: Erdos866/H4Dichotomy.lean:709:10: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: Erdos866/H4Dichotomy.lean:705:20: 'omega' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: Erdos866/H4Dichotomy.lean:709:10: '(
+  have h2 : p.2 = q.2 := by omega
+  have h1 : p.1 = q.1 := by omega
+  exact Prod.ext h1 h2)' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: Erdos866/H4Dichotomy.lean:772:10: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: Erdos866/H4Dichotomy.lean:768:20: 'omega' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: Erdos866/H4Dichotomy.lean:772:10: '(
+  have h2 : p.2 = q.2 := by omega
+  have h1 : p.1 = q.1 := by omega
+  exact Prod.ext h1 h2)' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: Erdos866/H4Dichotomy.lean:859:20: 'omega' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+info: Erdos866/H4Dichotomy.lean:1256:0: 'Erdos866.Dicho.fFunPos_four_lt_crossover' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/H4Dichotomy.lean:1257:0: 'Erdos866.Dicho.hasPosPairwiseSums_of_dense' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/H4Dichotomy.lean:1258:0: 'Erdos866.Dicho.evens_card_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/H4Dichotomy.lean:1259:0: 'Erdos866.Dicho.dense_case' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/H4Dichotomy.lean:1260:0: 'Erdos866.Dicho.fFunPos_four_lt_crossover8' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/H4Dichotomy.lean:1261:0: 'Erdos866.Dicho.hasPosPairwiseSums_of_dense8' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/H4Dichotomy.lean:1262:0: 'Erdos866.Dicho.dense_case8' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/H4Dichotomy.lean:1263:0: 'Erdos866.Dicho.pigeonhole_disjoint_hits' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/H4Dichotomy.lean:1264:0: 'Erdos866.Dicho.hasPPS_of_combo' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/H4Dichotomy.lean:1265:0: 'Erdos866.Dicho.endgame_no_survivor' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/H4Dichotomy.lean:1266:0: 'Erdos866.Dicho.dichoCerts_ok' depends on axioms: [propext, Quot.sound]
+info: Erdos866/H4Dichotomy.lean:1267:0: 'Erdos866.Dicho.K_opairs_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/H4Dichotomy.lean:1268:0: 'Erdos866.Dicho.K_epairs_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/H4Dichotomy.lean:1269:0: 'Erdos866.Dicho.K_epairs_le2' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/H4Dichotomy.lean:1270:0: 'Erdos866.Dicho.hasPPS_of_quad' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/H4Dichotomy.lean:1271:0: 'Erdos866.Dicho.T_star' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/H4Dichotomy.lean:1272:0: 'Erdos866.Dicho.triangle_free_fib' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/H4Dichotomy.lean:1273:0: 'Erdos866.Dicho.cap_fib' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/H4Dichotomy.lean:1274:0: 'Erdos866.Dicho.balanced_kill' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/H4Dichotomy.lean:1275:0: 'Erdos866.Dicho.tt_aux' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/H4Dichotomy.lean:1276:0: 'Erdos866.Dicho.structural_case' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/H4Dichotomy.lean:1277:0: 'Erdos866.h4_le_4' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/H4Dichotomy.lean:1278:0: 'Erdos866.h4_eq_4' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/H4Dichotomy.lean:1279:0: 'Erdos866.h4_eq_4_charter' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/H4Dichotomy.lean:1280:0: 'Erdos866.h4_eq_4_c2' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [8038/8039] Built Erdos866 (14s)
+Build completed successfully (8039 jobs).
+EXIT: 0

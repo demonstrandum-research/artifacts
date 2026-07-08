@@ -1,0 +1,8 @@
+Erdos866\LowerBounds.lean:237:13: error(lean.invalidField): Invalid field `lt_or_lt`: The environment does not contain `Function.lt_or_lt`, so it is not possible to project the field `lt_or_lt` from an expression
+  h12
+of type `g₁ = g₂ → False`
+Erdos866\LowerBounds.lean:237:27: error: Tactic `rcases` failed: `x✝ : ?m.23` is not an inductive datatype
+Erdos866\LowerBounds.lean:314:2: error: interval_cases failed: could not find upper bound on j
+'Erdos866.four_le_hFun_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.gFun_four_lt_hFun_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.fibCnt_lt_hFun_five' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

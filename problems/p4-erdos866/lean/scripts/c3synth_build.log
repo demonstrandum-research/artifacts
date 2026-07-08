@@ -1,0 +1,35 @@
+ℹ [8026/8038] Replayed Erdos866.Upstream
+info: Erdos866/Upstream.lean:206:0: 'g3' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/Upstream.lean:586:0: 'h3' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/Upstream.lean:686:0: 'g4' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/Upstream.lean:1512:0: 'h4upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/Upstream.lean:3021:0: 'g5upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/Upstream.lean:3494:0: 'generalupper' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8030/8038] Replayed Erdos866.LowerBounds
+info: Erdos866/LowerBounds.lean:321:0: 'Erdos866.four_le_hFun_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/LowerBounds.lean:322:0: 'Erdos866.gFun_four_lt_hFun_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/LowerBounds.lean:323:0: 'Erdos866.fibCnt_lt_hFun_five' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [8032/8038] Replayed Erdos866.H4Tail
+warning: Erdos866/H4Tail.lean:27:4: `mul_le_mul_right'` has been deprecated: Use `mul_le_mul_left` instead
+⚠ [8033/8038] Replayed Erdos866.H4Improved
+warning: Erdos866/H4Improved.lean:356:28: unused variable `hn`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+info: Erdos866/H4Improved.lean:362:0: 'h4_le_1000' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8034/8038] Replayed Erdos866.H4Target
+info: Erdos866/H4Target.lean:16:0: 'Erdos866.T1TargetH4_closed_1000' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8035/8038] Replayed Erdos866.G5FStar
+info: Erdos866/G5FStar.lean:281:0: 'Erdos866.key_ineq_star' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/G5FStar.lean:282:0: 'Erdos866.key_ineq_star_tuned' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/G5FStar.lean:283:0: 'Erdos866.fStar5_le_poly' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/G5FStar.lean:284:0: 'Erdos866.young_u7' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/G5FStar.lean:285:0: 'Erdos866.poly_nonneg38' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8036/8038] Replayed Erdos866.G5Port
+info: Erdos866/G5Port.lean:1155:0: 'Erdos866.lemmaA' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/G5Port.lean:1156:0: 'Erdos866.ceslemgeneral_star' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/G5Port.lean:1157:0: 'Erdos866.g5upper_star' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/G5Port.lean:1158:0: 'Erdos866.T1TargetG5_closed_3520600' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/G5Port.lean:1159:0: 'Erdos866.key_ineq_star_charter' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/G5Port.lean:1160:0: 'Erdos866.g5upper_star_charter' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/G5Port.lean:1161:0: 'Erdos866.T1TargetG5_closed_charter' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (8038 jobs).

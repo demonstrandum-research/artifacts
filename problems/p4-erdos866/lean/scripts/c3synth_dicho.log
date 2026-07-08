@@ -1,0 +1,39 @@
+Erdos866/H4Dichotomy.lean:212:16: warning: `Finset.filter_card_add_filter_neg_card_eq_card` has been deprecated: Use `Finset.card_filter_add_card_filter_not` instead
+Erdos866/H4Dichotomy.lean:573:10: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+Erdos866/H4Dichotomy.lean:569:20: warning: 'omega' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+Erdos866/H4Dichotomy.lean:573:10: warning: '(
+  have h2 : p.2 = q.2 := by omega
+  have h1 : p.1 = q.1 := by omega
+  exact Prod.ext h1 h2)' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+Erdos866/H4Dichotomy.lean:636:10: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+Erdos866/H4Dichotomy.lean:632:20: warning: 'omega' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+Erdos866/H4Dichotomy.lean:636:10: warning: '(
+  have h2 : p.2 = q.2 := by omega
+  have h1 : p.1 = q.1 := by omega
+  exact Prod.ext h1 h2)' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+Erdos866/H4Dichotomy.lean:648:8: warning: declaration uses `sorry`
+'Erdos866.Dicho.fFunPos_four_lt_crossover' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.hasPosPairwiseSums_of_dense' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.evens_card_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.dense_case' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.pigeonhole_disjoint_hits' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.hasPPS_of_combo' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.endgame_no_survivor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.dichoCerts_ok' depends on axioms: [propext, Quot.sound]
+'Erdos866.Dicho.K_opairs_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.K_epairs_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.structural_case' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Erdos866.h4_le_4' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Erdos866.h4_eq_4' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

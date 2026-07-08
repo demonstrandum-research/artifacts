@@ -1,0 +1,14 @@
+ok   g3_n004: all 56 subsets of size 5 of [1,8] have a (g,3)-configuration  -> M <= 4 confirmed by exhaustion
+ok   g4_n004: all 8 subsets of size 7 of [1,8] have a (g,4)-configuration  -> M <= 6 confirmed by exhaustion
+ok   g5_n005: all 1 subsets of size 10 of [1,10] have a (g,5)-configuration  -> M <= 9 confirmed by exhaustion
+ok   h3_n004: all 28 subsets of size 6 of [1,8] have a (h,3)-configuration  -> M <= 5 confirmed by exhaustion
+ok   h4_n005: all 1 subsets of size 10 of [1,10] have a (h,4)-configuration  -> M <= 9 confirmed by exhaustion
+ok   h5_n005: all 1 subsets of size 10 of [1,10] have a (h,5)-configuration  -> M <= 9 confirmed by exhaustion
+ok   g3_n005: all 210 subsets of size 6 of [1,10] have a (g,3)-configuration  -> M <= 5 confirmed by exhaustion
+ok   g3_n006: all 792 subsets of size 7 of [1,12] have a (g,3)-configuration  -> M <= 6 confirmed by exhaustion
+ok   g4_n005: all 45 subsets of size 8 of [1,10] have a (g,4)-configuration  -> M <= 7 confirmed by exhaustion
+ok   g4_n006: all 220 subsets of size 9 of [1,12] have a (g,4)-configuration  -> M <= 8 confirmed by exhaustion
+ok   h3_n006: all 495 subsets of size 8 of [1,12] have a (h,3)-configuration  -> M <= 7 confirmed by exhaustion
+ok   h4_n006: all 66 subsets of size 10 of [1,12] have a (h,4)-configuration  -> M <= 9 confirmed by exhaustion
+ok   g5_n006: all 12 subsets of size 11 of [1,12] have a (g,5)-configuration  -> M <= 10 confirmed by exhaustion
+ok   h5_n006: all 1 subsets of size 12 of [1,12] have a (h,5)-configuration  -> M <= 11 confirmed by exhaustion

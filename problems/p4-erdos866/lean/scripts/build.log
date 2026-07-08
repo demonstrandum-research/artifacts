@@ -1,0 +1,21 @@
+ℹ [8026/8030] Built Erdos866.Upstream (170s)
+info: Erdos866/Upstream.lean:206:0: 'g3' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/Upstream.lean:586:0: 'h3' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/Upstream.lean:686:0: 'g4' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/Upstream.lean:1512:0: 'h4upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/Upstream.lean:3021:0: 'g5upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/Upstream.lean:3494:0: 'generalupper' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [8027/8030] Built Erdos866.Statements (12s)
+✖ [8028/8030] Building Erdos866.Warmup (12s)
+trace: .> LEAN_PATH=C:\Users\jacks\source\repos\maths\problems\p4-erdos866\lean\.lake\packages\Cli\.lake\build\lib\lean;C:\Users\jacks\source\repos\maths\problems\p4-erdos866\lean\.lake\packages\batteries\.lake\build\lib\lean;C:\Users\jacks\source\repos\maths\problems\p4-erdos866\lean\.lake\packages\Qq\.lake\build\lib\lean;C:\Users\jacks\source\repos\maths\problems\p4-erdos866\lean\.lake\packages\aesop\.lake\build\lib\lean;C:\Users\jacks\source\repos\maths\problems\p4-erdos866\lean\.lake\packages\proofwidgets\.lake\build\lib\lean;C:\Users\jacks\source\repos\maths\problems\p4-erdos866\lean\.lake\packages\importGraph\.lake\build\lib\lean;C:\Users\jacks\source\repos\maths\problems\p4-erdos866\lean\.lake\packages\LeanSearchClient\.lake\build\lib\lean;C:\Users\jacks\source\repos\maths\problems\p4-erdos866\lean\.lake\packages\plausible\.lake\build\lib\lean;C:\Users\jacks\source\repos\maths\problems\p4-erdos866\lean\.lake\packages\mathlib\.lake\build\lib\lean;C:\Users\jacks\source\repos\maths\problems\p4-erdos866\lean\.lake\build\lib\lean c:\Users\jacks\.elan\toolchains\leanprover--lean4---v4.28.0\bin\lean.exe C:\Users\jacks\source\repos\maths\problems\p4-erdos866\lean\Erdos866\Warmup.lean -o C:\Users\jacks\source\repos\maths\problems\p4-erdos866\lean\.lake\build\lib\lean\Erdos866\Warmup.olean -i C:\Users\jacks\source\repos\maths\problems\p4-erdos866\lean\.lake\build\lib\lean\Erdos866\Warmup.ilean -c C:\Users\jacks\source\repos\maths\problems\p4-erdos866\lean\.lake\build\ir\Erdos866\Warmup.c --setup C:\Users\jacks\source\repos\maths\problems\p4-erdos866\lean\.lake\build\ir\Erdos866\Warmup.setup.json --json
+error: Erdos866/Warmup.lean:23:57: Tactic `simp` failed with a nested error:
+maximum recursion depth has been reached
+use `set_option maxRecDepth <num>` to increase limit
+use `set_option diagnostics true` to get diagnostic information
+error: Erdos866/Warmup.lean:32:57: Tactic `simp` failed with a nested error:
+maximum recursion depth has been reached
+use `set_option maxRecDepth <num>` to increase limit
+use `set_option diagnostics true` to get diagnostic information
+error: Lean exited with code 1
+Some required targets logged failures:
+- Erdos866.Warmup

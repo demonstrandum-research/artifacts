@@ -1,0 +1,12 @@
+ℹ [8026/8027] Replayed Erdos866.Upstream
+info: Erdos866/Upstream.lean:206:0: 'g3' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/Upstream.lean:586:0: 'h3' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/Upstream.lean:686:0: 'g4' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/Upstream.lean:1512:0: 'h4upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/Upstream.lean:3021:0: 'g5upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/Upstream.lean:3494:0: 'generalupper' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8027/8027] Built Erdos866.LowerBounds (18s)
+info: Erdos866/LowerBounds.lean:321:0: 'Erdos866.four_le_hFun_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/LowerBounds.lean:322:0: 'Erdos866.gFun_four_lt_hFun_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/LowerBounds.lean:323:0: 'Erdos866.fibCnt_lt_hFun_five' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (8027 jobs).

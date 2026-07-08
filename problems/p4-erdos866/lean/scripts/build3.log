@@ -1,0 +1,9 @@
+ℹ [8026/8031] Replayed Erdos866.Upstream
+info: Erdos866/Upstream.lean:206:0: 'g3' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/Upstream.lean:586:0: 'h3' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/Upstream.lean:686:0: 'g4' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/Upstream.lean:1512:0: 'h4upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/Upstream.lean:3021:0: 'g5upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Erdos866/Upstream.lean:3494:0: 'generalupper' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [8029/8031] Built Erdos866.G5Small (12s)
+Build completed successfully (8031 jobs).

@@ -1,0 +1,19 @@
+# Erdős #866 extension project — pinned to the EXACT toolchain of the upstream
+# public development (Woett/Lean-files/ErdosProblem866.lean header):
+#   Lean    leanprover/lean4:v4.28.0
+#   Mathlib 8f9d9cff6bd728b17a24e163c9402775d9e6a365 (master, 2026-02-16)
+# NOTE: autoImplicit is deliberately left at its default (true) — the vendored
+# upstream file Erdos866/Upstream.lean relies on an auto-bound implicit `n`
+# (lemma HasPairwiseSums_succ_to_HasPosPairwiseSums) and is kept byte-identical
+# to the frozen copy (sha256 043731e3...9845e).
+name = "erdos866"
+version = "0.1.0"
+defaultTargets = ["Erdos866"]
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4"
+rev = "8f9d9cff6bd728b17a24e163c9402775d9e6a365"
+
+[[lean_lib]]
+name = "Erdos866"

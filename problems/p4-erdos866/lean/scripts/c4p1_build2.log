@@ -1,0 +1,81 @@
+Erdos866/H4Dichotomy.lean:219:16: warning: `Finset.filter_card_add_filter_neg_card_eq_card` has been deprecated: Use `Finset.card_filter_add_card_filter_not` instead
+Erdos866/H4Dichotomy.lean:304:6: error: linarith failed to find a contradiction
+case h
+n : ℕ
+hn : 331777 ≤ n
+x : ℝ
+hx2 : 2 ≤ x
+hxle : x ≤ 2 * ↑n - 2
+hnR : 331777 ≤ ↑n
+hw0 : 0 ≤ x / 2
+hw1 : 1 ≤ x / 2
+hn0 : 0 ≤ ↑n - 1
+v : ℝ := (x / 2) ^ (1 / 4)
+hvdef : v = (x / 2) ^ (1 / 4)
+u : ℝ := (↑n - 1) ^ (1 / 4)
+hudef : u = (↑n - 1) ^ (1 / 4)
+hv0 : 0 ≤ v
+hu0 : 0 ≤ u
+hv1 : 1 ≤ v
+hv4 : v ^ 4 = x / 2
+hu4 : u ^ 4 = ↑n - 1
+hv2 : √(x / 2) = v ^ 2
+hvu : v ≤ u
+hlt : u < 24
+this : 0 ≤ u
+a✝ : 24 ^ 4 ≤ u ^ 4
+⊢ False
+failed
+Erdos866/H4Dichotomy.lean:708:10: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+Erdos866/H4Dichotomy.lean:704:20: warning: 'omega' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+Erdos866/H4Dichotomy.lean:708:10: warning: '(
+  have h2 : p.2 = q.2 := by omega
+  have h1 : p.1 = q.1 := by omega
+  exact Prod.ext h1 h2)' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+Erdos866/H4Dichotomy.lean:771:10: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+Erdos866/H4Dichotomy.lean:767:20: warning: 'omega' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+Erdos866/H4Dichotomy.lean:771:10: warning: '(
+  have h2 : p.2 = q.2 := by omega
+  have h1 : p.1 = q.1 := by omega
+  exact Prod.ext h1 h2)' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+Erdos866/H4Dichotomy.lean:858:20: warning: 'omega' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+'Erdos866.Dicho.fFunPos_four_lt_crossover' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.hasPosPairwiseSums_of_dense' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.evens_card_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.dense_case' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.fFunPos_four_lt_crossover8' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Erdos866.Dicho.hasPosPairwiseSums_of_dense8' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Erdos866.Dicho.dense_case8' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Erdos866.Dicho.pigeonhole_disjoint_hits' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.hasPPS_of_combo' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.endgame_no_survivor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.dichoCerts_ok' depends on axioms: [propext, Quot.sound]
+'Erdos866.Dicho.K_opairs_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.K_epairs_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.K_epairs_le2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.hasPPS_of_quad' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.T_star' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.triangle_free_fib' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.cap_fib' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.balanced_kill' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.tt_aux' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.Dicho.structural_case' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos866.h4_le_4' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Erdos866.h4_eq_4' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Erdos866.h4_eq_4_charter' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Erdos866.h4_eq_4_c2' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+EXIT: 1

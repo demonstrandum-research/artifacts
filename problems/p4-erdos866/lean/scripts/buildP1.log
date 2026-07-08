@@ -1,0 +1,4 @@
+﻿ℹ [8034/8036] Replayed Erdos866.H4Target
+info: Erdos866/H4Target.lean:16:0: 'Erdos866.T1TargetH4_closed_1000' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [8035/8036] Built Erdos866 (13s)
+Build completed successfully (8036 jobs).
