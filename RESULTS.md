@@ -3,13 +3,14 @@
 Last updated: **2026-06-12**. Companion files: [`verify_all.py`](verify_all.py)
 (runs every mechanical check below and prints a PASS/FAIL table) and
 [`VALIDATION.md`](VALIDATION.md) (a guide for an outside mathematician: what each
-check does and does not establish). House standards: [`FRAMEWORK.md`](FRAMEWORK.md)
-sections 1 and 9.
+check does and does not establish). The verification doctrine these results
+were produced under is summarized in [`VALIDATION.md`](VALIDATION.md).
 
 **One command verifies everything:**
 
 ```
-cd C:\Users\jacks\source\repos\maths
+git clone https://github.com/demonstrandum-research/artifacts.git
+cd artifacts
 python verify_all.py            # default battery; --full adds long redundant layers
 python verify_all.py --strict   # SKIPs (e.g. Lean absent) become failures: full zero-trust mode
 ```
