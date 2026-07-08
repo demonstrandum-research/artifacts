@@ -58,7 +58,7 @@ source before any attack.
 10. [Sun Conjecture 4.6 refuted](#10-sun-conjecture-46-arxiv210807723-refuted) — dual-checker
 11. [Koch–Narayan Conjecture 1 refuted](#11-kochnarayan-conjecture-1-refuted) — dual-checker
 12. [C(13) ≥ 36 record (no 5 on a sphere)](#12-c13--36-for-the-no-5-on-a-sphere-grid-problem) — dual-checker
-13. [Elizalde–Luo {1132, 3312} conjecture resolved (audited proof, not kernel-checked)](#13-elizaldeluo-1132-3312-conjecture--resolved-audited-proof-not-kernel-checked) — audit-panel
+13. [Elizalde–Luo {1132, 3312} conjecture proved in Lean 4](#13-elizaldeluo-1132-3312-conjecture--proved-kernel-checked) — kernel
 
 ---
 
@@ -640,19 +640,19 @@ against unpublished concurrent work.
 
 ---
 
-## 13. Elizalde–Luo {1132, 3312} conjecture — RESOLVED (audited proof, not kernel-checked)
+## 13. Elizalde–Luo {1132, 3312} conjecture — PROVED (kernel-checked)
 
-**Grade: audit-panel.** Read this grade carefully: what is mechanically
-verifiable here is the finite ground truth (n ≤ 8, three independent
-implementations) and the lemma-level exhaustive checks; the **theorem for all
-n** rests on two independent written proofs that were adversarially audited —
-i.e. on refereeing, not on a kernel. Two complete proof drafts share one
-triple-audited core; each was audited by independent panels with clean-room
-re-verification code and hostile Codex referee rounds; every lemma was
-exhaustively machine-verified beyond the paper's stated range. NOT
-kernel-checked — a Lean formalization was started in `lean/` but is not
-claimed. Until kernel-checked or journal-refereed, cite this as "audited proof
-draft", one grade below the Borsuk result.
+**Grade: kernel** (Lean 4.30.0 + mathlib; the full general-n theorem
+`elizalde_luo_1132_3312` is accepted by the Lean kernel — no `sorry`, no
+`admit`, no `native_decide`; the axiom audit reports only `propext`,
+`Classical.choice`, `Quot.sound`). The finite ground truth (n ≤ 8, three
+independent implementations) and the lemma-level exhaustive checks were the
+first-line evidence; the theorem for all n is now discharged by the kernel
+proof in `lean/` (see `lean/STATUS.md` for the full green-gate table). Two
+complete written proofs — a recurrence/structural count and an explicit
+bijection onto a ternary language, sharing one triple-audited core and each
+vetted by independent hostile panels with clean-room re-verification — informed
+the formalization; the bijection proof is the one carried into Lean.
 
 **Exact claim.** The {1132, 3312} entry of Table 4 ("Further research") of
 S. Elizalde and A. Luo, *Pattern avoidance in nonnesting permutations*
@@ -666,12 +666,12 @@ been checked for n up to 8"):
 i.e. the number of nonnesting permutations of the multiset {1,1,2,2,...,n,n}
 avoiding both 1132 and 3312 (under the paper's biconditional containment
 convention, pinned verbatim in `DEFINITIONS.md`) equals **3ⁿ − 3·2ⁿ⁻¹ + 1 for
-all n ≥ 1**. This is now a **theorem**: two complete, independently audited
-proofs (a recurrence/structural count and an explicit bijection onto a ternary
-language), both built on the same audited core (FIFO normal form; sign-word
-coordinates for prefix-extremal labelings; the characterization of avoiders by
-arc-sign constraints). Claim calibration: we say "resolved, audited proof"
-rather than "theorem, full stop" — see the grade note above.
+all n ≥ 1**. This is a **theorem**, formalized in Lean 4 and accepted by the
+kernel (`lean/`, `elizalde_luo_1132_3312`). Two complete, independently audited
+written proofs (a recurrence/structural count and an explicit bijection onto a
+ternary language), both built on the same audited core (FIFO normal form;
+sign-word coordinates for prefix-extremal labelings; the characterization of
+avoiders by arc-sign constraints), informed the formalization.
 
 **Prior status.** Conjectured in the published paper (2025), verified by the
 authors only to n = 8; OEIS A168583 cross-reference; no proof in the literature
@@ -694,8 +694,10 @@ as of the June 2026 campaign (paper checked at DOI; conjecture table unchanged).
   `work\audit_comb2\`, `work\audit-comp\`, `work\audit_bij_comb\`,
   `work\audit-comp-bij\`; independent avoider lists `explore\avoiders_n*.txt`
 
-**Verification commands** (mechanical part — the ground truth and the lemma
-checks; the proofs themselves are for human/audit reading):
+**Verification commands** (the ground-truth and lemma checks in the verify
+battery; the general-n theorem is the kernel-checked Lean proof in `lean/` —
+build/re-check instructions in `lean/STATUS.md` and the README Lean-projects
+section):
 
 ```
 cd problems\p3-moonshot\elizalde-luo\data
@@ -714,12 +716,13 @@ Theorem A checked on ALL 2,162,160 (shape, permutation) pairs at n = 7 and all
 classification and per-shape count formula exhaustive to n = 13; summation
 identity exact to n = 60; end-to-end bijection on all 85,514 avoiders n ≤ 10.
 
-**What this does not show.** No machine-checked (kernel) proof yet: confidence
-rests on two independent written proofs + three adversarial audits + exhaustive
-finite verification far beyond the conjectured range's stated check (n ≤ 8).
-The Lean formalization in `lean\` is incomplete scaffolding and is NOT part of
-the claim. Until kernel-checked or refereed, treat this as a
-theorem-with-audit-trail, one grade below the Borsuk result.
+**What this does not show.** The kernel proof establishes the counting formula
+under the definitions pinned in `DEFINITIONS.md` / `lean\ElizaldeLuo\Defs.lean`;
+faithfulness of those definitions to the published paper is the irreducible
+human step (re-checked against the source LaTeX in a hostile audit, recorded in
+`lean\STATUS.md`). Priority is evidence, not proof: no proof appeared in the
+literature as of the June 2026 campaign, but concurrent unpublished work can
+never be excluded. The result has not yet been journal-refereed.
 
 ---
 

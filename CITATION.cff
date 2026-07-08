@@ -10,13 +10,16 @@ authors:
     email: erlbacher.research@gmail.com
 identifiers:
   - type: doi
-    value: 10.5281/zenodo.20673865
-    description: "Zenodo archive of this repository (wave-1 snapshot)"
+    value: 10.5281/zenodo.21264100
+    description: "Zenodo archive of this repository (v2 snapshot)"
+  - type: doi
+    value: 10.5281/zenodo.20673864
+    description: "Zenodo concept DOI (always resolves to the latest version)"
 repository-code: "https://github.com/demonstrandum-research/artifacts"
 license:
   - MIT
   - CC-BY-4.0
-date-released: "2026-06-12"
+date-released: "2026-07-08"
 keywords:
   - mathematics
   - conjecture refutation
@@ -25,10 +28,11 @@ keywords:
   - certificates
   - AI-assisted mathematics
 abstract: >-
-  Complete verification artifacts for 13 results produced by Demonstrandum, a
+  Complete verification artifacts for 14 results produced by Demonstrandum, a
   verification-first multi-agent AI mathematics pipeline: 11 refutations of
-  published conjectures, one proof of a published conjecture (Elizalde–Luo),
-  and one numerical record (C(13) >= 36 for the "no 5 on a sphere" grid
-  problem), including a Lean 4 kernel-checked disproof of the discrete Borsuk
-  cube-characterization conjecture. Every claim is mechanically checkable via
-  the included verify_all.py battery.
+  published conjectures, two proofs of published conjectures (Elizalde–Luo and
+  Kurkov's A000670 conjecture), and one numerical record (C(13) >= 36 for the
+  "no 5 on a sphere" grid problem), including Lean 4 kernel-checked proofs of
+  the discrete Borsuk cube-characterization disproof and the Elizalde–Luo
+  formula. Every claim is mechanically checkable via the included verify_all.py
+  battery.
