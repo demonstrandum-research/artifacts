@@ -1,0 +1,252 @@
+% !TeX program = pdflatex
+% A proof of Kurkov's conjecture for A000670
+% Build: pdflatex note.tex (run twice for cross-references).
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\wt}{wt}
+\newcommand{\bit}{\mathbf{b}}
+
+\title{A proof of Kurkov's conjecture for A000670}
+\author{John Erlbacher\thanks{Independent Researcher. Email:
+\texttt{erlbacher.research@gmail.com}. ORCID: 0009-0003-6851-4139.}}
+\date{July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The Fubini numbers $a(n)$ (OEIS \texttt{A000670}), which count the ordered set
+partitions of an $n$-element set, satisfy a conjecture of Mikhail Kurkov (2018)
+recorded on the entry: for $n>0$,
+\[
+  a(n)=\sum_{k=0}^{2^{\,n-1}-1} A284005(k),\qquad a(0)=1,
+\]
+where $A284005$ (OEIS \texttt{A284005}) is defined by $A284005(0)=1$ and
+$A284005(m)=(1+\wt(m))\,A284005(\lfloor m/2\rfloor)$, with $\wt$ the binary digit
+sum. We give a short, elementary, and self-contained proof. The key is a refined
+statement: for each of the $2^{\,n-1}$ subsets $S\subseteq[n]$ containing $1$,
+the number of ordered set partitions of $[n]$ whose set of block minima equals
+$S$ is exactly $A284005(k)$ for the index $k$ that encodes $S$. Summing over $S$
+proves the conjecture. The refinement is verified exhaustively for $n\le 8$
+($598{,}444$ ordered set partitions across $255$ block-minima classes, $0$
+mismatches).
+\end{abstract}
+
+\section{Introduction}\label{sec:intro}
+
+Let $a(n)$ denote the number of \emph{ordered set partitions} of $[n]=\{1,\dots,n\}$:
+partitions of $[n]$ into nonempty blocks together with a linear order on the
+blocks. These are the Fubini (or ordered Bell) numbers, OEIS entry
+\texttt{A000670} \cite{A000670}, with $a(0)=1$ and initial values
+$1,1,3,13,75,541,4683,\dots$
+
+The entry \texttt{A000670} carries the following formula, contributed by
+Mikhail Kurkov on July~8, 2018, and still labelled a conjecture:
+\begin{equation}\label{eq:conj}
+  a(n)=\sum_{k=0}^{2^{\,n-1}-1} A284005(k)\qquad(n>0),\qquad a(0)=1,
+\end{equation}
+where $A284005$ is the OEIS entry \texttt{A284005} \cite{A284005}, defined by
+\begin{equation}\label{eq:a284005}
+  A284005(0)=1,\qquad A284005(m)=(1+\wt(m))\,A284005(\lfloor m/2\rfloor),
+\end{equation}
+and $\wt(m)$ is the number of $1$'s in the binary expansion of $m$. The purpose
+of this note is to prove \eqref{eq:conj}.
+
+The proof is elementary and combinatorial. We first unwind \eqref{eq:a284005}
+into a product over the binary digits of $k$ (Section~\ref{sec:setup}); this
+lets us index the summands of \eqref{eq:conj} by subsets of $[n]$ containing
+$1$. We then prove a refinement of \eqref{eq:conj} (Section~\ref{sec:proof}):
+each summand counts exactly the ordered set partitions with a prescribed set of
+block minima. Because every ordered set partition of $[n]$ has a unique set of
+block minima, and $1$ is always a block minimum, summing the refinement over all
+$2^{\,n-1}$ admissible subsets yields \eqref{eq:conj}.
+
+To our knowledge \eqref{eq:conj} was open before this work: it is stated as a
+conjecture on \texttt{A000670}, and a dated literature and web search
+(July~2026) turned up no proof.
+
+\section{The product formula and its index set}\label{sec:setup}
+
+Iterating \eqref{eq:a284005} strips the binary expansion of $m$ from the least
+significant bit. Writing $m$ in binary as $b_1b_2\cdots b_L$ (most significant
+bit first, $b_1=1$), the successive arguments $\lfloor m/2\rfloor,
+\lfloor m/4\rfloor,\dots$ are the prefixes $b_1\cdots b_{L-1}, b_1\cdots
+b_{L-2},\dots$, and each contributes the factor $1+(\text{its digit sum})$.
+Hence
+\begin{equation}\label{eq:product}
+  A284005(m)=\prod_{i=1}^{L}\bigl(1+w_i\bigr),\qquad
+  w_i:=b_1+b_2+\cdots+b_i,
+\end{equation}
+the same product formula recorded on \texttt{A284005}. A prefix of digit sum
+$0$ contributes a factor $1+0=1$; equivalently, \emph{prepending a $0$ to the
+binary string does not change the value}. (Here $A284005(0)$ is the empty
+product $1$.)
+
+Fix $n>0$. Every index $k$ with $0\le k\le 2^{\,n-1}-1$ can be written, after
+left-padding with zeros, as a string of exactly $n-1$ bits
+$\bit=b_1b_2\cdots b_{n-1}$ (most significant first). By the padding invariance
+just noted, \eqref{eq:product} gives
+\begin{equation}\label{eq:kproduct}
+  A284005(k)=\prod_{i=1}^{n-1}\bigl(1+w_i\bigr),
+  \qquad w_i=b_1+\cdots+b_i,
+\end{equation}
+for every such $k$, using its $(n-1)$-bit padded expansion. As $k$ ranges over
+$\{0,\dots,2^{\,n-1}-1\}$, the string $\bit$ ranges over all of
+$\{0,1\}^{\,n-1}$.
+
+\begin{definition}\label{def:M}
+For $\bit=b_1\cdots b_{n-1}\in\{0,1\}^{\,n-1}$ put
+\[
+  M(\bit)=\{1\}\cup\{\,i+1 : b_i=1\,\}\subseteq[n].
+\]
+\end{definition}
+
+The map $\bit\mapsto M(\bit)$ is a bijection from $\{0,1\}^{\,n-1}$ onto
+$\{S\subseteq[n] : 1\in S\}$: bit $b_i$ records whether $i+1\in S$, and $1$ is
+always included. There are $2^{\,n-1}$ such subsets, matching the range of $k$.
+
+\section{The refined theorem}\label{sec:proof}
+
+\begin{theorem}\label{thm:refined}
+Let $n>0$ and $\bit\in\{0,1\}^{\,n-1}$. The number of ordered set partitions of
+$[n]$ whose set of block minima equals $M(\bit)$ is exactly
+$\prod_{i=1}^{n-1}(1+w_i)$, where $w_i=b_1+\cdots+b_i$.
+\end{theorem}
+
+Before proving Theorem~\ref{thm:refined} we record how it settles the
+conjecture.
+
+\begin{corollary}
+For every $n>0$, $a(n)=\sum_{k=0}^{2^{\,n-1}-1}A284005(k)$.
+\end{corollary}
+
+\begin{proof}
+Every ordered set partition of $[n]$ has a well-defined set of block minima,
+which necessarily contains $1$ (the block containing $1$ has minimum $1$). Thus
+the ordered set partitions of $[n]$ are partitioned according to their
+block-minima set $S$, and $S$ ranges over exactly $\{S\subseteq[n]:1\in S\}$.
+By Theorem~\ref{thm:refined} and \eqref{eq:kproduct}, the class with minima set
+$S=M(\bit)$ has size $A284005(k)$, where $k$ is the integer with padded binary
+string $\bit$. Summing over the $2^{\,n-1}$ admissible $S$, equivalently over
+$k=0,\dots,2^{\,n-1}-1$, gives $a(n)=\sum_k A284005(k)$. The case $n=0$ is the
+boundary value $a(0)=1$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:refined}]
+We build the ordered set partitions of $[n]$ by inserting the elements
+$1,2,\dots,n$ one at a time in increasing order, tracking the ordered list of
+blocks. We use one observation throughout: \emph{because elements are inserted
+in increasing order, an element is the minimum of its block if and only if it
+opened that block} --- every element that joins an already existing block is
+larger than that block's opener, hence not its minimum.
+
+Start with element $1$, which necessarily opens the single block $(\{1\})$;
+after this step there is $m_1=1$ block. Now suppose we have an ordered set
+partition of $[i]$ with $m_i$ blocks, and we insert element $i+1$
+($1\le i\le n-1$). We want element $i+1$ to be a block minimum precisely when
+$b_i=1$ (so that, by Definition~\ref{def:M}, $i+1$ enters the minima set exactly
+when $b_i=1$). By the observation above:
+\begin{itemize}
+\item if $b_i=1$ (element $i+1$ must be a block minimum), it must \emph{open a
+  new singleton block}, which can be inserted in any of the $m_i+1$ positions of
+  the ordered list of blocks;
+\item if $b_i=0$ (element $i+1$ must not be a block minimum), it must \emph{join
+  one of the $m_i$ existing blocks}.
+\end{itemize}
+The number of blocks after step $i$ is $m_{i+1}=1+w_i$: it starts at
+$m_1=1=1+w_0$ (with $w_0=0$) and increases by one exactly when $b_i=1$, i.e.\
+$m_{i+1}=m_i+b_i$ and $w_i=w_{i-1}+b_i$. Consequently the number of choices at
+step $i$ is, in both cases, exactly $1+w_i$:
+\[
+  b_i=1:\quad m_i+1=(1+w_{i-1})+1=1+w_i\ \ (w_i=w_{i-1}+1);\qquad
+  b_i=0:\quad m_i=1+w_{i-1}=1+w_i\ \ (w_i=w_{i-1}).
+\]
+Therefore the number of insertion histories realising the prescribed
+signature $\bit$ is $\prod_{i=1}^{n-1}(1+w_i)$.
+
+It remains to see that these insertion histories are in bijection with the
+ordered set partitions of $[n]$ whose block-minima set is $M(\bit)$. Distinct
+choices at any step produce distinct ordered set partitions, so distinct
+histories give distinct outputs. Conversely, every ordered set partition $P$ of
+$[n]$ arises from exactly one history: deleting the element $n$ (and deleting its
+block if $n$ was a singleton) recovers an ordered set partition of $[n-1]$
+together with the last choice made, and this reconstruction is deterministic;
+induction on $n$ gives a unique history for $P$. Under this bijection the
+signature of the history recording which insertions opened a new block is exactly
+the indicator of the block minima of $P$ among $2,\dots,n$ --- since removing the
+maximum of a block never changes that block's minimum --- so the histories with
+signature $\bit$ correspond precisely to the ordered set partitions with
+block-minima set $M(\bit)$. This proves the count.
+\end{proof}
+
+\section{Verification}\label{sec:verify}
+
+The identity \eqref{eq:conj} was checked numerically for $n=1,\dots,20$ by
+computing $a(n)$ from the Fubini recurrence and independently from the
+right-hand side of \eqref{eq:conj} via \eqref{eq:a284005}; the two agree.
+
+Theorem~\ref{thm:refined} was verified \emph{exhaustively} for $n=1,\dots,8$ by
+generating every ordered set partition of $[n]$ (there are
+\[
+  1+3+13+75+541+4683+47293+545835=598{,}444
+\]
+of them in total across $n=1,\dots,8$), grouping them by block-minima set, and
+comparing the class sizes to $A284005(k)$ over all $255$ minima-set classes
+($1+2+\cdots+128$). There were $0$ mismatches. A mutation-testing harness, which
+perturbs the $A284005$ recurrence and the block-minima encoding, confirms that
+the check is a genuine discriminator: every mutant is rejected.
+
+These computations corroborate but do not replace the proof of
+Section~\ref{sec:proof}, which is elementary, finite, and self-contained.
+
+\section*{Acknowledgments}
+
+This note, including all of its mathematical content, was produced by an
+artificial-intelligence workflow, and we believe readers and referees should be
+able to take this fact into account. The conjecture was selected, attacked, and
+proved by language-model agents (Anthropic's Claude family) running in
+Demonstrandum, an orchestrated, verification-first multi-agent research
+pipeline. The definitions of \texttt{A000670} and \texttt{A284005} were pinned
+as verbatim quotations of the OEIS entries before any proof attempt; the proof
+was then subjected to an adversarial audit in which a model from a different
+family (OpenAI's GPT-5.5, accessed through the Codex CLI with code-execution
+access) acted as a hostile referee, prompted to find counterexamples and gaps
+rather than to confirm, and wrote its own clean-room verification code. No human
+mathematician contributed mathematical content; the human role was limited to
+operating the pipeline. Correctness rests on the elementary proof printed above,
+intended to be checkable line by line in the ordinary way; the machine checks of
+Section~\ref{sec:verify} are corroboration, not a substitute.
+
+\begin{thebibliography}{9}
+
+\bibitem{A000670}
+OEIS Foundation Inc.,
+Entry \texttt{A000670}, \emph{Fubini numbers} (ordered set partitions), in
+\emph{The On-Line Encyclopedia of Integer Sequences},
+\url{https://oeis.org/A000670} (accessed July 2026). Conjecture of
+M.~Kurkov, July~8, 2018.
+
+\bibitem{A284005}
+OEIS Foundation Inc.,
+Entry \texttt{A284005}, in \emph{The On-Line Encyclopedia of Integer
+Sequences}, \url{https://oeis.org/A284005} (accessed July 2026).
+
+\end{thebibliography}
+
+\end{document}
