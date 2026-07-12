@@ -39,10 +39,6 @@ adjacent `{1,2}`).
    cores), all 4-SAT and 5-SAT. (Regenerable via `search.py targeted --seed
    20260711`; the full 5.4 MB output is not banked here.)
 
-A broader ~530M-graph exhaustive lab sweep (n ≤ 10 all; n = 11,12 Δ ≤ 5; n = 13
-Δ ≤ 4; trees n ≤ 20) was run separately and likewise found zero counterexamples;
-that sweep's bulk data is not part of this dataset.
-
 ## The calibrated claim
 
 This is **finite evidence for the KKPW four-colour conjecture, not a proof.**

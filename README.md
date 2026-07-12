@@ -1,6 +1,6 @@
 # Demonstrandum — wave-1 verified artifacts
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21264100.svg)](https://doi.org/10.5281/zenodo.21264100)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20673864.svg)](https://doi.org/10.5281/zenodo.20673864)
 [![Code: MIT](https://img.shields.io/badge/code-MIT-blue.svg)](LICENSE)
 [![Text & data: CC BY 4.0](https://img.shields.io/badge/text%20%26%20data-CC%20BY%204.0-lightgrey.svg)](LICENSE-CC-BY-4.0.md)
 [![Repo size](https://img.shields.io/github/repo-size/demonstrandum-research/artifacts)](https://github.com/demonstrandum-research/artifacts)
@@ -10,18 +10,22 @@ directed and audited by John Erlbacher (Independent Researcher). Its house
 rule: no claim is accepted on an AI's word — the unit of progress is an
 artifact on disk plus an independently written checker that accepts it, so
 every result below is mechanically checkable by you, with zero trust in any AI
-or in the author. This repository is the complete wave-1 artifact bundle:
-14 verified results (11 refutations of published conjectures, two proofs of
-published conjectures, one numerical record), six accompanying papers, and a
-one-command master verification battery. It additionally carries the
+or in the author. This repository began as the complete 14-result wave-1
+artifact bundle (11 refutations of published conjectures, two proofs of
+published conjectures, one numerical record), with six accompanying papers and
+a one-command master verification battery. It now also carries row 15, the
 **Erdős problem #866 release (2026-07-08)** — the eventual value of the
 Choi–Erdős–Szemerédi constant, h₄(n) = 4 for all n ≥ 331,777,
 kernel-verified in Lean 4, with improved g₅/h₅ bounds and a 298-cell
-dual-engine SAT-certified exact-value table — row 15 below.
+dual-engine SAT-certified exact-value table — plus the later strong-majority
+five- and six-color kernel packages. Those later packages have their own
+rebuild instructions and are not silently included in the legacy master battery.
 
 - Exact claims, verbatim frozen statements, per-result caveats: [`RESULTS.md`](RESULTS.md)
 - What each check does and does not establish (guide for an outside mathematician): [`VALIDATION.md`](VALIDATION.md)
-- Archived, citable snapshot: DOI [10.5281/zenodo.21264100](https://doi.org/10.5281/zenodo.21264100)
+- Current bundle concept DOI: [10.5281/zenodo.20673864](https://doi.org/10.5281/zenodo.20673864); July 8 v3 snapshot: [10.5281/zenodo.21269439](https://doi.org/10.5281/zenodo.21269439)
+- Strong-majority five-color release: [`papers/five-colors/`](papers/five-colors/), concept DOI [10.5281/zenodo.21316623](https://doi.org/10.5281/zenodo.21316623)
+- Strong-majority six-color predecessor: [`papers/five-colors/six-color-artifact/`](papers/five-colors/six-color-artifact/)
 - Contact: John Erlbacher — erlbacher.research@gmail.com — ORCID [0009-0003-6851-4139](https://orcid.org/0009-0003-6851-4139)
 
 ## Results
@@ -81,7 +85,7 @@ A SKIP always means "not verified on this machine" — the summary says so loudl
 
 ## Papers
 
-Six papers accompany the headline results. Each directory contains the LaTeX
+Six wave-one papers accompany the legacy headline results. Each directory contains the LaTeX
 source, the compiled PDF, build notes (`BUILD.md`), referee-round responses
 (`RESPONSES.md`), and recompute scripts.
 
@@ -279,8 +283,8 @@ Cite the archived snapshot via the Zenodo DOI (machine-readable metadata in
   title        = {Demonstrandum --- wave-1 verified artifacts},
   year         = {2026},
   publisher    = {Zenodo},
-  doi          = {10.5281/zenodo.21264100},
-  url          = {https://doi.org/10.5281/zenodo.21264100},
+  doi          = {10.5281/zenodo.21269439},
+  url          = {https://doi.org/10.5281/zenodo.21269439},
   note         = {Code and verification artifacts, github.com/demonstrandum-research/artifacts}
 }
 ```
