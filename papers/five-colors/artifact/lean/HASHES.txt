@@ -1,0 +1,30 @@
+# SHA-256 of Rung-5 five-colors artifact source files
+# Generated 2026-07-12T02:07:21Z UTC. Verify: sha256sum -c HASHES.txt
+#
+# PROVENANCE: Maj5Base.lean here is a stub-stripped derivative of the
+# gate-verified base file (original sha256 c6b6b8959aa28d73e7fbb2520f3286c613cdaa794874d1cc1dbe1b17e44736f8):
+# a single dead placeholder 'theorem SMaj.maj_le_five := by sorry' (referenced
+# nowhere; superseded by SMaj.Synthesis.maj_le_five) was removed so the shipped
+# build is entirely sorry-free. All other files are byte-identical to the winning
+# gate build. Rebuilt + re-audited fresh (8037 jobs, exit 0, bedrock triple).
+
+403e071720ac8b8b0e9652b26168b762f35f0ded7efca995bed70fbd5b55b718 *./Maj5Base.lean
+a1770514e0ff8f85ff83fff8eba795f37f68b571d5daea6e9793ddd7ec769c65 *./Rung5Lam1.lean
+3a12516443c37aa70417ba57c0147f946ab1b21547ef70d5a4f0c086a8296fc4 *./Rung5Lam2.lean
+08e642f112e061f0c767b1168ac38e7677ed7d93767e38f18ad58f1ccee33a1d *./Rung5Lam3.lean
+dd6add9de03edf12f0183150146a89e440cbc20367c01eb0a311dab90b8a4bfb *./Rung5Lam4.lean
+95795e90c505a271b32e1901bb5370cf0962aed45a5055192b40da326ea404eb *./Rung5Lam5.lean
+089d13bce72bf7e4c9750ca8cee60a0fca1bec237afa2398cf65eebc219bb878 *./SMKernel.lean
+b01ba1b2112ae4007725aad6b92247970f07a470c5f54ad55f4acff8ad6a27e0 *./SMKernel/EdgeColoring/Basic.lean
+6ebfd746ef60cc556650d205f51fccf7770274f569a2615a6098f3d86b87c2c5 *./SMKernel/EdgeColoring/DFamily.lean
+6de9db3ee45316c3dc418449b843c6a205cd056f2e986c5a4ee61a7aef7e5dc2 *./SMKernel/EdgeColoring/Kempe.lean
+a58d5a3db6a8928a5a63f38470a32ac61a15bf06630fefc1a2cca84bcf951401 *./SMKernel/EdgeColoring/KempeSwap.lean
+8d278799f751d6e643c68a2130afb000d423e1bf385686e915d2527edb75b6a4 *./SMKernel/EdgeColoring/Kierstead.lean
+a5ef5888c6662bf2de085d6d5f542c6f835e50de1718801f195d8dbc3634ff79 *./SMKernel/EdgeColoring/KiersteadPath.lean
+5cd0641c2acfb4301ef30a42366de91c3a4a501b726c679c9be7864f3835fb30 *./SMKernel/EdgeColoring/Linkage.lean
+6b11f5965853deb688ff77c8689d0c2c888d3c37f06ed65d191f1c65b21b73ec *./audit_final_gateF.lean
+6b11f5965853deb688ff77c8689d0c2c888d3c37f06ed65d191f1c65b21b73ec *./audit_final_gateS.lean
+790f03bdca58efedec02aef185b7f3ac8620b72ad0ef52ae2f5001e28807739f *./lake-manifest.json
+d15a5d8f56b6436ac2f4fa6abf7b232e89ceae47a6a60dea239b1a72b84d4a03 *./lakefile.toml
+26df5f74b79af0cd9e298b6583993699a54938d047ba1919428da80d3ae80c6e *./lean-toolchain
+d8801297a0f34237b5d33f6c9745bf6aa8bfc9d1a793aff38cff9584f5ec395b *./rebuild_and_audit.sh

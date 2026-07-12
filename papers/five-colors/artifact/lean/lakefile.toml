@@ -1,0 +1,46 @@
+# Rung-5 five-colors artifact — self-contained Lean 4 project reproducing
+#   SMaj.Synthesis.maj_le_five  (strong majority edge-coloring with five colors).
+#
+# Layout:
+#   Maj5Base.lean                — frozen definitions + palette-generic glue
+#                                  interface, dispatch, and chain machinery.
+#   SMKernel/EdgeColoring/*.lean — in-project edge-coloring library over
+#                                  mathlib's SimpleGraph (Kempe chains/swaps,
+#                                  Kierstead paths, chain linkage).
+#   Rung5Lam1..Rung5Lam5.lean    — the five-rung ladder (§3.2 of the paper).
+#
+# Build the theorem + print its axiom footprint:  lake build Rung5Lam5
+# Pin: Lean v4.28.0 + mathlib 8f9d9cff6bd728b17a24e163c9402775d9e6a365.
+name = "rung5"
+version = "1.0.0"
+defaultTargets = ["Rung5Lam5"]
+
+[leanOptions]
+pp.unicode.fun = true
+autoImplicit = false
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4"
+rev = "8f9d9cff6bd728b17a24e163c9402775d9e6a365"
+
+[[lean_lib]]
+name = "SMKernel"
+
+[[lean_lib]]
+name = "Maj5Base"
+
+[[lean_lib]]
+name = "Rung5Lam1"
+
+[[lean_lib]]
+name = "Rung5Lam2"
+
+[[lean_lib]]
+name = "Rung5Lam3"
+
+[[lean_lib]]
+name = "Rung5Lam4"
+
+[[lean_lib]]
+name = "Rung5Lam5"

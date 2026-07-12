@@ -1,0 +1,8 @@
+'SMaj.Synthesis.maj_le_five' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SMaj.exists_isGlueColoring_five' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SMaj.maj_le_five_of_glue' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SMaj.strongMajority_of_glue' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SMaj.Lam2.exists_five_multicoloring_of_simple' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SMaj.exists_five_multicoloring_of_reinsertable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SimpleGraph.reachable_kempeGraph_of_missing' depends on axioms: [propext, Classical.choice, Quot.sound]
+audit exit: 0
