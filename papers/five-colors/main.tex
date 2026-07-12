@@ -1,0 +1,426 @@
+﻿% !TeX program = pdflatex
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+\usepackage{alltt}
+
+\DeclareUnicodeCharacter{2200}{\ensuremath{\forall}}
+\DeclareUnicodeCharacter{2264}{\ensuremath{\le}}
+\DeclareUnicodeCharacter{2208}{\ensuremath{\in}}
+\DeclareUnicodeCharacter{2115}{\ensuremath{\mathbb{N}}}
+\DeclareUnicodeCharacter{03B1}{\ensuremath{\alpha}}
+\DeclareUnicodeCharacter{2192}{\ensuremath{\to}}
+\DeclareUnicodeCharacter{230A}{\ensuremath{\lfloor}}
+\DeclareUnicodeCharacter{230B}{\ensuremath{\rfloor}}
+\DeclareUnicodeCharacter{222A}{\ensuremath{\cup}}
+\DeclareUnicodeCharacter{2260}{\ensuremath{\ne}}
+\DeclareUnicodeCharacter{2203}{\ensuremath{\exists}}
+\DeclareUnicodeCharacter{2212}{\ensuremath{-}}
+\DeclareUnicodeCharacter{039B}{\ensuremath{\Lambda}}
+\DeclareUnicodeCharacter{0394}{\ensuremath{\Delta}}
+\DeclareUnicodeCharacter{2248}{\ensuremath{\approx}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{observation}[theorem]{Observation}
+
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\title{Strong Majority Edge-Coloring with Five Colors: A Lean Verification and an Alternative Proof}
+\author{John Erlbacher\thanks{Independent Researcher. Email: \texttt{erlbacher.research@gmail.com}. ORCID: 0009-0003-6851-4139.}}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\emph{Project note: this work was carried out with substantial AI assistance, within the author's research pipeline (Demonstrandum); tools and responsibility are disclosed in Section 5.}
+
+\medskip
+Draft of 2026-07-11. Artifact: \href{https://doi.org/10.5281/zenodo.21316624}{doi:10.5281/zenodo.21316624}.
+\end{center}
+
+\begin{abstract}
+Antoniuk, Prorok, and Salia (arXiv:2607.00212, posted 30 June 2026) proved that every admissible graph \(G\) satisfies \(\mathrm{Maj}'(G) \le 5\): the edges of \(G\) can be colored with five colors so that for every edge \(e\) and every color \(\alpha\), at most half of the edges adjacent to \(e\) have color \(\alpha\). This is the strongest bound known toward the conjecture of Kalinowski, Kamyczura, Pilśniak, and Woźniak that four colors always suffice, improving their bound of eight. We report three contributions. First, a machine-checked proof: the statement \(\mathrm{Maj}'(G) \le 5\), over frozen definitions matching the source papers, is verified by the Lean 4 kernel against mathlib, with axiom footprint exactly \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}; the endgame of the development was closed in two clean builds with separate verification blocks over a substantially shared construction. Second, the proof we formalized follows a different route from the original: instead of equitable edge-colorings (Hilton--de Werra) and ear reductions, we contract an admissible graph to a bounded-degree multigraph, remove its heavy parallel classes by local surgery, apply Vizing\textquotesingle s theorem at maximum degree four, and transport the coloring back along chains. Third, we record three source-checked observations about the original written proof, one of them an omitted case with a short repair; the theorem is unaffected.
+\end{abstract}
+
+\section{Introduction}\label{1-introduction}
+
+\subsection{The problem}\label{11-the-problem}
+
+Kalinowski, Kamyczura, Pilśniak, and Woźniak \cite{KKPW} introduced \emph{strong majority edge-colorings}: an edge-coloring \(c \colon E(G) \to C\) of a graph \(G\) (colorings need not be proper) is a strong majority edge-coloring if for every edge \(e \in E(G)\) and every color \(\alpha \in C\), at most half of the edges adjacent to \(e\) have color \(\alpha\). Writing \(d(u)\) for degrees, an edge \(e = uv\) has exactly \(d(u) + d(v) - 2\) adjacent edges, so the condition says that for every color \(\alpha\),
+
+\[\#\{f \text{ adjacent to } e : c(f) = \alpha\} \;\le\; \left\lfloor \frac{d(u)+d(v)-2}{2} \right\rfloor .\]
+
+The least number of colors in such a coloring is the \emph{strong majority index} \(\mathrm{Maj}'(G)\).
+
+Such a coloring exists if and only if \(G\) has no \emph{pendant path of length two} --- no vertex of degree one adjacent to a vertex of degree two (the single edge adjacent to such a pendant edge always violates the condition). Graphs without this configuration are called \emph{admissible}; for admissible graphs, coloring every edge with its own color works, so \(\mathrm{Maj}'\) is well defined.
+
+\cite{KKPW} proved \(\mathrm{Maj}'(G) \le 8\) for every admissible graph (their Theorem 12) and conjectured (their Conjecture 14) that
+
+\[\mathrm{Maj}'(G) \le 4 \quad \text{for every admissible } G,\]
+
+which would be best possible: there are admissible graphs with \(\mathrm{Maj}'(G) = 4\), the smallest being the paw (the triangle with a pendant edge).
+
+\subsection{The five-color theorem}\label{12-the-five-color-theorem}
+
+Antoniuk, Prorok, and Salia \cite{APS} proved (their Theorem 2; we refer to the paper as APS after its authors):
+
+\begin{quote}
+\textbf{Theorem (APS).} Every admissible graph \(G\) satisfies \(\mathrm{Maj}'(G) \le 5\).
+\end{quote}
+
+The APS preprint was posted on 30 June 2026 and is, at the time of writing, available only in its first version. Their proof runs through the equitable edge-coloring theorem of Hilton and de Werra \cite{HdW} (stated as their Theorem 1): a graph none of whose degrees is divisible by \(k\) has a \(k\)-edge-coloring in which the color counts at every vertex are pairwise within one. Around this core they build a reduction-and-restoration argument: five graph operations (R1)--(R5) eliminate loop ears, degree-five ear ends, and long ears and repair divisibility; the equitable coloring is applied to the reduced graph; and the removed structures are restored one by one with local recoloring arguments (their Claims 7--10 and Remark 9).
+
+\subsection{Contributions}\label{13-contributions}
+
+This paper reports three things.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{A machine-checked proof of the theorem} (Section 3). We formalized the exact statement --- for every finite simple admissible graph, a strong majority edge-coloring with five colors exists --- in Lean 4 over mathlib, and verified it down to the kernel. The axiom footprint of the final theorem and of every named layer beneath it is exactly \texttt{{[}propext,\ Classical.choice,\ Quot.sound{]}} (mathlib\textquotesingle s classical bedrock); there are no \texttt{sorry}s, no \texttt{native\_decide}, and no additional axioms anywhere in the dependency cone. The endgame of the development was closed in two clean builds with separate verification blocks over a substantially shared construction (Section 3.4 states precisely what this does and does not mean). To our knowledge, this is the first machine-checked result on majority-type edge-colorings in any proof assistant; see Section 3.2 for the search scope and for prior formalization work on edge coloring, including the Vizing-theorem formalization of Bhoja \cite{Bho}.
+\item
+  \textbf{An alternative proof} (Section 2). The proof we formalized is not the APS argument. It uses no equitable-coloring theorem and no ear-restoration passes. Instead, an admissible graph is decomposed into chains between high-degree vertices; the chains of length at most two are contracted onto grouped vertex "ports" to form a multigraph \(M\) of maximum degree at most four; two local surgeries remove the parallel classes of \(M\) that could obstruct a five-color proper coloring; Vizing\textquotesingle s theorem for simple graphs at maximum degree four supplies the coloring; and the coloring is transported back to \(G\) along the chains. Section 2 presents this as ordinary graph theory, with the Lean names of the corresponding formal steps in footnotes.
+\item
+  \textbf{Clarifications to the original proof} (Section 4). Transcribing the APS argument at formal resolution surfaced three points in the written proof --- two minor, one an omitted case in the restoration of loop ears at degree-five vertices. All three were checked against the arXiv v1 LaTeX source by a separate internal review pass. The theorem is unaffected: the omitted case is repairable with the paper\textquotesingle s own tools, and we give the repair in Appendix A.
+\end{enumerate}
+
+\subsection{Credit and independence}\label{14-credit-and-independence}
+
+The theorem is Antoniuk, Prorok, and Salia\textquotesingle s; we claim no priority on the statement. Our proof was found with their statement (and the existence of their proof) known to us, so we call it an \emph{alternative} proof, not an independent one. It grew out of a six-color construction we had previously formalized for the same problem, whose palette bound came from Shannon\textquotesingle s multigraph theorem; the present route removes the parallel classes on which Shannon\textquotesingle s bound is tight and applies Vizing\textquotesingle s theorem instead. The two arguments rely on comparable machinery at degree four (see the remark in Section 2.7) and differ in essentially all surrounding structure.
+
+\subsection{Organization}\label{15-organization}
+
+Section 2 gives the alternative proof in ordinary mathematical prose. Section 3 describes the formal verification: the exact statement, the development, the axiom audit, and how to reproduce it. Section 4 records the verified clarifications to the original proof. Section 5 states methods and disclosure. Section 6 discusses limitations and open problems. Appendix A contains the repair of the omitted case.
+
+
+\section{The alternative proof}\label{2-the-alternative-proof}
+
+Throughout, \(G = (V, E)\) is a finite simple graph, \(d(v)\) denotes degree, and \emph{admissible} means no degree-one vertex is adjacent to a degree-two vertex. For an edge \(e = uv\), the \emph{row} of \(e\) is the set of edges adjacent to \(e\) (sharing exactly one endpoint with it); it has \(d(u) + d(v) - 2\) members. A coloring \(c\) is \emph{strong majority} if for every edge \(e = uv\) and every color \(\alpha\), the number of row edges of color \(\alpha\) is at most the \emph{cap} \(\lfloor (d(u)+d(v)-2)/2 \rfloor\). We prove:
+
+\begin{theorem}[\(=\) APS Theorem 2]
+Every admissible graph \(G\) has a strong majority edge-coloring with five colors.
+\end{theorem}
+
+The proof has two halves of very different character. The first half is an \emph{interface}: a small list of local conditions on a coloring, phrased relative to a grouping of the edges at each high-degree vertex, which together imply the strong majority property by a finite case analysis of rows. The second half is a \emph{construction} that produces a five-color coloring meeting the interface. The interface half is palette-generic and was already fully proved (and kernel-checked) in our earlier six-color work; the five-color content of this paper is the construction.\footnote{Lean: the interface is the predicate \texttt{SMaj.IsGlueColoring} and the dispatch theorem \texttt{SMaj.strongMajority\_of\_glue} (palette-generic); the reduction of Theorem 2.1 to the interface is \texttt{SMaj.maj\_le\_five\_of\_glue}. All three predate this work and are reused unchanged.}
+
+\subsection{Chains, junctions, and low-degree components}\label{21-chains-junctions-and-low-degree-components}
+
+Call a vertex of degree at least 3 a \emph{junction}. A \emph{chain} is a maximal walk repeating no edge whose internal vertices all have degree 2. If its two ends are distinct --- junctions or degree-one vertices --- it is an \emph{open chain}, i.e. a path; if they coincide, necessarily at a junction, it is a \emph{loop chain}, i.e. a cycle passing through exactly one junction. The \emph{length} of a chain is its number of edges; an open chain of length 1 is a \emph{direct edge}. In a simple graph a loop chain has length at least 3. Components that are paths or cycles (maximum degree at most 2) contain no junction; for them the theorem is elementary --- a cycle needs at most three colors, and an admissible path has at most one edge --- and this case is handled separately once and for all.\footnote{Lean: \texttt{SMaj.maj\_le\_five\_of\_maxDegree\_le\_two}.} So assume every component contains a junction. Then every edge lies in exactly one chain: starting from the edge, walk in both directions through degree-2 vertices until reaching a junction or a degree-one vertex; the walk is forced at every step because interior degrees equal 2, so the chain containing the edge is unique.
+
+Two immediate consequences of admissibility are used below: a degree-one vertex is never adjacent to a degree-two vertex, so (i) degree-one vertices occur only as ends of \emph{direct} edges whose other end is a junction (or as one half of a \(K_2\) component), and (ii) the unordered degree pair \(\{1,2\}\) never occurs on an edge. (The formal proof uses the admissibility hypothesis through several further structural lemmas; these two consequences are the ones visible at this level of exposition.)
+
+\subsection{The glue interface}\label{22-the-glue-interface}
+
+Fix a five-element palette. A \emph{grouping} assigns to each junction \(v\) a partition of the \(d(v)\) edge-slots at \(v\) into \emph{groups}. Given a grouping and a coloring \(c\), say the pair satisfies the \textbf{glue interface} if:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{(G1) Rainbow.} Within each group, the colors of the member edges are pairwise distinct.
+\item
+  \textbf{(G2) Group count.} The number of groups at a junction \(v\) is at most \(\lceil d(v)/4 \rceil\).
+\item
+  \textbf{(G3) Chain ends.} Every chain of length 2 is either monochromatic, or each of its edges avoids the \emph{saturated set} of the opposite port; and in longer chains, the second (respectively penultimate) edge avoids the saturated set of the near port.
+\item
+  \textbf{(G4) Interiors.} Along the interior of every chain (and around every cycle of degree-two vertices), edges at distance two receive distinct colors.
+\end{itemize}
+
+Here the \emph{port} of a chain at an end junction \(v\) is its end edge at \(v\), and the \emph{saturated set} of a port is the set of colors that already fill that end\textquotesingle s row cap on the junction side, so that the adjacent chain edge must avoid them. Two facts about saturated sets, both consequences of (G1)--(G2) by short arithmetic, do real work later: a saturated set has at most two elements, and it is \textbf{empty unless \(d(v) \in \{3, 5\}\)} --- these are exactly the degrees at which the group bound \(\lceil d/4 \rceil\) can meet the row cap \(\lfloor d/2 \rfloor\).\footnote{Lean: \texttt{satSet}, \texttt{card\_satSet\_le\_two}, \texttt{satSet\_eq\_empty\_of\_ne}, and the arithmetic \texttt{g\_R4\_eq} (\(\lceil d/4\rceil = \lfloor d/2\rfloor\) iff \(d \in \{3,5\}\), for \(d \ge 3\)).}
+
+\begin{proposition}[glue dispatch; proved in the six-color work, palette-generic]
+If a grouping and a coloring satisfy (G1)--(G4), the coloring is strong majority.
+\end{proposition}
+
+\emph{Why this is true (sketch).} Consider an edge \(e = uv\) and a color \(\alpha\), and note first that by (G1)--(G2), at a junction \(w\) each color occurs on at most \(\lceil d(w)/4 \rceil\) edges incident with \(w\). Split on the unordered degree pair \(\{d(u), d(v)\}\) (the conditions below are symmetric in the two endpoints), mirroring the case structure of the formal dispatch lemma:
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{Both endpoints junctions} (\(d(u), d(v) \ge 3\); in particular every direct edge between junctions). The row splits into its \(u\)-side and \(v\)-side, so the count of \(\alpha\) is at most \(\lceil d(u)/4 \rceil + \lceil d(v)/4 \rceil\), and a finite machine-checked computation shows \(\lceil a/4 \rceil + \lceil b/4 \rceil \le \lfloor (a+b-2)/2 \rfloor\) whenever \(a, b \ge 3\). (The same computation identifies the complete list of unordered pairs for which the inequality \emph{fails}: \(\{1,2\}, \{2,2\}, \{2,3\}, \{2,5\}\) --- each contains a degree at most 2, so no such pair arises in this case.)\footnote{Lean: \texttt{counting\_lemma}, \texttt{l1\_row\_le}, \texttt{bad4\_table} (the failing set is exactly \(\{(1,2),(2,2),(2,3),(2,5)\}\)), \texttt{crit4\_of\_ne\_two}, \texttt{twoChain\_row\_le}, \texttt{chainEnd\_row\_le}, \texttt{interior\_row\_le}; the case structure above mirrors \texttt{strongMajority\_of\_glue}.}
+\item
+  \emph{A degree-one endpoint.} Its side of the row is empty. The pair \(\{1,2\}\) is excluded by admissibility; \(\{1,1\}\) is a \(K_2\) edge with empty row and cap 0; and for \(\{1,b\}\) with \(b \ge 3\) the count is at most \(\lceil b/4 \rceil \le \lfloor (b-1)/2 \rfloor\), using the junction side alone.
+\item
+  \emph{A degree-two endpoint}, i.e. \(e\) lies inside a chain. Counting is not used here. If \(e\) belongs to a monochromatic length-2 chain, a direct check closes its rows at every admissible degree pair. If \(e\) is the end edge (port) of a chain that is not monochromatic of length 2, the saturated-set clause of (G3) is, by definition of the saturated set, exactly the condition its row needs at the junction side. If both endpoints of \(e\) have degree 2 (\(e\) is interior), its row consists of the at most two flanking chain edges and the cap is 1, so (G4) --- the flanking edges differ --- closes it. \(\square\)
+\end{itemize}
+
+The failing pairs in the counting computation locate where the work is. All of them contain degree 2: edges inside chains cannot be closed by counting, and the chain conditions (monochromatic short chains, saturated sets, distance-two interiors) exist to close them instead. Degree 4 never appears in a failing pair, but it plays a different role: it is the one degree at which the grouping is forced to use a single group of size four, so the contraction multigraph of Section 2.3 has maximum degree four, and a \emph{proper five-edge-coloring at maximum degree four} is required. Greedy and Shannon-type arguments give only six colors there; Vizing\textquotesingle s theorem gives five. Replacing the six-color bound by Vizing\textquotesingle s at this step is what the present route adds over our earlier six-color construction.
+
+\subsection{The construction: grouping, contraction, de-fattening}\label{23-the-construction-grouping-contraction-de-fattening}
+
+We now build, for an arbitrary admissible \(G\) (each of whose components contains a junction), a grouping and a five-coloring satisfying (G1)--(G4).
+
+\textbf{Step 1: steered grouping.} At each junction \(v\) of degree \(d\), partition the edge-slots into exactly \(\lceil d/4 \rceil\) groups of size at most 4, choosing sizes at most 3 whenever the arithmetic allows, i.e. whenever \(d \le 3\lceil d/4 \rceil\) --- in particular at \(d = 3\) and \(d = 5\) (patterns \((3)\) and \((3,2)\)).\footnote{Lean: \texttt{SMaj.exists\_steered\_partition} (ladder rung Λ1) and the in-construction grouping \texttt{steeredGlueIx} with \texttt{steeredGlueIx\_fiber\_le}, \texttt{groups\_steeredGlueIx\_le}.} This gives (G2) at once, together with one consequence we exploit repeatedly:
+
+\begin{quote}
+\textbf{(B2)} A size-4 group never occurs at a junction of degree 3 or 5. Hence, by the saturated-set dichotomy, \textbf{every port belonging to a size-4 group has empty saturated set.}
+\end{quote}
+
+\textbf{Step 2: the contraction multigraph \(M\).} Define a multigraph \(M\) as follows. Its vertices are: the groups at all junctions; one \emph{singleton} vertex for each degree-one vertex of \(G\); and (after Step 3) the middle vertices of "cherried" chains. Its edges are \textbf{only the chains of length at most 2}: each direct edge and each length-2 chain of \(G\) becomes one \(M\)-edge joining its two end-groups (for a pendant direct edge, one end is the leaf\textquotesingle s singleton vertex). Chains of length at least 3 --- including \emph{all} loop chains, since a simple graph has no loop chain of length at most 2 --- contribute \textbf{no} \(M\)-edge; their two port colors are chosen later, in a sequential pass subject to the group and length-three constraints described in Section 2.4. Consequently \(M\) is loopless by construction, and its degrees are bounded by the group sizes: \(\Delta(M) \le 4\).
+
+\textbf{Step 3: de-fattening.} Parallel edges of \(M\) (two chains with the same end-group pair) are what can obstruct a five-color proper coloring at maximum degree 4: Shannon\textquotesingle s bound \cite{Sha} is tight at 6 on triangles of doubled edges among degree-4 vertices, and such configurations are why our earlier construction stopped at six colors. Two local rules remove every problematic class. Let \((P, Q)\) be a parallel class of multiplicity \(\mu \ge 2\) between groups of sizes \(s_P, s_Q\); note at most one member is a direct edge, since \(G\) is simple.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Cherry rule.} If \(s_P = s_Q = 4\) and \(\mu = 2\): the class contains a length-2 chain (direct edges are unique per vertex pair, and longer chains are not in \(M\)). \emph{Uncontract} that chain: its middle vertex becomes an \(M\)-vertex of degree 2 carrying two \(M\)-edges, one to \(P\) and one to \(Q\). We call this configuration a \emph{cherry}. Its two edges will automatically receive distinct colors (properness at the middle vertex), and by (B2) both its ports have empty saturated sets --- exactly what (G3) asks of a non-monochromatic length-2 chain.
+\item
+  \textbf{Reinsertion rule.} Every remaining parallel class satisfies \(\mu \ge s_P + s_Q - 5\): at \((4,4)\), the case \(\mu = 2\) was cherried and \(\mu \ge 3 = 4 + 4 - 5\) passes; every other size pair has \(s_P + s_Q \le 7 \le 5 + \mu\). Remove all these classes from \(M\); they will be reinserted greedily after the coloring, and the displayed inequality is exactly what makes the greedy step succeed.
+\end{itemize}
+
+Let \(M_0\) be what remains: a \textbf{simple}, loopless graph with \(\Delta(M_0) \le 4\) (groups have degree at most 4, cherry middles 2, singletons 1).\footnote{The de-fattening invariants (looplessness, simplicity of \(M_0\), the degree bound, the reinsertion inequality, and (B2) at cherry ends) were machine-checked on a suite of hand-constructed test instances and 1,854 random graphs before formalization, and are proved inside the Lean construction (rung Λ4).}
+
+\subsection{Coloring: Vizing, reinsertion, ports, fills}\label{24-coloring-vizing-reinsertion-ports-fills}
+
+The coloring is produced in five passes, in this order.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Vizing at \(\Delta \le 4\)} --- the construction\textquotesingle s principal graph-theoretic ingredient. \(M_0\) is simple with maximum degree at most 4, so by Vizing\textquotesingle s theorem \cite{Viz} it has a proper edge-coloring with \(4 + 1 = 5\) colors.\footnote{Lean: \texttt{SMaj.Lam2.exists\_five\_multicoloring\_of\_simple} (rung Λ2), proved by the standard fan-and-Kempe-chain induction over an in-project Kempe-chain library; see Section 3.2 for prior formalizations of Vizing-type results. "Principal graph-theoretic ingredient" describes the mathematics; in the formal development Vizing\textquotesingle s theorem is itself proved from scratch, and classical logic is used throughout.}
+\item
+  \textbf{Greedy reinsertion.} Reinsert the removed parallel classes one class at a time, in any order. A class \((P, Q, \mu)\) needs \(\mu\) distinct colors avoiding everything already present at \(P\) (at most \(s_P - \mu\) colors) and at \(Q\) (at most \(s_Q - \mu\)); at least \(5 - (s_P - \mu) - (s_Q - \mu) \ge \mu\) colors remain, by the reinsertion inequality. The bound depends only on the total degrees, so the insertion order is irrelevant.\footnote{Lean: \texttt{SMaj.exists\_five\_multicoloring\_of\_reinsertable} (rung Λ3), by strong induction on total degree with the forbidden-color cap \(4 < 5\).}
+\item
+  \textbf{Port pass.} Process the ports of the chains of length at least 3 (loop chains included) \emph{sequentially}, in any fixed order, first-fit. Each port avoids the colors already used on other slots of its own group --- at most 3 of them, whether placed by earlier passes or by earlier steps of this pass --- and, when it is the second port of a length-3 chain to be processed, also the color of its partner port. At most \(3 + 1 = 4\) of the 5 colors are forbidden, so a color is always available. (The length-3 disequality is forced: in a three-edge chain the two port edges flank the middle edge at distance two, so (G4) requires them distinct --- whether or not the two ports lie in the same group; when they do share a group, the group-avoidance constraint enforces it already.)
+\item
+  \textbf{Interior fills.} Two cases, matching the formal fill lemma\textquotesingle s split. For a chain of length exactly 3, one interior edge remains; give it a color outside the union of the two ports\textquotesingle{} saturated sets, which has at most \(2 + 2 = 4\) elements --- its distance-two constraint (the two ports differ) was already enforced by the port pass. For a chain of length at least 4, fill the interior sequentially from one end: each edge avoids its at most two already-colored distance-two neighbors (the edge two positions behind it and, near the far end, the far port), and the second and penultimate edges additionally avoid the near port\textquotesingle s saturated set, of size at most 2 --- at most 4 forbidden colors in every case. Pure-cycle interiors are filled by the same distance-two argument around the cycle.\footnote{Lean: \texttt{isFill\_exists} with \texttt{exists\_avoid} (stated for palettes of size at least 5), plus the cycle path \texttt{cycle\_distance2}; the lemma takes the length-3 case separately, through the hypothesis that the two port colors differ when the length is 3. These are reused from the six-color development, where they were built palette-generically.}
+\item
+  \textbf{Short-chain transport.} Every length-2 chain still contracted in \(M\) is colored \emph{monochromatically} in its \(M\)-edge color; direct edges keep their \(M\)-edge colors. Cherried chains already received two (distinct) colors in pass 1.
+\end{enumerate}
+
+\subsection{The interface conditions hold}\label{25-the-interface-conditions-hold}
+
+\textbf{(G1) Rainbow.} Properness of the \(M_0\)-coloring makes the slots colored in pass 1 pairwise distinct within each group; the reinsertion and the sequential port pass each avoid every color already present at their groups, so distinctness is preserved as the remaining slots fill; the interior and transport passes color no group slot not already accounted for (a length-2 chain\textquotesingle s two edges occupy one slot at each end-group, colored with the \(M\)-edge color of that class).
+
+\textbf{(G2)} is the steered grouping\textquotesingle s group count (Step 1).
+
+\textbf{(G3) Chain ends.} Length-2 chains in \(M\) are monochromatic --- the first branch of (G3), valid at any admissible degree pair. Cherried chains have distinct edge colors, and both their ports sit in size-4 groups, so by (B2) both saturated sets are \emph{empty} and the second branch of (G3) holds vacuously. For chains of length at least 3, the fill pass made the second and penultimate edges avoid the ports\textquotesingle{} saturated sets.
+
+\textbf{(G4) Interiors.} The fill pass enforces distance-two distinctness along interiors, the port pass enforces it at the boundary positions of length-3 chains, and the cycle argument covers pure cycles.
+
+By Proposition 2.2 the coloring is strong majority, proving Theorem 2.1. \(\blacksquare\)
+
+\subsection{The witness grouping in the formal assembly}\label{26-the-witness-grouping-in-the-formal-assembly}
+
+One structural simplification, found during formalization, simplifies the formal bookkeeping and is worth recording. The steered grouping is still used to \emph{construct} the coloring --- it defines the contraction vertices, the cherries, and the port conflicts --- but it need not be retained as the final witness grouping for the interface. Given \textbf{any} five-coloring \(c\) whose per-junction color multiplicity obeys the cap --- each color on at most \(\lceil d(v)/4 \rceil\) edges at each junction \(v\) --- define the group of an edge at \(v\) to be its \textbf{rank within its own color class at \(v\)} (with respect to a fixed enumeration of all edges). This canonical grouping is rainbow \emph{unconditionally} and meets the group count whenever the multiplicity cap holds. The glue interface therefore reduces to three row-level properties of the bare coloring:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{(hmult)} the per-junction color multiplicity cap;
+\item
+  \textbf{(hint)} distance-two distinctness on chain interiors;
+\item
+  \textbf{(hend)} the chain-end disjunction of (G3).
+\end{itemize}
+
+The Lean proof constructs the coloring of Section 2.4, proves exactly these three properties of it --- the three \emph{verification lemmas} --- and invokes the canonical-grouping assembly, then Proposition 2.2.\footnote{Lean: \texttt{rankIx}, \texttt{rankIx\_isRainbow}, \texttt{rankIx\_groups\_le}, \texttt{exists\_glueColoring\_of\_coloring}; the three verification lemmas \texttt{assembledColor\_hmult} / \texttt{assembledColor\_hint} / \texttt{assembledColor\_hend}; the construction theorem \texttt{SMaj.exists\_isGlueColoring\_five} (rung Λ4); and the final assembly \texttt{SMaj.Synthesis.maj\_le\_five} (rung Λ5).}
+
+\subsection{Remarks on the two routes}\label{27-remarks-on-the-two-routes}
+
+The APS route and the route above share no visible component: no ear reductions or restorations, no equitable colorings here; no contraction multigraph, no Vizing there. They do, however, share one essential ingredient. Equitability at a degree-4 vertex with five colors forces incident color counts \((1,1,1,1,0)\) --- local properness --- so an equitable-coloring theorem strong enough to handle degree 4 (as Hilton--de Werra, applied by APS after their divisibility repair, is) already contains a Vizing-type recoloring capability at maximum degree four; restricted to 4-regular graphs it implies Vizing\textquotesingle s bound there. The two proofs thus rely on comparable machinery at degree four and differ in the surrounding structure: APS transport the local properness through ear surgery, we transport it through contraction and chains. Degree 2, where the counting bound fails, is on both routes handled by dedicated path arguments (their Claims 7 and 10; our chain conditions).
+
+
+\section{The formal verification}\label{3-the-formal-verification}
+
+\subsection{What exactly is proved}\label{31-what-exactly-is-proved}
+
+The verified statement, with every definition it depends on, is the following Lean 4 code (definitions and statement quoted from the artifact\textquotesingle s base file, with docstring comments abbreviated; \texttt{V} is a finite vertex type with decidable equality, \texttt{G\ :\ SimpleGraph\ V} with decidable adjacency, \texttt{C} a color type):
+
+{\small
+\begin{alltt}
+/-- The u-side of the row of the edge s(u,v): edges at u other than s(u,v). -/
+def side (u v : V) : Finset (Sym2 V) := (G.incidenceFinset u).erase s(u, v)
+
+/-- The row of s(u,v): all edges adjacent to it. -/
+def row (u v : V) : Finset (Sym2 V) := side G u v ∪ side G v u
+
+/-- The number of edges of color α adjacent to the edge s(u,v). -/
+def nColor (c : Sym2 V → C) (u v : V) (α : C) : ℕ :=
+  #\{f ∈ row G u v | c f = α\}
+
+/-- Strong majority: for every edge uv and EVERY color α,
+at most ⌊(d(u)+d(v)−2)/2⌋ adjacent edges have color α. -/
+def IsStrongMajority (c : Sym2 V → C) : Prop :=
+  ∀ u v, G.Adj u v → ∀ α : C,
+    nColor G c u v α ≤ (G.degree u + G.degree v - 2) / 2
+
+/-- Admissibility: no edge has endpoint degrees \{1,2\}. -/
+def Admissible : Prop :=
+  ∀ u v, G.Adj u v → G.degree u + G.degree v ≠ 3
+
+theorem maj_le_five (G : SimpleGraph V) [DecidableRel G.Adj]
+    (hadm : Admissible G) :
+    ∃ c : Sym2 V → Fin 5, IsStrongMajority G c
+\end{alltt}
+}
+
+\textbf{Gloss and fidelity.} These definitions match the source papers exactly; the bridges are elementary but were checked line by line against both source papers (for \cite{APS}, against its arXiv LaTeX source):
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{row\ G\ u\ v} is precisely the set of graph edges meeting \(\{u, v\}\) in exactly one vertex: each \texttt{side} erases the edge itself, a simple graph has no other edge meeting both endpoints, and only genuine incidences appear. In particular \texttt{nColor} never counts the edge\textquotesingle s own color slot --- though the quantifier in \texttt{IsStrongMajority} does range over \(\alpha = c(uv)\) itself, as the papers\textquotesingle{} definitions require.
+\item
+  The threshold \texttt{(G.degree\ u\ +\ G.degree\ v\ -\ 2)\ /\ 2} is Lean natural-number arithmetic: truncated subtraction (harmless, since an edge\textquotesingle s endpoint degrees sum to at least 2) and floor division. For an integer count \(n\), the papers\textquotesingle{} rational condition \(n \le \frac{d(u)+d(v)}{2} - 1\) is equivalent to \(n \le \lfloor\frac{d(u)+d(v)-2}{2}\rfloor\), in both parities; at \(d(u)+d(v) = 2\) (a \(K_2\) edge) both sides give cap 0 over an empty row.
+\item
+  \texttt{Admissible} is extensionally the papers\textquotesingle{} "no pendant path of length two": for an edge, endpoint degrees sum to 3 exactly when the degree pair is \(\{1,2\}\).
+\item
+  The coloring is a total function on all of \texttt{Sym2\ V} (values on non-edges are irrelevant: rows contain only edges), and the palette \texttt{Fin\ 5} expresses "at most five colors."
+\end{itemize}
+
+An expanded English gloss of every definition down to mathlib bedrock, with executable small-case sanity checks, ships in the artifact\textquotesingle s reading kit.
+
+\subsection{Shape of the development}\label{32-shape-of-the-development}
+
+The proof lives in a base file plus a five-rung ladder mirroring Section 2:
+
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{@{}p{0.07\textwidth}p{0.49\textwidth}p{0.38\textwidth}@{}}
+\toprule
+Rung & Statement & Lean theorem \\
+\midrule
+--- & frozen definitions + the palette-generic glue interface, dispatch, chain machinery (from the six-color development) & \texttt{Maj5Base.lean} (≈5,300 lines) \\
+Λ1 & steered partitions: sizes ≤ 4, count \(\lceil d/4\rceil\), sizes ≤ 3 at \(d \in \{3,5\}\) & \texttt{SMaj.exists\_\allowbreak steered\_\allowbreak partition} \\
+Λ2 & Vizing at \(\Delta \le 4\): a loopless symmetric multiplicity matrix with degrees ≤ 4 and multiplicities ≤ 1 has a proper \texttt{Fin 5} coloring & \texttt{SMaj.Lam2.exists\_\allowbreak five\_\allowbreak multicoloring\_\allowbreak of\_\allowbreak simple} (802 lines) \\
+Λ3 & de-fattened multigraphs: degrees ≤ 4 plus the heavy-class inequality \(\mathrm{mdeg}(a)+\mathrm{mdeg}(b) \le 5 + \mathrm{mult}(a,b)\) imply a proper \texttt{Fin 5} coloring & \texttt{SMaj.exists\_\allowbreak five\_\allowbreak multicoloring\_\allowbreak of\_\allowbreak reinsertable} \\
+Λ4 & the construction: every admissible \(G\) has a grouping and coloring satisfying the glue interface & \texttt{SMaj.exists\_\allowbreak isGlueColoring\_\allowbreak five} (≈2,400 lines) \\
+Λ5 & assembly: Λ4 + glue dispatch give the theorem & \texttt{SMaj.Synthesis.maj\_\allowbreak le\_\allowbreak five} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The Λ2 rung is proved by the classical fan-rotation and Kempe-chain induction, self-contained over an in-project edge-coloring library built on mathlib\textquotesingle s \texttt{SimpleGraph} (proper edge colorings, present/missing colors, Kempe chains and swaps, chain-linkage lemmas, Kierstead paths). mathlib itself contains no edge-coloring theory at our pin (vertex coloring only). Prior formalization work on edge coloring exists and should be credited: Bhoja \cite{Bho} gives a complete, sorry-free Lean 4 formalization of the full Misra--Gries constructive proof of Vizing\textquotesingle s theorem (arbitrary maximum degree) on a bespoke concrete graph type, deliberately not integrated with mathlib; and a 2023 course project of Okur and Helm defines the edge chromatic number over mathlib\textquotesingle s \texttt{SimpleGraph} and proves the easy lower bound. Against that background, the accurate statements of what is new here are: to our knowledge, the first formalization of Vizing\textquotesingle s theorem stated against mathlib\textquotesingle s \texttt{SimpleGraph} API (ours covers only \(\Delta \le 4\), which is all this proof needs; Bhoja\textquotesingle s covers arbitrary \(\Delta\) on his own graph type); to our knowledge, the first substantial edge-coloring library built on mathlib\textquotesingle s \texttt{SimpleGraph}; and, within that library, to our knowledge the first formalization of Kierstead paths in any proof assistant. The headline theorem itself is, to our knowledge, the first machine-checked result on majority-type edge-colorings.
+
+\subsection{Toolchain and axiom audit}\label{33-toolchain-and-axiom-audit}
+
+\begin{sloppypar}
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Toolchain:} Lean 4 \texttt{v4.28.0}; mathlib pinned at commit\linebreak
+  \texttt{8f9d9cff6bd728b17a24e163}\allowbreak\texttt{c9402775d9e6a365} (the same pin for every file in the chain).
+\item
+  \textbf{Axioms:}\linebreak
+  \texttt{\#print axioms }\allowbreak\texttt{SMaj.Synthesis.maj\_le\_five} reports exactly \texttt{{[}propext, }\allowbreak\texttt{Classical.choice, }\allowbreak\texttt{Quot.sound{]}} --- the standard mathlib axioms \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}, and nothing else. The same audit was run per-declaration on each named layer of the chain (\texttt{exists\_\allowbreak isGlueColoring\_\allowbreak five}, \texttt{maj\_\allowbreak le\_\allowbreak five\_\allowbreak of\_\allowbreak glue}, \texttt{strongMajority\_\allowbreak of\_\allowbreak glue}, the Λ2 Vizing theorem, the Λ3 reinsertion theorem, and the Kempe-library linkage lemma), each reporting exactly the same triple.
+\item
+  \textbf{Hygiene:} zero \texttt{sorry} anywhere in the dependency cone (hence no \texttt{sorryAx}); no \texttt{native\_\allowbreak decide}; no custom axioms; the audit script additionally sweeps for a fixed list of trust-reducing patterns (unsound \texttt{macro}/\texttt{elab} tricks, local instances, notation shadowing) with zero hits.
+\end{itemize}
+\end{sloppypar}
+
+\subsection{The two verification blocks}\label{34-the-two-verification-blocks}
+
+The construction rung Λ4 is by far the largest file, and its endgame --- the three verification lemmas of Section 2.6 over the fully assembled coloring --- was completed twice: \textbf{two clean builds with separate verification blocks over a substantially shared construction.} Concretely, two development lanes each produced a complete, \texttt{sorry}-free version of the construction file. The two versions share the construction backbone (the chain traversal, the de-fattening, the coloring passes, and the canonical-grouping assembly, which is token-identical between them), while the closing verification blocks --- the proofs of (hmult), (hint), (hend) --- were written separately, one per lane. Each version was then rebuilt from scratch in its own fresh environment (8,037 build jobs each, including mathlib; exit code 0) with chain-wide per-declaration axiom prints, all reporting the bedrock triple.
+
+We state plainly what this is and is not. It is a robustness check on the endgame of the formal development --- the part written last and fastest --- and a guard against file-level accidents. It is \textbf{not} two independent formalizations of the theorem, and we do not describe it as "independently verified twice": the substrate (definitions, interface, library, and construction backbone) is shared. The soundness of the result rests, as always, on the Lean kernel\textquotesingle s check of either build alone.
+
+\subsection{Reproducing}\label{35-reproducing}
+
+The artifact (\href{https://doi.org/10.5281/zenodo.21316624}{doi:10.5281/zenodo.21316624}) contains the pinned toolchain files, all sources, the audit scripts, their outputs, and SHA-256 hashes. From the artifact\textquotesingle s Lean project directory, one command rebuilds and re-audits the chain:
+
+{\small
+\begin{alltt}
+lake build Rung5Lam5
+\end{alltt}
+}
+
+The final file ends with \texttt{\#print\ axioms\ SMaj.Synthesis.maj\_\allowbreak le\_\allowbreak five}, so a successful build prints the axiom audit; the standalone audit files (\texttt{audit\_\allowbreak final\_\allowbreak gateF.lean}, \texttt{audit\_\allowbreak final\_\allowbreak gateS.lean}) re-print the per-layer audits of Section 3.3. (Exact directory layout and command are confirmed in the artifact\textquotesingle s top-level README at deposit time.)
+
+
+\section{Clarifications to the original proof}\label{4-clarifications-to-the-original-proof}
+
+\textbf{The theorem stands.} In transcribing the APS argument at formal resolution, and in an internal review conducted against the arXiv v1 LaTeX source (the only posted version as of 2026-07-11; source hashes recorded in the artifact), we identified three points in the written proof that deserve record --- two minor, one an omitted case. None affects the truth of the results of \cite{APS}: the two minor items have immediate repairs, and the omitted case is repairable using only the paper\textquotesingle s own tools (we give the repair in Appendix A). A note detailing these observations has been sent to the authors, and we will gladly reflect any response in a revised version. Numbering below refers to the compiled numbering of \cite{APS} v1: Theorem 2 (five colors), Theorem 4 (four colors for graphs with no degrees 2 or 4), Remark 6, Claim 7 (bad colors), Claim 8 (balance of the intermediate coloring), Remark 9 (the free color at degree five), Claim 10 (ear extension), and the reductions (R1)--(R5).
+
+\textbf{(a) Degree one in the proof of Theorem 4} \emph{(minor; conclusion unaffected).} The proof of Theorem 4 displays the per-vertex bound \(d_i(v) \le \lfloor d(v)/4 \rfloor + 1 \le \frac{d(v)-1}{2}\) for \(d(v) \notin \{2,4\}\) and then applies it at both endpoints of every edge. At \(d(v) = 1\) the second inequality reads \(1 \le 0\), and Theorem 4\textquotesingle s hypotheses do permit degree-one vertices (e.g. \(K_{1,3}\)). The conclusion is safe by a one-sided count: for a leaf edge \(uv\) with \(d(u) = 1\), the \(u\)-side of the row is empty, so the count is at most \(d_i(v) \le \frac{d(v)-1}{2} = \frac{d(u)+d(v)}{2} - 1\), using the displayed bound only at \(v\) (and a \(K_2\) component has an empty row). The authors handle exactly this subtlety in Remark 6 for the five-color proof; the analogous sentence is missing from Theorem 4\textquotesingle s proof.
+
+\textbf{(b) A duplicated passage in the proof of Claim 10} \emph{(editorial).} In the proof of Claim 10, Case \(k=1\) contains two consecutive paragraphs that are two drafts of the same argument (both open and close with identical sentences; the first includes a reduction to \(d_H(v) = 3\) that the second skips). The underlying count --- at most \(3 + 2 - 1 < 5\) forbidden colors, with the chord color common to both forbidden sets when they are full --- is correct in both drafts; the duplication is purely editorial.
+
+\textbf{(c) An omitted case in undoing (R1): a degree-five vertex with two loop ears} \emph{(genuine omission in the written proof of Theorem 2; repaired in Appendix A).} Reduction (R1) removes loop ears at a vertex \(v\), attaching two auxiliary leaves per ear --- except that when \(d_G(v) = 5\) it attaches a single leaf, lowering the degree to four. A degree-five vertex can carry \textbf{two} loop ears (two triangles through \(v\) plus one further edge is the witness configuration; it is connected, admissible, and not a cycle, and (R1) is the first operation applied). Processing both ears leaves \(v\) with current degree four, one genuine edge, and \textbf{three} auxiliary leaves. The reverse pass\textquotesingle s entire treatment of the \(d_G(v)=5\) case is the sentence asserting that "the single leaf" was removed, one terminal edge inheriting its color and one chosen freely --- which presupposes one leaf and two terminal edges, whereas this configuration has three leaves and four terminal edges to restore. We checked every reading of the degree condition (original vs. current degree) and every cited ingredient (Claims 7, 8, 10, Remark 9, the other undo passes): under the only reading consistent with Remark 9, no branch of the undo text applies to the witness. Remark 9\textquotesingle s own phrase "at most two loop ears" shows the authors saw the configuration, but the restoration text implements only the one-loop case. The repair --- restore all four terminal edges using the distinctness of the four colors at the reduced vertex, exactly in the spirit of the paper\textquotesingle s Remark 9 and Claim 10 --- is short and uses no new machinery; see Appendix A. Theorem 2 is unaffected.
+
+We state the grading plainly: (a) and (b) are minor; (c) is a real but local omission with a short repair. These observations do not affect the theorem: item (c) is repaired in Appendix A, and the Lean verification establishes the theorem independently of the APS text.
+
+
+\section{Methods and disclosure}\label{5-methods-and-disclosure}
+
+This work was produced with substantial AI assistance, coordinated by the author through a research pipeline (called Demonstrandum). The AI tools used were Harmonic\textquotesingle s Aristotle theorem prover, OpenAI\textquotesingle s GPT-series models (via Codex), and Anthropic\textquotesingle s Claude models. No mathematical claim in this paper was accepted solely on the basis of a model\textquotesingle s output: the formal claims were checked by the Lean kernel, and the computational claims by the verification procedures stated where they appear.
+
+\textbf{What the tools did here.} The proof route of Section 2 was proposed and tested within the pipeline (including machine-executed instance checks against a SAT-based ground truth) before formalization. Lemma statements were then frozen ("pinned") in Lean, and candidate proofs of the pinned statements were produced by the models named above. Every candidate was accepted only after an audit that rebuilt it from scratch in a pinned environment, checked the statement byte-for-byte against the pin, and verified the axiom footprint of every public declaration; candidates that weakened statements, or that closed goals by unverifiable means, were rejected. The observations of Section 4 were re-checked from the arXiv source by a separate review pass that did not assume their correctness. The prose of this paper was drafted with model assistance and reviewed by the author.
+
+\textbf{Responsibility.} The author directed the work, reviewed the artifacts and this text, and takes sole responsibility for all claims. Errors, should any remain, are the author\textquotesingle s.
+
+\textbf{Acknowledgments.} This work depended on Harmonic\textquotesingle s Aristotle theorem prover, OpenAI\textquotesingle s Codex and GPT models, and Anthropic\textquotesingle s Claude models, used as described above. We thank the authors of \cite{APS} for their theorem, and the authors of \cite{KKPW} for the problem.
+
+
+\section{Limitations and open problems}\label{6-limitations-and-open-problems}
+
+\textbf{The conjecture is open.} Nothing here touches the KKPW conjecture that four colors suffice. The five-color bound is now machine-checked; the question of whether four colors suffice remains, and the degree-4/degree-2 interaction visible in the two proofs discussed here (Section 2.7) may be relevant to it.
+
+\textbf{Finite evidence for four colors.} As part of this project\textquotesingle s exploratory layer (SAT-based, exact, dual-checked --- separate from and not entering the Lean verification), every admissible graph on at most 9 vertices --- 268,478 connected isomorphism types --- was found to admit a strong majority edge-coloring with \emph{four} colors, as was every connected 4-regular graph on 10, 12, and 14 vertices and a targeted family of 592 further instances; an exact census through 8 vertices shows the maximum index value 4 is attained but never exceeded. This is finite evidence only, and we draw no conclusion from it beyond the observation that no counterexample to the conjecture exists among admissible graphs on at most nine vertices or in the additional tested families.
+
+\textbf{Scope of the verification.} The formal artifact establishes the theorem via the route of Section 2. It does not certify the APS text itself: their argument was checked by careful human-plus-machine reading (Section 4), not by the kernel.
+
+\textbf{Scope of priority claims.} All priority statements in this paper are of the form "to our knowledge" with an explicitly searched scope, recorded in Section 3.2 and in the claim ledger accompanying the artifact. In particular we claim no general priority on formalizing Vizing\textquotesingle s theorem --- that belongs to Bhoja \cite{Bho} --- only the mathlib-\texttt{SimpleGraph}-native statement at \(\Delta \le 4\).
+
+\begin{thebibliography}{9}
+
+\bibitem[APS]{APS}
+S. Antoniuk, M. Prorok, N. Salia, \emph{Strong Majority Edge-Coloring}, arXiv:2607.00212 [math.CO], posted 30 June 2026.
+
+\bibitem[Bho]{Bho}
+A. Bhoja, \emph{A verified implementation of the Misra and Gries edge coloring algorithm}, arXiv:2512.13999, December 2025. Code: \url{github.com/aroheebhoja/vizing}.
+
+\bibitem[HdW]{HdW}
+A. J. W. Hilton, D. de Werra, \emph{A sufficient condition for equitable edge-colourings of simple graphs}, Discrete Mathematics 128 (1994), 179--201.
+
+\bibitem[KKPW]{KKPW}
+R. Kalinowski, M. Kamyczura, M. Pilśniak, M. Woźniak, \emph{Strong majority colorings of graphs}, arXiv:2605.23828 [math.CO], May 2026.
+
+\bibitem[mathlib]{mathlib}
+The mathlib Community, \emph{The Lean mathematical library}, Proc. CPP 2020, 367--381.
+
+\bibitem[Sha]{Sha}
+C. E. Shannon, \emph{A theorem on coloring the lines of a network}, J. Math. Phys. 28 (1949), 148--151.
+
+\bibitem[Viz]{Viz}
+V. G. Vizing, \emph{On an estimate of the chromatic class of a p-graph} (Russian), Diskret. Analiz 3 (1964), 25--30.
+
+\end{thebibliography}
+\appendix
+\section{Restoring two loop ears at a degree-five vertex}
+This appendix supplies the case omitted from the restoration of (R1) in the proof of Theorem 2 of \cite{APS} (Section 4(c) above), using only the paper\textquotesingle s own tools. Notation is theirs: \(G_1\) is the graph after exhaustive (R1)--(R2), \(c_4\) the coloring of \(G_4\) obtained from the equitable coloring after deleting the (R5) leaves; Claim 8 gives balance of \(c_4\) at every vertex of degree at least 3; Claim 10 extends colorings along ears; Remark 9 records the free-color mechanism at reduced degree-five vertices.
+
+\textbf{The configuration.} Let \(v\) have \(d_G(v) = 5\) and carry two loop ears \(A\) and \(B\) (each of length at least 3, since a simple graph has no shorter loop ear; each contributes two incidences at \(v\)) plus one further edge. Under exhaustive (R1), the first loop ear is processed at current degree 5 and replaced by a single leaf, dropping the degree to 4; the second is processed at current degree 4 and replaced by two leaves. In \(G_1\) the vertex \(v\) thus has degree 4, carrying its one genuine edge and \textbf{three} auxiliary leaves. (This is the unique multi-loop shape at degree five: two loop ears force degree at least 5, and three would force degree at least 6.) For reference, the paper\textquotesingle s restoration sentence for the degree-five case reads, verbatim:
+
+\begin{quote}
+"For \(d_G(v)=5\), the single leaf was removed, so one terminal edge inherits its color, and the other is free: any choice keeps the balance at \(v\), and the loop interior then extends as before."
+\end{quote}
+
+which presupposes one leaf and two terminal incidences, whereas here three leaves and four terminal incidences must be handled.
+
+\textbf{The repair.} By Claim 8, \(c_4\) is balanced at \(v\), which at degree 4 with five colors means the four edges at \(v\) --- the genuine edge and the three leaves --- carry four \textbf{distinct} colors (\(d_i(v) \le \lfloor 3/2 \rfloor = 1\)). Delete the three leaves and restore both loops; four terminal incidences at \(v\) must be colored. Transfer the three leaf colors to three of them and choose the fourth freely, subject to one constraint: each loop of length exactly 3 must receive distinct colors on its two terminals (its middle edge sees exactly those two edges, and the interior extension needs them distinct). This is always possible --- the loop containing the free terminal has its mate already colored, leaving four choices; the other loop\textquotesingle s two terminals carry two of the three transferred colors, which are distinct by construction. The five incidences at the restored \(v\) then carry at least four distinct colors --- the four distinct colors of \(G_4\) all transfer, and the free terminal either repeats one of them or introduces the fifth --- so every color has multiplicity at most \(2 = \lfloor (5-1)/2 \rfloor\), and \(v\) is balanced at its restored degree 5. Each terminal edge \(e\) (endpoint degrees 5 and 2, row cap \(\lfloor (5+2-2)/2 \rfloor = 2\)) sees at most 2 same-colored edges on its \(v\)-side by that multiplicity bound. Finally, the loop interiors extend greedily exactly by the length-\(\ge 3\) argument of Claim 10: each interior edge has at most \(2 + 2 < 5\) forbidden colors, and the greedy order explicitly keeps each already-colored terminal edge strong --- its degree-2-side neighbor is colored under that constraint. Restoring the two loops one at a time in reverse processing order --- the two-leaf transfer for the second-processed loop, then the single-leaf step at four distinct colors for the first --- is an equivalent packaging of the same argument. \(\square\)
+
+The repair uses Claim 8, Remark 9\textquotesingle s distinctness observation, and Claim 10 --- nothing outside the paper. The statement of Theorem 2 is unaffected.
+
+\end{document}
+
