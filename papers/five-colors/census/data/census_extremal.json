@@ -1,0 +1,211 @@
+{
+  "1": [
+    {
+      "n": 1,
+      "m": 0,
+      "degree_sequence": [
+        0
+      ],
+      "edges": [],
+      "graph6": "@",
+      "maj": 1,
+      "boundary": {
+        "k_minus_1": 0,
+        "not_applicable": true
+      },
+      "coloring": [],
+      "degree2_vertices": 0,
+      "triangles": 0
+    }
+  ],
+  "2": [
+    {
+      "n": 4,
+      "m": 4,
+      "degree_sequence": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "edges": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "graph6": "C]",
+      "maj": 2,
+      "boundary": {
+        "k_minus_1": 1,
+        "cadical_unsat": true,
+        "glucose_unsat": true,
+        "cadical_seconds": 0.0002033999771811068,
+        "cadical_conflicts": 0
+      },
+      "coloring": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "degree2_vertices": 4,
+      "triangles": 0
+    },
+    {
+      "n": 4,
+      "m": 6,
+      "degree_sequence": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "graph6": "C~",
+      "maj": 2,
+      "boundary": {
+        "k_minus_1": 1,
+        "cadical_unsat": true,
+        "glucose_unsat": true,
+        "cadical_seconds": 0.00021590001415461302,
+        "cadical_conflicts": 0
+      },
+      "coloring": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "degree2_vertices": 0,
+      "triangles": 4
+    }
+  ],
+  "3": [
+    {
+      "n": 3,
+      "m": 3,
+      "degree_sequence": [
+        2,
+        2,
+        2
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "graph6": "Bw",
+      "maj": 3,
+      "boundary": {
+        "k_minus_1": 2,
+        "cadical_unsat": true,
+        "glucose_unsat": true,
+        "cadical_seconds": 0.00020380003843456507,
+        "cadical_conflicts": 0
+      },
+      "coloring": [
+        0,
+        1,
+        2
+      ],
+      "degree2_vertices": 3,
+      "triangles": 1
+    }
+  ],
+  "4": [
+    {
+      "n": 4,
+      "m": 4,
+      "degree_sequence": [
+        3,
+        2,
+        2,
+        1
+      ],
+      "edges": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "graph6": "CV",
+      "maj": 4,
+      "boundary": {
+        "k_minus_1": 3,
+        "cadical_unsat": true,
+        "glucose_unsat": true,
+        "cadical_seconds": 0.0002411000314168632,
+        "cadical_conflicts": 2
+      },
+      "coloring": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "degree2_vertices": 2,
+      "triangles": 1
+    }
+  ]
+}
