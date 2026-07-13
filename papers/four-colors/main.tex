@@ -1,0 +1,464 @@
+% !TeX program = pdflatex
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+\usepackage{alltt}
+
+% --- Unicode characters appearing in quoted Lean code ---
+\DeclareUnicodeCharacter{2200}{\ensuremath{\forall}}
+\DeclareUnicodeCharacter{2203}{\ensuremath{\exists}}
+\DeclareUnicodeCharacter{2208}{\ensuremath{\in}}
+\DeclareUnicodeCharacter{2209}{\ensuremath{\notin}}
+\DeclareUnicodeCharacter{2227}{\ensuremath{\wedge}}
+\DeclareUnicodeCharacter{2228}{\ensuremath{\vee}}
+\DeclareUnicodeCharacter{00AC}{\ensuremath{\neg}}
+\DeclareUnicodeCharacter{2192}{\ensuremath{\to}}
+\DeclareUnicodeCharacter{2194}{\ensuremath{\leftrightarrow}}
+\DeclareUnicodeCharacter{2264}{\ensuremath{\le}}
+\DeclareUnicodeCharacter{2265}{\ensuremath{\ge}}
+\DeclareUnicodeCharacter{2260}{\ensuremath{\ne}}
+\DeclareUnicodeCharacter{2261}{\ensuremath{\equiv}}
+\DeclareUnicodeCharacter{2286}{\ensuremath{\subseteq}}
+\DeclareUnicodeCharacter{222A}{\ensuremath{\cup}}
+\DeclareUnicodeCharacter{2229}{\ensuremath{\cap}}
+\DeclareUnicodeCharacter{2205}{\ensuremath{\emptyset}}
+\DeclareUnicodeCharacter{2115}{\ensuremath{\mathbb{N}}}
+\DeclareUnicodeCharacter{27E8}{\ensuremath{\langle}}
+\DeclareUnicodeCharacter{27E9}{\ensuremath{\rangle}}
+\DeclareUnicodeCharacter{03B1}{\ensuremath{\alpha}}
+\DeclareUnicodeCharacter{03B2}{\ensuremath{\beta}}
+\DeclareUnicodeCharacter{03C3}{\ensuremath{\sigma}}
+\DeclareUnicodeCharacter{03C9}{\ensuremath{\omega}}
+\DeclareUnicodeCharacter{03B5}{\ensuremath{\varepsilon}}
+\DeclareUnicodeCharacter{0394}{\ensuremath{\Delta}}
+\DeclareUnicodeCharacter{039B}{\ensuremath{\Lambda}}
+\DeclareUnicodeCharacter{2080}{\ensuremath{_0}}
+\DeclareUnicodeCharacter{2081}{\ensuremath{_1}}
+\DeclareUnicodeCharacter{2082}{\ensuremath{_2}}
+\DeclareUnicodeCharacter{2083}{\ensuremath{_3}}
+\DeclareUnicodeCharacter{2084}{\ensuremath{_4}}
+\DeclareUnicodeCharacter{2074}{\ensuremath{^4}}
+\DeclareUnicodeCharacter{00B2}{\ensuremath{^2}}
+\DeclareUnicodeCharacter{2212}{\ensuremath{-}}
+\DeclareUnicodeCharacter{230A}{\ensuremath{\lfloor}}
+\DeclareUnicodeCharacter{230B}{\ensuremath{\rfloor}}
+\DeclareUnicodeCharacter{2032}{\ensuremath{{}^{\prime}}}
+\DeclareUnicodeCharacter{00D7}{\ensuremath{\times}}
+\DeclareUnicodeCharacter{2248}{\ensuremath{\approx}}
+\DeclareUnicodeCharacter{2113}{\ensuremath{\ell}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{observation}[theorem]{Observation}
+
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\newcommand{\Maj}{\ensuremath{\mathrm{Maj}'}}
+
+\title{Strong Majority Edge-Coloring with Four Colors for Graphs with Degrees in \texorpdfstring{$\{3,4\}$}{\{3,4\}}: A Machine-Checked Program}
+\author{John Erlbacher\thanks{Independent Researcher. Email: \texttt{erlbacher.research@gmail.com}. ORCID: 0009-0003-6851-4139.}}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\emph{Project note: this work was carried out with substantial AI assistance, within the author's research pipeline (Demonstrandum); tools and responsibility are disclosed in Section 5.}
+
+\medskip
+Draft of 2026-07-13 (v2; v1 of 2026-07-12 presented the $t \le 2$ case as conditional).
+\end{center}
+
+\begin{abstract}
+Kalinowski, Kamyczura, Pilśniak, and Woźniak (KKPW) conjectured that every admissible graph $G$ has strong majority index $\Maj(G) \le 4$: its edges can be four-colored so that for every edge $e$ and every color $\alpha$, at most half of the edges adjacent to $e$ have color $\alpha$. The best general bound is $\Maj(G) \le 5$ (Antoniuk--Prorok--Salia). Bound $4$ is known on several classes: KKPW proved it for all degrees divisible by three (covering cubic graphs), for all degrees even (covering 4-regular graphs), and for minimum degree at least $7$; Antoniuk et al.\ proved it for graphs with no vertices of degree $2$ or $4$. This paper reports a machine-checked program toward the conjectured bound on the degrees-$\{3,4\}$ class---cubic, 4-regular, and \emph{mixed}---where the mixed case (both a degree-3 and a degree-4 vertex present) is covered by no published result and the best prior bound is $5$. Two theorems close unconditionally, each verified to the Lean 4 kernel over mathlib with axiom footprint exactly \texttt{[propext, Classical.choice, Quot.sound]} and no unproved dependency. The first is, to our knowledge, new mathematics on a slice of the open class: \emph{every finite simple graph with all degrees in $\{3,4\}$ and at most two degree-3 vertices satisfies $\Maj(G) \le 4$}. The graphs with exactly two degree-3 vertices are mixed, so this is, to our knowledge, the first bound-of-four theorem to cover any part of the mixed class, where the previous best bound was $5$; it does \emph{not} cover the full mixed class, whose general case remains open. The second is a machine-checked proof of a known theorem: every finite simple 4-regular graph satisfies $\Maj(G) \le 4$. That statement is KKPW's (their Proposition 21, by an Euler-tour argument); ours proceeds by a different argument (a capacitated-Hall avoidance construction on edge splits), and the two theorems together are, to our knowledge, the first machine-checked proofs of a strong-majority bound of \emph{four} (our earlier verification machine-checked the general five-color bound). Both arise from a single constructive route to $\Maj(G) \le 4$ for all degree-$\{3,4\}$ graphs, in which every step is kernel-checked \emph{except} one precisely-stated combinatorial descent lemma, consumed only in the degree-3 regime and supported by exhaustive small-case verification (all minimal splits through nine vertices, zero failures) but not proved; the \emph{general} degrees-$\{3,4\}$ theorem, with arbitrarily many degree-3 vertices, is therefore conditional, and we present it as such. At $t \le 2$ degree-3 vertices a migration argument replaces the descent lemma entirely, which is how the unconditional mixed-slice theorem closes. The verification rests on a toolkit of more than one hundred kernel-checked declarations---a split/defect/trail calculus for degree-$\{3,4\}$ graphs. We also record, as methodology, an alternative architecture based on edge-potential minimization that our own verification gates found promising and then falsified with explicit counterexamples, together with a table of eight refuted structural hypotheses each carrying a machine-checked witness. The work builds on, and reuses the frozen definitions of, our earlier five-color verification.
+\end{abstract}
+
+\section{Introduction}\label{1-introduction}
+
+\subsection{The problem}\label{11-the-problem}
+
+Kalinowski, Kamyczura, Pilśniak, and Woźniak \cite{KKPW} introduced \emph{strong majority edge-colorings}. An edge-coloring $c \colon E(G) \to C$ of a graph $G$ (colorings need not be proper) is a \emph{strong majority edge-coloring} if for every edge $e \in E(G)$ and every color $\alpha \in C$, at most half of the edges adjacent to $e$ have color $\alpha$. Writing $d(u)$ for degree, an edge $e = uv$ has exactly $d(u) + d(v) - 2$ adjacent edges, so the condition is that for every color $\alpha$,
+\[
+\#\{f \text{ adjacent to } e : c(f) = \alpha\} \;\le\; \left\lfloor \frac{d(u)+d(v)-2}{2} \right\rfloor .
+\]
+The least number of colors admitting such a coloring is the \emph{strong majority index} $\Maj(G)$. Such a coloring exists if and only if $G$ has no vertex of degree one adjacent to a vertex of degree two; graphs avoiding this configuration are \emph{admissible}, and for them $\Maj$ is well defined (coloring every edge distinctly works).
+
+Kalinowski et al.\ \cite{KKPW} proved $\Maj(G) \le 8$ for every admissible $G$ and conjectured (their Conjecture 14) that
+\[
+\Maj(G) \le 4 \quad \text{for every admissible } G,
+\]
+which would be best possible: there are admissible graphs with $\Maj(G) = 4$, the smallest being the paw (a triangle with a pendant edge). Antoniuk, Prorok, and Salia \cite{APS} improved the general upper bound to $\Maj(G) \le 5$; that five-color bound is the strongest general result currently known, and we have separately machine-checked it \cite{E5}. The conjectured bound of four is open in general.
+
+The conjectured bound is, however, already \emph{known on substantial classes}, and crediting these results precisely matters for what follows. KKPW \cite{KKPW} proved $\Maj(G) \le 4$ when every degree of $G$ is divisible by three (their Proposition 15)---in particular for every cubic graph---and when every degree is even (their Proposition 21, by a short Euler-tour argument: color the tour periodically $1,2,3$ and give a fourth color to the at most two leftover edges)---in particular for every 4-regular graph, as their remark on regular graphs states explicitly ($\Maj \le 4$ for $r$-regular graphs with $r \in \{4,8\}$ by Proposition 21). They also proved bound $4$ at minimum degree at least $7$ (their Theorem 18) and for bipartite graphs of minimum degree at least $4$ (their Proposition 20). Antoniuk et al.\ \cite{APS} proved $\Maj(G) \le 4$ for every graph with no vertices of degree $2$ or $4$ (their Theorem 4), which covers cubic graphs a second time and lowers the minimum-degree threshold for bound $4$ from $7$ to $5$.
+
+\subsection{Contributions}\label{12-contributions}
+
+Let a \emph{degree-$\{3,4\}$ graph} be a finite simple graph all of whose degrees lie in $\{3,4\}$. The class decomposes into cubic graphs (bound $4$ known: KKPW Proposition 15, APS Theorem 4), 4-regular graphs (bound $4$ known: KKPW Proposition 21), and the \emph{mixed} graphs carrying both a degree-3 and a degree-4 vertex---which no published result covers: Proposition 15 fails (degree $4$ is not divisible by $3$), Proposition 21 fails (degree $3$ is odd), APS Theorem 4 excludes degree-4 vertices, and the minimum-degree and bipartite results do not apply. For mixed degree-$\{3,4\}$ graphs the best published bound is APS Theorem 2's general $\Maj \le 5$. This paper attacks exactly that slice, with a formal-verification pipeline, and reports four contributions, stated honestly. Throughout, $t$ denotes the number of degree-3 vertices (always even; Section 5.4).
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  \textbf{An unconditional, kernel-checked theorem on a slice of the mixed class} (Sections 2 and 3). We verify to the Lean 4 kernel that every finite simple graph with all degrees in $\{3,4\}$ and \emph{at most two degree-3 vertices} satisfies $\Maj(G) \le 4$, with axiom footprint exactly \texttt{[propext, Classical.choice, Quot.sound]} and no \texttt{sorry} in the dependency cone. Since $t$ is even, the theorem covers $t = 0$ (the 4-regular case) and $t = 2$; the $t = 2$ graphs are mixed, so to our knowledge this is the first bound-of-four theorem covering any mixed degree-$\{3,4\}$ graphs, where the previously best bound was the general $5$ of Antoniuk et al.\ \cite{APS}, Theorem 2. We state its limits plainly: it does \emph{not} cover the full mixed class (graphs with four or more degree-3 vertices are out of its scope, and such graphs exist in class II in abundance; Section 5.4), and it does not touch the KKPW conjecture in general.
+\item
+  \textbf{A kernel-checked 4-regular theorem} (Sections 2 and 3). On the 4-regular sub-case our route needs no descent lemma and closes unconditionally: we verify to the Lean 4 kernel that every finite simple 4-regular graph $G$ satisfies $\Maj(G) \le 4$, with the same axiom footprint and no \texttt{sorry} in the dependency cone. \emph{The mathematical statement is not new}: it is the 4-regular case of KKPW Proposition 21 (all degrees even), as their remark on regular graphs states explicitly. Our contribution is the machine-checked proof---together with (a), to our knowledge the first machine-checked proof of a strong-majority bound of four (our earlier verification \cite{E5} machine-checked the general five-color bound)---and it proceeds by a different argument: a capacitated-Hall avoidance construction on edge splits rather than their Euler-tour coloring.
+\item
+  \textbf{The general degrees-$\{3,4\}$ theorem, modulo one descent lemma} (Sections 2, 3, and 5). We give a single constructive route to $\Maj(G) \le 4$ for every graph with all degrees in $\{3,4\}$---which, if completed, would give the first bound of $4$ for the full \emph{mixed} degree-$\{3,4\}$ class; the pure sub-cases were already known, cubic via KKPW Proposition 15 / APS Theorem 4 and 4-regular via KKPW Proposition 21. The unified argument also recovers the two known extremes. It is developed in Lean 4 over mathlib, and \emph{every step is kernel-checked except one}: a precisely-stated combinatorial \emph{descent lemma}, consumed only when a degree-3 vertex is present. The reduction to that lemma, and everything downstream of it, is verified; the lemma itself is stated in Section 5 exactly as it appears in Lean and is supported by exhaustive verification (all total-odd-minimal splits through nine vertices, and further targeted families, with zero counterexamples), but it is \emph{not} proved. The general theorem is therefore \emph{conditional}, and we never present it as established. (At $t \le 2$ the migration argument of Section 2.7 bypasses the lemma, which is how contribution (a) closes; for $t \ge 4$ no such bypass is known.)
+\item
+  \textbf{A verification toolkit and a falsification record} (Sections 3 and 4). The development contributes more than one hundred kernel-checked declarations---a reusable split/defect/trail calculus for degree-$\{3,4\}$ graphs (Section 3.3). Section 4 records, as methodology rather than drama, an alternative architecture (edge-potential minimization) that was proposed inside the pipeline, passed an initial gate, and was then refuted by our own machine-checked counterexamples, alongside a table of eight structural hypotheses that the pipeline's pre-registered probes falsified, each with an explicit witness.
+\end{enumerate}
+
+\subsection{Calibration against the conjecture}\label{13-calibration}
+
+Nothing here resolves the KKPW conjecture. Contribution (a) is unconditional but covers only the $t \le 2$ slice of the mixed class; contribution (b) is a machine-checked proof of a known theorem; contribution (c) addresses the full open slice of the degrees-$\{3,4\}$ class and remains conditional on an unproved lemma. The full conjecture quantifies over all admissible graphs and is untouched, and both regular sub-cases of degrees $\{3,4\}$ were settled by KKPW and APS before this work. Where we write ``to our knowledge'' the search scope is documented (Section 3.2); no priority is claimed on the conjecture, on the five-color bound, or on any of the known partial results.
+
+\subsection{Relation to the five-color work and method}\label{14-relation}
+
+This paper builds directly on a five-color verification we reported separately \cite{E5}: it reuses, unchanged and kernel-frozen, the same base definitions of adjacency, rows, color counts, the strong majority predicate, and admissibility, so that the two developments speak a common formal vocabulary. The proofs were developed in an iterated pipeline that pins lemma statements in Lean, produces candidate proofs by automated and semi-automated means, and accepts a candidate only after an audit that rebuilds it from a pinned environment, checks the statement token-for-token against the pin, and verifies the axiom footprint of every public declaration. The methodology, including the falsification discipline that produced Section 4, is disclosed in Section 5.
+
+\subsection{Organization}\label{15-organization}
+
+Section 2 gives the constructive route as ordinary graph theory. Section 3 describes the formal verification: the exact statements, the axiom audit, the toolkit, and the double- and triple-confirmation record. Section 4 records the falsified architecture and the refuted hypotheses. Section 5 states the descent lemma and its evidence. Section 6 discusses methods and disclosure. Section 7 lists open problems.
+
+\section{The constructive route}\label{2-the-constructive-route}
+
+Throughout, $G = (V,E)$ is a finite simple graph, $d(v)$ is degree, and a \emph{degree-$\{3,4\}$ graph} has $d(v) \in \{3,4\}$ for all $v$. Every degree-$\{3,4\}$ graph is admissible (minimum degree $3$), so $\Maj$ is defined. The route targets:
+
+\begin{theorem}[conditional; see Section~\ref{5-the-descent-lemma}]\label{thm:threefour}
+Every finite simple degree-$\{3,4\}$ graph $G$ satisfies $\Maj(G) \le 4$.
+\end{theorem}
+
+\begin{theorem}[unconditional; kernel-checked]\label{thm:t2}
+Every finite simple degree-$\{3,4\}$ graph $G$ with at most two degree-3 vertices satisfies $\Maj(G) \le 4$.
+\end{theorem}
+
+\begin{theorem}[{$=$ the 4-regular case of KKPW Proposition 21; kernel-checked here}]\label{thm:fourreg}
+Every finite simple 4-regular graph $G$ satisfies $\Maj(G) \le 4$.
+\end{theorem}
+
+Theorem~\ref{thm:threefour} is kernel-checked \emph{modulo} the single descent lemma of Section 5, whose use is confined to the degree-3 regime; its novel content is the mixed case (Section 1.2). Theorem~\ref{thm:t2} is the paper's unconditional headline: at $t \le 2$ degree-3 vertices a migration argument (Section 2.7) replaces the descent lemma, and the whole chain is kernel-clean; the mixed graphs it covers are exactly those with two degree-3 vertices. For 4-regular input the development discharges the placement obligation unconditionally at \emph{every} split, which yields Theorem~\ref{thm:fourreg}---a known statement \cite{KKPW}, re-proved here by a different argument and verified to the kernel.
+
+\subsection{The strong majority reduction and the two classes}\label{21-two-classes}
+
+For an edge $e = uv$ and a color $\alpha$, write $\mathrm{nColor}(u,v,\alpha)$ for the number of edges adjacent to $e$ of color $\alpha$, and let $\mathrm{cnt}(v,\alpha)$ be the number of $\alpha$-colored edges incident with $v$. A short identity---already kernel-checked in the base development---relates them:
+\[
+\mathrm{nColor}(u,v,\alpha) + 2\,[\,c(uv)=\alpha\,] \;=\; \mathrm{cnt}(u,\alpha) + \mathrm{cnt}(v,\alpha).
+\]
+Consequently, if every incident color count $\mathrm{cnt}(v,\alpha)$ is at most $1$, the left side is at most $2$, and since a degree-$\{3,4\}$ edge has row cap $\lfloor (d(u)+d(v)-2)/2 \rfloor \in \{2,3\}$, the strong majority condition holds at once. Call a four-coloring \emph{proper} (in the incidence sense, predicate \texttt{IsProper4}) if $\mathrm{cnt}(v,\alpha) \le 1$ for all $v,\alpha$; equivalently, at each vertex the (at most four) incident edges receive distinct colors. This gives the first dichotomy.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Class I} ($G$ admits a proper four-coloring). The count reduction above closes the strong majority condition directly. This is the short arm and is fully kernel-checked.
+\item
+  \textbf{Class II} ($G$ admits no proper four-coloring). Here counting alone fails and the constructive work begins.
+\end{itemize}
+
+\subsection{Edge splits and the class-I equivalence}\label{22-splits}
+
+An \emph{edge split} of $G$ is a partition $E(G) = E(H_0) \sqcup E(H_1)$ into two spanning subgraphs each of maximum degree at most $2$ (predicate \texttt{IsEdgeSplit}). Because $G$ has degrees in $\{3,4\}$, every vertex has degree $1$ or $2$ in each half; each half is a disjoint union of paths and cycles. Such splits always exist (an Euler-partition argument: evenize by attaching an auxiliary vertex to the degree-3 vertices, take an Euler tour, and two-color its edges alternately); this existence is kernel-checked as \texttt{exists\_edge\_split\_pin}.
+
+A split is \emph{zero-odd} if neither half contains an odd cycle. The class-I property is exactly the existence of a zero-odd split:
+\[
+G \text{ admits a proper four-coloring} \iff G \text{ admits a zero-odd split,}
+\]
+kernel-checked in both directions (\texttt{P2\_equiv}). Forward: a max-degree-2 graph with no odd cycle is a union of paths and even cycles, hence properly two-edge-colorable; color the two halves with disjoint color pairs $\{0,1\}$ and $\{2,3\}$. Backward: given a proper four-coloring, the color pairs induce two max-degree-2 halves whose cycles must alternate colors and hence be even.
+
+So class II is precisely the regime in which \emph{every} edge split leaves an odd cycle in some half. The constructive task is to place the resulting defects so that the strong majority condition still holds.
+
+\subsection{The defect calculus}\label{23-defect-calculus}
+
+Fix an edge split $(H_0, H_1)$. On a half $H$ that is a union of paths and even cycles we can two-color alternately; an \emph{odd} cycle cannot be properly two-colored, and forces one \emph{defect}: a single vertex on the cycle carrying two edges of the same color. A \emph{minimum-alternating} coloring of a half places exactly one defect on each odd cycle and none elsewhere, with a free sign (which of the two colors is doubled). That any such assignment of defect vertices and signs is realizable by an actual Boolean coloring is kernel-checked (\texttt{exists\_isMinAlternating}, part of a 20-declaration realizability toolbox).
+
+The cost of a defect is local. For a foreign edge $uv$ (one endpoint carrying a defect), write $\mathrm{cap}(u,v) = \lfloor (d(u)+d(v)-2)/2 \rfloor$; this equals $3$ exactly when both endpoints have degree $4$, and $2$ otherwise. The exact conditions under which a set of signed defects keeps every row within cap---the predicate \texttt{DefectSafe}, and its equivalent count form \texttt{CrossSafe}---are worked out and kernel-checked (\texttt{defectSafe\_iff\_crossSafe}), as is the assembly lemma that safe defects on both halves yield a strong majority coloring for an \emph{arbitrary} finite defect set (\texttt{strongMajority\_of\_safe\_defects}). No bound on the number of defects is assumed or available: chaining copies of $K_5$ minus an edge forces unboundedly many odd cycles in every split (Section 5.4), so the calculus is stated for arbitrary defect families throughout.
+
+\subsection{Clean transversals and minimal splits}\label{24-clean-transversals}
+
+The single remaining question is existential: on which vertices can the forced defects be placed \emph{safely}? A vertex $u$ is \emph{clean} (with respect to the opposite half $K$) if every $K$-edge at $u$ has cap $3$---equivalently, $u$ and all its cross-neighbours have degree $4$ (predicate \texttt{CleanVertex}). A defect placed at a clean vertex costs nothing on its cap-3 foreign edges. A \emph{clean transversal} chooses one clean vertex on each odd cycle of $H_0$ so that the chosen set contains no odd cycle of $H_1$ in full (so that the induced cross-graph on the chosen vertices is bipartite and can be consistently signed). If both ordered halves admit clean transversals, the defect calculus of Section 2.3 closes the strong majority condition.
+
+The existence of clean transversals is not automatic at an arbitrary split, but the evidence (Section 5) points to \emph{minimal} splits. Let $\mathrm{oddCycleCount}(H)$ be the number of odd cycle components of a half, and call a split \emph{total-odd-minimal} (\texttt{IsOddCycleMinimalSplit}) if it minimizes $\mathrm{oddCycleCount}(H_0) + \mathrm{oddCycleCount}(H_1)$ over all edge splits. Existence of a minimizer is immediate by finiteness (\texttt{exists\_oddCycleMinimal\_split}). The constructive route is completed by the statement that \emph{every total-odd-minimal split of a connected class-II degree-$\{3,4\}$ graph admits clean transversals in both ordered halves} (\texttt{clean\_transversal\_of\_minimal}).
+
+\subsection{The 4-regular case closes unconditionally}\label{25-fourreg}
+
+For 4-regular $G$ the clean-transversal statement is not merely true at minimal splits---it is true at \emph{every} split, with no minimality, connectivity, or class hypothesis. Indeed every vertex has degree $4$, so every cross edge has cap $3$ and \emph{every vertex is clean}. The only remaining obligation is to choose one vertex per odd cycle of $H_0$ avoiding full odd cycles of $H_1$ (and symmetrically). This is a capacitated transversal problem: the odd-cycle supports of a max-degree-2 graph are pairwise vertex-disjoint and each has at least three vertices, and a family of pairwise-disjoint sets of size $\ge 3$ admits a transversal avoiding every member of any second such family. This is Hall's theorem in capacitated form (mathlib's \texttt{Finset.all\_card\_le\_biUnion\_card\_iff\_existsInjective'}), packaged as the \emph{avoidance core} \texttt{Avoid.avoidance\_core}. Applying it to both halves and feeding the two transversals through the defect calculus proves Theorem~\ref{thm:fourreg}. The whole chain avoids the descent lemma entirely and is kernel-clean; Section 3.1 exhibits the Lean statement. We emphasize again that the resulting theorem is KKPW's (Proposition 21, whose Euler-tour proof is one paragraph); the value here is the kernel-checked artifact and the fact that the split/defect route---built for the mixed case---recovers the known extreme without any special-casing.
+
+\subsection{The degree-3 regime}\label{26-deg3}
+
+When $G$ has a degree-3 vertex, cleanliness can fail: a degree-3 vertex, or a degree-4 vertex with a degree-3 cross-neighbour, sits on cap-2 edges and is ``poisoned.'' An odd cycle all of whose vertices are poisoned has empty clean domain, and the avoidance argument breaks. The claim that a minimal split nonetheless admits clean transversals---equivalently, that a split with no clean transversal is not minimal, because a strictly-lower-odd-count split exists---is the content of the descent lemma of Section 5. It is verified exhaustively on small graphs but not proved, and it is the sole gap between the present development and a kernel-complete proof of Theorem~\ref{thm:threefour}. At $t \le 2$, however, the theorem does not need it: the next subsection closes that case unconditionally by a different route.
+
+\subsection{At most two degree-3 vertices: the migration route}\label{27-t2-migration}
+
+The final assembly consumes the descent machinery at exactly one point: it needs \emph{some} minimal split with clean transversals in both ordered halves---an existential statement, weaker than the descent lemma's universal claim about every non-minimal split. At $t \le 2$ that existential statement has an unconditional proof, by \emph{migration} rather than descent.
+
+Fix a total-odd-minimal split of a connected degree-$\{3,4\}$ graph with $t \le 2$ and suppose some odd cycle of one half is fully poisoned. A kernel-checked shape analysis (\texttt{poisoned\_t2\_shape}, building on the charging bound that a fully-poisoned support has at most $2t$ vertices) forces an explicit local configuration: the poisoned cycle is a triangle of degree-4 vertices, the two degree-3 vertices $p, q$ attach to it by cross edges in a prescribed pattern, the cross half is 2-regular, and $p$ and $q$ are joined by a path in the host half. A canonical three-edge toggle through this configuration then does one of two things, by the parity of that path. If the path length is even, the toggle strictly decreases the total odd count (\texttt{canonical\_strict\_of\_ellP\_even})---contradicting minimality, so this case is void. If it is odd, the toggle cannot increase the odd count on either side, so minimality forces it to be odd-count-neutral: it \emph{migrates} the minimal split to another minimal split, and a poison-exit lemma (\texttt{mig\_unpoisons}) shows that in the toggled split every odd cycle of both halves has a nonempty clean domain---after the toggle at most two vertices in the whole graph are cross-adjacent to a degree-3 vertex, while a poisoned support would need three. Since at most one ordered half of a split can carry the poisoned shape, one migration step suffices (\texttt{migration\_descent}): some minimal split is entirely unpoisoned in both directions.
+
+From there the proved machinery finishes: at $t \le 2$ a capacitated-Hall deficiency argument (\texttt{nonbip\_void\_t2}, kernel-checked) turns nonempty clean domains into clean transversals avoiding cross odd cycles, the clean-transversal bridge produces safe defect placements, and the defect calculus of Section 2.3 yields the strong majority coloring (\texttt{migration\_safe\_split\_placement\_t2} $\to$ \texttt{R4\_three\_four\_connected\_t2}); a component lift removes the connectivity hypothesis (\texttt{R4\_three\_four\_t2}). Every declaration named in this paragraph is kernel-checked with axiom footprint exactly \texttt{[propext, Classical.choice, Quot.sound]} and no \texttt{sorry} anywhere in the dependency cone (Section 3.3). This proves Theorem~\ref{thm:t2}. The route is $t \le 2$ specific in two load-bearing places---the poisoned-shape classification and the deficiency argument---so it does not extend to general $t$ as stated; the descent lemma remains the open condition for Theorem~\ref{thm:threefour}.
+
+\section{The formal verification}\label{3-the-formal-verification}
+
+\subsection{What exactly is proved}\label{31-what-is-proved}
+
+The development reuses the frozen base file of the five-color work \cite{E5} for the strong-majority vocabulary---\texttt{V} is a finite vertex type with decidable equality, \texttt{G : SimpleGraph V} with decidable adjacency, and \texttt{SMaj.IsStrongMajority} is the predicate of Section 1.1 verbatim---and adds the degree-$\{3,4\}$ layer. The central definitions and the three headline statements are the following Lean 4 code, quoted from the artifact (docstrings abbreviated):
+
+{\small
+\begin{alltt}
+/-- Incidence-proper 4-coloring: each color at most once per vertex. -/
+def IsProper4 (G : SimpleGraph V) [DecidableRel G.Adj] (c : Sym2 V → Fin 4) : Prop :=
+  ∀ v α, cnt G c v α ≤ 1
+
+/-- An edge split: two spanning subgraphs, max degree 2 each, partitioning E(G). -/
+def IsEdgeSplit (G H₀ H₁ : SimpleGraph V) [DecidableRel G.Adj]
+    [DecidableRel H₀.Adj] [DecidableRel H₁.Adj] : Prop :=
+  (∀ u v, G.Adj u v ↔ (H₀.Adj u v ∨ H₁.Adj u v)) ∧
+  (∀ u v, H₀.Adj u v → ¬ H₁.Adj u v) ∧
+  H₀ ≤ G ∧ H₁ ≤ G ∧
+  (∀ v, H₀.degree v ≤ 2) ∧ (∀ v, H₁.degree v ≤ 2) ∧
+  (∀ v, H₀.degree v + H₁.degree v = G.degree v)
+
+/-- The row cap of the edge uv. -/
+def cap (G : SimpleGraph V) [DecidableRel G.Adj] (u v : V) : ℕ :=
+  (G.degree u + G.degree v - 2) / 2
+
+/-- u is clean w.r.t. K: every K-edge at u has cap 3. -/
+def CleanVertex (G K : SimpleGraph V) [DecidableRel G.Adj] [DecidableRel K.Adj]
+    (u : V) : Prop := ∀ v, K.Adj u v → cap G u v = 3
+
+/-- Number of degree-three vertices. -/
+def numDeg3 (G : SimpleGraph V) [DecidableRel G.Adj] : ℕ :=
+  (Finset.univ.filter (fun v : V => G.degree v = 3)).card
+
+/-- THEOREM (unconditional, kernel-clean).  Every finite simple 4-regular graph
+    admits a strong majority edge-coloring with four colors: Maj′(G) ≤ 4. -/
+theorem R4_four_regular (G : SimpleGraph V) [DecidableRel G.Adj]
+    (hreg : ∀ v, G.degree v = 4) :
+    ∃ c : Sym2 V → Fin 4, SMaj.IsStrongMajority G c
+
+/-- t ≤ 2 TOP THEOREM (UNCONDITIONAL): every finite simple graph with all
+    degrees in \{3, 4\} and at most two degree-3 vertices has a strong
+    majority 4-coloring. -/
+theorem R4_three_four_t2
+    (G : SimpleGraph V) [DecidableRel G.Adj]
+    (hdeg : ∀ v, G.degree v = 3 ∨ G.degree v = 4)
+    (ht2 : numDeg3 G ≤ 2) :
+    ∃ c : Sym2 V → Fin 4, SMaj.IsStrongMajority G c
+
+/-- Every degree-\{3,4\} graph admits a strong majority 4-coloring.
+    Body sorry-free; inherits sorryAx solely via the descent lemma below,
+    consumed only when a degree-3 vertex is present. -/
+theorem R4_three_four (G : SimpleGraph V) [DecidableRel G.Adj]
+    (hdeg : ∀ v, G.degree v = 3 ∨ G.degree v = 4) :
+    ∃ c : Sym2 V → Fin 4, SMaj.IsStrongMajority G c
+\end{alltt}
+}
+
+\noindent\textbf{Fidelity.} \texttt{SMaj.IsStrongMajority} and the row/cap arithmetic are the frozen definitions of \cite{E5}, checked there line-by-line against the source papers; \texttt{cap G u v} is the row threshold $\lfloor(d(u)+d(v)-2)/2\rfloor$ in Lean natural-number arithmetic (truncated subtraction is harmless since endpoint degrees sum to at least $2$). The conclusion asks for a total function \texttt{Sym2 V → Fin 4}; values on non-edges are irrelevant, and \texttt{Fin 4} expresses ``at most four colors.''
+
+\subsection{Known results, novelty scope, and prior formalization}\label{32-priority}
+
+We record precisely what was known before this work, per sub-case of the degrees-$\{3,4\}$ class. \emph{Cubic}: bound $4$ known twice, KKPW Proposition 15 (all degrees divisible by three) and APS Theorem 4 (no vertices of degree $2$ or $4$). \emph{4-regular}: bound $4$ known, KKPW Proposition 21 (all degrees even), stated explicitly for $r$-regular graphs with $r \in \{4,8\}$ in their remark on regular graphs. \emph{Mixed} (both a degree-3 and a degree-4 vertex): to our knowledge open at bound $4$---each of the published bound-$4$ results fails on this slice (Proposition 15: degree $4 \nmid 3$; Proposition 21: degree $3$ odd; APS Theorem 4: degree-4 vertices excluded; KKPW Theorem 18: $\delta = 3 < 7$; KKPW Proposition 20: bipartiteness required)---so the best published bound there is APS Theorem 2's general $5$. A literature sweep (conducted 2026-07-12) found no other work on the strong majority index $\Maj$ beyond the two source papers; ``strong edge-coloring'' results in the sense of the strong chromatic index concern a different invariant.
+
+On the formalization side: we searched for prior formalizations of majority-type or strong-majority colorings across proof-assistant libraries and tracking lists and found none besides our own five-color verification \cite{E5}; to our knowledge, \texttt{R4\_four\_regular} and \texttt{R4\_three\_four\_t2} are the first machine-checked proofs of a strong-majority bound of \emph{four} for any nontrivial class. The two theorems sit differently against the literature: for \texttt{R4\_four\_regular} the mathematics was settled by KKPW and only the formalization is new, while for \texttt{R4\_three\_four\_t2} the $t = 2$ graphs are covered by no published bound-$4$ result, so on that slice the statement itself is, to our knowledge, new---though we emphasize it is a slice, not the mixed class. We surveyed the classical literature on the nearest structural analogues to the open lemma (oddness of cubic graphs, even 2-factorizations and even cycle decompositions of 4-regular graphs, equitable and evenly-equitable edge colorings, and compatible Euler tours; Section 5.5), finding no theorem that implies the descent lemma. We claim no priority on the strong majority problem, on the conjecture, or on any known partial result.
+
+\subsection{The toolkit and the axiom audit}\label{33-toolkit-audit}
+
+The degree-$\{3,4\}$ layer is two files over the frozen base \cite{E5}: \texttt{Pins2.lean} (the constructive route, the toolkit, and the conditional assembly) and \texttt{Pins3.lean} (the $t \le 2$ migration route and the theorem \texttt{R4\_three\_four\_t2}, together with the formalized-but-open pins of the general-$t$ program, none of which lies in the new theorem's dependency cone). At the audited checkpoint \texttt{Pins2.lean} contained \textbf{105 declarations at the standard axiom triple} \texttt{[propext, Classical.choice, Quot.sound]}, with the unconditional 4-regular theorem and its parallel chain added subsequently; the audit scripts (\texttt{AuditPins2.lean}, \texttt{AuditPins3.lean}) print \texttt{\#print axioms} for each named layer, including \texttt{R4\_four\_regular} and \texttt{R4\_three\_four\_t2}. Grouped by theme, the toolkit comprises: the count identity and strong-majority reduction; the class-I core (\texttt{E1\_split}, \texttt{classI\_arm}); the class-I equivalence \texttt{P2\_equiv} with an 11-lemma proper-two-coloring chain and a six-lemma odd-cycle toolbox; edge-split existence and minimal-split existence; the defect calculus (\texttt{defectSafe\_iff\_crossSafe}, \texttt{strongMajority\_of\_safe\_defects}) with roughly ten helpers; a connected-component lift; a 20-declaration min-alternating realizability toolbox; max-degree-2 structure theory; an edge-deletion ``surgery'' engine; the capacitated-Hall avoidance core; and the clean-transversal scaffold and bridge. This calculus is reusable for any degree-$\{3,4\}$ edge-coloring question, independent of the descent lemma.
+
+\smallskip
+The toolchain is Lean 4 \texttt{v4.28.0} with mathlib pinned at commit \texttt{8f9d9cff6bd728b17a24e163c9402775d9e6a365} (the same pin as \cite{E5}). The base declarations audit at the bedrock triple, for example:
+
+{\small
+\begin{alltt}
+'Rung4Moonshot.nColor_add_two_mul' depends on axioms:
+  [propext, Classical.choice, Quot.sound]
+'Rung4Moonshot.E1_of_cnt_le_one' depends on axioms:
+  [propext, Classical.choice, Quot.sound]
+'Rung4Moonshot.E1_split' depends on axioms:
+  [propext, Classical.choice, Quot.sound]
+'Rung4Moonshot.classI_strongMajority' depends on axioms:
+  [propext, Classical.choice, Quot.sound]
+\end{alltt}
+}
+
+\noindent and both unconditional theorems print the same triple with no \texttt{sorryAx}:
+
+{\small
+\begin{alltt}
+'Rung4Moonshot.R4_four_regular' depends on axioms:
+  [propext, Classical.choice, Quot.sound]
+'Rung4Moonshot.R4_three_four_t2' depends on axioms:
+  [propext, Classical.choice, Quot.sound]
+\end{alltt}
+}
+
+\noindent For \texttt{R4\_three\_four\_t2} the audit was run three ways at the accepting checkpoint: a full clean build of the merged file (8{,}029 jobs, exit 0), the per-declaration \texttt{\#print axioms} audit above for the whole migration chain (\texttt{mig\_unpoisons}, \texttt{migration\_step}, \texttt{migration\_descent}, \texttt{migration\_safe\_split\_placement\_t2}, \texttt{numDeg3\_induce\_le}, \texttt{R4\_three\_four\_connected\_t2}, \texttt{R4\_three\_four\_t2}, each exactly the standard triple), and a transitive-closure walker over the compiled proofs confirming \emph{zero} \texttt{sorry}-carrying constants anywhere in the three target declarations' dependency cones; an independent rebuild in a third, separate environment double-confirmed the result. \texttt{Pins3.lean} does still contain \texttt{sorry}-pins---the formalized open statements of the general-$t$ descent program---but the walker output places every one of them outside the new theorem's cone.
+
+By contrast, \texttt{R4\_three\_four} and every declaration on the general-$t$ critical path reports \texttt{sorryAx} inherited \emph{solely} from the single open lemma \texttt{strict\_descent\_of\_no\_clean\_transversal} (Section 5). Its own body is sorry-free---it is a connected-component lift of \texttt{R4\_three\_four\_connected}---so the entire conditional theorem's dependence on the unproved content is exactly, and only, that one lemma. On disk \texttt{Pins2.lean} contains exactly one \texttt{sorry}, at the descent lemma. A fresh rebuild-and-audit in a clean environment is the reproduction gate of Section 6; the standalone-corollary audit lines for \texttt{R4\_four\_regular} and \texttt{R4\_three\_four\_t2} are confirmed present in the audit scripts.
+
+\subsection{Double- and triple-confirmation record}\label{34-confirmation}
+
+Because the development accepts candidate proofs from automated provers, load-bearing lemmas were re-proved independently where feasible, and the audit rejects any candidate that weakens a statement or closes a goal by unverifiable means. Independently re-derived, sorry-free, at the bedrock triple: \texttt{E1\_split} (two strategies); both directions of the class-I equivalence \texttt{P2\_equiv} (two derivations each); \texttt{exists\_oddCycleMinimal\_split} (argmin and well-ordering); \texttt{strongMajority\_of\_crossSafe\_split} (three independent routes---bricks, off-color case split, and a case-split route); and the clean-transversal bridge \texttt{placement\_of\_clean\_transversal} (two machine-independent proofs). The migration route's one non-routine lemma, the poison-exit \texttt{mig\_unpoisons} of Section 2.7, was closed by two independent prover returns---one proving the statement directly, one proving it through a restructured core with the minimality, connectivity, and $t \le 2$ hypotheses deliberately removed---and both were gated to the standard triple; the accepted artifact carries the direct proof, with the structured proof retained as confirmation. The verification discipline also \emph{corrected} two premature ``false'' verdicts: a claimed refutation of a recolor-difference identity tested a truncated statement (the pinned identity matched brute force on all $4{,}440$ cases), and a claimed-false direction of the defect-calculus equivalence had overlooked a degree-sum clause and is in fact kernel-provable. We report these because they are part of the same audit that produced the positive results.
+
+\section{The falsification record}\label{4-the-falsification-record}
+
+A verification pipeline earns trust not only by what it proves but by what it refuses. The rung-4 development began with an architecture that its own gates first advanced and then killed; and along the way a battery of pre-registered probes falsified eight structural hypotheses, each with an explicit machine-checked witness. We record these as methodology.
+
+\subsection{An architecture found and falsified: edge-potential minimization}\label{41-epot}
+
+An automated pilot proposed a potential-function route: define, for a coloring $c$, the \emph{edge potential} $\mathrm{ePot}(c) = \sum_{u,v\text{ adj}} \sum_\alpha \mathrm{nColor}(u,v,\alpha)^2$, and conjecture that every local minimizer of $\mathrm{ePot}$ is a strong majority coloring on all degree-$\{3,4\}$ graphs---which, if true, would prove the theorem with no split or odd-cycle machinery at all. The scaffolding (a count reduction, a color-count toolbox, and existence of a minimizer) returned sorry-free and passed an independent gate; the base file was byte-identical to the pinned artifact, with the crux isolated as a single lemma. We did not accept the crux on the prover's assertion.
+
+Independent recomputation refuted it three ways. An exhaustive $4^{13}$ brute-force over a seven-vertex family (using the exact Lean definitions) found $312$ global $\mathrm{ePot}$-minimizers of which $96$ violate strong majority; two further seven-vertex graphs gave global minimizers with $18/42$ and $60/312$ violations; and an independent partition-DP recomputation confirmed that a global minimizer has non-negative potential change under \emph{every} recoloring yet can violate strong majority---so no stationarity condition of any move-size can rescue $\mathrm{ePot}$ minimization. The architecture was abandoned. Its sorry-free scaffolding was banked and re-audited for possible reuse; the crux stays refuted. The lesson, recorded as a standing rule, is that a prover's narrative summary (this one asserted ``0 counterexamples, exhaustive,'' twice, wrongly) is not evidence: only kernel output and independent recomputation count.
+
+\subsection{Eight refuted hypotheses, with witnesses}\label{42-refuted}
+
+The redirect to the constructive route was itself guided by pre-registered probes---each stating in advance what would count as refutation---run at idle priority. Table~\ref{tab:refuted} lists the hypotheses they killed. Two features are worth naming. First, \emph{single-vertex or single-edge locality repeatedly fails while small coordinated multi-edge moves succeed}: three independent probes found that Kempe-plateau escape needs three-edge moves, that color-elimination needs coordinated two-edge moves, and that bounded-move stationarity is false at move-sizes one and two. Second, \emph{random hardening is not adversarial hardening}: a placement law that survived several hundred random graphs fell to a structured ten-vertex construction (two blocks of $K_5$ minus an edge, port-joined), which is why adversarial construction became a required step before any formalization spend.
+
+\begin{table}[t]
+\small
+\centering
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}p{0.42\textwidth}p{0.52\textwidth}@{}}
+\toprule
+Hypothesis refuted & Witness / evidence \\
+\midrule
+Every $\mathrm{ePot}$-minimizer is strong majority (the potential crux) & $n=7$ global minimizers violate SM: potentials $188$ ($18/42$), $192$ ($60/312$), $248$ ($96/312$); independent recompute agrees \\
+$\mathrm{ePot}$ minimization is a viable potential at all & global min gives non-negative change for every recoloring, yet is non-SM; no bounded-move rescue \\
+Kempe-plateau escape by single swaps (``Conjecture P'') & trap graphs \texttt{F?qaw}, \texttt{F?rF\_}; every trapped state is Hamming-distance $3$ from a valid coloring; escape needs $\ge 3$-edge moves \\
+Color-elimination supports are always forests & false at $14$ edges: cyclic supports \texttt{G?zfFo}, \texttt{GCZbsw} ($C_4$/$K_{2,2}$), re-verified outside the solver \\
+Bounded-move stationarity ($k=1$ and $k=2$) & $1$-move minima violating SM from $n=6$ (\texttt{EFzo}); $2$-move minima from $n=6$ (\texttt{E]zo}) \\
+``Zero-odd split exists iff not ($n$ odd and $\le 2$ degree-3 vertices)'' & false at $n=10$: two $K_5{-}e$ blocks port-joined; $72$ splits, $0$ zero-odd; forced defects unbounded \\
+``One swap strictly decreases the odd count'' (naive descent) & the star swap on the frustrated configuration is only non-increasing; cross-side parity uncontrolled \\
+That refutation itself (a third-order turn) & a two-edge exchange \emph{does} strictly decrease the count at the same witness \\
+\bottomrule
+\end{tabular}
+\caption{Structural hypotheses falsified by pre-registered probes, each with a machine-checked witness. Six-character strings are graph6 identifiers.}
+\label{tab:refuted}
+\end{table}
+
+The last two rows record a genuine \emph{third-order} exchange: a naive one-swap descent scheme was refuted; that refutation was itself refuted (a two-edge exchange works at its witness); and the residual difficulty was thereby re-localized to the degree-3/cap-2 interaction, which is exactly where the descent lemma of Section 5 lives. Every turn was checked by kernel or by explicit witness before it was allowed to move the strategy.
+
+\section{The descent lemma}\label{5-the-descent-lemma}
+
+\subsection{Statement}\label{51-statement}
+
+The sole unproved content of Theorem~\ref{thm:threefour} is the following lemma, quoted verbatim from Lean (it carries \texttt{Pins2.lean}'s only \texttt{sorry}). We write $\mathrm{oddCycleSupports}(H)$ for the vertex sets of the odd cycle components of a half and $\mathrm{oddCycleCount}$ for their number.
+
+{\small
+\begin{alltt}
+/-- If a valid split of a connected class-II degree-\{3,4\} graph admits NO clean
+    transversal, then a strictly-lower-total-odd-cycle split exists. -/
+lemma strict_descent_of_no_clean_transversal
+    (G H₀ H₁ : SimpleGraph V) [DecidableRel G.Adj]
+    [DecidableRel H₀.Adj] [DecidableRel H₁.Adj]
+    (hconn : G.Connected)
+    (hdeg : ∀ v, G.degree v = 3 ∨ G.degree v = 4)
+    (hII : ¬ ∃ c : Sym2 V → Fin 4, IsProper4 G c)
+    (hsplit : IsEdgeSplit G H₀ H₁)
+    (hbad : ¬ ∃ d : Finset V → V,
+        (∀ S ∈ oddCycleSupports H₀, d S ∈ S ∧ CleanVertex G H₁ (d S)) ∧
+        (∀ S' ∈ oddCycleSupports H₁, ¬ (S' ⊆ (oddCycleSupports H₀).image d))) :
+    ∃ (K₀ K₁ : SimpleGraph V) (_ : DecidableRel K₀.Adj) (_ : DecidableRel K₁.Adj),
+      IsEdgeSplit G K₀ K₁ ∧
+      oddCycleCount K₀ + oddCycleCount K₁ < oddCycleCount H₀ + oddCycleCount H₁
+\end{alltt}
+}
+
+By minimality (\texttt{IsOddCycleMinimalSplit}), the lemma is equivalent to: \emph{every total-odd-minimal split of a connected class-II degree-$\{3,4\}$ graph admits a clean transversal.} A three-line minimality contradiction turns it into \texttt{clean\_transversal\_of\_minimal}, whose 4-regular branch closes unconditionally (Section 2.5); the descent lemma is consumed only when a degree-3 vertex is present. Its two failure modes are \emph{empty-domain} (a fully-poisoned odd cycle) and \emph{non-bipartite-forced} (nonempty clean domains, but every transversal engulfs an odd cross-cycle).
+
+\subsection{What is verified around it}\label{52-around}
+
+The reduction \emph{to} the lemma is kernel-checked, as is everything downstream. Specifically: the clean-transversal bridge \texttt{placement\_of\_clean\_transversal} (clean transversals yield safe defect placements) is proved twice; the class-II assembly \texttt{classII\_arm}, the connected theorem, and the component lift \texttt{R4\_three\_four} have sorry-free bodies inheriting \texttt{sorryAx} only through the lemma; and the descent ``surgery'' engine used by any exchange proof---that deleting an edge on an odd cycle of a max-degree-2 graph strictly drops the odd count, and never creates new odd cycles---is kernel-checked. Thus a proof of the one lemma would make Theorem~\ref{thm:threefour} kernel-complete the same instant, with no other gap.
+
+\subsection{The $t \le 2$ regime: the theorem is closed, the lemma is not}\label{53-t2}
+
+Write $t$ for the number of degree-3 vertices (always even). At $t \le 2$ the \emph{theorem} no longer depends on the descent lemma at all: the migration route of Section 2.7 proves the existential placement statement the assembly actually consumes, kernel-clean, which is Theorem~\ref{thm:t2}. Two of that route's ingredients are the kernel-checked forms of structural facts first established at paper rigor in this program: the non-bipartite-forced mode is \emph{void} at $t \le 2$ (a capacitated-Hall deficiency argument, Theorem B2 of Section 5.4, formalized as \texttt{nonbip\_void\_t2}), and the empty-domain mode reduces to a fully-poisoned \emph{triangle} in an explicit local configuration (Theorem B1, formalized as \texttt{poisoned\_t2\_shape}).
+
+The descent \emph{lemma} itself---the universal statement quoted above, which is what Theorem~\ref{thm:threefour} still needs---remains unproved even restricted to $t \le 2$. The program's formalized ladder for it (an alternating-walk analysis: supply lemmas, walk ledgers, crossing dichotomies, an alternating-Euler-trail mechanism, and a parity-split treatment of the terminal case) had, at its last audited checkpoint, reduced the $t \le 2$ restriction of the lemma to a single named open pin, with the general-$t$ scaffold statement-congruent with the lemma modulo three named pins; the open pins are formalized in the artifact with their \texttt{sorry}s visible, and none of them touches Theorem~\ref{thm:t2}'s cone. For $t \ge 4$, class-II degree-$\{3,4\}$ graphs with arbitrarily many degree-3 vertices exist (Section 5.4), so neither the general lemma nor the general theorem reduces to $t \le 2$; a general-$t$ proof is open (Section 7).
+
+\subsection{Structural theorems and a complexity fence}\label{54-strikeb}
+
+Several unconditional facts are proved on paper and sharpen the target. \textbf{(B1)} At $t=2$, a fully-poisoned odd $H$-cycle is a triangle in one of two explicit configurations (a third is impossible by a handshake parity argument). \textbf{(B2)} At $t \le 2$, the non-bipartite-forced mode never occurs. \textbf{(B3)} For every $N$ there is a connected class-II degree-$\{3,4\}$ graph with more than $N$ degree-3 vertices (attach a cubic graph to the two degree-3 ports of a $K_5{-}e$ block); so ``class II'' does not bound $t$. A \emph{complexity fence} explains the lemma's witness-seeded shape: deciding whether a 4-regular graph is 4-edge-colorable---equivalently whether its minimal split has odd count zero---is NP-complete (Leven--Galil \cite{LG}), so no polynomial-time-verifiable local characterization of odd-minimality with polynomially-searchable improving moves can exist. The lemma must therefore fire on a certificate (the failed clean-transversal problem) that is compatible with minimality but strictly weaker than it---exactly the shape it has---and is consistently \emph{vacuous} on the NP-hard 4-regular core (where, as in Section 2.5, clean transversals always exist).
+
+\subsection{The literature verdict and the evidence}\label{55-evidence}
+
+A literature sweep placed the lemma. Our objective---minimize the total odd-cycle count over Euler splits of a degree-$\{3,4\}$ graph---is the exact two-class analogue of the \emph{oddness} of cubic graphs and of \emph{even 2-factorizations} of 4-regular graphs, both of which live in snark and cycle-double-cover territory where parity control of exchanges is a known open nerve. We examined Euler partitions; equitable and evenly-equitable edge colorings (de Werra; Hilton--de Werra \cite{HdW}; Erzurumluoğlu--Rodger); oddness (Huck--Kochol; Steffen); even 2-factorizations and even cycle decompositions (Markström); Fournier's theorem; and compatible Euler tours and circuit decompositions (Kotzig \cite{Kot}; Fleischner \cite{Fle}; Sabidussi). To our knowledge no known theorem implies the descent lemma or the clean-transversal statement; the missing ingredient is a \emph{parity-controlled compatible-rerouting} statement at the boundary of the cycle-double-cover circle of problems---which calibrates the difficulty and explains, post hoc, why four aggregate shortcuts (averaging/$T$-join, triangle-of-trails, saturation, whole-cut parity) each failed with a concrete class-II witness.
+
+The computational evidence is strong but is evidence only:
+\begin{itemize}
+\tightlist
+\item all $1{,}380$ exhaustively-enumerated total-odd-minimal split-halves through nine vertices admit clean transversals, with zero failures of either mode, including an adversarial chained-$K_5{-}e$ family up to $25$ vertices ($7{,}776$ splits exhaustive);
+\item a greedy seeded-alternating-trail construction produces a strict descent on all $1{,}376$ poisoned-support instances in the exhaustive census through eight vertices, and the ladder's chain-positional crossing rule holds on all $131$ instances of the complete blocked corpus (its corner cases never fire);
+\item a separate reduction of the empty-domain branch validated on all $1{,}090{,}339$ omitted-root comparisons through nine vertices plus targeted order-10 and 11 instances, again with zero failures.
+\end{itemize}
+One larger tally reported by an automated lane ($15{,}525$ instances through nine vertices) is not reproducible from disk---its corpus was not saved---and we therefore do not rely on it; the numbers above are all reproducible from released scripts. None of this is a proof, and we do not present the lemma as established.
+
+\section{Methods and disclosure}\label{6-methods-and-disclosure}
+
+This work was produced with substantial AI assistance, coordinated by the author through a research pipeline (Demonstrandum). The AI tools used were Harmonic's Aristotle theorem prover, OpenAI's GPT-series models (via Codex), and Anthropic's Claude models. No mathematical claim in this paper was accepted solely on the basis of a model's output: the formal claims were checked by the Lean kernel, and the computational claims by the verification procedures stated where they appear.
+
+\textbf{What the tools did here.} Candidate proof routes were proposed and tested within the pipeline---including machine-executed instance checks against exact ground truth---before formalization. Lemma statements were then frozen (``pinned'') in Lean, and candidate proofs were produced by the models named above. Every candidate was accepted only after an audit that rebuilt it from scratch in a pinned environment, checked the statement token-for-token against the pin, and verified the axiom footprint of every public declaration; candidates that weakened statements, or that closed goals by unverifiable means, were rejected---and, as Section 4 records, an entire proposed architecture and eight structural hypotheses were rejected on independent counterexamples. The prose of this paper was drafted with model assistance and reviewed by the author.
+
+\textbf{Reproduction.} The artifact contains the pinned toolchain files, the degree-$\{3,4\}$ source over the frozen base of \cite{E5}, the audit scripts and their outputs, and the probe and mining scripts underlying Sections 4 and 5. A single command rebuilds and re-audits the chain; a successful build prints the axiom audit, including \texttt{\#print axioms R4\_four\_regular} and \texttt{\#print axioms R4\_three\_four\_t2} reporting the bedrock triple with no \texttt{sorryAx}, and exhibits the remaining \texttt{sorry}s exactly at the descent lemma and the general-$t$ pins, outside both unconditional theorems' cones. A clean-environment rebuild is a release gate for the artifact deposit.
+
+\textbf{Responsibility.} The author directed the work, reviewed the artifacts and this text, and takes sole responsibility for all claims. Errors, should any remain, are the author's.
+
+\textbf{Acknowledgments.} This work depended on Harmonic's Aristotle theorem prover, OpenAI's Codex and GPT models, and Anthropic's Claude models, used as described above. We thank the authors of \cite{KKPW} for the problem and the authors of \cite{APS} for the five-color bound.
+
+\section{Limitations and open problems}\label{7-open-problems}
+
+\textbf{The conjecture is open.} Nothing here touches the KKPW conjecture in full generality. The regular sub-cases of the degrees-$\{3,4\}$ class were settled by KKPW and APS before this work; our unconditional content is the $t \le 2$ theorem (new on its mixed slice) and a machine-checked proof of the known 4-regular case, and the mixed class with $t \ge 4$ remains conditional on one lemma.
+
+\textbf{The descent lemma.} Closing \texttt{strict\_descent\_of\_no\_clean\_transversal} would make Theorem~\ref{thm:threefour} kernel-complete. Its formalized ladder is open at a handful of named pins (Section 5.3); the general-$t$ case needs, beyond the $t \le 2$ residue, a general blocked-world classification and a general supply lemma. The missing mathematical ingredient is a parity-controlled compatible-rerouting theorem for alternating trails---a Kotzig/Fleischner-adjacent statement, not a parity computation. Whether the migration argument of Section 2.7 has a general-$t$ analogue---a poisoned-shape classification and a deficiency argument that survive unboundedly many degree-3 vertices---is the other natural attack.
+
+\textbf{The degree-3 (chain) zone.} In class-II degree-$\{3,4\}$ graphs the degree-3 mass can be pushed into a cubic zone (Section 5.4), and cubic graphs are 4-edge-colorable (class I in our sense); a ``local repair near degree-3 clusters'' lemma is a plausible general-$t$ route, unexplored here.
+
+\textbf{Higher degrees.} The split/defect calculus is stated for degrees $\{3,4\}$, where each half has maximum degree $2$ and the odd-cycle picture is exact. Extending to graphs with degree-$5$ or higher vertices---toward the full conjecture---requires a different decomposition; the five-color route \cite{E5} handles arbitrary degrees but with an extra color, and reconciling the two is open.
+
+\textbf{Scope of the verification.} The 4-regular theorem and the $t \le 2$ theorem are established by the Lean kernel; the general degrees-$\{3,4\}$ theorem is not, and is presented as conditional throughout. All priority statements are ``to our knowledge'' with the scope of Section 3.2.
+
+\begin{thebibliography}{9}
+
+\bibitem[APS]{APS}
+S. Antoniuk, M. Prorok, N. Salia, \emph{Strong Majority Edge-Coloring}, arXiv:2607.00212 [math.CO], posted 30 June 2026.
+
+\bibitem[E5]{E5}
+J. Erlbacher, \emph{Strong Majority Edge-Coloring with Five Colors: A Lean Verification and an Alternative Proof}, 2026. Artifact: \href{https://doi.org/10.5281/zenodo.21316623}{doi:10.5281/zenodo.21316623}.
+
+\bibitem[Fle]{Fle}
+H. Fleischner, \emph{Eulerian Graphs and Related Topics}, Annals of Discrete Mathematics; and \emph{Compatible circuit decompositions of 4-regular graphs}, J. Graph Theory (2007).
+
+\bibitem[HdW]{HdW}
+A. J. W. Hilton, D. de Werra, \emph{A sufficient condition for equitable edge-colourings of simple graphs}, Discrete Mathematics 128 (1994), 179--201.
+
+\bibitem[KKPW]{KKPW}
+R. Kalinowski, M. Kamyczura, M. Pilśniak, M. Woźniak, \emph{Strong majority colorings of graphs}, arXiv:2605.23828 [math.CO], May 2026.
+
+\bibitem[Kot]{Kot}
+A. Kotzig, \emph{Moves without forbidden transitions in a graph}, Mat. časopis 18 (1968), 76--80.
+
+\bibitem[LG]{LG}
+D. Leven, Z. Galil, \emph{NP completeness of finding the chromatic index of regular graphs}, J. Algorithms 4 (1983), 35--44.
+
+\bibitem[mathlib]{mathlib}
+The mathlib Community, \emph{The Lean mathematical library}, Proc. CPP 2020, 367--381.
+
+\bibitem[SSTF]{SSTF}
+M. Stiebitz, D. Scheide, B. Toft, L. M. Favrholdt, \emph{Graph Edge Coloring: Vizing's Theorem and Goldberg's Conjecture}, Wiley, 2012.
+
+\end{thebibliography}
+
+\end{document}
