@@ -112,3 +112,81 @@ predates the 121821a consumer rewire and is superseded by this HEAD build, in wh
 clean. The in-source docstring at `Pins3.lean:8703` ("sole sorry source is `mig_unpoisons`")
 is likewise stale narrative (pre-rewire) — not a claim-bearing release surface; Pins3 source
 is not edited here.
+
+## 7. PUBLISH — executed 2026-07-13 (owner-authorized full publication; emails NOT sent)
+
+Lane: PUBLISH (single agent). Basis commit: maths HEAD `4a7cb71` (Pins3 byte-identical to
+kernel-check `121821a`, sha256 `5637e6df…`; all Lean sources extracted via `git show HEAD:`,
+never the working tree). Graffiti checkers re-run pre-deposit: 143 `CHECKER VERDICT: ACCEPT`,
+154 `OVERALL: ALL CHECKS PASS`.
+
+### Zenodo deposit 1 — rung-4 four-color theorems (PUBLISHED)
+
+- **Version DOI: `10.5281/zenodo.21344301`** · concept DOI `10.5281/zenodo.21344300`
+- Record: <https://zenodo.org/records/21344301>
+- Files (12): main.pdf, claims.md, Maj5Base.lean, Pins2.lean, Pins3.lean, AuditPins2.lean,
+  AuditPins3.lean, Demos.lean, READING-KIT.md, RELEASE-PREP-RECORD.md (pre-§7 state),
+  CONFIRM-R4FOURREG.md, KILL-CHECK-R4.md
+- Metadata per ZENODO-DRAFT.md (title, ~230-word kill-check-compliant description, keywords,
+  related identifiers incl. the binding E5-priority note). Type Software; license CC-BY-4.0
+  (consistent with the five-color record; the owner's Apache-2.0-for-code option was never
+  decided — flag if the owner wants a v2 with a split license statement).
+
+### Zenodo deposit 2 — Graffiti 143/154 note + four kill bundles (PUBLISHED)
+
+- **Version DOI: `10.5281/zenodo.21344321`** · concept DOI `10.5281/zenodo.21344320`
+- Record: <https://zenodo.org/records/21344321>
+- Files (5): note.pdf (recompiled 11 pp) + graffiti-143/154/142/269-bundle.zip per
+  SUBMIT.md's verified lists (no `__pycache__`; third-party rc/cocoon/bdf PDFs excluded —
+  their URLs are in the bundles' PROVENANCE records; wow-july2004.pdf included per list).
+- CORRECTION FOLDED IN: note.tex's Data-availability paragraph cited the stale multi-paper
+  v1 DOI `10.5281/zenodo.20673865` while claiming "the archive record accompanying this note
+  contains four certificate bundles". The deposit's DOI was pre-reserved, the URL repointed
+  to `10.5281/zenodo.21344321`, and the note recompiled (pdflatex ×2, 0 errors, 11 pp)
+  BEFORE upload; maths commit `d0781c3`.
+
+### Artifacts repository (PUSHED)
+
+- `demonstrandum-artifacts` main `9b0b0ce` → `832976a`: new `papers/four-colors/` bundle
+  (README, main.pdf/tex, claims.md, artifact/{README, READING-KIT, CONFIRM, KILL-CHECK,
+  RELEASE-PREP-RECORD}, artifact/lean/{6 Lean files + HASHES.txt}).
+- Public byte check: raw Pins3.lean sha256 = `5637e6df…` (exact kernel-check bytes).
+
+### Site (PRODUCTION)
+
+- `rung4-draft` token fill commit `d8e38ab` (4 tokens + removal of the now-false
+  "packaging is pending" notes), merged into main `b77f376`, pushed. Live with title
+  "Four Colors: a First Theorem in the Mixed Degree-{3,4} Case"; homepage card and
+  flagship-page update came along with the merge.
+
+### URL map (token → live URL)
+
+| Token | URL |
+|---|---|
+| [LINK-PENDING-PAPER-PDF] | https://zenodo.org/records/21344301/files/main.pdf?download=1 |
+| [LINK-PENDING-ZENODO] | https://doi.org/10.5281/zenodo.21344301 |
+| [LINK-PENDING-LEAN-PINS3] | https://github.com/demonstrandum-research/artifacts/blob/main/papers/four-colors/artifact/lean/Pins3.lean#L10624 |
+| [LINK-PENDING-LEAN-PINS2] | https://github.com/demonstrandum-research/artifacts/blob/main/papers/four-colors/artifact/lean/Pins2.lean#L3447 |
+| [LINK-PENDING-AUDIT] | https://github.com/demonstrandum-research/artifacts/blob/main/papers/four-colors/artifact/READING-KIT.md |
+| [LINK-PENDING-GRAFFITI-DOI] | https://doi.org/10.5281/zenodo.21344321 |
+| [LINK-PENDING-ARCHIVE] (site, filled) | https://doi.org/10.5281/zenodo.21344301 |
+| [LINK-PENDING-READING-KIT] (site, filled) | https://github.com/demonstrandum-research/artifacts/blob/main/papers/four-colors/artifact/READING-KIT.md |
+| [LINK-PENDING-LEAN] (site, filled) | https://github.com/demonstrandum-research/artifacts/tree/main/papers/four-colors/artifact/lean |
+| [LINK-PENDING-CENSUS] (site, filled) | https://github.com/demonstrandum-research/artifacts/blob/main/papers/five-colors/census/README.md |
+
+Email bodies NOT edited (tokens remain in the drafts); the send-time lane substitutes from
+this table / the outbox STAGING-NOTE.md table (updated in place). `main.tex` carries no
+tokens (only the five-color DOI citation) — not edited, not recompiled.
+
+### Verification (cited-artifact gate, run 2026-07-13 from the public internet)
+
+- All four DOIs resolve 200 through doi.org to the correct records
+  (21344301/21344300 → rung-4; 21344321/21344320 → graffiti).
+- Zenodo file links serve the exact bytes: main.pdf 463,008 B; note.pdf 428,294 B
+  (recompiled version, carries the 21344321 DOI in its Data-availability paragraph).
+- All 7 GitHub deep links return 200; raw Pins3.lean sha256 matches `5637e6df…`;
+  GitHub code view reports the full 10,651 lines with `"large":false`, so the
+  `#L10624` / `#L3447` anchors function.
+- Site live on production: article 200 with the new title; homepage 200 with the
+  four-colors card; flagship page 200. Zero `LINK-PENDING` tokens and zero non-ASCII
+  bytes remain in the published article.
